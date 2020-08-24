@@ -1,0 +1,64 @@
+\documentclass[twoside, english, notitlepage, 12pt]{uiofysmaster}
+
+\usepackage{miscellaneous/packages/packages}
+
+\allowdisplaybreaks
+
+\addbibresource{miscellaneous/references.bib}
+
+\author{Oliver Lerstøl Hebnes}
+\title{Predictions\\
+of Qubits-candidates
+using\\ machine learning
+}
+\date{\today}
+
+\begin{document}
+\hypersetup{pageanchor=false}
+\frontmatter
+    \maketitle
+
+    \begin{abstract}
+    \input{miscellaneous/abstract/abstract.tex}
+    \end{abstract}
+
+    \begin{acknowledgements}
+    \input{miscellaneous/acknowledgements/acknowledgements.tex}
+    \end{acknowledgements}
+
+    %\setcounter{tocdepth}{1}
+    \tableofcontents
+    %\listoffigures
+    \newpage
+
+
+    \input{miscellaneous/introduction/introduction.tex}
+
+    \part{Theory}
+
+        %\input{theory/something.tex}
+
+    \part{Implementation}
+
+      %\input{implementation/something.tex}
+
+    \part{Results}
+
+        %\input{results/something.tex}
+
+    \part{Conclusion}
+
+        %\input{conclusion/something.tex}
+
+    \part{Appendices}
+    \appendix
+
+        \input{miscellaneous/Appendices/solvingMagicAnalytically.tex}
+
+        \nocite{*}
+        \printbibliography%[type=article,title={Bibliography: Articles}]
+        %\printbibliography[type=book,title={Bibliography: Books}]
+        %\printbibliography[type=misc,title={Bibliography: Online}]
+
+
+\end{document}

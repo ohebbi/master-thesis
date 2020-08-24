@@ -1,0 +1,81 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 2.9 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{none/global//global/global}
+    \entry{Balachandran2018}{article}{}
+      \name{author}{6}{}{%
+        {{hash=d2f28604fdb0473ec04193f1475c06fc}{%
+           family={Balachandran},
+           familyi={B\bibinitperiod},
+           given={Prasanna\bibnamedelima V.},
+           giveni={P\bibinitperiod\bibinitdelim V\bibinitperiod}}}%
+        {{hash=536ee7f71886648827eee1712559c15b}{%
+           family={Emery},
+           familyi={E\bibinitperiod},
+           given={Antoine\bibnamedelima A.},
+           giveni={A\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=edf7d023d537083cef4419e186ade6a8}{%
+           family={Gubernatis},
+           familyi={G\bibinitperiod},
+           given={James\bibnamedelima E.},
+           giveni={J\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+        {{hash=a660475a40dcd9f4510f740c0a0a96b1}{%
+           family={Lookman},
+           familyi={L\bibinitperiod},
+           given={Turab},
+           giveni={T\bibinitperiod}}}%
+        {{hash=47449357f6b2d532195b0e84b4c8066d}{%
+           family={Wolverton},
+           familyi={W\bibinitperiod},
+           given={Chris},
+           giveni={C\bibinitperiod}}}%
+        {{hash=4731eeb587695ea77704fc49ebd64436}{%
+           family={Zunger},
+           familyi={Z\bibinitperiod},
+           given={Alex},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {American Physical Society ({APS})}%
+      }
+      \strng{namehash}{8f3989ea6080dd11eb2056386590a8a1}
+      \strng{fullhash}{f6651274871d47f40d6140f7f51c99ff}
+      \strng{bibnamehash}{8f3989ea6080dd11eb2056386590a8a1}
+      \strng{authorbibnamehash}{8f3989ea6080dd11eb2056386590a8a1}
+      \strng{authornamehash}{8f3989ea6080dd11eb2056386590a8a1}
+      \strng{authorfullhash}{f6651274871d47f40d6140f7f51c99ff}
+      \field{sortinit}{1}
+      \field{sortinithash}{2174f786c6195e7fe2ee1c229b416e29}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Physical Review Materials}
+      \field{month}{4}
+      \field{number}{4}
+      \field{title}{Predictions of new {ABO}3 perovskite compounds by combining machine learning and density functional theory}
+      \field{volume}{2}
+      \field{year}{2018}
+      \verb{doi}
+      \verb 10.1103/physrevmaterials.2.043802
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

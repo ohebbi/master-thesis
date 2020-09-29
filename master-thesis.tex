@@ -1,8 +1,7 @@
 \documentclass[twoside, english, notitlepage, 12pt]{uiofysmaster}
 
 \usepackage{miscellaneous/packages/packages}
-
-\allowdisplaybreaks
+\pgfplotsset{compat=newest} %compatibility
 
 \addbibresource{miscellaneous/references.bib}
 
@@ -31,12 +30,16 @@ using\\ machine learning
     %\listoffigures
     \newpage
 
-
+\mainmatter
     \input{miscellaneous/introduction/introduction.tex}
 
     \part{Theory}
+        \input{theory/quantum_mechanics.tex}
+        \input{theory/solid_state_electronic_devices.tex}
 
-        %\input{theory/something.tex}
+    \part{Material Science Databases}
+
+      \input{theory/databases.tex}
 
     \part{Implementation}
 

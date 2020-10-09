@@ -8,6 +8,8 @@ We will in this thesis only formulate the neccessary theory behind density funct
 %dynamical variables
 %operator
 %canonical substitusion
+
+
 \section{The single-electron Schrödringer equation}
 
 As every other introduction to quantum mechanics books, we will start of investigating the Schrödinger equation with only one electron \cite{Griffiths2017}
@@ -70,10 +72,10 @@ which appropiately describes that every measurement of the total energy is certa
 
 
 
-\section{Eigenfunctions}
+\subsection{Eigenfunctions}
 So far, we have not given an explanation of what a wavefunction is. As a matter of fact, we have actually found an eigenfunction
 \begin{align*}
-  \psi_\kappa^*(r,t) = \psi_\kappa e^{-i\varepsilon_\kappa t/\hslash}
+  \psi_\kappa(r,t) = \psi_\kappa e^{-i\varepsilon_\kappa t/\hslash}
 \end{align*}
 where $\kappa$ denotes the $k$-th eigenfunction and $\varepsilon_\kappa$ is its corresponding energy eigenvalue. The eigenfunctions have distinct energies and have the attribute that they are orthogonal and normalized with respect to
 \begin{align*}
@@ -96,6 +98,34 @@ Solving Schrödinger equation for a general wavefunction is rather troublesome. 
 
 The shape of en eigenfunction has normally high spatial symmetri that depends on the symmetri of the potential $V_{ext}(r)$ and the boundary conditions \cite{Persson2020}. The study of how atoms in a crystalline interact with each other is of upmost importance when trying to explain macroscopic consequences.
 
+
+\section{Variational principle}
+So far we have tried to solve the time-independent Schrödinger equation with the use of an \textit{ansatz}. Alas, for complex many-body systems, there exists easier\footnote{and powerful} approaches that happen to make solid estimates of the ground state energy when a good guess of eigenfunctions are out of range. The variational principle is one of them, and it states that the energy of any trial wavefunction is always an upper bound to the exact ground state energy by definition $E_0$.
+\begin{align}
+  E_0 = \bra{\psi_0 } H \ket{\psi_0} \leq \bra{\psi}H\ket{\psi} = E
+  \label{eq:variational}
+\end{align}
+The eigenfunctions of $H$ form a complete set, which means any normalized $\Psi$ can be expressed in terms of the eigenstates
+\begin{align}
+  \Psi = \sum_n c_n \psi_n, \quad \textnormal{where} \quad H\psi_n = E_n \psi_n
+\end{align}
+for all $n = 1,2, ...$. The expectation value for the energy can be calculated as
+\begin{align*}
+  \bra{\Psi}H\ket{\Psi} &= \bra{\sum_{n}c_n \psi_n} H \ket{\sum_{n'} c_{n'}\psi_{n'}} \\
+  &= \sum_n \sum_{n'} c_{n}^* c_{n'} \bra{\psi_n}H\ket{\psi_{n'}} \\
+  &= \sum_n \sum_{n'} c_{n}^* E_n c_{n'} \bra{\psi_{n}}\ket{\psi_{n'}} \\
+\end{align*}
+Here we assume that the eigenfunctions have been orthonormalized and we can utilize $\bra{\psi_{m}}\ket{\psi_{n}}=\delta_{mn}$, resulting in
+\begin{align*}
+  \sum_n c_n^*c_n E_n = \sum_n \lvert c_n \rvert^2 E_n.
+\end{align*}
+We have already stated that $\Psi$ is normalized, thus $\sum_n \lvert c_n \rvert ^2 = 1 $, and the expectation value conveniently is bound to follow equation \ref{eq:variational}.
+The quest to understand the variational principle can be summarized in a sentence; it is possible to tweak the wavefunction parameters to minimize the energy, or summed up in a mathematical phrase;
+\begin{align}
+  E_0 = \min_{\Psi \rightarrow \Psi_0} \bra{\Psi}H\ket{\Psi}.
+\end{align}
+This plays a vital role later, as we will see, since the energy is a \textit{functional} of the the wavefunction, denoted as $E_0\left[ \Psi \right]$.
+
 \section{Hartree-Fock approximations}
 
 As we venture along from a one-electron system to a two-electron systen, we encounter a new wavefunction and Hamiltonian that needs to describe two particles, making the two-electron Schrödinger equation read
@@ -115,6 +145,234 @@ The Hartree-fock approach, however, overcame this challenge and presented an ant
 \begin{align}
   \Psi(r_1,r_2) = \frac{1}{\sqrt{2}}\Big( \psi_1(r_1) \psi_2  + {\psi_1(r_2)\psi_2(r_1)}\Big)
 \end{align}
+
+\section{The many-particle Schrödinger equation}
+As we extend the theory to include many-particle system, we will gradually explain and add the different contributions that makes up the many-body Schrödinger equation. During this process, we will neglect any external potential applied to the system.
+
+A simple electron with mass $m_e$ wandering off in its own system, minding its own business, will be in possession of some kinetic energy. If it's a whole legion of electrons, say $N_e$ electrons, they will have the total kinetic energy
+\begin{align}
+  T_e = - \sum_{j=1}^{N_e} \frac{\hslash^2\nabla_j}{2m_e}.
+\end{align}
+All the electrons are negatively charged, which means that there will exists repulsive Coulomb interactions between each and every electron, totalling to
+\begin{align}
+  U_{ee} = \sum_{j=1}^{N_e}\sum_{j'<j} \frac{q^2}{\lvert r_j - r_{j'}\rvert}.
+  \label{eq:electron-electron}
+\end{align}
+The summation makes sure to not count each interaction more than one time.
+At the same time, in a different system, a horde of nuclei with each their mass $m_n$ are roaming their own system. If there are $N_n$ nuclei there, they would accumulate the kinetic energy
+\begin{align}
+  T_n = - \sum_{a=1}^{N_n} \frac{\hslash^2\nabla_a}{2m_n}.
+\end{align}
+As in the example with electrons, the nuclei are also experiencing repulsive interactions between every single nucleus, adding up the total interactions as
+\begin{align}
+  U_{nn} = \sum_{a=1}^{N_n}\sum_{a'<a} \frac{q^2 Z_aZ_{a'}}{\lvert R_a - R_{a'}\rvert }.
+\end{align}
+where $Z_a$ is the atom number of the nuclei.
+
+Now, imagine if we brought the two systems together to one system. The equations describing kinetic energy and interactions of each respective particle would still be legit, however, we need to include the attractive interactions between the nuclei and the electrons
+\begin{align}
+  U_{en} = - \sum_{j=1}^{N_e} \sum_{a=1}^{N_n} \frac{q^2Z_a}{\lvert r_j-R_a\rvert}
+\end{align}
+
+Together, these equations resembles the time-independent many-particle Hamiltonian
+\begin{align}
+  \begin{aligned}
+    \hat{H} = &- \sum_{j=1}^{N_e} \frac{\hslash^2\nabla_j}{2m_e} - \sum_{a=1}^{N_n} \frac{\hslash^2\nabla_a}{2m_n} + \sum_{j=1}^{N_e}\sum_{j'<j} \frac{q^2}{\lvert r_j - r_{j'}\rvert} \\ &+\sum_{a=1}^{N_n}\sum_{a'<a} \frac{q^2 Z_aZ_{a'}}{\lvert R_a - R_{a'}\rvert } - \sum_{j=1}^{N_e} \sum_{a=1}^{N_n} \frac{q^2Z_a}{\lvert r_j-R_a\rvert}.
+  \end{aligned}
+\end{align}
+
+\subsection{Challenges}
+
+A few problems arise when trying to solve the many-particle Schrödinger equation.
+
+Firstly, the amount of atoms in a crystal is absurd. As an example, we can numerically try to calculate the equation \ref{eq:electron-electron} for a $1$mm$^3$ silicon-crystal that contains $7\cdot 10^{20}$ electrons. For this particular problem, we will pretend to use the current fastest supercomputer Fugaku \cite{Top500} that can calculate $514$ TFlop/s, and we will assume that we need $2000$ flops to calculate each term inside the sum \cite{Persson2020}, and we need to calculate it $N_e \cdot N_e/2$ times for the (tiny) crystal. The entire electron-electron interaction calculation would take $2.46 \cdot 10^{19}$ years to finish for a tiny crystal. Thus, the amount of particles translates into a numerical problem.
+
+%In one cubic-centimeter of a crystal, there are around $10^{23}$ electrons. This number is roughly the same as the number of stars in the universe, grain of sand on all beaches in the world, or currently $1.41\cdot 10^{19}$ times the amount of Home and Away episodes made since 1988.
+
+Secondly, while the many-particle Hamiltonian contains operators that has to be applied to single-particle wavefunctions, we do not know how to do it as we have no prior knowledge of how $\Psi$ depends on the them.
+
+\section{The Born-Oppenheimer approximation}
+
+The many-particle eigenfunction describes the wavefunction of all the electrons and nuclei and we denote it as $\Psi_{\kappa}^{en}$ for a nucleus and electron part. The Born-oppenheimer approximation assumes that nuclei, that have a substantial larger mass than electrons, can be treated as fixed point charges. According to this assumption, it is valid to separate the eigenfunction into an electronic part and a nucleus part
+\begin{align}
+  \Psi_\kappa(r, R) \approx \psi_{\kappa}(r, R)\Theta_{\kappa}(R).
+\end{align}
+As seen, the electronic part is dependent on the nuclei. This is according to the assumption above, since electrons can respond instantaneous to a new position of the much slower nucleus, but this is not true for the opposite scenario. For our advantage, we already have knowledge of the terms in the many-particle Hamiltionian, and we can start separating the Hamiltionian into an electronic and nucleus part.
+
+
+\begin{align}
+  \hat{H}^{en} = \overbrace{T_e + U_{ee} + U_{en}}^{\hat{H}^{e}} + \overbrace{T_n + U_{nn}}^{\hat{H}^{n}}.
+\end{align}
+Starting from the time-independent Schrödinger equation, we can try to make separate expressions for the electronic and the nucleus Schrödinger equation.
+
+\begin{align}
+  \hat{H^{en}} \Psi_\kappa^{en}(r,R) = E_\kappa^{en}\psi_\kappa^{en}(r,R) \quad \lvert \times \int \Psi^*(r,R) dr \\
+  \int \psi_\kappa^*(r,R) (\hat{H}^e + \hat{H}^n)\psi_\kappa(r,R)\Theta_\kappa(R)dr = E_\kappa^{en} \underbrace{\int \Psi_\kappa ^* (r,R) \Psi_\kappa (r,R) dr }_{1} \Theta_\kappa(R).
+\end{align}
+
+Since $\Theta_\kappa(R)$ is independent of the electronic space, we get $E_{\kappa}$ as the total energy of the electrons in the state $\kappa$.
+
+\begin{align}
+     E_\kappa(R) \Theta_k(R) + \int \Psi_k^*(r,R)H^n\Psi_k(r,R)\Theta_k(R)dr = E_k^{en} \Theta_k(R).
+\end{align}
+
+Now, the final integration term can be simplified by using the product rule, which results in
+\begin{align}
+    \Big( T_n+T_n^{'} + T_n^{''} +U_{aa} + E_\kappa(R) \Big)\Theta_\kappa(R) = E_\kappa^{en}\Theta_\kappa (R).
+\end{align}
+If we neglect $T_n'$ and $T_n^{''}$ to lower the computational efforts, we obtain the Born-Oppenheimer approximation with the electronic eigenfunction as
+\begin{align}
+    \left( T_e + U_{ee} + U_{en} \right) \Psi_\kappa (r,R) = E_{\kappa}(R)\Psi_\kappa(r,R)
+\end{align}
+and the nuclei eigenfunction as
+\begin{align}
+    \left(T_n + U_{nn} + E_\kappa (r,R) \right) \Theta_\kappa(R)= E_{\kappa}^{en}(R)\Psi_\kappa(r,R).
+\end{align}
+
+How are they coupled, you might ask? The total energy in the electronic equation is a potential in the nuclear equation.
+
+
+\section{The density functional theory}
+
+Up until now we have tried to solve the Schrödinger equation to get a ground state wave function, and from there we can obtain ground state properties, such as the electronic density number. One fundamental problem that exists when trying to solve the many-electron Schrödinger equation is that the wavefunction is a bloody complicated function that depends on $3N_e$ variables\footnote{not including spin}, which are the spatial dimensions.
+
+Hohenberg and Kohn \cite{Hohenberg1964} showed in 1964 that the ground-state density $n_0(r) = \lvert \Psi_0 (r)\rvert$ determines a general external potential, which includes $U_{en}$, up to an additive constant, and thus also the Hamiltonian \cite{Toulouse2019}. From another point of view, the theory states that all physical ground-state properties of the many-electron system are unique functionals of the density \cite{Persson2020}. A consequence of this is that the amount of variables are reduced from $3N_e$ to $3$, significantly reducing the computational efforts.
+
+However, the scheme is not without conceits, as the DFT can only be used to find all the ground-state physical properties if the exact functional of the electron density is known. And $56$ years after Hohenberg and Kohn published their paper, the exact functional still remains unknown.
+
+We will start this section with a discussion of the Hohenberg-Kohn theorems, before we dwell further into the Kohn-sham equation.
+
+\subsection{Hohenberg-Kohn's theorems}
+
+\begin{theorem}
+  For any system of interacting particles in an external potential $V_{ext}$, the density is uniquely determined.
+\end{theorem}
+\begin{proof}
+  Assume that two external potentials $V_{ext}^{(1)}$ and $V_{ext}^{(2)}$, that differs by more than a constant, have the same ground state density $n_0(r)$. The two different potentials belongs to each their distinct Hamiltonian $\hat{H}_{ext}^{(1)}$ and $\hat{H}_{ext}^{(2)}$, which again gives rise to distinct wavefunctions $\Psi_{ext}^{(1)}$ and $\Psi_{ext}^{(2)}$. Utilizing the variational principle, we find that no wavefunction can give an energy that is less than the energy of $\Psi_{ext}^{(1)}$ for $\hat{H}_{ext}^{(1)}$, that is
+  \begin{align}
+    E^{(1)} = \bra{\Psi^{(1)}}\hat{H}^{(1)}\ket{\Psi^{(1)}} < \bra{\Psi^{(2)}}\hat{H}^{(1)}\ket{\Psi^{(2)}} \label{eq:E1} \\
+    E^{(2)} = \bra{\Psi^{(2)}}\hat{H}^{(2)}\ket{\Psi^{(2)}} < \bra{\Psi^{(1)}}\hat{H}^{(2)}\ket{\Psi^{(1)}}
+    \label{eq:E2}
+  \end{align}
+  Assuming that the ground state is not degenerate, the inequality strictly holds. Since we have identical ground state densities for the two Hamiltonian's, we can rewrite the expectation value for equation \ref{eq:E1} as
+  \begin{align*}
+    E^{(1)} &= \bra{\Psi^{(1)}}\hat{H}^{(1)}\ket{\Psi^{(1)}} \\
+    &= \bra{\Psi^{(1)}}T + U_{ee} + U_{ext}^{(1)}\ket{\Psi^{(1)}} \\
+    &= \bra{\Psi^{(1)}} T + U_{ee} \ket{\Psi^{(1)}} + \int \Psi^{*(1)}(r)V_{ext}^{(1)}\Psi^{(1)}(r)dr \\
+    &= \bra{\Psi^{(1)}} T + U_{ee} \ket{\Psi^{(1)}} + \int V_{ext}^{(1)} n(r)dr \\
+    &< \bra{\Psi^{(2)}}\hat{H}^{(1)}\ket{\Psi^{(2)}} \\
+    &= \bra{\Psi^{(2)}} T + U_{ee} + U_{ext}^{(1)} + \overbrace{U_{ext}^{(2)} - U_{ext}^{(2)} }^{0} \ket{\Psi^{(2)}}\\
+    &= \bra{\Psi^{(2)}} T + U_{ee} + U_{ext}^{(2)}\ket{\Psi^{(1)}} + \int \left(V_{ext}^{(1)} - V_{ext}^{(2)}\right) n(r)dr \\
+    &= E^{(2)} + \int \left(V_{ext}^{(1)} - V_{ext}^{(2)}\right) n(r)dr
+  \end{align*}
+Thus,
+\begin{align}
+  E^{(1)} = E^{(2)} + \int \left(V_{ext}^{(1)} - V_{ext}^{(2)}\right) n(r)dr
+\end{align}
+Similar procedure be done for $E^{(2)}$ in equation \ref{eq:E2}, resulting in
+
+\begin{align}
+  E^{(2)} = E^{(1)} + \int \left(V_{ext}^{(2)} - V_{ext}^{(1)}\right) n(r)dr.
+\end{align}
+If we add these two equations together, we get
+\begin{align}
+  E^{(1)} + E^{(2)} < E^{(2)} + E^{(1)} &+ \int \left( V_{ext}^{(1)} - V_{ext}^{(2)}n(r)dr \right) \nonumber \\  &+ \int \left( V_{ext}^{(2)} - V_{ext}^{(1)}n(r)dr \right) \nonumber \\
+  E^{(1)} + E^{(2)} < E^{(2)} + E^{(1)}
+\end{align}
+What we have here is a contradiction. Thus, the two external potentials cannot have the same ground-state density, and $V_{ext}(r)$ is determined uniquely (except for a constant) by $n(r)$.
+\end{proof}
+
+\begin{theorem}
+  There exists a variational principle for the energy density functional such that, if $n$ is not the ground state, then $E\left[ n_0 \right] < E\left[ n \right]$.
+\end{theorem}
+\begin{proof}
+  Since the external potential is uniquely determined by the density and since the potential in turn uniquely determines the ground state wavefunction (except in degenerate situations), all the other observables of the system are uniquely determined. Then the energy can be expressed as a functional of the density.
+  \begin{align}
+    E[n] = \overbrace{T[n] + U_{ee}[n]}^{F[n]} + \overbrace{U_{ext}[n]}^{\int V_{ext}n(r)dr}
+    \label{eq:densityfunctional}
+  \end{align}
+  where $F[n]$ is a universal functional because the treatment of the kinetic and internal potential energies are the same for all systems, however, it is most commonly known as the Hohenberg-Kohn functional.
+
+  In the ground state, the energy is defined by the unique ground-state density $n_0(r)$,
+  \begin{align}
+    E_0 = E[n_0] = \bra{\Psi_0}H\ket{\Psi_0}.
+  \end{align}
+  From the variational principle, a different density $n(r)$ will give a higher energy
+  \begin{align}
+    E_0 = E[n_0] = \bra{\Psi_0}H\ket{\Psi_0} < \bra{\Psi}H\ket{\Psi} = E[n]
+  \end{align}
+  Thus, the total energy is minimized for $n_0$, and so has to be the ground-state energy.
+\end{proof}
+
+
+\subsection{The Kohn-Sham equation}
+So far, we have covered alternative methods to try to solve the many-electron Schrödinger equation, with the last attempt containing the Hohenberg-Kohn's theorems where the theory states that the total ground-state energy can, in principle, be determined exactly once we have found the ground-state density.
+The challenge is that we do not know how to express the energy in terms of the density, so we should strive for other methods in the endevour of solving the many-particle Schrödinger equation.
+
+In 1965, Kohn and Sham \cite{Kohn1965} published a paper where they used the Hohenberg-Kohn theorems to derive the Kohn-Sham (KS) equation. They assumed it was possible to generate the exact ground-state density $n_0(r)$ by using a Hartree-like total wavefunction
+\begin{align}
+    \Psi(\textbf{r}_1,\textbf{r}_2,..,\textbf{r}_{N_e}) = \psi_1^{KS}(\textbf{r}_2)\psi_2^{KS}(\textbf{r}_2)...\psi_{N_e}^{KS}(\textbf{r}_{N_e})
+\end{align}
+where $\psi_j^{KS}(r_j)$ are some auxiliary independent single-particle wavefunctions. For the observable reader, we can share that the Kohn-Sham wavefunctions cannot be the correct single-particle wavefunctions since our ansatz implies an exact density
+\begin{align}
+  n(\textbf{r}) = \sum_{j=1}^{N_e}\lvert \psi_j^{KS}(\textbf{r})\rvert^2.
+\end{align}
+Recalling equation \ref{eq:densityfunctional} describes the total energy as a functional of the density,
+\begin{align}
+  E[n] = T[n] + U_{ee}[n] + U_{en}[n],
+\end{align}
+we try to modify it to include the kinetic energy $T_s[n]$ and the interaction energy $U_s[n]$, which are known terms.
+\begin{align*}
+  E[n] &= T[n] + U_{ee}[n] + U_{en}[n] + \left( T_s[n] - T_s[n] \right) + \left( U_s[n] - U_s[n] \right) \\
+  &= T_s[n] + U_{s}[n] + U_{en}[n] + \underbrace{\left(T[n] - T_s[n] \right) + \left( U_{ee}[n] - U_s[n] \right)}_{E_{xc}[n]}
+\end{align*}
+Here we have our first encounter with the \textit{exchange-correlation energy}
+\begin{align}
+  E_{xc}[n] = \Delta T + \Delta U = \left(T[n] - T_s[n] \right) + \left( U_{ee}[n] - U_s[n] \right),
+\end{align}
+which contains the complex many-electron interaction in addition to a kinetic energy part. Thus, we have transformed the many-electron problem into an unknown exchange-correlation energy. For non-interacting system, $E_{xc}[n]$ is conveniently zero, but in interacting systems it most likely is a very cumbersome expression. However, one can consider it as our mission to find good approximations to this term, as the better approximations, the closer we get to the exact expression.
+
+The exact total energy can now be expressed as
+\begin{align}
+  \begin{aligned}
+  E[n]
+  &= \overbrace{\sum_j \int \psi_j^{KS*} \frac{-\hslash^2\nabla^2}{2m} \psi_j^{KS}d\textbf{r}}^{T_s[n]} + \overbrace{\frac{1}{2}\int \int q^2\frac{n(\textbf{r})n(\textbf{r}')}{\lvert \textbf{r}-\textbf{r}'\rvert} d\textbf{r}d\textbf{r}'}^{U_s[n]}
+  \\ &+ \underbrace{\int V_{en}(\textbf{r})n(\textbf{r})d\textbf{r}}_{U_{en}[n]} + \underbrace{\left(T[n] - T_s[n] \right) + \left( U_{ee}[n] - U_s[n] \right)}_{E_{xc[n]}}.
+  \end{aligned}
+\end{align}
+given that the exchange-correlation functional is described correctly. By utilizing the variational principle, we can now formulate the Kohn-Sham single-electron equation,
+\begin{align}
+  \left\{ -\frac{\hslash^2}{2m_e}\nabla^2_s + V_H(\textbf{r}) + V_{j\alpha}(\textbf{r}) + V_{xc}(\textbf{r}) \right\} \psi_s^{KS}(\textbf{r}) = \epsilon_s^{KS} \psi_s^{KS}(\textbf{r})
+\end{align}
+where $V_{xc}(\textbf{r})=\partial E_{xc}[n]/\partial n(\textbf{r})$ and $V_{H}(\textbf{r})=\int q^2 \frac{n(\textbf{r'})}{\lvert \textbf{r} - \textbf{r}'\rvert} d\textbf{r}'$ is the Hartree potential describing the electron-electron interaction. Note that $V_H(\textbf{r})$ contains self-interaction contribution, however this will be taken care of in $V_{xc}$.
+
+Finally, we can define the total energy of the system according to Kohn-Sham theory as
+\begin{align}
+  E[n] = \sum_{j}\epsilon_j^{KS}-\frac{1}{2}\int \int q^2 \frac{n(\textbf{r})n(\textbf{r}')}{\lvert \textbf{r} - \textbf{r}' \rvert} d\textbf{r}d\textbf{r}' + E_{xc}[n] - \int V_{xc}(\textbf{r})n(\textbf{r})d\textbf{r}.
+\end{align}
+If $V_{xc}$ is exact, and $E[n]$ gives the true total energy, we still do not know if the energy eigenvalues $\epsilon_s^{KS}$ are the true single-electron eigenvalues. However, there exists one exception, which is the highest occupied eigenvalue of a finite system has to be exact if the density is exact.
+
+The only task that is left for us now is to find the exact expression for $E_{xc}[n]$ as a functional of the density $n(r)$. With that expression, we would be able to calculate the total energies of any material, and most likely solve a few of the biggest puzzles in the history of humankind. This is, unfortunately, not the case, since it remains unknown.
+
+%In this approximation we have used Hartree energy where the self-interaction correction is neglected, raising less accurate results. It is possible to use other approximations for $T_s[n]$ and $U_s[n]$ than Hartree wavefunctions, and good approximations will result in a low $E_{xc}[n]$ because $T_s[n]$ and $U_s[n]$ will get closer and closer to the true values.
+
+
+%The next step in finding the KS-equation is to utilise the variational principle in the purpose of finding the ground-state energy. First one minimises the total energy with respect to each of the wavefunctions with the constraint that the wavefunctions should be orthonormalized;
+%\begin{align*}
+%  \frac{\partial }{\partial \psi_j^{*} (\textbf{r})}E[n] &= \sum_{i,j}\lambda_{ij}\int \psi_i^{s*}(\textbf{r}_i)\psi_j^{s}(\textbf{r}_j)d\textbf{r}d\textbf{r}_j\\
+%  \frac{\partial }{\partial \psi_j^{*} (\textbf{r})}E[n] &= \lambda_j\psi_j^s (\textbf{r}_j)
+%\end{align*}
+
+\subsection{The exchange-correlation energy}
+
+The development of
+
+There exists one scenario where we can derive the exact expression of the exchange-correlation functional, namely the \textit{homogeneous electron gas}. However, this has a natural cause, since by definition $n(\textbf{r}) = constant$ for this situation. This is unfortunate, because it is the variations in electron density that are the merits of the calculations. The \textit{local density approximation} (LDA) is an approximation based on this approach, where the local density is the only thing used to define the exchange-correlation functional. Specifically, we can set the exchange-correlation potential at each position to be the known exchange-correlation potential from homogeneous electron gas at the electron density observed at that position \cite{Kohn1965}:
+\begin{align}
+  V_{xc}(\textbf{r}) = V_{xc}^{electron gas}[n(\textbf{r})].
+\end{align}
+This is the simplest and most known approximation of the exchange-correlation functional, and accordingly it has a few drawbacks. One of them is the incomplete cancellation of the self-interaction term, which leads to a repulsion that may cause artifical repulsion and increased electron delocalization \cite{Allen2014}. In addition, LDA has proven challenging with the use of atoms and molecules given their rapid varying electron densities, however, LDA has been seen as very succesful for bulk materials because of the slowly varying electron density \cite{DavidSholl2009}. Together with a relative low computional cost, the LDA overall has seen as successful within bulk-materials.
+
 
 
 

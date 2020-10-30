@@ -33,6 +33,7 @@ temp*
 *.toc
 *.snm
 *.vrb
+*.lof
 # eclipse files:
 *.cproject
 *.project

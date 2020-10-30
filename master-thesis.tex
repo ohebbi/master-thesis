@@ -6,9 +6,9 @@
 \addbibresource{miscellaneous/references.bib}
 
 \author{Oliver Lerstøl Hebnes}
-\title{Predictions\\
-of Qubits-candidates
-using\\ machine learning
+\title{Predicting\\
+solid-state qubit\\
+candidates
 }
 \date{\today}
 
@@ -17,46 +17,45 @@ using\\ machine learning
 \frontmatter
     \maketitle
 
-    %\begin{abstract}
-    %\input{miscellaneous/abstract/abstract.tex}
-    %\end{abstract}
+    \begin{abstract}
+    \input{miscellaneous/abstract/abstract.tex}
+    \end{abstract}
 
-    %\begin{acknowledgements}
-    %\input{miscellaneous/acknowledgements/acknowledgements.tex}
-    %\end{acknowledgements}
+    \begin{acknowledgements}
+    \input{miscellaneous/acknowledgements/acknowledgements.tex}
+    \end{acknowledgements}
 
-    %\setcounter{tocdepth}{1}
+    \setcounter{tocdepth}{1}
     \tableofcontents
     %\listoffigures
     \newpage
 
 \mainmatter
-    %\input{miscellaneous/introduction/introduction.tex}
+    \part{Introduction}
+      \input{miscellaneous/introduction/introduction.tex}
 
     \part{Theory}
         \input{theory/quantum_mechanics.tex}
+        \input{theory/dft.tex}
         \input{theory/solid_state_electronic_devices.tex}
+        %\input{theory/machine_learning.tex}
 
-    \part{Material Science Databases}
+    \part{Methodology and implementation}
+        \input{theory/databases.tex}
 
-      %\input{theory/databases.tex}
+    %\part{Results}
+    %  \chapter{Predicting Perovskites}
+    %  \chapter{Materials Project predictions}
+    %  \chapter{Setting up qubit predictions}
+    %  \chapter{Predicting solid-state qubit candidates}
 
-    \part{Implementation}
+    %\part{Materials project predictions}
 
-      %\input{implementation/something.tex}
 
-    \part{Results}
+    %\part{Appendices}
+    %\appendix
 
-        %\input{results/something.tex}
-
-    \part{Conclusion}
-
-        %\input{conclusion/something.tex}
-
-    \part{Appendices}
-    \appendix
-
-        \input{miscellaneous/Appendices/solvingMagicAnalytically.tex}
+        %\input{miscellaneous/Appendices/solvingMagicAnalytically.tex}
 
         \nocite{*}
         \printbibliography%[type=article,title={Bibliography: Articles}]

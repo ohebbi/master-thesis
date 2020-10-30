@@ -1,0 +1,225 @@
+
+\chapter{The density functional theory}
+
+Hitherto we have tried to solve the Schrödinger equation to get a ground state wave function, and from there we can obtain ground state properties, such as the ground state total energy. One fundamental problem that exists when trying to solve the many-electron Schrödinger equation is that the wavefunction is a complicated function that depends on $3N_e$ variables\footnote{not including spin}.
+
+Hohenberg and Kohn \cite{Hohenberg1964} showed in 1964 that the ground-state density $n_0(r) = \lvert \Psi_0 (r)\rvert$ determines a general external potential, which includes $U_{en}$, up to an additive constant, and thus also the Hamiltonian \cite{Toulouse2019}. From another point of view, the theory states that all physical ground-state properties of the many-electron system are unique functionals of the density \cite{Persson2020}. A consequence of this is that the number of variables is reduced from $3N_e$ to $3$, significantly reducing the computational efforts.
+
+However, the scheme is not without limitations, as the density functional theory (DFT) can only be used to find all the ground-state physical properties if the exact functional of the electron density is known. And $56$ years after Hohenberg and Kohn published their paper, the exact functional still remains unknown.
+
+We will start this chapter with a discussion of the Hohenberg-Kohn theorems, before we delve further into the Kohn-Sham equation.
+
+\section{The Hohenberg-Kohn theorems}
+
+\begin{theorem}
+  For any system of interacting particles in an external potential $V_{ext}$, the density is uniquely determined.
+\end{theorem}
+\begin{proof}
+  Assume that two external potentials $V_{ext}^{(1)}$ and $V_{ext}^{(2)}$, that differ by more than a constant, have the same ground state density $n_0(r)$. The two different potentials correspond to distinct Hamiltonians $\hat{H}_{ext}^{(1)}$ and $\hat{H}_{ext}^{(2)}$, which again give rise to distinct wavefunctions $\Psi_{ext}^{(1)}$ and $\Psi_{ext}^{(2)}$. Utilizing the variational principle, we find that no wavefunction can give an energy that is less than the energy of $\Psi_{ext}^{(1)}$ for $\hat{H}_{ext}^{(1)}$, that is
+  \begin{align}
+    E^{(1)} = \bra{\Psi^{(1)}}\hat{H}^{(1)}\ket{\Psi^{(1)}} &< \bra{\Psi^{(2)}}\hat{H}^{(1)}\ket{\Psi^{(2)}} \label{eq:E1}
+  \end{align}
+  and
+  \begin{align}
+    E^{(2)} = \bra{\Psi^{(2)}}\hat{H}^{(2)}\ket{\Psi^{(2)}} &< \bra{\Psi^{(1)}}\hat{H}^{(2)}\ket{\Psi^{(1)}}.
+    \label{eq:E2}
+  \end{align}
+  Assuming that the ground state is not degenerate, the inequality strictly holds. Since we have identical ground state densities for the two Hamiltonian's, we can rewrite the expectation value for equation \ref{eq:E1} as
+  \begin{align*}
+    E^{(1)} &= \bra{\Psi^{(1)}}\hat{H}^{(1)}\ket{\Psi^{(1)}} \\
+    &= \bra{\Psi^{(1)}}T + U_{ee} + U_{ext}^{(1)}\ket{\Psi^{(1)}} \\
+    &= \bra{\Psi^{(1)}} T + U_{ee} \ket{\Psi^{(1)}} + \int \Psi^{*(1)}(\textbf{r})V_{ext}^{(1)}\Psi^{(1)}(\textbf{r})d\textbf{r} \\
+    &= \bra{\Psi^{(1)}} T + U_{ee} \ket{\Psi^{(1)}} + \int V_{ext}^{(1)} n(\textbf{r})d\textbf{r} \\
+    &< \bra{\Psi^{(2)}}\hat{H}^{(1)}\ket{\Psi^{(2)}} \\
+    &= \bra{\Psi^{(2)}} T + U_{ee} + U_{ext}^{(1)} + \overbrace{U_{ext}^{(2)} - U_{ext}^{(2)} }^{0} \ket{\Psi^{(2)}}\\
+    &= \bra{\Psi^{(2)}} T + U_{ee} + U_{ext}^{(2)}\ket{\Psi^{(1)}} + \int \left(V_{ext}^{(1)} - V_{ext}^{(2)}\right) n(\textbf{r})d\textbf{r} \\
+    &= E^{(2)} + \int \left(V_{ext}^{(1)} - V_{ext}^{(2)}\right) n(\textbf{r})d\textbf{r}.
+  \end{align*}
+Thus,
+\begin{align}
+  E^{(1)} = E^{(2)} + \int \left(V_{ext}^{(1)} - V_{ext}^{(2)}\right) n(\textbf{r})d\textbf{r}
+\end{align}
+A similar procedure can be performed for $E^{(2)}$ in equation \ref{eq:E2}, resulting in
+
+\begin{align}
+  E^{(2)} = E^{(1)} + \int \left(V_{ext}^{(2)} - V_{ext}^{(1)}\right) n(\textbf{r})d\textbf{r}.
+\end{align}
+If we add these two equations together, we get
+\begin{align}
+  E^{(1)} + E^{(2)} < E^{(2)} + E^{(1)} &+ \int \left( V_{ext}^{(1)} - V_{ext}^{(2)}n(\textbf{r})d\textbf{r} \right) \nonumber \\  &+ \int \left( V_{ext}^{(2)} - V_{ext}^{(1)}n(\textbf{r})d\textbf{r} \right) \nonumber \\
+  E^{(1)} + E^{(2)} < E^{(2)} + E^{(1)},
+\end{align}
+which is a contradiction. Thus, the two external potentials cannot have the same ground-state density, and $V_{ext}(\textbf{\textbf{r}})$ is determined uniquely (except for a constant) by $n(\textbf{\textbf{r}})$.
+\end{proof}
+
+\begin{theorem}
+  There exists a variational principle for the energy density functional such that, if $n$ is not the electron density of the ground state, then $E\left[ n_0 \right] < E\left[ n \right]$.
+\end{theorem}
+\begin{proof}
+  Since the external potential is uniquely determined by the density and since the potential in turn uniquely determines the ground state wavefunction (except in degenerate situations), all the other observables of the system are uniquely determined. Then the energy can be expressed as a functional of the density.
+  \begin{align}
+    E[n] = \overbrace{T[n] + U_{ee}[n]}^{F[n]} + \overbrace{U_{en}[n]}^{\int V_{en}n(r)dr}
+    \label{eq:densityfunctional}
+  \end{align}
+  where $F[n]$ is a universal functional because the treatment of the kinetic and internal potential energies are the same for all systems, however, it is most commonly known as the Hohenberg-Kohn functional.
+
+  In the ground state, the energy is defined by the unique ground-state density $n_0(r)$,
+  \begin{align}
+    E_0 = E[n_0] = \bra{\Psi_0}H\ket{\Psi_0}.
+  \end{align}
+  From the variational principle, a different density $n(r)$ will give a higher energy
+  \begin{align}
+    E_0 = E[n_0] = \bra{\Psi_0}H\ket{\Psi_0} < \bra{\Psi}H\ket{\Psi} = E[n]
+  \end{align}
+  Thus, the total energy is minimized for $n_0$, and so has to be the ground-state energy.
+\end{proof}
+
+
+\section{The Kohn-Sham equation}
+So far, we have tried to make the challenging Schrödinger equation less challenging by simplifying it, with the last attempt containing the Hohenberg-Kohn's theorems where the theory states that the total ground-state energy can, in principle, be determined exactly once we have found the ground-state density.
+
+In 1965, Kohn and Sham \cite{Kohn1965} reformulated the Hohenberg-Kohn theorems by generating the exact ground-state density $n_0(r)$ using a Hartree-like total wavefunction
+\begin{align}
+    \Psi(\textbf{r}_1,\textbf{r}_2,..,\textbf{r}_{N_e}) = \psi_1^{KS}(\textbf{r}_2)\psi_2^{KS}(\textbf{r}_2)...\psi_{N_e}^{KS}(\textbf{r}_{N_e}),
+\end{align}
+where $\psi_j^{KS}(r_j)$ are some auxiliary independent single-particle wavefunctions. However, the Kohn-Sham wavefunctions cannot be the correct single-particle wavefunctions since our ansatz implies an exact density
+\begin{align}
+  n(\textbf{r}) = \sum_{j=1}^{N_e}\lvert \psi_j^{KS}(\textbf{r})\rvert^2.
+\end{align}
+Recalling that equation \ref{eq:densityfunctional} describes the total energy as a functional of the density,
+\begin{align}
+  E[n] = T[n] + U_{ee}[n] + U_{en}[n],
+\end{align}
+we try to modify it to include the kinetic energy $T_s[n]$ and the interaction energy $U_s[n]$ of the auxiliary wavefunction, and the denotation $s$ for single-particle wavefunctions.
+\begin{align*}
+  E[n] &= T[n] + U_{ee}[n] + U_{en}[n] + \left( T_s[n] - T_s[n] \right) + \left( U_s[n] - U_s[n] \right) \\
+  &= T_s[n] + U_{s}[n] + U_{en}[n] + \underbrace{\left(T[n] - T_s[n] \right) + \left( U_{ee}[n] - U_s[n] \right)}_{E_{xc}[n]}
+\end{align*}
+Here we have our first encounter with the \textit{exchange-correlation energy}
+\begin{align}
+  E_{xc}[n] = \Delta T + \Delta U = \left(T[n] - T_s[n] \right) + \left( U_{ee}[n] - U_s[n] \right),
+\end{align}
+which contains the complex many-electron interaction. For non-interacting system, $E_{xc}[n]$ is conveniently zero, but in interacting systems it most likely is a complex expression. However, one can consider it as our mission to find good approximations to this term, as the better approximations, the closer we get to the exact expression.
+
+The exact total energy functional can now be expressed as
+\begin{align}
+  \begin{aligned}
+  E[n]
+  &= \overbrace{\sum_j \int \psi_j^{KS*} \frac{-\hslash^2\nabla^2}{2m} \psi_j^{KS}d\textbf{r}}^{T_s[n]} + \overbrace{\frac{1}{2}\int \int q^2\frac{n(\textbf{r})n(\textbf{r}')}{\lvert \textbf{r}-\textbf{r}'\rvert} d\textbf{r}d\textbf{r}'}^{U_s[n]}
+  \\ &+ \underbrace{\int V_{en}(\textbf{r})n(\textbf{r})d\textbf{r}}_{U_{en}[n]} + \underbrace{\left(T[n] - T_s[n] \right) + \left( U_{ee}[n] - U_s[n] \right)}_{E_{xc[n]}}.
+  \end{aligned}
+\end{align}
+given that the exchange-correlation functional is described correctly. By utilizing the variational principle, we can now formulate a set of Kohn-Sham single-electron equations,
+\begin{align}
+  \left\{ -\frac{\hslash^2}{2m_e}\nabla^2_s + V_H(\textbf{r}) + V_{j\alpha}(\textbf{r}) + V_{xc}(\textbf{r}) \right\} \psi_s^{KS}(\textbf{r}) = \epsilon_s^{KS} \psi_s^{KS}(\textbf{r})
+  \label{eq:singleKS}
+\end{align}
+where $V_{xc}(\textbf{r})=\partial E_{xc}[n]/\partial n(\textbf{r})$ and $V_{H}(\textbf{r})=\int q^2 \frac{n(\textbf{r'})}{\lvert \textbf{r} - \textbf{r}'\rvert} d\textbf{r}'$ is the Hartree potential describing the electron-electron interaction. It is worth to notice that $V_H(\textbf{r})$ allows an electron to interacts with itself, resulting in a self-interaction contribution, however this will be taken care of in $V_{xc}$.
+
+Finally, we can define the total energy of the system according to Kohn-Sham theory as
+\begin{align}
+  E[n] = \sum_{j}\epsilon_j^{KS}-\frac{1}{2}\int \int q^2 \frac{n(\textbf{r})n(\textbf{r}')}{\lvert \textbf{r} - \textbf{r}' \rvert} d\textbf{r}d\textbf{r}' + E_{xc}[n] - \int V_{xc}(\textbf{r})n(\textbf{r})d\textbf{r}.
+\end{align}
+If $V_{xc}$ is exact, and $E[n]$ gives the true total energy, we still do not know if the energy eigenvalues $\epsilon_s^{KS}$ are the true single-electron eigenvalues. However, there exists one exception, which is that the highest occupied eigenvalue of a finite system has to be exact if the density is exact.
+
+The only task that is left for us now is to find the exact expression for $E_{xc}[n]$ as a functional of the density $n(r)$. With that expression, we would be able to calculate the total energies of any material, and most likely solve a few of the biggest puzzles in the history of humankind. Unfortunately, the exchange-correlation potential is unknown for most systems.
+
+%In this approximation we have used Hartree energy where the self-interaction correction is neglected, raising less accurate results. It is possible to use other approximations for $T_s[n]$ and $U_s[n]$ than Hartree wavefunctions, and good approximations will result in a low $E_{xc}[n]$ because $T_s[n]$ and $U_s[n]$ will get closer and closer to the true values.
+
+
+%The next step in finding the KS-equation is to utilise the variational principle in the purpose of finding the ground-state energy. First one minimises the total energy with respect to each of the wavefunctions with the constraint that the wavefunctions should be orthonormalized;
+%\begin{align*}
+%  \frac{\partial }{\partial \psi_j^{*} (\textbf{r})}E[n] &= \sum_{i,j}\lambda_{ij}\int \psi_i^{s*}(\textbf{r}_i)\psi_j^{s}(\textbf{r}_j)d\textbf{r}d\textbf{r}_j\\
+%  \frac{\partial }{\partial \psi_j^{*} (\textbf{r})}E[n] &= \lambda_j\psi_j^s (\textbf{r}_j)
+%\end{align*}
+
+\section{The exchange-correlation energy}
+
+
+There is one scenario for which we can derive the exact expression of the exchange-correlation functional, namely the \textit{homogeneous electron gas} (HEG). However, this has a natural cause, since by definition $n(\textbf{r})$ is constant for this situation. Given that it is the variations of electron density that are the foundation of material properties, the usefulness of HEG is limited. The \textit{local density approximation} (LDA) is an approximation based on this approach, where the local density is the only variable used to define the exchange-correlation functional. Specifically, we can set the exchange-correlation potential at each position to be the known exchange-correlation potential from homogeneous electron gas at the electron density observed at that position \cite{Kohn1965}:
+\begin{align}
+  V_{xc}(\textbf{r}) = V_{xc}^{\text{electron gas }}\left[n(\textbf{r})\right].
+\end{align}
+This is the simplest and most known approximation to the exchange-correlation functional, and accordingly it has a few drawbacks. One of them is the incomplete cancellation of the self-interaction term, which leads to a repulsion that may cause artifical repulsion between electrons, and hence increased electron delocalization \cite{Allen2014}. In addition, LDA has proven challenging  to use when studying atoms and molecules because of their rapidly varying electron densities, however, the LDA is seen as succesful for bulk materials because of the slowly varying electron density \cite{DavidSholl2009}. Considering the relatively low computational cost and high accuracy, the LDA overall makes a good model for estimation of the exchange-correlation functional for bulk-materials.
+
+
+In the light of the merits of the LDA, an extensive search for new approximations was launched. The \textit{generalized gradient approximation} (GGA) is an extension of the LDA, which includes the gradient of the density
+\begin{align}
+  V_{xc}^{GGA}(\textbf{r}) = V_{xc}\left[ n(\textbf{r}), \nabla n (\textbf{r})\right].
+\end{align}
+The GGA is a good approximation for the cases where the electron density varies slowly, but faces difficulties in many materials with rapidly varying gradients in the density, causing the GGA to fail. Thus, the annotation \textit{generalized} in GGA is set to include the different approaches to deal with this challenge. Two of the most commonly implemented GGA functionals are the non-empirical approaches Perdew-Wang 91 (PW91) \cite{Perdew1992} and Perdew-Burke-Ernzerhof (PBE) \cite{Perdew1996}.
+
+Both LDA and GGA are commonly known to severely underestimate the band gaps of semiconductor materials, in addition to incorrectly predicting charge localizations originating from narrow bands or associated with local lattice distortions around defects \cite{Freysoldt2014}. The latter limitation is thought to be due to self-interaction in the Hartree potential in equation \ref{eq:singleKS}.
+
+Hybrid functionals intermix exact Hartree-Fock exchange with exchange and correlation from functionals based on the LDA or GGA. Hartree-Fock theory completely ignore correlation effects, but account for self-interaction and treats exchange as exact. Since LDA/GGA and Hartree-Fock supplement each other, they can be used as a combination for hybrid-functionals resulting in some cancellation of the self-interaction error. Becke \cite{Becke1993} introduced a $50\%$ Hartree-Fock exact exchange and
+$50\%$ LDA energy functional, while Perdew \textit{et al.} \cite{Perdew1996a} altered it to $25\%-75\%$ and favoring PBE-GGA instead of LDA.
+
+The inclusion of Hartree Fock exchange improves the description of localized states, but requires significantly more computational power for large systems. Another method called the \textit{GW} approximation includes screening of the exchange interaction \cite{Aryasetiawan1998}, but has a computational price that does not neccessarily defend its use. Thus, the real challenge is to reduce the computational effort while still producing satisfactory results. Heyd \textit{et al.} \cite{Heyd2003} suggested to separate the non-local Hartree-Fock exchange into a short- and long-range portion, incorporating the exact exchange in the short-range contribution. The separation is controlled by an adjustable parameter $\omega$, which was empirically optimised for molecules to $\omega = 0.15$ and solids to $\omega = 0.11$ and are known as the HSE03 and HSE06 (Heyd-Scuseria-Ernzerhof), respectively \cite{Krukau2006}. The functionals are expressed as
+\begin{align}
+  E_{xc}^{HSE} = aE_{x}^{\text{HF,SR}}(\omega) + (1-a)E_x^{\text{PBE,SR}}(\omega) + E_x^{\text{PBE,LR}}(\omega) + E_c^{\text{PBE}}
+\end{align}
+where $a=1/4$ is the Hartree-Fock mixing constant and the abbreviations SR and LR stands for short range and long range, respectively.
+
+Hence, hybrid-functionals are \textit{semi-empirical} functionals that rely on experimental data for accurate results. They give accurate results for several properties, such as energetics, bandgaps and lattice parameters, and can fine-tune parameters fitted to experimental data for even higher accuracy.
+
+Furthermore, the computational effort required for the hybrid-functionals are significantly larger than for non-empirical functionals such as LDA or GGA. Krukau \textit{et al.} \cite{Krukau2006} reported a substantial increase in computational cost when reducing the parameter $\omega$ from $0.20$ to $0.11$ for 25 solids, and going lower than $0.11$ demanded too much  to actually defend its use.
+
+\section{Self-consistent field methods}
+
+So, the remaining question is, how do we solve the Kohn-Sham equation? First, we would need to define the Hartree potential, which can be found if we know the electron density. The electron density can be found from the single-electron wave-functions, however, these can only be found from solving the Kohn-Sham equation. This \textit{circle of life} has to start somewhere, but where?
+
+The process can be defined as an iterative method, \textit{a computational scheme}, as visualized in figure \ref{fig:flowchart}.
+
+\setlength{\abovecaptionskip}{22cm}
+\begin{figure}[!ht]
+\begin{picture}(-20,-20)
+
+\setlength{\unitlength}{0.17in}
+\put(12,-4){\framebox(11,4){\thead{Initialize atomic structure,\\ potentials and \\ settings}}}
+\put(17,-4){\vector(0,-1){3}}
+
+\put(13,-10){\framebox(9,3){\thead{Initial guess of $n(\textbf{r})$}}}
+\put(17,-10){\vector(0,-1){3}}
+\put(10,-16){\framebox(15,3){\thead{Use $n(\textbf{r})$ to calculate effective potential \\ $V_{\text{eff}} = V_H + V_{en} + V_{xc}$}}}
+\put(17,-16){\vector(0,-1){2}}
+\put(11.5,-21){\framebox(12,3){\thead{Solve Kohn-Sham equations \\ and determine $E[n]$}}}
+\put(17,-21){\vector(0,-1){2}}
+\put(13, -26){\framebox(9, 3){\thead{Calculate new density \\ $n'(\textbf{r})=\sum_j \lvert \psi_j^{KS} \rvert ^2 $}}}
+\put(13, -29.5){\line(-1, 0){8}}
+\put(9, -29){\makebox{\thead{NO}}}
+\put(5, -29.5){\line(0, 1){18}}
+\put(5, -11.5){\vector(1, 0){12}}
+\put(17,-26){\vector(0,-1){2}}
+\put(13, -31){\framebox(9, 3){\thead{Energy self-consistent? \\ $E\left[ n \right] \sim E\left[ n' \right] $ ?}}}
+\put(17,-31){\vector(0,-1){3}}
+\put(17.5, -32.5){\makebox{\thead{YES}}}
+\put(11, -36){\framebox(13, 2){\thead{ Relaxation of the atomic structure?}}}
+\put(11, -35){\line(-1,0){4}}
+\put(7, -35){\line(0,-1){10.5}}
+\put(7, -45.5){\vector(1,0){5}}
+\put(8.5, -34.5){\makebox{\thead{NO}}}
+\put(17,-36){\vector(0,-1){3}}
+\put(17.5, -37.5){\makebox{\thead{YES}}}
+\put(13, -41){\framebox(9, 2){\thead{Forces $\sim 0$ ? }}}
+\put(17.5, -42.5){\makebox{\thead{YES}}}
+\put(24, -39.5){\makebox{\thead{NO}}}
+\put(22, -40){\line(1,0){9}}
+\put(31, -40){\vector(0,1){12}}
+\put(31, -25){\line(0,1){13.5}}
+
+\put(26.5, -28){\framebox(9, 3){\thead{Displacement of atomic\\ positions}}}
+\put(31, -11.5){\vector(-1,0){14}}
+\put(17,-41){\vector(0,-1){3}}
+\put(12, -47){\framebox(11, 3){\thead{Output energies and forces \\ for given configuration}}}
+\end{picture}
+\caption{A flow chart of the self-consistent field method for DFT.}
+\label{fig:flowchart}
+\end{figure}
+\vskip12cm
+\setlength{\abovecaptionskip}{0cm}
+
+\clearpage
+\section{Limitations of the DFT}
+
+
+\clearpage

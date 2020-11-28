@@ -21,11 +21,11 @@ To limit the quest of databases, we have restricted the search for databases and
   \hline
   Database & API/REST & Free access & Number of compounds \\
   \hline
-  AFLOW \cite{Curtarolo2012} & REST & True &  3.27 M\\
+  AFLOW & REST & True &  3.27 M\\
   MP \cite{Jain2013}   & MAPI \cite{Ong2015} & True &  0.66 M\\
   OQMD \cite{Kirklin2015, Saal2013} & RESTful API (qmpy, matminer)& True &  0.64 M\\
   ICSD \cite{Levin2020} & RESTful API & False &  0.21 M\\
-  Jarvis-DFT \cite{Choudhary2020} & API & True &  0.04 M\\
+  Jarvis-DFT  & API & True &  0.04 M\\
   \hline
   \hline
 \end{tabular}
@@ -41,7 +41,7 @@ To limit the quest of databases, we have restricted the search for databases and
   \hline
   Cloud service & API/REST & Free access  \\
   \hline
-  NoMaD \cite{Draxl2019}& API & True  \\
+  NoMaD & API & True  \\
   CMR \cite{Landis2012} & ASE & RESTful API \\
   MatNavi & API & True  \\
   PRISMS & REST & True \\
@@ -74,43 +74,42 @@ The Atomic Simulation Environment (ASE) is an environment in the Python programm
 
 Another commonly used module is the Python Materials Genomics (pymatgen) \cite{Ong2013}. This is a well-documented open module with both introductory and advanced use cases written in Jupyter Notebook for easy reproducibility, and is integrated with the Materials Project REST API.
 
-The Materials Project are also behind a library named matminer \cite{Ward2018}, which is an open-source software platform written in Python. Matminer provides modules to extract data sets from many cloud-services and databases, with exampels in table \ref{tab:databases} and \ref{tab:cloud_service}, it can extract features from images (such as the band gap of a compound), and have modules for visualization of properties.
+The Materials Project is also behind a library named matminer \cite{Ward2018}, which is an open-source software platform written in Python. Matminer provides modules to extract data sets from many cloud-services and databases, with exampels in table \ref{tab:databases} and \ref{tab:cloud_service}, it can extract features from images (such as the band gap of a compound), and have modules for visualization of properties.
 
 \section{Databases and cloud services}
 
 
 \subsection{Novel Materials Discovery}
 
-The Novel Materials Discovery (NOMAD) Repository is an open-access platform for sharing and utilizing computational materials science data. NOMAD also consists of several branches such as NOMAD Archieve, which is the representation of the NOMAD repository parsified into a code-independent format, NOMAD Encyclopedia, which is a graphical user interface (GUI) for characterizing materials, and lastly NOMAD Analytics Toolkit, which includes early-development examples of artificial-intelligence tools \cite{Draxl2019}.
+The Novel Materials Discovery (NOMAD) \cite{Draxl2019} Repository is an open-access platform for sharing and utilizing computational materials science data. NOMAD also consists of several branches such as NOMAD Archieve, which is the representation of the NOMAD repository parsified into a code-independent format, NOMAD Encyclopedia, which is a graphical user interface (GUI) for characterizing materials, and lastly NOMAD Analytics Toolkit, which includes early-development examples of artificial-intelligence tools \cite{Draxl2019}.
 
 Databases that are a part of NOMAD data collection includes Materials Project, the Open Quantum Materials Database and AFLOW. They are all based on the underlying quantum engine Vienna ab initio simulation package (VASP) \cite{Kresse1996}, which is a software based on DFT.
 
 \subsection{Materials project}
 
-Materials project is an open source project that offers a variety of properties of over one hundred thousand of inorganic crystalline materials. It is known as the initiator of materials genomics and has as its mission to accelerate the discovery of new technological materials, with an emphasis on batteries and electrodes, through advanced scientific computic and innovative design \cite{Jain2013}.
+Materials project \cite{Jain2013} is an open source project that offers a variety of properties of over one hundred thousand of inorganic crystalline materials. It is known as the initiator of materials genomics and has as its mission to accelerate the discovery of new technological materials, with an emphasis on batteries and electrodes, through advanced scientific computic and innovative design .
 
 It is built upon over 60 features\footnote{All features can be viewed in the documentation of the project: github.com/materialsproject/mapidoc/master/materials}, some features being irrelevant for some materials while fundamental for others. The data is divided into three different branches, where the first can be described as basic properties of materials including over $30$ features, while the second branch describes experimental thermochemical information. The last branch yields information about a particular calculation, in particular information that's relevant for running a DFT script. %Some features, eg. density of state (dos), bandstructure, Pourbaix diagram etc., are characterized by using the module pymatgen.
 
-Every compound has an initial relaxation of cell and lattice parameters performed using a $1000 k$-point mesh to ensure that all properties calculated are representative of the idealized unit cell for each respective crystal structure.
-The functional GGA is used to calculate band structures, while for transition metals it is applied $+U$ correction to correct for correlation effects in d- and f-orbital systems that are not addressed by GGA calculations \cite{Wang2006}. The thermodynamic stability for each phase with respect to decomposition, is also calculated. This is denoted as E Above Hull, with a value of zero is defined as the most stable phase at a given composition, while larger positive values indicate increased instability.
+Every compound has an initial relaxation of cell and lattice parameters performed using a $1000 k$-point mesh to ensure that all properties calculated are representative of the idealized unit cell for each respective crystal structure. The functional GGA is used to calculate band structures, while for transition metals it is applied $+U$ correction to correct for correlation effects in d- and f-orbital systems that are not addressed by GGA calculations \cite{Wang2006}. The thermodynamic stability for each phase with respect to decomposition, is also calculated. This is denoted as E Above Hull, with a value of zero is defined as the most stable phase at a given composition, while larger positive values indicate increased instability.
 
 Each material contains multiple computations for different purposes, resulting in different 'tasks'. The reason behind this is that each computation has a purpose, such as to calculate the band structure or energy. Therefore, it is possible to receive several tasks for one material which results in more features per material.
+\subsection{AFLOW}
+
+The AFLOW\cite{Curtarolo2012, Curtarolo2012a, Calderon2015} repository is an automatic software framework for the calculations of a wide range of inorganic material properties. They utilise the GGA-PBE functional within VASP with projector-augmented wavefunction (PAW) potentials to relax twice and optimize the ICSD-sourced structur. They are using a $3000-6000$ $k$-point mesh, indicating a more computationally expensive calculation compared to the Materials Project. Next, the band structure is calculated with an even higher $k$-point density, in addition to the $+U$ correction term for most occupied d- and f-orbital systems, resulting in a standard band gap \cite{Setyawan2010}. Furthermore, they apply a standard fit gathered from a study of DFT-computed versus experimentally measured band gap widths to the initial calculated value, obtaining a fitted band gap \cite{Setyawan2011}.
+
+AFLOW-ML \cite{Isayev2017} is an API that uses machine learning to predict thermomechanical and electronic properties based on the chemical composition and atomic structure alone, which they denote as \textit{fragment descriptors}. They start with applying a classification model to predict if a compound is either a metal or an insulator, where the latter is confirmed with an additional regression model to predict the band gap width. To be able to predict properties on an independent data set, they utilise a fivefold cross validation process for each model. They report a $93$\% prediction success rate of their initial binary classification model, whereas the majority of the wrongful predictions are narrow-gap semiconductors. The authors does not compare their predicted band gap to experimental values, but it is found that $93$\% of the machine-learning-derived values are within $25$\% of the DFT $+U$-calculated band gap width \cite{Ferrenti2020}.
 
 
 \subsection{Open Quantum Materials Database}
 
-The Open Quantum Materials Database (OQDM) is a completely free and available database of DFT-calculations \footnote{download the entire database:  http://www.oqmd.org/download/}. It has included thermodynamic and structural properties of more than $600.000$ materials, including all unique entries in the Inorganic Crystal Structure Database (ICSD) consisting of less than $34$ atoms \cite{Kirklin2015}.
+The Open Quantum Materials Database (OQDM) \cite{Saal2013, Kirklin2015} is a free and available database of DFT-calculations \footnote{download the entire database:  http://www.oqmd.org/download/}. It has included thermodynamic and structural properties of more than $600.000$ materials, including all unique entries in the Inorganic Crystal Structure Database (ICSD) consisting of less than $34$ atoms.
 
-For general DFT-settings, see http://oqmd.org/documentation/vasp. (read a bit more about VASP before entering this labyrinth)
-
-\subsection{AFLOW}
-
-The AFLOW repository uses the GGA-PBE functional within VASP with projector-augmented wavefunction (PAW) potentials to relax twice and optimize the ICSD-sourced structur. They are using a 3000-6000 $k$-point mesh, indicating a more computationally expensive calculation compared to the Materials Project. 
-
+The DFT calculations are performed with the VASP software whereas the electron exchange and correlation are described with the GGA-PBE, while using the PAW potentials. They relax a structure using $4000-8000$ $k$-point mesh, indicating an even increasing computational expensive calculation than AFLOW again. Several element-specific settings are included such as using the $+U$ extension for various transition metals, lanthanides and actinides. In addition, any calculation containing 3d or actinide elements are spin-polarized with a ferromagnetic alignment of spins to capture possible magnetism. However, the authors note that this approach does not capture complex magnetic, such as antiferromagnetism, which has been found to result in substantial errors for the formation energy \cite{Stevanovic2012}.
 
 \subsection{JARVIS}
 
-Joint Automated Repository for Various Integrated Simulations (JARVIS) - DFT is an open database based based on the VASP software to perform a variety of material property calculations. It consists of roughly $40.000$ 3D and $1.000$ 2D materials using the vdW-DF-OptB88 van der Waals functional, which was originally designed to improve the approximation of properties of two-dimensional van der Waals materials, but has also shown to be effective for bulk materials \cite{Thonhauser2007, Klimes2011}. The functional has shown accurate predictions for lattice-parameters and energetics for both vDW and non-vdW bonded materials  \cite{Choudhary2018}.
+Joint Automated Repository for Various Integrated Simulations (JARVIS) \cite{Choudhary2020} - DFT is an open database based based on the VASP software to perform a variety of material property calculations. It consists of roughly $40.000$ 3D and $1.000$ 2D materials using the vdW-DF-OptB88 van der Waals functional, which was originally designed to improve the approximation of properties of two-dimensional van der Waals materials, but has also shown to be effective for bulk materials \cite{Thonhauser2007, Klimes2011}. The functional has shown accurate predictions for lattice-parameters and energetics for both vDW and non-vdW bonded materials  \cite{Choudhary2018}.
 
 Structures included in the data set are originally taken from the materials project, and then re-optimized using the OPT-functional. Finally, the combination of the OPT and modified Becke-Johnson (mBJ) functionals are used to obtain a representative band gap of each structure, since both have shown unprecedented accuracy in the calculation of band gap compared to any other DFT-based calculation methods \cite{Choudhary2018a}.
 

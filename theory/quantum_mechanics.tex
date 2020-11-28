@@ -124,7 +124,6 @@ where $E_\kappa$ is the eigenvalue of the $\kappa$-th eigenstate $\psi_\kappa(\t
 \end{align}
 The symmetry of an eigenfunction depends on the symmetry of the potential $V_{ext}(\textbf{r})$ and the boundary conditions \cite{Persson2020}.
 
-
 \section{The many-particle Schrödinger equation}
 As we extend the theory to include many-particle systems, we will gradually explain and add the different contributions that make up the many-body Hamiltonian. During this process, we will neglect any external potential applied to the system.
 
@@ -160,7 +159,7 @@ Together, these equations comprise the time-independent many-particle Hamiltonia
 \end{align}
 
 
-A few problems arise when trying to solve the many-particle Schrödinger equation. Firstly, the amount of atoms in a crystal is very, very massive. As an example, we can numerically try to calculate the equation \ref{eq:electron-electron} for a $1$mm$^3$ silicon-crystal that contains $7\cdot 10^{20}$ electrons. For this particular problem, we will pretend to use the current fastest supercomputer Fugaku \cite{Top500} that can calculate $514$ TFlop/s, and we will assume that we need $2000$ flops to calculate each term inside the sum \cite{Persson2020}, and we need to calculate it $N_e \cdot N_e/2$ times for the (tiny) crystal. The entire electron-electron interaction calculation would take $2.46 \cdot 10^{19}$ years to finish for a tiny crystal. Thus, the large amount of particles translates into a challenging numerical problem.
+A few problems arise when trying to solve the many-particle Schrödinger equation. Firstly, the amount of atoms in a crystal is very, very massive. As an example, we can numerically try to calculate the equation \ref{eq:electron-electron} for a $1$mm$^3$ silicon-crystal that contains $7\cdot 10^{20}$ electrons. For this particular problem, we will pretend to use the current fastest supercomputer Fugaku \cite{Top500} that can calculate $514$ TFlops, and we will assume that we need $2000$ Flops to calculate each term inside the sum \cite{Persson2020}, and we need to calculate it $N_e \cdot N_e/2$ times for the (tiny) crystal. The entire electron-electron interaction calculation would take $2.46 \cdot 10^{19}$ years to finish for a tiny crystal. Thus, the large amount of particles translates into a challenging numerical problem.
 
 %In one cubic-centimeter of a crystal, there are around $10^{23}$ electrons. This number is roughly the same as the number of stars in the universe, grain of sand on all beaches in the world, or currently $1.41\cdot 10^{19}$ times the amount of Home and Away episodes made since 1988.
 
@@ -230,8 +229,8 @@ The Hartree-fock approach, however, overcame this challenge and presented an ant
 \end{align}
 For systems containing more than one particles, the factor $1/\sqrt{2}$ becomes the Slater determinant and is used to normalize the wave function.
 
-\section{Variational principle}
-So far we have tried to make the time-independent Schrödinger equation easier with the use of an \textit{ansatz}, but we do not neccessarily have an adequate guess for the eigenfunctions and the ansatz can only give a rough estimate in most scenarios. Another approach, namely the \textit{variational principle}, states that the energy of any trial wavefunction is always an upper bound to the exact ground state energy by definition $E_0$.
+\section{The variational principle}
+So far, we have tried to make the time-independent Schrödinger equation easier with the use of an \textit{ansatz}, but we do not neccessarily have an adequate guess for the eigenfunctions and the ansatz can only give a rough estimate in most scenarios. Another approach, namely the \textit{variational principle}, states that the energy of any trial wavefunction is always an upper bound to the exact ground state energy by definition $E_0$.
 \begin{align}
   E_0 = \bra{\psi_0 } H \ket{\psi_0} \leq \bra{\psi}H\ket{\psi} = E
   \label{eq:variational}
@@ -259,3 +258,11 @@ The quest to understand the variational principle can be summarized in a sentenc
 \begin{comment}
 This plays a vital role later, as we will see, since the energy is a \textit{functional} of the the wavefunction, denoted as $E_0\left[ \Psi \right]$.
 \end{comment}
+
+\section{The Heisenberg uncertainty principle}
+The famous Heisenberg uncertainty principle states that
+\begin{align}
+    \sigma_x \sigma_p \leq \frac{\hslash}{2},
+    \label{eq:uncertainty}
+\end{align}
+where $\sigma_x$ is the standard deviation for the position and $\sigma_p$ is the standard deviation in momentum. This means that we cannot accurately predict both the position and momentum of the same particle at the same time. Thus, we often calculate the probability for a particle to be in a state. However, it is often forgotten that equation \ref{eq:uncertainty} is an inequality, which means that it is possible to create a state where both the position and momentum is not-well defined, opposed to having both well defined.

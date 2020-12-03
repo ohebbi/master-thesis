@@ -6,11 +6,95 @@ This chapter will serve as an introduction to material science from a practical 
 
 \section{Crystal structure}
 
+
 Solid materials are formed by densely packed atoms. These atoms can randomly occur through the material without any long-range order, which would categorize the material as an \textit{amorphous solid}. Amorphous solids are frequently used in gels, glass and polymers \cite{BenStreetman2015}.
 
 However, the atoms can also be periodically ordered in small regions of the material, classifying the material as a \textit{polycrystalline solid}. All ceramics are polycrystalline with a broad specter of applications ranging from kitchen-porcelain to orthopedical bio-implants \cite{Renganathan2018}.
 
-A third option is to have these atoms arranged with infinite periodicity, making the material a \textit{crystalline solid} or more commonly named a \textit{crystal}. \footnote{figur av de tre forskjellige strukturene? tikz plot?}
+\begin{figure}
+  \centering
+\begin{subfigure}{.5\linewidth}
+\centering
+\begin{tikzpicture}
+  \foreach \z in {1,2,3}{
+  \foreach \i in {3,2,1,0}{% This one doesn't matter
+    \foreach \j in {3,2,1,0}{% This will crate a membrane
+        \shade[ball color=red] ({\i},{\j},\z) circle(0.5);
+      }
+    }
+  }
+\end{tikzpicture}
+\subcaption{} \label{fig:M1}
+\end{subfigure}%
+\par\bigskip
+
+\begin{subfigure}{1.0\linewidth}
+\centering
+\begin{tikzpicture}
+    \foreach \x in {0,1,2,3}{%
+      \foreach \z in {0,1,2,3}{%
+      \shade[ball color=blue] (0,\x,\z) circle(0.5);
+      }
+    }
+    \foreach \x in {0.5,1.5,2.5}{%
+      \foreach \z in {0,1,2,3}{%
+      \shade[ball color=blue] ({1*sqrt(0.74)},\x,\z) circle(0.5);
+      }
+    }
+    \foreach \x in {0,1,2,3}{%
+      \foreach \z in {0,1,2,3}{%
+      \shade[ball color=blue] ({2*sqrt(0.74)},\x,\z) circle(0.5);
+      }
+    }
+    \foreach \x in {0.5,1.5,2.5}{%
+      \foreach \z in {0,1,2,3}{%
+      \shade[ball color=blue] ({3*sqrt(0.74)},\x,\z) circle(0.5);
+      }
+    }
+    \foreach \z in {0,1,2,3}{%
+      \shade[ball color=yellow] ({3},3,\z) circle(0.5);
+    }
+    \foreach \y in {0,1,2,3}{%
+      \foreach \z in {0,1,2,3}{%
+      \shade[ball color=red] ({4*sqrt(0.74)+0.2*\y},\y,\z) circle(0.5);
+      }
+    }
+    \foreach \y in {0.3,1.3,2.3}{%
+      \foreach \z in {0,1,2,3}{%
+      \shade[ball color=red] ({5*sqrt(0.74)+0.2*\y},\y,\z) circle(0.5);
+      }
+    }
+    \foreach \y in {-0.3,0.7,1.7,2.7}{%
+      \foreach \z in {0,1,2,3}{%
+      \shade[ball color=red] ({6*sqrt(0.74)+0.2*\y},\y,\z) circle(0.5);
+      }
+    }
+    \foreach \y in {0.1,1.1,2.1}{%
+      \foreach \z in {0,1,2,3}{%
+      \shade[ball color=red] ({7*sqrt(0.74)+0.2*\y},\y,\z) circle(0.5);
+      }
+    }
+
+
+\end{tikzpicture}
+\subcaption{} \label{fig:M2}
+\end{subfigure}%
+\par\bigskip
+
+\begin{subfigure}{1.0\linewidth}
+\centering
+\begin{tikzpicture}
+  \foreach \z in {0,...,24}{
+    \shade[ball color=red] ({rand*1.5},{rand*1.5},{rand*1.5}) circle(0.5);
+  }
+\end{tikzpicture}
+\subcaption{} \label{fig:M3}
+\end{subfigure}
+\par\bigskip
+\caption{Different degrees of ordered structures, where (a) is a crystalline of a simple cubic lattice, (b) is a polycrystalline of a hexagonal lattice, and (c) is an amorphous. }
+\label{fig:crystalstructure}
+\end{figure}
+A third option is to have these atoms arranged with infinite periodicity, making the material a \textit{crystalline solid} or more commonly named a \textit{crystal}. The three options are visualised in figure \ref{fig:crystalstructure}.
 
 The periodicity in a crystal is defined in terms of a symmetric array of points in space called the \textit{lattice}, which can be simplified as either a one-dimensional array, a two-dimensional matrix or a three dimensional vector space, depending on the material. At each lattice point we can add an atom to make an arrangement called a \textit{basis}. The basis can be one atom or a cluster of atoms having the same spatial arrangement. For every crystal, there exists periodically repeated building blocks called \textit{cells} which represents the entire crystal. The smallest cell possible is called a \textit{primitive cell}, but such a cell only allows lattice points at its corners and it is often quite rigid to work with when the structure becomes complex. As a solution, we will consider the \textit{unit cell}, which allows lattice points on face centers and body centers. \footnote{Figur av enkleste gitter fcc, bcc og sc? tikz}
 
@@ -77,7 +161,7 @@ In some scenarios, thermal or optical energy is not sufficient for an excitation
 
 \section{Semiconductors in quantum technologies}
 
-In this section we will give a brief overview of the current domain in quantum technological advances. This will not only give us insights in how the technology is being used today, but also grant us the opportunity to discuss key concepts that are fundamental to understand the latest technologies. Additionally, it will motivate the reasoning for finding new materials that can be used in devices for this purpose.
+In this section we will give a brief overview of the current domain in quantum technological advances. This will not only give us insights in how the technology is being used today, but also grant us the opportunity to discuss key concepts that are fundamental to understand for this thesis. Importantly, it will motivate the reasoning for finding new materials that can be used in devices for this purpose.
 
 \textit{Quantum technology} (QT) refers to practical applications and devices that utilise the principles of quantum physics as a foundation. Technologies in this specter are based on concepts such as \textit{superposition}, \textit{entanglement} and \textit{coherence}.
 

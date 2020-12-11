@@ -1,5 +1,5 @@
 
-\chapter{The density functional theory}
+\section{The density functional theory}
 
 Hitherto we have tried to solve the Schrödinger equation to get a ground state wave function, and from there we can obtain ground state properties, such as the ground state total energy. One fundamental problem that exists when trying to solve the many-electron Schrödinger equation is that the wavefunction is a complicated function that depends on $3N_e$ variables\footnote{not including spin}.
 
@@ -9,7 +9,7 @@ However, the scheme is not without limitations, as the density functional theory
 
 We will start this chapter with a discussion of the Hohenberg-Kohn theorems, before we delve further into the Kohn-Sham equation.
 
-\section{The Hohenberg-Kohn theorems}
+\subsection{The Hohenberg-Kohn theorems}
 
 \begin{theorem}
   For any system of interacting particles in an external potential $V_{ext}$, the density is uniquely determined.
@@ -75,7 +75,7 @@ which is a contradiction. Thus, the two external potentials cannot have the same
 \end{proof}
 
 
-\section{The Kohn-Sham equation}
+\subsection{The Kohn-Sham equation}
 So far, we have tried to make the challenging Schrödinger equation less challenging by simplifying it, with the last attempt containing the Hohenberg-Kohn's theorems where the theory states that the total ground-state energy can, in principle, be determined exactly once we have found the ground-state density.
 
 In 1965, Kohn and Sham \cite{Kohn1965} reformulated the Hohenberg-Kohn theorems by generating the exact ground-state density $n_0(r)$ using a Hartree-like total wavefunction
@@ -133,7 +133,7 @@ The only task that is left for us now is to find the exact expression for $E_{xc
 %  \frac{\partial }{\partial \psi_j^{*} (\textbf{r})}E[n] &= \lambda_j\psi_j^s (\textbf{r}_j)
 %\end{align*}
 
-\section{The exchange-correlation energy}
+\subsection{The exchange-correlation energy}
 
 
 There is one scenario for which we can derive the exact expression of the exchange-correlation functional, namely the \textit{homogeneous electron gas} (HEG). However, this has a natural cause, since by definition $n(\textbf{r})$ is constant for this situation. Given that it is the variations of electron density that are the foundation of material properties, the usefulness of HEG is limited. The \textit{local density approximation} (LDA) is an approximation based on this approach, where the local density is the only variable used to define the exchange-correlation functional. Specifically, we can set the exchange-correlation potential at each position to be the known exchange-correlation potential from homogeneous electron gas at the electron density observed at that position \cite{Kohn1965}:
@@ -164,7 +164,7 @@ Hence, hybrid-functionals are \textit{semi-empirical} functionals that rely on e
 
 Furthermore, the computational effort required for the hybrid-functionals are significantly larger than for non-empirical functionals such as LDA or GGA. Krukau \textit{et al.} \cite{Krukau2006} reported a substantial increase in computational cost when reducing the parameter $\omega$ from $0.20$ to $0.11$ for 25 solids, and going lower than $0.11$ demanded too much  to actually defend its use.
 
-\section{Self-consistent field methods}
+\subsection{Self-consistent field methods}
 
 So, the remaining question is, how do we solve the Kohn-Sham equation? First, we would need to define the Hartree potential, which can be found if we know the electron density. The electron density can be found from the single-electron wave-functions, however, these can only be found from solving the Kohn-Sham equation. This \textit{circle of life} has to start somewhere, but where?
 
@@ -219,7 +219,7 @@ The process can be defined as an iterative method, \textit{a computational schem
 \setlength{\abovecaptionskip}{0cm}
 
 \clearpage
-\section{Limitations of the DFT}
+\subsection{Limitations of the DFT}
 
 
 \clearpage

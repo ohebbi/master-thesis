@@ -1,13 +1,8 @@
 \chapter{Quantum platforms from semiconductors}
 
-The interaction between structure and characteristics of matter is the foundation of material science. The applications of material science are unlimited, and if the reader takes a quick look around, hen will observe that every artifical material is made for a purpose, either being a bottle of water or a chair to sit in.
-
-This chapter will serve as an introduction to material science from a practical point of view, with a special emphasis on solid-state semiconductors.
-
+In this chapter we will give a brief overview of the current domain in quantum technological advances. This will not only give us insights in how the technology is being used today, but also grant us the opportunity to discuss key concepts that are fundamental to understand for this thesis. Importantly, it will motivate the reasoning for finding new materials that can be used in devices for this purpose. Thereafter we will look into how materials are build up, and what the characteristics of a semiconductor is.
 
 \section{Quantum technologies}
-
-In this section we will give a brief overview of the current domain in quantum technological advances. This will not only give us insights in how the technology is being used today, but also grant us the opportunity to discuss key concepts that are fundamental to understand for this thesis. Importantly, it will motivate the reasoning for finding new materials that can be used in devices for this purpose.
 
 \textit{Quantum technology} (QT) refers to practical applications and devices that utilise the principles of quantum physics as a foundation. Technologies in this specter are based on concepts such as \textit{superposition}, \textit{entanglement} and \textit{coherence}.
 
@@ -24,7 +19,7 @@ Additionally, another concept that the reader should be familiar with is the fam
     \sigma_x \sigma_p \leq \frac{\hslash}{2},
     \label{eq:uncertainty}
 \end{align}
-where $\sigma_x$ is the standard deviation for the position and $\sigma_p$ is the standard deviation in momentum. This means that we cannot accurately predict both the position and momentum of the same particle at the same time. Thus, we often calculate the probability for a particle to be in a state which results in imaginable concepts such as an electron sky surrounding a neutron. However, it is often forgotten that equation \ref{eq:uncertainty} is an inequality, which means that it is possible to create a state where both the position and momentum is not-well defined, opposed to having both well defined.
+where $\sigma_x$ is the standard deviation for the position and $\sigma_p$ is the standard deviation in momentum. This means that we cannot accurately predict both the position and momentum of the same particle at the same time. Thus, we often calculate the probability for a particle to be in a state which results in imaginable concepts such as an electron sky surrounding a neutron. However, it is often forgotten that equation (\ref{eq:uncertainty}) is an inequality, which means that it is possible to create a state where both the position and momentum is not-well defined, opposed to having both well defined.
 
 \subsection{Quantum communication}
 
@@ -73,7 +68,7 @@ The start of the digital world's computational powers can be credited to Alan Tu
 
 Driven by the development of software, conventional computers has, in accordance to Moore's law \cite{Moore1965}, doubled the amount of transistors on integrated circuit chips every two years as a result of smaller transistors. Furthermore, the clock frequency has enhanced with time, resulting in doubling of computer performance every 18 months \cite{Pavicic2006}. Alas, miniaturization cannot go on forever as transistors are mass-produced at $5$nm today and are expected to reach a critical limit of $3$nm in the following years \cite{Gwennap2020}.
 
-To sustain the digital worlds increasing computational demand, other alternatives than the conventional classical computer must be explored. This is where quantum computation comes into the picture. A qubit has a quantum nature that brings it to the center of attention in a quantum computation\footnote{There exists other systems such as the quantum d-state system, known as \textit{qudits}, that can also be utilised in quantum computation \cite{Ladd2010}.}. The most promising implementations of qubits are the polarization of photons, the spin of atoms, nuclei or quantum dots, currents running through superconducting Josephson junctions and the spin or charge of electrons \cite{Bathen2020}. The reader is encouraged to read a more thorough review of qubit-implementations in reference \cite{Acin2018}.
+To sustain the digital worlds increasing computational demand, other alternatives than the conventional classical computer must be explored. This is where quantum computation comes into the picture, and the term quantum computer, which is a device that would utilise quantum nature to solve certain computational problems more efficiently than allowed by Boolean logic \cite{Weber2010}. Since a qubit has a quantum nature and is the counterpart to the classical bit, it naturally follows that it is in the center of attention in quantum computation\footnote{There exists other systems such as the quantum d-state system, known as \textit{qudits}, that can also be utilised in quantum computation \cite{Ladd2010}.}.
 
 The architecture of a quantum computer is dependent on a set of quantum logic gates that perform unitary transformations on sets of qubits \cite{DiVincenzo2000, Ladd2010}. Other implementations of quantum computers exists, such as the adiabatic quantum computer. This approach is not based on gates, but on defining the answer of a problem as the ground state of a complex network of interactions between qubits, and then controlling the interactions to adiabatically evolve to the ground state \cite{Mizel2007}.
 
@@ -81,16 +76,110 @@ It has been demonstrated that exponentially complex problems can be reduced to p
 
 Quantum computing is a highly sought-after goal, but there are extensive challenges that needs to be adressed. Controlling a complex many-qubit system is difficult, since it is not always possible to establish interactions between qubits \cite{DiVincenzo2000}. Additionally, decoherence and other quantum noise occurs as a result to the high volatility of quantum states, making quantum state manipulation prone to errors. The \textit{quantum error correction} protocols and the theory of \textit{threshold theorem} deals with this vulnerability, stating that noise most likely does not pose any fundamental barrier to the performance of large-scale computations \cite{Pavicic2006}.
 
+\subsection{Quantum platform requirements}
+
+\begin{quote}
+   ``I always said that in some sense, these criteria are exactly the ones that you would teach to kindergarten children about computers, quantum or otherwise'' DiVincenzo \cite{Georgescu2020}
+\end{quote}
+
+DiVincenzo formulated in the year of 2000 five basic criteria for the physical realization of a quantum computer which a quantum platform should have \cite{DiVincenzo2000}.
+
+\begin{itemize}
+  \item A scalable physical system with well characterized qubits
+  \item The ability to initialize the state of the qubits to a simple initial system
+  \item Have coherence times that are much longer than the gate operation time
+  \item Have a universal set of quantum gates
+  \item Have the ability to perform qubit-specific measurements
+\end{itemize}
+
+\begin{itemize}
+  \item The ability to convert stationary qubits to flying qubits
+  \item The ability to faithfully transmit flying qubits between specified locations
+\end{itemize}
+
+\subsection{Available quantum platforms}
+
+%Before a quantum system can be used in either quantum computing, quantum cryptography or quantum sensing, a few criterias has to be met. They are formulated by
+
+Many different quantum platforms have been physically implemented, and this section will serve as a brief overview of the current status. For a more thorough review of qubit-implementations, the reader is recommended to read Ref. \cite{Acin2018}.
+
+Superconducting circuits can be used in quantum computing, since electrons in superconducting materials can form Cooper pairs through an electron-phonon interaction when the temperature is lower than a critical limit. Lower than the limit, electrons can move without resistance in the material \cite{KristianFossheim2004}. Exploiting this intrinsic coherence, qubits can be made by forming microwave circuits based on loops of two superconducting elements separated by an insulator, also known as Josephson tunnel junctions \cite{Acin2018}. Today, superconducting Josephson junctions are the most promising quantum platform, but it requires very low temperature (mK) to function as a quantum computer, making it costly to use. Additionally, the current devices experience a relatively short coherence time, resulting in a challenging upscaling for further experiments.
+
+Another eligible quantum platfom is single photons that can be implemented as one-qubit gates by rotations of the photon polarization. Its use in fiber optics are less prone to decoherence, but faces challenges since the more complex photon-photon entanglement and control of multi-qubits is strenuous \cite{Ladd2010}.
+
+Another implementation of a quantum platform can be done by fixing the nuclear spin of solid-state systems, resulting in long spin coherence. Thus, one can manipulate qubits utilising electromagnetic fields, making one-qubit gates possible.
+
+An alternative platform is the isolated atom platform which is characterized by its well-defined atom isolation. Here, every qubit is based on energy levels of a trapped ion or atom. Quantum entanglement can be enabled through laser-induced spin coupling, however scaling it up to large numbers induce problems in controlling large systems and cooling of the trapped atoms or ions.
+
+Quantum dots are also in use as quantum platforms, and can be imagined as artifical atoms which are confined in a solid-state host. It possess the similar coherence potential as the isolated atom platform, but without the drawback of confining and cooling of a given atom or ion. One approach to generate a quantum dot is to trap a hole or an electron in a semiconductor's discrete energy level potential. In such a system, the spin degree of freedom is considered auspicious due to its long coherence time \cite{Acin2018}.
+
+Lastly, we will mention point defects in semiconductors as a physical implementation of a quantum platform. It shares many of the attributes of quantum dots, such as discrete optical transitions and controllable coherent spin states, but it is vulnerable to small changes in the lattice of the semiconductor. However, one can utilise the strength of the solid-state semiconductor host to isolate to some extent the point defect, rewarding extended coherence time.
+
+\clearpage
+\section{First principles of semiconductors}
+
+Isolated atoms have distinct energy levels, where the Pauli exlusion principle \cite{Pauli1925} states for fermions that each energy level can accomodate two electrons of opposite spin. In a solid, the discrete energy levels of the isolated atom spread into continuous energy bands for the solid since the wavefunctions of the electrons in the neighboring atoms overlap. Hence, an electron is not neccessarily localized at a particular atom anymore as it would for a system with an isolated atom. Every material has a unique band structure, similar to every human have their unique fingerprint.
+
+\begin{wrapfigure}{r}{0.35\textwidth}
+  \begin{minipage}{\linewidth}
+    \centering\captionsetup[subfigure]{justification=centering}
+  \begin{tikzpicture}[scale=1]
+      \draw [<->,thick] (0,3.5) node (yaxis) [above] {$E$}
+          |- (2.5,0) node (xaxis) [right] {$\textbf{k}$};
+      \draw (0.5,0.25) arc(180:0:0.75cm);
+      \draw (2.0,3.0) arc(0:-180:0.75cm);
+      \coordinate (VB) at (1.25,1.0);
+      \coordinate (CB) at (1.25,2.24);
+      \draw[<->] (CB) node[above] {CB}
+        -| (VB) node[below] {VB};
+      \draw[dashed] (VB) -- (0,1.0) node[left]{$E_V$};
+      \draw[dashed] (CB) -- (0,2.24) node[left]{$E_C$};
+      \node at (1.5,1.5) {$E_g$};
+  \end{tikzpicture}
+  \subcaption{}
+  \label{fig:directbandgap}
+  \begin{tikzpicture}[scale=1]
+      \draw [<->,thick] (0,3.5) node (yaxis) [above] {$E$}
+          |- (2.5,0) node (xaxis) [right] {$\textbf{k}$};
+      \draw (0.5,0.25) arc(180:0:0.75cm);
+      \draw (3.0,3.0) arc(0:-180:0.75cm);
+      \coordinate (VB) at (2.25,1.0);
+      \coordinate (CB) at (2.25,2.24);
+      \draw[<->] (CB) node[above] {CB}
+        -| (VB);
+      \draw[dashed] (VB) -- (0,1.0) node[left]{$E_V$};
+      \draw[dashed] (CB) -- (0,2.24) node[left]{$E_C$};
+      \node at (2.5,1.5) {$E_g$};
+      \node at (1.25,0.75) {VB};
+  \end{tikzpicture}
+  \label{fig:indirectbandgap}
+  \subcaption{}
+  \end{minipage}
+  \caption{A schematic drawing of a (a) direct bandgap and an (b) indirect bandgap.}
+\end{wrapfigure}
+
+Which energy bands that are occupied by electrons, is the key in understanding the electrical properties of solids. The highest occupied electron band at $0$ K is called the valence band (VB), while the lowest unoccupied electon band is called the conduction band (CB). In between the two bands, we find an area that contains no electron energy states which is known as the band gap and its energy is denoted as $E_g$.
+
+To be able to accelerate electrons in a solid using an electrical field, they must be able to move into new energy states. At $0$ K, the entire valence band of a semiconductor is full with electrons and no available new states, making it impossible to flow current through the material. This can be solved by using either thermal or optical energy to excite energies from the valence band to the conduction band, in order to \textit{conduct} electricity. In room temperature, many semiconductors will be able to have excited electrons in the conducting band solely from thermal energy matching the energy band gap \cite{BenStreetman2015}.
+
+In some scenarios, thermal or optical energy is not sufficient for an excitation since the energy bands are also dependent by a crystal momentum. A difference in the momentum of the minimal-energy state in the conduction band and the maximum-energy state in the valence band, is known to be an \textit{indirect bandgap} as seen in figure \ref{fig:directbandgap}. If there is no difference at all, the material has a \textit{direct bandgap}, which is visualized in figure \ref{fig:indirectbandgap}.
 
 
-\section{Crystal structure}
+\section{A brief overview of material science}
 
+The interactions in atomic structure and characteristics of matter is the foundation of material science. The applications of material science are unlimited, and if the reader takes a quick look around, hen will observe that every artifical material is made for a purpose, either being a bottle of water or a chair to sit in.
 
-Solid materials are formed by densely packed atoms. These atoms can randomly occur through the material without any long-range order, which would categorize the material as an \textit{amorphous solid}. Amorphous solids are frequently used in gels, glass and polymers \cite{BenStreetman2015}.
+Solid materials, like a plastic bottle, are formed by densely packed atoms. These atoms can randomly occur through the material without any long-range order, which would categorize the material as an \textit{amorphous solid}. Amorphous solids are frequently used in gels, glass and polymers \cite{BenStreetman2015}.
 
 However, the atoms can also be periodically ordered in small regions of the material, classifying the material as a \textit{polycrystalline solid}. All ceramics are polycrystalline with a broad specter of applications ranging from kitchen-porcelain to orthopedical bio-implants \cite{Renganathan2018}.
 
-\begin{figure}
+A third option is to have these atoms arranged with infinite periodicity, making the material a \textit{crystalline solid} or more commonly named a \textit{crystal}. The three options are visualised in figure \ref{fig:crystalstructure}.
+
+The periodicity in a crystal is defined in terms of a symmetric array of points in space called the \textit{lattice}, which can be simplified as either a one-dimensional array, a two-dimensional matrix or a three dimensional vector space, depending on the material. At each lattice point we can add an atom to make an arrangement called a \textit{basis}. The basis can be one atom or a cluster of atoms having the same spatial arrangement. For every crystal, there exists periodically repeated building blocks called \textit{cells} which represents the entire crystal. The smallest cell possible is called a \textit{primitive cell}, but such a cell only allows lattice points at its corners and it is often quite rigid to work with when the structure becomes complex. As a solution, we will consider the \textit{unit cell}, which allows lattice points on face centers and body centers.
+
+\newpage
+
+\begin{figure}[ht!]
   \centering
 \begin{subfigure}{.5\linewidth}
 \centering
@@ -173,13 +262,9 @@ However, the atoms can also be periodically ordered in small regions of the mate
 \caption{Different degrees of ordered structures, where (a) is a crystalline of a simple cubic lattice, (b) is a polycrystalline of a hexagonal lattice, and (c) is an amorphous. }
 \label{fig:crystalstructure}
 \end{figure}
-A third option is to have these atoms arranged with infinite periodicity, making the material a \textit{crystalline solid} or more commonly named a \textit{crystal}. The three options are visualised in figure \ref{fig:crystalstructure}.
 
-The periodicity in a crystal is defined in terms of a symmetric array of points in space called the \textit{lattice}, which can be simplified as either a one-dimensional array, a two-dimensional matrix or a three dimensional vector space, depending on the material. At each lattice point we can add an atom to make an arrangement called a \textit{basis}. The basis can be one atom or a cluster of atoms having the same spatial arrangement. For every crystal, there exists periodically repeated building blocks called \textit{cells} which represents the entire crystal. The smallest cell possible is called a \textit{primitive cell}, but such a cell only allows lattice points at its corners and it is often quite rigid to work with when the structure becomes complex. As a solution, we will consider the \textit{unit cell}, which allows lattice points on face centers and body centers. \footnote{Figur av enkleste gitter fcc, bcc og sc? tikz}
-
-\section{The perovskite structure}
-
-One known crystal structure is the perovskite structure. They have an $ABO_3$ stoichiometry whose symmetri belong to one of 15 space groups identified by Lufaso \& Woodward \cite{Lufaso2001}, such as the cubic, orthorombic and tetragonal, to name a few. The A atom is nine- to 12-fold coordinated by oxygen, while the B atom is sixfold coordinated by oxygen, and the $BO_6$ octahedra are connected to the corners in all three directions.
+\newpage
+One known crystal structure is the perovskite structure. Compounds with this structure are characterized having an $ABX_3$ stoichiometry whose symmetri belong to one of 15 space groups identified by Lufaso \& Woodward \cite{Lufaso2001}, such as the cubic, orthorombic and tetragonal, to name a few. For our purpose, we will be looking into when the C atom is oxygen, herein we will refer to the oxygen-perovskite $ABO_3$. The A atom is nine- to 12-fold coordinated by oxygen, while the B atom is sixfold coordinated by oxygen, and the $BO_6$ octahedra are connected to the corners in all three directions.
 
 \begin{wrapfigure}{r}{0.5\textwidth}
   \centering
@@ -190,55 +275,10 @@ One known crystal structure is the perovskite structure. They have an $ABO_3$ st
 
 The motivation behind the research of perovskites is reasoned by that there are a large amount of possible ABO$_3$ chemistries, whereas a significant portion of these that takes the perovskite structure. They have a broad specter of applications, ranging from high-temperature superconductors \cite{Bednorz1988}, ionic conductors \cite{Boivin1998}, and  multiferroic materials \cite{Cheong2007}. Additionally, adding a perovskite structured compound to solar cells has reportedly resulted in higher performance efficiency while being cheap to produce and simple to manufacture \cite{IbnMohammed2017, Chen2014}, however, that includes the use of hybrid organic-inorganic compounds and excludes the use of oxygen.
 
-\section{First principles of semiconductors}
-
-Isolated atoms have distinct energy levels, where the Pauli exlusion principle \cite{Pauli1925} states for fermions that each energy level can accomodate two electrons of opposite spin. In a solid, the discrete energy levels of the isolated atom spread into continuous energy bands for the solid since the wavefunctions of the electrons in the neighboring atoms overlap \footnote{her er det mulighet for en kul figure fra diskret energi til continous band. Mena3000-boka}. Hence, an electron is not neccessarily localized at a particular atom anymore as it would for a system with an isolated atom. Every material has a unique band structure, similar to every human have their unique fingerprint.
-
-\begin{wrapfigure}{r}{0.35\textwidth}
-  \begin{minipage}{\linewidth}
-    \centering\captionsetup[subfigure]{justification=centering}
-  \begin{tikzpicture}[scale=1]
-      \draw [<->,thick] (0,3.5) node (yaxis) [above] {$E$}
-          |- (2.5,0) node (xaxis) [right] {$\textbf{k}$};
-      \draw (0.5,0.25) arc(180:0:0.75cm);
-      \draw (2.0,3.0) arc(0:-180:0.75cm);
-      \coordinate (VB) at (1.25,1.0);
-      \coordinate (CB) at (1.25,2.24);
-      \draw[<->] (CB) node[above] {CB}
-        -| (VB) node[below] {VB};
-      \draw[dashed] (VB) -- (0,1.0) node[left]{$E_V$};
-      \draw[dashed] (CB) -- (0,2.24) node[left]{$E_C$};
-      \node at (1.5,1.5) {$E_g$};
-  \end{tikzpicture}
-  \subcaption{}
-  \label{fig:directbandgap}
-  \begin{tikzpicture}[scale=1]
-      \draw [<->,thick] (0,3.5) node (yaxis) [above] {$E$}
-          |- (2.5,0) node (xaxis) [right] {$\textbf{k}$};
-      \draw (0.5,0.25) arc(180:0:0.75cm);
-      \draw (3.0,3.0) arc(0:-180:0.75cm);
-      \coordinate (VB) at (2.25,1.0);
-      \coordinate (CB) at (2.25,2.24);
-      \draw[<->] (CB) node[above] {CB}
-        -| (VB);
-      \draw[dashed] (VB) -- (0,1.0) node[left]{$E_V$};
-      \draw[dashed] (CB) -- (0,2.24) node[left]{$E_C$};
-      \node at (2.5,1.5) {$E_g$};
-      \node at (1.25,0.75) {VB};
-  \end{tikzpicture}
-  \label{fig:indirectbandgap}
-  \subcaption{}
-  \end{minipage}
-  \caption{A schematic drawing of a (a) direct bandgap and an (b) indirect bandgap.}
-\end{wrapfigure}
-
-Which energy bands that are occupied by electrons, is the key in understanding the electrical properties of solids. The highest occupied electron band at $0$ K is called the valence band (VB), while the lowest unoccupied electon band is called the conduction band (CB). In between the two bands, we find an area that contains no electron energy states which is known as the band gap and its energy is denoted as $E_g$.
-
-To be able to accelerate electrons in a solid using an electrical field, they must be able to move into new energy states. At $0$ K, the entire valence band of a semiconductor is full with electrons and no available new states, making it impossible to flow current through the material. This can be solved by using either thermal or optical energy to excite energies from the valence band to the conduction band, in order to \textit{conduct} electricity. In room temperature, many semiconductors will be able to have excited electrons in the conducting band solely from thermal energy matching the energy band gap \cite{BenStreetman2015}.
-
-In some scenarios, thermal or optical energy is not sufficient for an excitation since the energy bands are also dependent by a crystal momentum. A difference in the momentum of the minimal-energy state in the conduction band and the maximum-energy state in the valence band, is known to be an \textit{indirect bandgap} as seen in figure \ref{fig:directbandgap}. If there is no difference at all, the material has a \textit{direct bandgap}, which is visualized in figure \ref{fig:indirectbandgap}.
+\section{Criterias for a qubit-host}
 
 
+Normally, nuclear spin is a major source of decoherence for all semiconductor-based quantum technologies. This would exclude the use of all elements in odd groups in the periodic table, since these elements exhibit nonzero nuclear spin. However, nuclear spin can also induce additional quantum degrees of freedom for applications in the right configuration \cite{Bassett2019}. Therefore, we will not completely exclude all nonzero nuclear spin elements from our list. Les mer her på nuclear spin bath
 
 
 %When isolated atoms are brought together to form a solid, various interactions occur between neighboring atoms. These interactions are the basis that forms the varied electrical properties of solids. . Each energy level

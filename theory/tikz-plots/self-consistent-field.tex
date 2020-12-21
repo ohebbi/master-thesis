@@ -1,0 +1,47 @@
+\setlength{\abovecaptionskip}{22cm}
+\begin{figure}[!ht]
+\begin{picture}(-20,-20)
+
+\setlength{\unitlength}{0.17in}
+\put(12,-4){\framebox(11,4){\thead{Initialize atomic structure,\\ potentials and \\ settings}}}
+\put(17,-4){\vector(0,-1){3}}
+
+\put(13,-10){\framebox(9,3){\thead{Initial guess of $n(\textbf{r})$}}}
+\put(17,-10){\vector(0,-1){3}}
+\put(10,-16){\framebox(15,3){\thead{Use $n(\textbf{r})$ to calculate effective potential \\ $V_{\text{eff}} = V_H + V_{en} + V_{xc}$}}}
+\put(17,-16){\vector(0,-1){2}}
+\put(11.5,-21){\framebox(12,3){\thead{Solve Kohn-Sham equations \\ and determine $E[n]$}}}
+\put(17,-21){\vector(0,-1){2}}
+\put(13, -26){\framebox(9, 3){\thead{Calculate new density \\ $n'(\textbf{r})=\sum_j \lvert \psi_j^{KS} \rvert ^2 $}}}
+\put(13, -29.5){\line(-1, 0){8}}
+\put(9, -29){\makebox{\thead{NO}}}
+\put(5, -29.5){\line(0, 1){18}}
+\put(5, -11.5){\vector(1, 0){12}}
+\put(17,-26){\vector(0,-1){2}}
+\put(13, -31){\framebox(9, 3){\thead{Energy self-consistent? \\ $E\left[ n \right] \sim E\left[ n' \right] $ ?}}}
+\put(17,-31){\vector(0,-1){3}}
+\put(17.5, -32.5){\makebox{\thead{YES}}}
+\put(11, -36){\framebox(13, 2){\thead{ Relaxation of the atomic structure?}}}
+\put(11, -35){\line(-1,0){4}}
+\put(7, -35){\line(0,-1){10.5}}
+\put(7, -45.5){\vector(1,0){5}}
+\put(8.5, -34.5){\makebox{\thead{NO}}}
+\put(17,-36){\vector(0,-1){3}}
+\put(17.5, -37.5){\makebox{\thead{YES}}}
+\put(13, -41){\framebox(9, 2){\thead{Forces $\sim 0$ ? }}}
+\put(17.5, -42.5){\makebox{\thead{YES}}}
+\put(24, -39.5){\makebox{\thead{NO}}}
+\put(22, -40){\line(1,0){9}}
+\put(31, -40){\vector(0,1){12}}
+\put(31, -25){\line(0,1){13.5}}
+
+\put(26.5, -28){\framebox(9, 3){\thead{Displacement of atomic\\ positions}}}
+\put(31, -11.5){\vector(-1,0){14}}
+\put(17,-41){\vector(0,-1){3}}
+\put(12, -47){\framebox(11, 3){\thead{Output energies and forces \\ for given configuration}}}
+\end{picture}
+\caption{A flow chart of the self-consistent field method for DFT.}
+\label{fig:flowchart}
+\end{figure}
+\vskip12cm
+\setlength{\abovecaptionskip}{0cm}

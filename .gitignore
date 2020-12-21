@@ -41,3 +41,5 @@ temp*
 *.DS_Store
 *.git
 *.xyz
+# jabref files
+*.sav

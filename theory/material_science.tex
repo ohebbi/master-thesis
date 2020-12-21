@@ -113,6 +113,11 @@ To be able to accelerate electrons in a solid using an electrical field, they mu
 
 In some scenarios, thermal or optical energy is not sufficient for an excitation since the energy bands are also dependent by a crystal momentum. A difference in the momentum of the minimal-energy state in the conduction band and the maximum-energy state in the valence band, is known to be an \textit{indirect bandgap} as seen in figure \ref{fig:directbandgap}. If there is no difference at all, the material has a \textit{direct bandgap}, which is visualized in figure \ref{fig:indirectbandgap}.
 
+All electrons in solid materials behave according to the Fermi-Dirac distribution
+\begin{align*}
+  f(E) = \frac{1}{1+e^{(E-E_F)/kT}},
+\end{align*}
+where $k$ is Boltzmann's constant, $T$ is temperature, $E$ is the energy and $E_F$ is the Fermi level. The Fermi-Dirac distribution gives the probability that a state will be occupied by an electron, and at $T=0$ K, every energy state lower than $E_F$ is occupied by electrons while the opposite is true for energy states above $E_F$ \cite{BenStreetman2015}.
 
 \section{A brief overview of material science}
 
@@ -142,7 +147,10 @@ One known crystal structure is the perovskite structure. Compounds with this str
 
 The motivation behind the research of perovskites is reasoned by that there are a large amount of possible ABO$_3$ chemistries, whereas a significant portion of these that takes the perovskite structure. They have a broad specter of applications, ranging from high-temperature superconductors \cite{Bednorz1988}, ionic conductors \cite{Boivin1998}, and  multiferroic materials \cite{Cheong2007}. Additionally, adding a perovskite structured compound to solar cells has reportedly resulted in higher performance efficiency while being cheap to produce and simple to manufacture \cite{IbnMohammed2017, Chen2014}, however, that includes the use of hybrid organic-inorganic compounds and excludes the use of oxygen.
 
+In real life, a perfect crystal without any symmetry-breaking flaw is non-existant. These flaws are known as defects and can occur up to three dimensions. A one dimensional defect is known as a \textit{line defect}, while two dimensional defects as \textit{planar defects}, and in three dimensions as \textit{volume defects}. Lastly, it can also occur in zero dimensions, which is termed a \textit{point defect}. Point defects are the type of defect that can be utilised in generating a qubit, thus being a special interest for this thesis. They can arise as either a vacancy in the lattice, interstitial placement inbetween lattice sites, or as a substitution of an existing atom in the lattice.
+
 \clearpage
+
 
 \section{Qubit host qandidates}
 
@@ -158,16 +166,17 @@ Weber \textit{et al.} \cite{Weber2010} proposed in 2010 four criteria that shoul
 
 Host candidates that satisfy criteria (H1) and (H2) can be found by studying the electronic structure of the compounds. What tends to happen for a defect in semiconductors is that the electronic states associated with the defect have energies that lie within the (forbidden) band gap of the semiconductor. This is schematically drawn and explained for diamond in figure (\ref{fig: diamond electronic structure}). A large band gap can accomodate multiple highly isolated states and make them confined and isolated from interactions, which is favorable for longer coherence times. However, the desired band gap depends on the application, since the Fermi level of large band gap materials is challenging to control \cite{Bassett2019}.
 
-\input{theory/tikz-plots/electronic-structure-point-defect.tex}
-
-Table (\ref{tab:qubithosts}) (adapted from \cite{Weber2010}) lists several host candidates that has a promising band gap that can accomodate a deep center defect. The spin-orbit splitting is an indication of the strength of the spin-orbit interaction, and is taken at the $\Gamma$ point from the valence-band splitting. A smaller value indicates less susceptibility to decoherence.
-
+Table (\ref{tab:qubithosts}) lists several host candidates that has a promising band gap that can accomodate a deep center defect. The spin-orbit splitting is an indication of the strength of the spin-orbit interaction, and is taken at the $\Gamma$ point from the valence-band splitting. A smaller value indicates less susceptibility to decoherence.
 
 Criteria (H3) is important for scalability and further potential for a large-scale fabrication. The given qandidate hosts in table (\ref{tab:qubithosts}) are all available and can be grown as single crystals, but with varying quality and size.
 
 Normally, nuclear spin is a major source of decoherence for all semiconductor-based quantum technologies. This would exclude the use of all elements in odd groups in the periodic table, since these elements exhibit nonzero nuclear spin. This could help to increase the spin-coherence time of a paramgnetic deep center \cite{Weber2010}. However, nuclear spin can also induce additional quantum degrees of freedom for applications in the right configuration \cite{Bassett2019}. Therefore, criteria 4 is not a strict requirement but is a general recommendation for reducing decoherence time.  %Therefore, we will not completely exclude all nonzero nuclear spin elements from our list.
 
-In fact, all of the criteria could be regarded as recommendations
+Weber \textit{et al} \cite{Weber2010} use criteria $(H1)-(H4)$ to specifically find analogies to the $NV^{-1}$ center in other material systems, thus leaving the discussion of other criteria out, such as the choice of crystal system. A materials crystal system heavily affects the properties of a defect, since a defect's orbital and spin structure is dependent on its spatial symmetry \cite{Bassett2019}. In particular, it is the point group that decides which multiplicity a given level should have \cite{James1976}. A higher group of symmetry of the defect normally allows for degenerate orbitals, which will again give rise to high spin states, according to Hund's rule. This is a favorable trend, since high spin states allows for coherent spin control in addition to the chance of generating spin-photon entanglement \cite{Bassett2019, Togan2010}. Inversion symmetry in the host crystal can also opt as beneficial, resulting in reduced inhomogenous broadening and spectral diffusion of optical transitions as a consequence of being generally insensitive to external electric fields \cite{Bassett2019}.
+
+\input{theory/tikz-plots/electronic-structure-point-defect.tex}
+
+%In fact, all of the criteria could be regarded as recommendations,
 
 \begin{table}[!ht]
 \centering

@@ -1,11 +1,7 @@
 \chapter{Material Science Databases}
-There are multiple different databases for material science available for every day use, some of them completely open-source while others commercial. This chapter will give a brief overview of databases available for computational material science, and will serve as a toolbox for the speciality of each respective data base.
 
-A quick search online will reveal the tremendous escalation of effort for big-data driven material science the last few years, resulting in several databases. We will here distinguish between a \textit{cloud service}, which is a place to store independent databases for research and commercial purposes, and a \textit{database}, which is an organized collection of structured information. As an example, a cloud service can store several databases, but a database cannot host a cloud service.
+There are multiple different databases for material science available for every day use, some of them completely open-source while others commercial. This chapter will give a brief overview of databases available for computational material science, and will serve as a toolbox for how to request information and what kind of python packages exist to process that information.
 
-To limit the quest of databases, we have restricted the search for databases and cloud services to include inorganic compounds obtained by first-principles calculations. Table \ref{tab:databases} and \ref{tab:cloud_service} shows the databases and cloud services that meets the given criteries, respectively.
-
-\clearpage
 %The materials genome initiative
 
 %This piece of research is obtained through open access for institutional and educational purposes,
@@ -14,22 +10,28 @@ To limit the quest of databases, we have restricted the search for databases and
 
 %This proves that the challenge of finding databases are non-existent, while the challenge of choosing the relevant databases are of a great extent.
 
+\section{Fundamentals of a database}
+
+A quick search online will reveal the tremendous escalation of effort for big-data driven material science the last few years, resulting in several databases that stores ab-initio calculation details and results. We will here distinguish between a \textit{cloud service}, which is a place to store independent databases for research and commercial purposes, and a \textit{database}, which is an organized collection of structured information. As an example, a cloud service can store several databases, but a database cannot host a cloud service.
+
+To limit the quest of databases, we have restricted the search for databases and cloud services to include inorganic compounds obtained experimentally or by first-principles calculations, in particular DFT-calculations using \textit{Vienna ab initio simulation package} (VASP) \cite{Kresse1996}. VASP is a software for atomic scale materials programming. Table \ref{tab:databases} and \ref{tab:cloud_service} shows a selection of databases and cloud services that meets the given criteries, respectively.
+
 \begin{table}[!ht]
 \centering
 \begin{tabular}{clclclclc}
   \hline
   \hline
-  Database & API/REST & Free access & Number of compounds \\
+  Database & API & Free access & Number of entries \\
   \hline
   AFLOW & REST & True &  3.27 M\\
-  MP \cite{Jain2013}   & MAPI \cite{Ong2015} & True &  0.66 M\\
-  OQMD \cite{Kirklin2015, Saal2013} & RESTful API (qmpy, matminer)& True &  0.64 M\\
+  OQMD \cite{Kirklin2015, Saal2013} & RESTful API (qmpy, matminer)& True &  0.82 M\\
+  MP \cite{Jain2013}   & MAPI \cite{Ong2015} & True &  0.71 M\\
   ICSD \cite{Levin2020} & RESTful API & False &  0.21 M\\
   Jarvis-DFT  & API & True &  0.04 M\\
   \hline
   \hline
 \end{tabular}
-\caption{Databases of computational material science sorted after number of compounds. Abbreviations used are Novel Materials Discovery (NOMAD), Automatic-FLOW for Materials Discovery (AFLOW), Materials Project (MP), Inorganic Crystal Structure Database (ICSD) and Open Quantum Materials Database (OQMD).}
+\caption{Databases of computational material science sorted after number of compounds. Abbreviations used are Novel Materials Discovery (NOMAD), Automatic-FLOW for Materials Discovery (AFLOW), Materials Project (MP), Inorganic Crystal Structure Database (ICSD) and Open Quantum Materials Database (OQMD). The number of entries can give the wrong perception of size of each respective database, as it does not visualise how many calculations have been done for each entry, nor if there might be duplicates.}
 \label{tab:databases}
 \end{table}
 
@@ -56,9 +58,6 @@ To limit the quest of databases, we have restricted the search for databases and
 \label{tab:cloud_service}
 \end{table}
 
-\clearpage
-
-\section{Fundamentals of a database}
 
 % REST
 
@@ -78,22 +77,24 @@ The Materials Project is also behind a library named matminer \cite{Ward2018}, w
 
 \section{Databases and cloud services}
 
+Every database has its own speciality, and no two databases are the same. There exists entries that are fundamentally identical in several databases, but with different properties as a consequence of parameters used, such as the functional utilised in VASP or the relaxation scheme. This section digs up what exactly is each respective database's claim to fame.
 
 \subsection{Novel Materials Discovery}
 
 The Novel Materials Discovery (NOMAD) \cite{Draxl2019} Repository is an open-access platform for sharing and utilizing computational materials science data. NOMAD also consists of several branches such as NOMAD Archieve, which is the representation of the NOMAD repository parsified into a code-independent format, NOMAD Encyclopedia, which is a graphical user interface (GUI) for characterizing materials, and lastly NOMAD Analytics Toolkit, which includes early-development examples of artificial-intelligence tools \cite{Draxl2019}.
 
-Databases that are a part of NOMAD data collection includes Materials Project, the Open Quantum Materials Database and AFLOW. They are all based on the underlying quantum engine Vienna ab initio simulation package (VASP) \cite{Kresse1996}, which is a software based on DFT.
+Databases that are a part of NOMAD data collection includes Materials Project, the Open Quantum Materials Database and AFLOW. They are all based on the underlying quantum engine VASP.
 
 \subsection{Materials project}
 
 Materials project \cite{Jain2013} is an open source project that offers a variety of properties of over one hundred thousand of inorganic crystalline materials. It is known as the initiator of materials genomics and has as its mission to accelerate the discovery of new technological materials, with an emphasis on batteries and electrodes, through advanced scientific computic and innovative design .
 
-It is built upon over 60 features\footnote{All features can be viewed in the documentation of the project: github.com/materialsproject/mapidoc/master/materials}, some features being irrelevant for some materials while fundamental for others. The data is divided into three different branches, where the first can be described as basic properties of materials including over $30$ features, while the second branch describes experimental thermochemical information. The last branch yields information about a particular calculation, in particular information that's relevant for running a DFT script. %Some features, eg. density of state (dos), bandstructure, Pourbaix diagram etc., are characterized by using the module pymatgen.
+ %Some features, eg. density of state (dos), bandstructure, Pourbaix diagram etc., are characterized by using the module pymatgen.
 
 Every compound has an initial relaxation of cell and lattice parameters performed using a $1000 k$-point mesh to ensure that all properties calculated are representative of the idealized unit cell for each respective crystal structure. The functional GGA is used to calculate band structures, while for transition metals it is applied $+U$ correction to correct for correlation effects in d- and f-orbital systems that are not addressed by GGA calculations \cite{Wang2006}. The thermodynamic stability for each phase with respect to decomposition, is also calculated. This is denoted as E Above Hull, with a value of zero is defined as the most stable phase at a given composition, while larger positive values indicate increased instability.
 
 Each material contains multiple computations for different purposes, resulting in different 'tasks'. The reason behind this is that each computation has a purpose, such as to calculate the band structure or energy. Therefore, it is possible to receive several tasks for one material which results in more features per material.
+
 \subsection{AFLOW}
 
 The AFLOW\cite{Curtarolo2012, Curtarolo2012a, Calderon2015} repository is an automatic software framework for the calculations of a wide range of inorganic material properties. They utilise the GGA-PBE functional within VASP with projector-augmented wavefunction (PAW) potentials to relax twice and optimize the ICSD-sourced structur. They are using a $3000-6000$ $k$-point mesh, indicating a more computationally expensive calculation compared to the Materials Project. Next, the band structure is calculated with an even higher $k$-point density, in addition to the $+U$ correction term for most occupied d- and f-orbital systems, resulting in a standard band gap \cite{Setyawan2010}. Furthermore, they apply a standard fit gathered from a study of DFT-computed versus experimentally measured band gap widths to the initial calculated value, obtaining a fitted band gap \cite{Setyawan2011}.
@@ -116,4 +117,60 @@ Structures included in the data set are originally taken from the materials proj
 
 The JARVIS-DFT database is part of a bigger platform that includes JARVIS-FF, which is the evaluation of classical forcefield with respect to DFT-data, and JARVIS-ML, which consists of 25 machine learning to predict properties of materials. In addition, JARVIS-DFT also includes a data set of 1D-nanowire and 0D-molecular materials, yet not publically distributed.
 
-\section{}
+\section{Practical data extraction with Python-examples}
+
+The range of data in a database can consist of data from a few entries up to an unlimited amount of entries with even further optional parameters, and has limitless use in applications. However, the amount of data in a database is irrelevant if the data is inaccessible. Therefore, we present an elementary formula which we will use in evaluating if a database is accessible or not. It is defined as
+\begin{align}
+  \text{Accessibility} = \frac{\text{Extraction speed}}{\text{Amount of data}}.
+\end{align}
+A large accessibility term implies an ease in extracting information. This formula does not depend on how accessible a database' user interface is, but a discussion of documentation and user interface will be included in the examples.
+
+For this section, we will show practical examples of how to extract data that fulfill the criteria for a material to host a qubit candidate given in the theory part. We will begin with the database of Materials Project, and then restrict the query thereafter. This data mining process is reproducable as a jupyter notebook\footnote{add and insert DOI for JN data-mining.ipynb} and the databases in question are the ones refered to in the previous section.
+
+\subsection{Materials Project }
+
+The most up-to-date version of Materials Project can be extracted using the python package pymatgen, which is integrated with Materials Project REST API. Other retrievel tools that is dependent on pymatgen includes matminer, with the added functionality of returning a pandas dataframe. Copies of Materials Project are added frequently to cloud services such as Citrine Informatics, but the latest added entries to Materials Project cannot be guaranteed in such a query.
+
+Entries in Materials Project are characterized using more than 60 features\footnote{All features can be viewed in the documentation of the project: https://github.com/materialsproject/mapidoc/master/materials}, some features being irrelevant for some materials while fundamental for others. The data is divided into three different branches, where the first can be described as basic properties of materials including over $30$ features, while the second branch describes experimental thermochemical information. The last branch yields information about a particular calculation, in particular information that's relevant for running a DFT script.
+
+To extract information from the database, we will be utilising the module pymatgen. This query supports MongoDB query and projection operators\footnote{https://docs.mongodb.com/manual/reference/operator/query/}, resulting in an almost instant query. Thus, Materials Project is regarded as a highly accessible database.
+
+\begin{enumerate}
+  \item Register for an account\footnote{https://materialsproject.org}, and generate a secret API-key.
+  \item Install pymatgen in the current environment
+  \item Import pymatgen.
+  \item Set the required critera.
+  \item Set the wanted properties.
+  \item Apply the query.
+\end{enumerate}
+
+The code nippet in code listing \ref{lst:MPQuery} resembles steps $3-6$, with the additional usage of the library Pandas. For this particular query we have set the filter as four items. Firstly, we would like to exclude all spin zero isotopes using the MongoDB operator that matches non of the values specified in the array. Thereafter, we would like to have a compound that is deemed similar to an ICSD entry. All of the resulting entries have be deemed non-magnetic (NM), and lastly, all compounds with polar space groups will be excluded.
+
+\lstinputlisting[language=Python, caption={Practical example of extracting information from Materials Project using pymatgen, resulting in a Pandas DataFrame named entries that contains the properties given after performing a filter on the database. The criteria is given as a JSON, and supports MongoDB operators.}, label={lst:MPQuery}]{theory/code-listings/MPQuery.tex}
+
+\subsection{Citrine Informatics}
+
+Citrine Informatics is a cloud service, which means that the spectrum of stored information varies broadly. Information in Citrine can be stored using a scheme that is broken down into two sections, with private properties for each entry in addition to common fields that are the same for all entries. However, the query happens swiftly and is noted as highly accessible.
+
+In this example, we will gather experimental data using the module matminer. The following steps are required to extract information from Citrine Informatics.
+
+\begin{enumerate}
+  \item Register for an account\footnote{https://citrination.com}, and generate a secret API-key.
+  \item Install matminer in the current environment.
+  \item Import matminer.
+  \item Set the required critera.
+  \item Set the wanted properties and common fields.
+  \item Apply the query.
+\end{enumerate}
+
+The code listed in code listing \ref{lst:CIQuery} gives an easy example to steps $2-4$ with experimental data as filter. The resulting query will be returned as a Pandas DataFrame, but it is not neccessary to include the pandas since it is already implemented in the module matminer.
+
+\lstinputlisting[language=Python, caption={Practical example of extracting information from Citrine Informatics using matminer, resulting in a Pandas DataFrame named experimental\_entries that contains the properties given after performing a filter on the database. The criteria is given as a JSON.}, label={lst:CIQuery}]{theory/code-listings/CIQuery.tex}
+
+\subsection{AFLOW}
+
+The query from AFLOW API \cite{Curtarolo2012} supports lazy formatting, which means that the query is just a search and does not return values but rather an object. This object is then used in the query when asking for values. For every object it is neccessary to request the desired property, consequently making the query process significantly more time-demanding than similar queries using APIs such as pymatgen or matminer for Citrine Informatics. Hence, the accessibility is strictly limited to either searching for single compounds or if the user possess sufficient time.
+
+Matminer's data retrievel tool for AFLOW is currently an ongoing issue \cite{Rosenbrock2017}, thus we present in code listing \ref{lst:AFLOWQuery} a function that extracts information from AFLOW and returns a Pandas DataFrame.
+
+\lstinputlisting[language=Python, caption={Practical example of extracting information from AFLOW. This is a slow method.}, label={lst:AFLOWQuery}]{theory/code-listings/AFLOWQuery.tex}

@@ -1,0 +1,16 @@
+from pymatgen import MPRester
+from pandas import DataFrame
+
+# Insert secret API-key inside MPRester in quotes
+with MPRester() as mpr:
+
+    criteria = {"elements":{"$nin":exclude_spin_zero_isotopes},
+                "icsd_ids": {'$gte': 0},
+                "magnetic_type": {"$eq": "NM"},
+                "spacegroup.number": {"$nin":polar_spacegroups}}
+
+    props = ["material_id", "icsd_ids",
+             "spacegroup", "band_gap"]
+
+    entries = DataFrame(mpr.query(criteria=criteria,
+                                  properties=props))

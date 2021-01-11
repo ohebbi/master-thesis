@@ -1,10 +1,9 @@
 \chapter{Material Science Databases}
 
-There are multiple different databases for material science available for every day use, some of them completely open-source while others commercial. This chapter will give a brief overview of databases available for computational material science, and will serve as a toolbox for how to request information and what kind of python packages exist to process that information.
+There are multiple different databases for material science discovery available for every day use, some of them completely open-source while others are commercial. This chapter will give a brief overview of databases available for computational material science, and will serve as a toolbox for how to request information and what kind of python packages exist to process that information.
 
 %The materials genome initiative
 
-%This piece of research is obtained through open access for institutional and educational purposes,
 
 %Some of the open source databases are Automatic-FLOW for Materials Discovery (AFLOW), Khazana, Materials Discovery (NOMAD), Computational Materials Repository (CMR), NIMSMatNavi, ICSD, Predictive Integrated Structural Materials Science (PRISMS), Materials project, Citrine Informatics, The Materials Platform for Data Science, The Materials Data Fascility, Open Quantum Materials Database (OQMD) and Jarvis. Many of the databases are equipped with their own API, while other requires third-party libraries to extract their information. In addition, for some it is required to obtain an API-key (which) to perform a query,
 
@@ -16,12 +15,44 @@ A quick search online will reveal the tremendous escalation of effort for big-da
 
 To limit the quest of databases, we have restricted the search for databases and cloud services to include inorganic compounds obtained experimentally or by first-principles calculations, in particular DFT-calculations using \textit{Vienna ab initio simulation package} (VASP) \cite{Kresse1996}. VASP is a software for atomic scale materials programming. Table \ref{tab:databases} and \ref{tab:cloud_service} shows a selection of databases and cloud services that meets the given criteries, respectively.
 
+\subsection{API and HTTP requests}
+
+To extract information from a database it is convenient to interact through an \textit{API} (Application Programming Interface), which defines important variables such as the kind of requests to be made, how to make them and the data format for transmission. Importantly, this permits communication between different software medias. An API is entirely customizable, and can be made to extend existing functionality or tailormade for specific user-demanding modules.
+
+The APIs that will be encountered is handled by the use of \textit{HTTP} (Hypertext Transfer Protocol), which in its simplest form is a protocol that allows the fetching of resources. The protocol is client-server based, such as the client is requesting information and the server is responding to the request.
+
+The most common HTTP-methods are GET, POST and HEAD, which are used to either retrieve, send, or get information about data, respectively. The latter request is usually done before a GET-method for requests considering large amount of data, since this can be a significant variable for the client's bandwith and load time. Following a request, the server normally responds with one of the status codes in table \ref{tab:requests}.
+
 \begin{table}[!ht]
 \centering
-\begin{tabular}{clclclclc}
+\noindent\makebox[\textwidth]{
+\begin{tabular}{M{2.5cm} M{11.0cm}}
   \hline
   \hline
-  Database & API & Free access & Number of entries \\
+   Status code & Description \\
+  \hline
+  2xx & OK - request was successful \\
+  3xx & Resource was redirected \\
+  4xx & Request failed due to either unsuccessful authentication or client error. \\
+  5xx & Request failed due to server error. \\
+  \hline
+  \hline
+\end{tabular}
+}
+\caption{Numeric status code for response. The leftmost digit decide the type of response, while the two follow-up digits depends on the implemented API.}
+\label{tab:requests}
+\end{table}
+
+A RESTful (Representational State Transfer) allows users to communicate with a server via a HTTP using a REST Architectural Style \cite{Battle2008}. This enables the utilisation of Uniform Resource Identifiers (URI), where each object is represented as a unique resource and can be requested in a uniform manner. Importantly, this allows the use of both URIs and HTTP methods in an API, such that an object is represented by an unique URI whereas a HTTP-method can act on the object. This action will then return either the result of the action, or structured data that represents the object.
+
+\begin{table}[!ht]
+\centering
+%\begin{tabular}{clclclclc}
+\noindent\makebox[\textwidth]{
+  \begin{tabular}{M{3.0cm} M{3.5cm} M{2.5cm} M{2.5cm}}
+  \hline
+  \hline
+  Database & API & Free educational access & Number of entries \\
   \hline
   AFLOW & REST & True &  3.27 M\\
   OQMD \cite{Kirklin2015, Saal2013} & RESTful API (qmpy, matminer)& True &  0.82 M\\
@@ -31,6 +62,7 @@ To limit the quest of databases, we have restricted the search for databases and
   \hline
   \hline
 \end{tabular}
+}
 \caption{Databases of computational material science sorted after number of compounds. Abbreviations used are Novel Materials Discovery (NOMAD), Automatic-FLOW for Materials Discovery (AFLOW), Materials Project (MP), Inorganic Crystal Structure Database (ICSD) and Open Quantum Materials Database (OQMD). The number of entries can give the wrong perception of size of each respective database, as it does not visualise how many calculations have been done for each entry, nor if there might be duplicates.}
 \label{tab:databases}
 \end{table}
@@ -38,16 +70,16 @@ To limit the quest of databases, we have restricted the search for databases and
 \begin{table}[!ht]
 \centering
 \noindent\makebox[\textwidth]{
-\begin{tabular}{clclcl}
+  \begin{tabular}{M{3.0cm} M{3.0cm} M{3.0cm}}
   \hline
   \hline
-  Cloud service & API/REST & Free access  \\
+  Cloud service & API/REST & Free educational access  \\
   \hline
   NoMaD & API & True  \\
   CMR \cite{Landis2012} & ASE & RESTful API \\
   MatNavi & API & True  \\
   PRISMS & REST & True \\
-  Citrine & API & False \\
+  Citrine & API & True \\
   MPDS & API & False \\
   MDF & API & False \\
   \hline
@@ -58,20 +90,13 @@ To limit the quest of databases, we have restricted the search for databases and
 \label{tab:cloud_service}
 \end{table}
 
-
-% REST
-
-%API
-
-%RESTful HTTP API
-
-\subsection{modules}
+\subsection{Open-source Python libraries for material analysis}
 Many of the databases share convenient modules that are used to adapt, visualize, calculate or predict properties, making it easier for scientists to utilise the databases.
 %matminer
+%seamless module compatibility
+The Atomic Simulation Environment (ASE) is an environment in the Python programming language that includes several tools and modules for setting up, modifying and analyze atomistic simulations \cite{Larsen2017}. It is in particular used together with the cloud service Computational Materials Repository (CMR).
 
-The Atomic Simulation Environment (ASE) is an environment in the Python programming language that includes several tools and modules for setting up, modifying and analyze atomistic simulations \cite{Larsen2017}. It is particularly used together with the cloud service Computational Materials Repository (CMR).
-
-Another commonly used module is the Python Materials Genomics (pymatgen) \cite{Ong2013}. This is a well-documented open module with both introductory and advanced use cases written in Jupyter Notebook for easy reproducibility, and is integrated with the Materials Project REST API.
+Another commonly used module is the Python Materials Genomics (pymatgen) \cite{Ong2013}. This is a well-documented open module with both introductory and advanced use cases written in Jupyter Notebook for easy reproducibility, and is integrated with the Materials Project RESTful API.
 
 The Materials Project is also behind a library named matminer \cite{Ward2018}, which is an open-source software platform written in Python. Matminer provides modules to extract data sets from many cloud-services and databases, with exampels in table \ref{tab:databases} and \ref{tab:cloud_service}, it can extract features from images (such as the band gap of a compound), and have modules for visualization of properties.
 
@@ -119,13 +144,15 @@ The JARVIS-DFT database is part of a bigger platform that includes JARVIS-FF, wh
 
 \section{Practical data extraction with Python-examples}
 
+For this section, we will show practical examples of how to extract data that fulfill the criteria for a material to host a qubit candidate given in the theory part. We will begin with the database of Materials Project, and then restrict the query thereafter. This data mining process is reproducable as a jupyter notebook\footnote{add and insert DOI for JN data-mining.ipynb} and the databases in question are the ones refered to in the previous section.
+
+Instead of setting up a multiple HTTP-methods, we will here take a look at the easiest method at obtaining data from each database. This includes looking into the APIs that supports data-extraction and that are recommended by each respective database.
+
 The range of data in a database can consist of data from a few entries up to an unlimited amount of entries with even further optional parameters, and has limitless use in applications. However, the amount of data in a database is irrelevant if the data is inaccessible. Therefore, we present an elementary formula which we will use in evaluating if a database is accessible or not. It is defined as
 \begin{align}
   \text{Accessibility} = \frac{\text{Extraction speed}}{\text{Amount of data}}.
 \end{align}
 A large accessibility term implies an ease in extracting information. This formula does not depend on how accessible a database' user interface is, but a discussion of documentation and user interface will be included in the examples.
-
-For this section, we will show practical examples of how to extract data that fulfill the criteria for a material to host a qubit candidate given in the theory part. We will begin with the database of Materials Project, and then restrict the query thereafter. This data mining process is reproducable as a jupyter notebook\footnote{add and insert DOI for JN data-mining.ipynb} and the databases in question are the ones refered to in the previous section.
 
 \subsection{Materials Project }
 
@@ -150,7 +177,7 @@ The code nippet in code listing \ref{lst:MPQuery} resembles steps $3-6$, with th
 
 \subsection{Citrine Informatics}
 
-Citrine Informatics is a cloud service, which means that the spectrum of stored information varies broadly. Information in Citrine can be stored using a scheme that is broken down into two sections, with private properties for each entry in addition to common fields that are the same for all entries. However, the query happens swiftly and is noted as highly accessible.
+Citrine Informatics is a cloud service, which means that the spectrum of stored information varies broadly. We will access research through open access for institutional and educational purposes. Information in Citrine can be stored using a scheme that is broken down into two sections, with private properties for each entry in addition to common fields that are the same for all entries. However, the query happens swiftly and is noted as highly accessible.
 
 In this example, we will gather experimental data using the module matminer. The following steps are required to extract information from Citrine Informatics.
 
@@ -171,6 +198,39 @@ The code listed in code listing \ref{lst:CIQuery} gives an easy example to steps
 
 The query from AFLOW API \cite{Curtarolo2012} supports lazy formatting, which means that the query is just a search and does not return values but rather an object. This object is then used in the query when asking for values. For every object it is neccessary to request the desired property, consequently making the query process significantly more time-demanding than similar queries using APIs such as pymatgen or matminer for Citrine Informatics. Hence, the accessibility is strictly limited to either searching for single compounds or if the user possess sufficient time.
 
-Matminer's data retrievel tool for AFLOW is currently an ongoing issue \cite{Rosenbrock2017}, thus we present in code listing \ref{lst:AFLOWQuery} a function that extracts information from AFLOW and returns a Pandas DataFrame.
+Matminer's data retrievel tool for AFLOW is currently an ongoing issue \cite{Rosenbrock2017}, thus we present in code listing \ref{lst:AFLOWQuery} a function that extracts information from AFLOW and returns a Pandas DataFrame. In contrast to Materials Project and Citrine Informatics, AFLOW does not require an API-key for a query, which reduces the amount of steps to obtain data.
 
-\lstinputlisting[language=Python, caption={Practical example of extracting information from AFLOW. This is a slow method.}, label={lst:AFLOWQuery}]{theory/code-listings/AFLOWQuery.tex}
+\lstinputlisting[language=Python, caption={Practical example of extracting information from AFLOW. The function can extract all information in AFLOW for a given list of compounds, however, it is a slow method and requires consistent internet connection.}, label={lst:AFLOWQuery}]{theory/code-listings/AFLOWQuery.tex}
+
+\subsection{AFLOW-ML}
+
+In this part, we will be using a machine learning algorithm named AFLOW-ML Property Labeled Material Fragments (PLMF) \cite{Isayev2017} to predict the band gap of structures. This algorithm is compatible with a POSCAR of a compound, which can be generated by the CIF (Crystallographic Information File) that describes a crystal's generic structure. It is possible to download a structure as a poscar by using Materials Project front-end API, but is a cumbersome process to do so individually if the task includes many structures. Extracting the feature of POSCAR is yet to be implemented in the RESful API of pymatgen, thus we demonstrate the versatility of pymatgen with a workaround.
+
+We begin with extracting the desired compounds formula, its material\_id for identification, and their respectful structure in CIF-format from Materials Project. In an iterative process, each CIF-structure is parsed to a pymatgen structure, where pymatgen can read and convert the structure to a POSCAR stored as a Python dictionary. Finally, we can use the POSCAR as input to AFLOW-ML, which will return the predicted band gap of the structure. This iterative process parsing and converting, but is an undemanding process. The function that handles this is presented in code listing \ref{lst:AFLOWMLQuery}.
+
+A significant portion of the process is tied up to obtaining the input-file for AFLOW-ML, and fewer structures will result in an easier process. Nevertheless, we present the following steps in order to receive data from AFLOW-ML.
+
+\begin{enumerate}
+  \item Download AFLOWmlAPI\footnote{http://aflow.org/src/aflow-ml/ to the same directory as code listing \ref{lst:AFLOWMLQuery}}.
+  \item Getting POSCAR from MP.
+  \begin{enumerate}
+    \item Apply the query from Materials Project with "CIF", "material\_id" and "full\_formula" as properties.
+    \item Insert resulting DataFrame into function defined in code listing \ref{lst:AFLOWMLQuery}.
+  \end{enumerate}
+    \item Insert POSCAR to AFLOW-ML.
+\end{enumerate}
+
+\lstinputlisting[language=Python, caption={Practical example of extracting information from AFLOW-ML. The function will convert a CIF-file (from e.g. Materials Project) to a POSCAR, and will use it as input to AFLOW-ML. In return, one will get the structure's predicted band gap. It should be noted that this requires the AFLOW-ML library in the same directory.}, label={lst:AFLOWMLQuery}]{theory/code-listings/AFLOWMLQuery.tex}
+
+\subsection{JARVIS-DFT}
+
+The newest version of the JARVIS-DFT dataset can be obtained by requesting an account at the official webpage, but with the drawback that an administrator has to either accept or deny the request. Thus, the accessibility of the database is dependent on if there is an active administrator paying attention to the requests. Another approach is to download the database through matminer, however with the limitation of not neccessarily having the latest version of the database. The following steps describes the process of extracting JARVIS-DFT using matminer's convenience loader module, and can be regarded as easily accessible with few lines of code and instantanous download.
+
+\begin{enumerate}
+  \item Install matminer in the current environment.
+  \item Import matminer.
+  \item Load the dataset using code listing \ref{lst:JARVISDFTQuery}.
+\end{enumerate}
+\lstinputlisting[language=Python, caption={Practical example of extracting information from JARVIS-DFT. For this example, we exclude all metals by removing all non-measured band gaps.}, label={lst:JARVISDFTQuery}]{theory/code-listings/JARVISDFTQuery.tex}
+
+We can observe that there is no advanced search filter when loading the database from matminer. The author of matminer regards this as the user's task, which is easily done through the use of the python library Pandas.

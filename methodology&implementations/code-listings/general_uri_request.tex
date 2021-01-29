@@ -1,0 +1,6 @@
+import requests
+preamble = "https://www.materialsproject.org/rest/v2/"
+url = preamble + "api_check"
+params = {"API_KEY":"unique_api_key"}
+response = requests.get(url=url, params=params)
+print(response.json())

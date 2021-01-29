@@ -1,0 +1,15 @@
+\chapter{Validation}
+
+A thorough testing procedure is important to find out if the code is working as intentionally. The procedure might reveal the presence or absence of bugs, and as a project grows, it can give an indication if a new implementation breaks the original project. Therefore, we present a test-case scenario to test if the two machine learning algorithms are able predict the correct label. It is the same algorithm that will be used in the following chapters, and it will provide us the opportunity to understand how the algorithm works and to draw parallells between the separate works.
+
+The validation process is a reproduction of Ref \cite{Balachandran2018}. To be able to draw any parallell to their work, we use the exact same dataset in the beginning phase. It should be noted that even if the computational aspects of the validation is closely related to Ref \cite{Balachandran2018}, the work eventually diverges in terms of focus. In their work they include a stability analysis using convex hull analysis in DFT calculations from OQMD, however, we will in this thesis not decide whether a compound is stable or not in an atomic configuration.
+
+\section{The ABO$_3$ dataset}
+
+The dataset in question contains $390$ experimentally reported ABO$_3$ compounds. All compounds are charged balanced, and for every compound there is a feature explaining which structure the compound takes, either being a cubic perovskite, perovskite, or not a perovskite at all. Off the $390$ compounds, there are $254$ perovskites and $136$ non-perovskites. Of the $254$ perovskites, $232$ takes a non-cubic perovskite structure while only $22$ takes the cubic perovskite structure. Consequently, this will be visualized by two columns named Perovskite, which represents if a compound is either perovskite (1) or not perovskite (0), and Cubic, which represents if a compound is cubic perovskite (1), non-cubic perovskite (-1), or not perovskite(0).
+
+\subsection{Features}
+
+There are in total 12 features describing each compound. Two of them have already been described, and the third one being the name of the compound. The latter can also be desribed as the ID of a compound considering it will make it easier for identification.
+
+Additionally, many of the features are based on the Shannon ionic radii \cite{Shannon1976}, which are estimates of an element's ionic hard-sphere radii extracted from experiment. Two of the features describes the A and B atom's features containing the A and B atom

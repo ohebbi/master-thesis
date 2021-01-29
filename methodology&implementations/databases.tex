@@ -45,6 +45,12 @@ The most common HTTP-methods are GET, POST and HEAD, which are used to either re
 
 A RESTful (Representational State Transfer) allows users to communicate with a server via a HTTP using a REST Architectural Style \cite{Battle2008}. This enables the utilisation of Uniform Resource Identifiers (URI), where each object is represented as a unique resource and can be requested in a uniform manner. Importantly, this allows the use of both URIs and HTTP methods in an API, such that an object is represented by an unique URI whereas a HTTP-method can act on the object. This action will then return either the result of the action, or structured data that represents the object.
 
+To provide a Python example, we can check the response by doing a GET request at the database Materials Project RESTful API in code listing \ref{lst:general_uri_request}. We use the preamble to version 2 of Materials Project, and add an API-check and an API-key. The response is shown in code listing \ref{lst:general_uri_response}. From the output, it is possible to tell that the supplied API-key is not valid, however, the request is valid.
+
+\lstinputlisting[language=Python, caption={Practical example of getting a response from Materials Project database. }, label={lst:general_uri_request}]{methodology&implementations/code-listings/general_uri_request.tex}
+
+\lstinputlisting[style=mystyle, caption={Practical example of response from Materials Project request based on \ref{lst:general_uri_request}. The request was done 28. january 2020.}, label={lst:general_uri_response}]{methodology&implementations/code-listings/general_uri_response.tex}
+
 \begin{table}[!ht]
 \centering
 %\begin{tabular}{clclclclc}
@@ -73,7 +79,7 @@ A RESTful (Representational State Transfer) allows users to communicate with a s
   \begin{tabular}{M{3.0cm} M{3.0cm} M{3.0cm}}
   \hline
   \hline
-  Cloud service & API/REST & Free educational access  \\
+  Cloud service & API/REST & Open educational access  \\
   \hline
   NoMaD & API & True  \\
   CMR \cite{Landis2012} & ASE & RESTful API \\

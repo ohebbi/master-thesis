@@ -1,10 +1,212 @@
 \chapter{Machine learning}
 
+The enourmous amount of data generated in the digital world today is beyond comprehension. In $2019$, more than $500$ hours of video was uploaded to Youtube every second, totalling to over $82$ years of content every day \footnote{Source: https://www.youtube.com/intl/no/about/press/ extracted 15.02.2021}. In addition, more than 1 trillion web pages exists and has information that needs to be stored somewhere.
 
-\section{Supervised learning}
-\subsection{randomForrest}
-\subsection{gradientBoost}
+However, an increasing amount of data comes hand in hand with an increasing demand of knowledge about the data. If we are unable to extract information from the data, the data serves no intention and exists as an excess. Therefore, we need methods to process and automate data analysis, which is what the promises of \textit{machine learning} covers. Machine learning can reveal patterns in data with ease where a human would face difficulties, and use this information to predict or generate new data. Many tools in machine learning is based on probability theory, which can be applied to problems involving uncertainty. Thus, machine learning is also commonly (and boringly) named as \textit{statistical learning}.
 
-\section{Unsupervised learning}
-\subsection{Kmeans}
-\subsection{deep belief networks}
+There are mainly two types of machine learning, either \textit{supervised} or \textit{unsupervised} learning. In the supervised approach, the model tries to learn a mapping from inputs $\textbf{x}$ to outputs $y$, given a labeled set of pairs $\mathcal{D}=\{(\textbf{x}_i, y_i)\}^N_{i=1}$. The set $\mathcal{D}$ is known as the training set, and $N$ is the number of entries. Each training input $\textbf{x}_i$ has $D$-dimensions that describes each entry, where each dimension is known as a \textit{feature}. The features could be examplified as height or weight, or it could be something complex that has no practical meaning. The flexibility of the shape of a feature is also shared with the output. It can in principle be anything, but it is mostly assumed that the output is either \textit{categorical} or \textit{nominal} restricted by a finite set $y_i \in \{1,...,\mathcal{C} \}$. The problem is defined as \textit{classification} if the output is categorical, or \textit{regression} if the output is real-valued \cite{Murphy2012}.
+
+In unsupervised learning we are only given inputs $\mathcal{D}=\{\textbf{x}_i\}^N_{i=1}$, and it is neccessary to use the tools of machine learning to find peculiar and interesting patterns. This is, however, outside of the scope of this thesis, since we will solely focus on supervised classification.
+
+\section{Supervised classification}
+
+Recall, supervised classification has as goal to learn the target output $y \in \{1,..,\mathcal{C}\}$ from the inputs $\textbf{x}$. The number of classes is $\mathcal{C}$, and depicts if the classification is \textit{binary} ($\mathcal{C}=2$), \textit{multiclass} ($\mathcal{C}>2$), or \textit{multi-label} if the class labels are not mutually exclusive (examplified with the weather can be both sunny and cold at the same time). Normally, classification is used when the problem is formulated as a multiclass classification, and hereon we will adapt to the formulated as well \cite{Murphy2012}.
+
+In order to be able to learn from data, we will need to formulate a function approximate. By assuming $y = f(x)$ for some unknown function $f$, we can try to approximate $f$ from a labeled training set, which we can use to make the predictions $\hat{y}=\hat{f}(\textbf{x})$. With the estimated $\hat{f}$, we can make predictions on unlabeled data and achieve a \textit{generalized model}.
+
+As simple the idea behind supervised classification appears, a generalized model remains deeply dependent on the available data. Imagine a training set containing two entries. The first one is a young and tall person who is labeled as healthy. The other entry is an old and short person who is labeled sick. The pattern in this simple scenario is abundantly clear, but will face a challenge if it were to predict on a test set containing a person who is young and short.
+
+Therefore, it is desirable to compute the probability of an entry belonging to one class. The probability distribution is given by $p(y|\textbf{x}, \mathcal{D})$, where the probability is conditional on the input vector (test set) $x$ and the training set $\mathcal{D}$. If the output is probabilistic, we can compute the estimation to the true label as
+\begin{align}
+  \hat{y} = \hat{f}(\textbf{x}) = \operatorname*{argmax}_{c=1} f(x) p(y = c|\textbf{x}, \mathcal{D}),
+\end{align}
+which represents the most probable class label and is known as the \textit{maximum a posteriori} estimate.
+
+\section{Decision trees}
+Classification and regression trees (CART), also called decision trees, is one of the more basic supervised algorithms, and can be used for both regression and classification tasks, as the name suggests. The strength of decision trees lays within the simplicity that allows to build more complex networks. We will in this section provide special emphasis to classification trees, but with some remarks to the regression trees to provide a brief perspective of distinctions.
+
+The idea behind decision trees is to find the features that contain the most information regarding the target feature, and then split up the dataset along the values of these features. This feature selection enables the target feature values for the resulting underlying dataset to be as \textit{pure} as possible. The features that can reproduce the best target features are normally said to be the most informative features.
+
+A decision tree can be divided a \textit{root node}, \textit{interior nodes}, and the final \textit{leaf nodes}. Each entity are connected by \textit{branches}. The decision tree is able to learn an underlying structure of the training data and can, given some assumptions, make predictions on unseen query instances. It is the leaf nodes that accomodates the predictions we will make for new entries that is presented to our trained model.
+
+The process behind a decision tree can be seen as a top-down approach. First, we make a leaf provide the classification of a given instance. Then, a node specifies a test of some attribute of the instance, while a branch corresponds to a possible value of an attribute. This allows an entry to be classified by starting at the root node of the tree with corresponding testing of the attribute specified by this node. Subsequently, the instance move down the tree branch corresponding to the value of the attribute. Then the steps can be repeated for a new subtree rooted at the new node.
+
+A classification tree mainly differs to a regression tree by the response of the prediction, since it produces a qualitative response rather than a quantitative one. For a regression tree, the response is given by the mean response of the training observations that belong to the same terminal node. For a classification tree, on the contrary, the response is given by the most commonly occuring class of training observations in the region which it belongs. Thus, the interpretation process includes both the class prediction corresponding to a particular terminal node region, but also in the class proportions among the training observations that fall into that region.
+
+\subsection{Growing a classification tree}
+
+In growing a classification tree, a process called recursive binary splitting is applied which involves mainly two steps.
+
+\begin{enumerate}
+  \item Split the set of possible values $(x_1, x_2,...,x_p)$ into $J$ distrinct an non-overlapping regions $R_1, R_2, ..., R_{J}$.
+  \item If an observation falls within the region $R_J$, we make the prediction given by the most commonly occuring class of training observations in $R_{J}$.
+\end{enumerate}
+
+The computational aspect of recursively doing this for every possible combination of features does not defend its use, and therefore the common strategy is to use a top-down approach. Thus, it begins at the top of the tree and consecutively splits the predictor space. This is indicated by two new branches further down the tree. It should be noted that the top-down approach is a greedy approach, since the best split is made at each step of the tree-growing process, instead of trying to pick a split that will lead to a better tree in a future step.
+
+We can define a \textit{probability density function} (PDF) $p_{mk}$ that represents the number of observations $k$ in a region $R_m$ with $N_m$ observations. This likelihood function can be represented in terms of the proportion $I(y_i = k)$ of observations of this class in region $R_m$ as
+\begin{align}
+  p_{mk} = \frac{1}{N_m} \sum_{x_i \in R_m} I(y_i = k)
+\end{align}
+
+Hitherto, the splitting of the nodes have been decided by the misclassification error
+\begin{align}
+  p_{mk} = \frac{1}{N_m} \sum_{x_i \in R_m} I(y_i \neq k) = 1 - p_{mk}.
+\end{align}
+where the function $I$ equals one if we misclassify and equals zero if we classify correctly. However, other methods exists such as the Gini index
+\begin{align}
+  g = \sum_{k=1}^{K} p_{mk} (1-p_{mk})
+\end{align}
+and the information entropy
+\begin{align}
+  s = - \sum_{k=1}^{K} p_{mk} \log p_{mk}.
+\end{align}
+The two latter approaches are more sensitive to node purity than the misclassification error, i.e. only containing one class, and are in general preferred \cite{Murphy2012}.
+
+\subsection{Classification algorithm}
+The CART algorithm splits the data set in two subsets using a single feature $k$ and a threshold $t_k$. The pair of quantities $(k,t_k)$ that constitute the purest subset using the gini factor $G$ results in the cost function
+\begin{align}
+  C(k, t_k) = \frac{m_{\text{left}}}{m}G_{\text{left}} + \frac{m_{\text{right}}}{m}G_{\text{right}},
+\end{align}
+where $G_{\text{left} / \text{right}}$ measures the impurity of left or right subset and $m_{\text{left} / \text{right}}$ is the number of instances on either the left or the right subset. The algorithm tries to minimize the cost function to find the pair by splitting the training set in two, and then following the same logic for the next subsets. It will continue to do this recursively until it reaches the maximum depth hyperparameter, or if the next split does not reduce impurity.
+
+\subsection{Pruning a tree}
+
+A decision tree has the ability to turn into a very complex model, making it significantly prone to overfitting. Therefore, techniques that deals with this vulnerability must be implemented.
+
+Pre-puning is a method that stops the growing of a tree if the decrease in error is not sufficient to justify an increasing complex model by adding an extra subtree. However, this implementation has the liability for features that have small predictive power as this might cause a model without any splits at all.
+
+Post-pruning, or just pruning, is the standard method which involves growing the tree to full size, and then prune it. To determine how far to prune it, we can use a cross-validated scheme to evaluate the amount of terminal nodes that has the lowest error.
+
+\subsection{Pros and cons for decision trees}
+
+Decision trees have several clear advantages compared to other algorithms. They are easy to understand, also known as a \textit{white box}, and can be visualised effortlessly for small trees. The algorithm is completely invariant to scaling of the data since each feature is processed separately. Additionally, decision trees can handle both continuous and categorical data and can model interactions between different descriptive features.
+
+As auspicious the advantages of decision trees seems, they are inevitable prone to overfitting and hence does not generalize the data well. Even with pre-puning, post-pruning and setting a maximum depth of terminal nodes, the algorithm is still prone for overfitting \cite{Guido2016}. Another important issue concerns training on unbalanced datasets where one class occurs more frequently than other classes, since this will lead to biased trees because the algorithm will favor the more occuring class. Furthermore, small changes in the data may lead to a completely different tree.
+
+Many of these issues can be adressed by using ensemble methods such as either bagging, random forest, or boosting, and can result in a solid improvement of the predictive perfomance of trees.
+
+\section{Ensemble methods}
+
+By using a single decision tree, we often end up with an overfitted model that possess a high variance. Luckily, we can apply methods that aggregate different machine learning algorithms to reduce variance. If each of the algorithms get slightly different results, as they learn different part of the data, we can combine the results into something that is better than any one algorithm alone. These approaches falls under the categorory of ensemble methods, and will be elaborated further in this section. % to construct complex forests, or perhaps more appropiately named \textit{jungles}.
+
+\subsection{Bagging}
+
+\textit{Bootstrap aggregation}, or just \textit{bagging}, is an ensemble method that involves averaging many estimates. If we have $M$ trained trees on different subsamples of the data, chosen randomly, we can compute the ensemble
+\begin{align}
+  f(\textbf{x}) = \sum_{b=1}^M \frac{1}{B}f_b(\textbf{x})
+\end{align}
+where $f_b$ is the $b$'th tree.
+
+Simply re-running the same algorithm on different subsamples can result in a small variance reduction compared to a single tree due to highly correlated predictors, which showcase the need for better approaches.
+
+\textit{Random forests} provides an improvement of normal bagged trees by choosing a random sample of $m$ predictors as split candidates from the full set of $p$ predictors. The split is restricted in choosing only one of the $m$ predictors. Normally, the value of $m$ is chosen as
+
+\begin{align}
+  m \approx \sqrt{p},
+\end{align}
+which means that at each split in a tree, the algorithm is restricted to a very small portion of the available predictors. The specific about the algorithm can be found in Algorithm~\ref{alg:randomforest}.
+
+\begin{algorithm}[H]
+\SetAlgoLined
+ \For{For $b = 1$ : $B$}{
+  Draw a bootstrap sample from the training data\;
+  Select a tree $T_b $ to grow based on the bootstrap data\;
+  \While{node size smaller than maximum node size}
+  {
+   Select $m \leq p$ variables at random from $p$ predictors\;
+   Pick the best split point among the $m$ features using CART algorithm and create a new node\;
+   Split the node into daughter nodes\;
+   }
+ }
+ Output the ensemble of trees $\{T_b\}_1^B$ and make predictions
+ \caption{Random forest algorithm.}
+ \label{alg:randomforest}
+\end{algorithm}
+
+
+By inducing randomness into the model, we arrive at a suprisingly capable model that has a high predictive accuracy \cite{Caruana2006}. This can be examplified by supposing that there is one strong predictor in a dataset, together with several other fairly strong predictors. Most of the trees will use this strong predictor at the top split, which means that the bagged trees will look quite similar to each other and will have highly correlated predictions.
+
+However, even with higher prediction accuracy, it comes as a compromise since we loose the easy ability of model interpretation. A single tree can be easy to understand, but interpretation of a huge jungle of trees does not neccessarily seem appealing for even an experienced data scientist. Furthermore, a random forest does not substantially reduce the variance as averaging many uncorrelated trees would do, as we will soon find out.
+
+\subsection{Boosting}
+
+Boosting is an ensemble method that fits an additive expansion in a set of elementary basis functions. The basic idea is to combine several weak classifiers, that are only just better than a random guess, in order to create a good classifier. This can be done in an iterative approach were we apply a weak classifier to modify the data. For each iteration, we make sure to weight the observations that are misclassified with a factor. The method is known as adaptive, since the algorithm is able to adapt during the learning process.
+
+In \textit{forward stagewise additive modeling} we want to find an adaptive model
+\begin{align}
+  f_M (\textbf{x}) = \sum_{i=1}^M \beta_m b(\textbf{x}; \gamma_m)
+\end{align}
+where $\beta_m$ are expansion parameters that will be determined in a minimization process, and $b(\textbf{x};\gamma_m)$ are functions of the multivariable parameter $\textbf{x}$ that are described by the parameters $\gamma_m$. We will in this example consider a binary classification problem with the outcomes $\gamma_i \in \{-1,1\}$ where $i=0,1,2,...,n-1$ as the set of observables. The predictions are produced by the classification function $G(\textbf{x})$.
+
+Then, the error rate of the training sample is given as
+\begin{align}
+  \overline{\text{err}} = \frac{1}{n} \sum_{i=0}^{n-1} I(\tilde{y}_i \neq G(\textbf{x}_i)).
+\end{align}
+
+After defining a weak classifier, we can apply it iteratively to repeatedly modified versions of the data which produce a sequence of different weak classifiers $G_m(\textbf{x})$. The function $f_M(\textbf{x})$ will be expressed in terms of
+\begin{align}
+  G_M(\textbf{x})=\text{sign}\sum_{i=1}^M \alpha_mG_m(\textbf{x}).
+\end{align}
+The iterative procedure can be defined as
+\begin{align}
+  f_m(\textbf{x}) = f_{m-1}(\textbf{x}) + \beta_mG_m(\textbf{x}).
+\end{align}
+The cost function that leads to the AdaBoost algorithm is the exponential cost function
+\begin{align}
+  C(\textbf{y},\textbf{f}) = \sum_{i=0}^{n-1} \exp (-\tilde{y}_i(f_{m-1}(\textbf{x}_i) + \beta G(\textbf{x}_i))),
+\end{align}
+or with the weight $w_i^m = \exp(-\tilde{y}_if_{m-1}(\textbf{x}_i))$ we can rewrite to
+\begin{align}
+  C(\textbf{y},\textbf{f}) = \sum_{i=0}^{n-1} w_i^m \exp(-\tilde{y}_i\beta G(\textbf{x}_i)).
+\end{align}
+We can optimize $G$ for any $\beta>0$ with
+\begin{align}
+  G_m(\textbf{x}) = \text{sign} \sum_{i=0}^{n-1} w_i^m I(\tilde{y}_i \neq G(\textbf{x}_i)).
+\end{align}
+This is the classifier that minimize the weighted error rate in predicting $y$. Furthermore, we can rewrite the cost function to
+\begin{align}
+    C &= \exp(-\beta) \sum_{\tilde{y}_i=G(x_i)} w_i^m + \exp (\beta) \sum_{\tilde{y}_i \neq G(\textbf{x}_i)} w_i^m \\
+    &= (\exp(\beta)-\exp(-\beta)\sum_{i=0}^{n-1} w_i^m I(\tilde{y}_i \neq G(x_i)) + \exp(-\beta)\sum_{i=0}^{n-1}w_i^m .
+\end{align}
+Substituting $G_m$ into $C$ and solving for $\beta$, we obtain
+\begin{align}
+  \beta_m = \frac{1}{2} \log \frac{1 - \overline{\text{err}}}{\overline{\text{err}}}
+\end{align}
+with the error redefined as
+\begin{align}
+  \overline{\text{err}} = \frac{1}{n} \frac{ \sum_{i=0}^{n-1} w_i^m I(\tilde{y}_i \neq G_m(\textbf{x}_i)) }{\sum_{i=0}^{n-1} w_i^m}.
+\end{align}
+Finally, this leads to an update of
+\begin{align}
+  f_m(x) = f_{m-1}(\textbf{x}) + \beta_m G_m (\textbf{x})
+\end{align}
+and the weights at the next iteration becomes
+\begin{align}
+  w_i^{m+1} = w_i^m \exp (-\tilde{y}_i \beta_m G_m(\textbf{x}_i))
+\end{align}
+
+\begin{algorithm}[H]
+\SetAlgoLined
+  Initialize a
+ \For{For $b = 1$ : $B$}{
+  Draw a bootstrap sample from the training data\;
+  Select a tree $T_b $ to grow based on the bootstrap data\;
+  \While{node size smaller than maximum node size}
+  {
+   Select $m \leq p$ variables at random from $p$ predictors\;
+   Pick the best split point among the $m$ features using CART algorithm and create a new node\;
+   Split the node into daughter nodes\;
+   }
+ }
+ Output the ensemble of trees $\{T_b\}_1^B$ and make predictions
+ \caption{Gradient boosting algorithm.}
+ \label{alg:randomfores}
+\end{algorithm}
+
+
+\section{How to measure a model}
+
+%\section{Unsupervised learning}
+%\subsection{Kmeans}
+%\subsection{deep belief networks}

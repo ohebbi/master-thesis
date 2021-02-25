@@ -53,7 +53,7 @@ Hitherto, the splitting of the nodes have been decided by the misclassification 
 \begin{align}
   p_{mk} = \frac{1}{N_m} \sum_{x_i \in R_m} I(y_i \neq k) = 1 - p_{mk}.
 \end{align}
-where the function $I$ equals one if we misclassify and equals zero if we classify correctly. However, other methods exists such as the Gini index
+where the \textit{indicator} function $I$ equals one if we misclassify and equals zero if we classify correctly. However, other methods exists such as the Gini index
 \begin{align}
   g = \sum_{k=1}^{K} p_{mk} (1-p_{mk})
 \end{align}
@@ -152,7 +152,7 @@ The iterative procedure can be defined as
 \begin{align}
   f_m(\textbf{x}) = f_{m-1}(\textbf{x}) + \beta_mG_m(\textbf{x}).
 \end{align}
-The cost function that leads to the AdaBoost algorithm is the exponential cost function
+The cost function that leads to the \textit{discrete AdaBoost}  algorithm \cite{Friedman2000} is the exponential cost function
 \begin{align}
   C(\textbf{y},\textbf{f}) = \sum_{i=0}^{n-1} \exp (-\tilde{y}_i(f_{m-1}(\textbf{x}_i) + \beta G(\textbf{x}_i))),
 \end{align}
@@ -183,25 +183,57 @@ Finally, this leads to an update of
 \end{align}
 and the weights at the next iteration becomes
 \begin{align}
-  w_i^{m+1} = w_i^m \exp (-\tilde{y}_i \beta_m G_m(\textbf{x}_i))
+  w_i^{m+1} = w_i^m \exp (-\tilde{y}_i \beta_m G_m(\textbf{x}_i)).
 \end{align}
+With the above definitions, we can define the discrete Adaboost algorithm in Algorithm~\ref{alg:discreteAdaboost}.
 
 \begin{algorithm}[H]
 \SetAlgoLined
-  Initialize a
- \For{For $b = 1$ : $B$}{
-  Draw a bootstrap sample from the training data\;
-  Select a tree $T_b $ to grow based on the bootstrap data\;
-  \While{node size smaller than maximum node size}
-  {
-   Select $m \leq p$ variables at random from $p$ predictors\;
-   Pick the best split point among the $m$ features using CART algorithm and create a new node\;
-   Split the node into daughter nodes\;
-   }
+  Initialize weights $w_i = 1/n, \quad i=0,...,n-1$, such that $\sum_{i=0}^{n-1}w_i = 1$\;
+ \For{$m = 1$ : $M$}{
+  Fit the classifier $f_m (\textbf{x}) \in \{-1,1\}$ using weights $w_i$ on the training data\;
+  Compute the error $\overline{\text{err}} = \frac{1}{n} \frac{ \sum_{i=0}^{n-1} w_i^m I(\tilde{y}_i \neq G_m(\textbf{x}_i)) }{\sum_{i=0}^{n-1} w_i^m}$ \;
+  Define a quantity $\alpha_m = \log \big[(1-\overline{\text{err}_m})/\overline{\text{err}}_m$ \big] \;
+  Set new weights to $w_i \leftarrow w_i \exp(\alpha_m I(y_i \neq G(\textbf{x}_i)))$\;
  }
- Output the ensemble of trees $\{T_b\}_1^B$ and make predictions
- \caption{Gradient boosting algorithm.}
- \label{alg:randomfores}
+ Compute the new classifier $G(\textbf{x}) = \sum_{i=0}^{n-1} \alpha_m I(y_i \neq G(\textbf{x}_i))$;
+ \caption{Discrete Adaboost algorithm.}
+ \label{alg:discreteAdaboost}
+\end{algorithm}
+
+It is possible to apply different cost functions resulting in a variety of boosting algorithms, which AdaBoost is an example with the cost function being the exponential cost function. But instead of deriving new versions of boosting based on different cost functions, we can find one generic method. The approach is known as \textit{gradient boosting} \cite{friedman2001}.
+
+Initially, we want to minimize
+\begin{align}
+  \hat{\textbf{f}} = \text{argmin}_f L(\textbf{f}),
+\end{align}
+where $\textbf{f} = \big(f(\textbf{x}_1, ..., f(\textbf{x}_N)) \big)$ are the parameters of the models, and $L$ is a chosen loss function.
+
+This can be solved stagewise, using an approach named \textit{gradient descent}. At step $m$, let $\textbf{g}_m$ be the gradient evaluated at $f(x_i) = f_{m-1}$:
+\begin{align}
+  \textbf{g}_m(\textbf{x}_i) = \Bigg[ \frac{\partial L(y_i, f(\textbf{x}_i))}{\partial f(\textbf{x}_i)} \Bigg]_{f(\textbf{x}_i)=f_{m-1}(\textbf{x}_i)}.
+\end{align}
+Then we can update
+\begin{align}
+  \textbf{f}_m = \textbf{f}_{m-1} - \rho_m \textbf{g}_m,
+\end{align}
+where $rho_m$ is the step length and can be find by approximating the real function
+\begin{align}
+  h_m(\textbf{x})= - \rho \textbf{g}_m(\textbf{x}).
+\end{align}
+So far, this only optimize f at a fixed set of points, but we can modify it by fitting a weak classifier to approximate the negative gradient. The resulting algorithm is shown in Algorithm~\ref{alg:gradientBoost}.
+
+\begin{algorithm}[H]
+\SetAlgoLined
+  Initialize the estimate $f_0(\textbf{x})$\;
+ \For{$m = 1$ : $M$}{
+  Compute the negative gradient vector $\textbf{u}_m = - \partial C(\textbf{y},\textbf{f})/\partial \textbf{f}(\textbf{x})$ at $\textbf{f}(\textbf{x})=\textbf{f}_{m-1}$\;
+  Fit the base learner to the negative gradient $h_m(\textbf{u}_m, \textbf{x})$\;
+  Update the estimate $f_m(\textbf{x}) = f_{m-1} (\textbf{x}) + \nu h_m (\textbf{u}_m, \textbf{x})$\;
+ }
+ Output the final estimation $f_M(\textbf{x}) = \sum_{m=1}^M \nu h_m (\textbf{u}_m, \textbf{x})$
+ \caption{Gradient boost algorithm.}
+ \label{alg:gradientBoost}
 \end{algorithm}
 
 

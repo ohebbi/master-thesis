@@ -2,7 +2,7 @@
 
 A thorough testing procedure is important to find out if the code is working as intentionally. The procedure might reveal the presence or absence of bugs, and as a project grows, it can give an indication if a new implementation breaks the original project. Therefore, we present a test-case scenario to test if the two machine learning algorithms are able predict the correct label. It is the same algorithm that will be used in the following chapters, and it will provide us the opportunity to understand how the algorithm works and to draw parallells between the separate works.
 
-The validation process is a reproduction of Ref \cite{Balachandran2018}. To be able to draw any parallell to their work, we use the exact same dataset in the beginning phase. It should be noted that even if the computational aspects of the validation is closely related to Ref \cite{Balachandran2018}, the work eventually diverges in terms of focus. In their work they include a stability analysis using convex hull analysis in DFT calculations from OQMD, however, we will in this thesis not decide whether a compound is stable or not in an atomic configuration.
+The validation process is a reproduction of Ref \cite{Balachandran2018}. To be able to draw any parallell to their work, we use the exact same dataset in the beginning phase. It should be noted that even if the computational aspects of the validation is closely related to Ref. \cite{Balachandran2018}, the work eventually diverges in terms of focus. In their work they include a stability analysis using convex hull analysis in DFT calculations from OQMD, however, we will in this thesis not decide whether a compound is considered stable or not in an atomic configuration.
 
 \section{The perovskite dataset}
 
@@ -10,6 +10,39 @@ The dataset in question contains $390$ experimentally reported ABO$_3$ compounds
 
 \subsection{Features}
 
-There are in total 12 features describing each compound. Two of them have already been described, and the third one being the name of the compound. The latter can also be desribed as the ID of a compound considering it will make it easier for identification.
+There are in total 9 features we can train a model on. Many of the features are based on the Shannon ionic radii \cite{Shannon1976}, which are estimates of an element's ionic hard-sphere radii extracted from experiment. They are dimensionless numbers, and are frequently used in studies involving perovskite structures of materials since they can be a measurement of the ionic misift of the B atom. This can be used to find the deviation of the structure from an ideal cubic geometry. The octahedral factor for an ABO$_3$ solid is known as
+\begin{align}
+  O = \frac{r_b}{r_O},
+\end{align}
+where $r_b$ and $r_O$ are the Shannon radii for the B-atom and oxygen ($r_O = 1.4\text{\AA}$), respectively. If the octahedral factor is $O=0.435$, it corresponds to a hard-sphere closed-packed arrangement where $B$ and $O$ ions are touching, while a six-fold coordination appear to require $0.414 < O < 0.732$ according to empirical studies \cite{Zhang2007}. $O$, $r_A$ and $r_b$ are represented as features in our data set. We can also compute the Goldschmidt tolerance factor, which is defined as
+\begin{align}
+  t = \frac{r_A + r_O}{\sqrt{2}(r_A+r_O)}.
+\end{align}
+The tolerance factor favors the following structures in the interval:
+\begin{itemize}
+  \item $t>1$: Hexagonal nonperovskite.
+  \item $0.9 < t < 1.0:$ Cubic perovskite.
+  \item $0.75 < t < 0.9:$ Orthorombic perovskite.
+  \item $t < 0.75:$ Not a perovskite.
+\end{itemize}
+If the tolerance factor is exactly $t=1$, the structure is known as perfectly cubic and is free for any structural alterations.
 
-Additionally, many of the features are based on the Shannon ionic radii \cite{Shannon1976}, which are estimates of an element's ionic hard-sphere radii extracted from experiment. Two of the features describes the A and B atom's features containing the A and B atom
+Furthermore, the Shannon radii $r_A$ and $r_B$ can be directly correlated with the structure. Perovskites require $r_A > r_B$, and that A-atoms are in a 12-fold coordinated site if $r_A > 0.9\text{\AA}$. A-atoms also occur in a sixfold coordinated site if $r_A < 0.8\text{\AA}$ and $r_B >0.7\text{\AA}$.
+
+From bond valence theory we can find the valence of an ion to be the sum of valences, that is
+\begin{align}
+  V_i &= \sum_i \nu_{ij} \\
+  &= \sum_i \frac{\exp(d_o - d_{ij})}{b} \label{eq:bondlength},
+\end{align}
+where $d_{ij}$ is the bond length while $d_0$ and $b$ are parameters from experimental data. The bond length can be found from \ref{eq:bondlength} given the general value $b=1.4\text{\AA}$ and $d_0$, that can be found from Zhang \textit{et al}. database \cite{Zhang2007}. The valence of an ion is associated with its neighboring ions and the chemical bonds, and therefore the band length $d_{AO}$ and $d_{BO}$ are included in the data set.
+
+The two last features originates from the Mendeleev numbers of Villars \textit{et al.} \cite{Villars2004} for the A- and B atom. The given values positions the elements in structurally similar groups. This means that he groups the elements in the following interval.
+
+\begin{itemize}
+  \item s-block $\in \{1,10\}$.
+  \item Sc $ = 11$.
+  \item Y  $ = 12$.
+  \item f-block $\in \{13,42\}$.
+  \item d-block $\in \{43,66\}$.
+  \item p-block $\in \{67,10\}$.
+\end{itemize}

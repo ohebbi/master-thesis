@@ -1,0 +1,47 @@
+\setlength{\abovecaptionskip}{6cm}
+\begin{figure}[!ht]
+\begin{picture}(20,20)
+
+\setlength{\unitlength}{0.17in}
+\put(0,-5){\framebox(7,3){\thead{Initial MP query}}}
+\put(7,-3.5){\vector(3,0){2}}
+\put(9,-3.5){\line(0,3){3}}
+\put(9,-3.5){\line(0,-3){3}}
+\put(9,-6.5){\line(1,0){17}}
+
+\put(13.5,-5){\framebox(3.5,2){\thead{AFLOW}}}
+\put(15.25,-5){\vector(0,-1){1.5}}
+
+\put(18,-5){\framebox(5,2){\thead{AFLOW-ML}}}
+\put(20.5,-5){\vector(0,-1){1.5}}
+
+\put(12,-10){\framebox(3,2){\thead{OQMD}}}
+\put(13.5,-8){\vector(0,1){1.5}}
+
+\put(16,-10){\framebox(5,2){\thead{JARVIS-DFT}}}
+\put(18.5,-8){\vector(0,1){1.5}}
+
+\put(22,-10){\framebox(2,2){\thead{CI}}}
+\put(23,-8){\vector(0,1){1.5}}
+
+\put(9,-0.5){\vector(1,0){5}}
+\put(14,-1.5){\framebox(8,2){\thead{Matminer featurizer}}}
+\put(22,-0.5){\line(1,0){4}}
+
+\put(26,-0.5){\vector(0,-1){3}}
+\put(26,-6.5){\vector(0,1){3}}
+
+\put(26,-3.5){\vector(1,0){2}}
+\put(28,-4.5){\framebox(6,2){\thead{interim data}}}
+
+
+%\put(6.5,-5){\line(0,-3){5}}
+
+%\put(17,-5){\vector(0,-1){3}}
+
+\end{picture}
+\caption{The data flow of the main project, starting from an initial MP-query, and ending with a featurized dataset with entries from several other databases.}
+\label{fig:flowchart-makedata}
+\end{figure}
+\vskip12cm
+\setlength{\abovecaptionskip}{0cm}

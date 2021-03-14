@@ -1,0 +1,5 @@
+from src.data.get_data_MP import data_MP
+
+MAPI_KEY = ``very_secret_key_here''
+MP = data_MP(API_KEY=MAPI_KEY)
+df = MP.get_dataframe()

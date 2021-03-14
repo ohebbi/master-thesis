@@ -1,0 +1,5 @@
+from src.data.get_data_Citrine import data_Citrine
+
+CAPI_KEY = ``very_secret_key_here''
+citrine = data_Citrine(API_KEY=CAPI_KEY)
+df = citrine.get_dataframe()

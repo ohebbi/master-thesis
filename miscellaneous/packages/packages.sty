@@ -9,6 +9,14 @@
 \usepackage{array} % center tables + 2 next lines
 \newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
 \newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+\usepackage{multirow} % confusion matrix
+\newcommand\MyBox[2]{
+  \fbox{\lower0.75cm
+    \vbox to 2.0cm{\vfil
+      \hbox to 2.0cm{\hfil\parbox{1.4cm}{#1\\#2}\hfil}
+      \vfil}%
+  }%
+}
 \usepackage{epigraph} % quote
 \usepackage{graphicx} %Read pdfs
 \usepackage{wrapfig} %wrapping text to fig
@@ -31,8 +39,17 @@
 \usepackage{physics}
 \usepackage{chemformula}
 \usepackage{mathtools}
+\usepackage[dvipsnames]{xcolor}
 \usepackage{pgfplots}
-\usepackage{tikz}
+\usepackage{sansmath}
+\usetikzlibrary{arrows.meta,bending}
+\tikzset{>=stealth,
+OptimumStyle/.style={align=center,anchor=east,rotate=90,font=\scriptsize}
+}
+\pgfplotsset{%samples=101,
+axis lines = left,
+every axis plot/.append style={line width=2pt},
+}
 \usepackage{algpseudocode}
 % Include font for the identity operator
 \usepackage{dsfont}

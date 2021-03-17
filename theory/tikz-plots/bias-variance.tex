@@ -1,0 +1,28 @@
+\begin{wrapfigure}{r}{0.5\textwidth}
+    \centering
+    \begin{tikzpicture}[font=\normalsize]
+        \begin{axis}[
+            xmin= 0,
+            xmax= 2,
+            ymin= 0,
+            ymax= 2,
+            xlabel=Model Complexity,
+            ylabel=Error,
+            ticks=none,
+            xticklabels={\empty},
+            yticklabels={\empty}
+        ]
+          \addplot[domain=0.2:1.9,Maroon,<->] {1/(x+0.3)-0.2};   %Bias
+          \addplot[domain=0.2:1.9,TealBlue,<->] {0.12*e^(1.40*x)};   %Variance
+          \addplot[domain=0.39:1.61,black,<->] {3*(x-2)*x+3.8};  %Total error
+          \addplot[dotted,thin] coordinates {(1,0) (1,2)};       %Optimum model complexity
+          \node[OptimumStyle] at (axis cs:0.9,2) {Optimum Model\\Complexity};
+          \node[anchor=south west,text=Maroon,font=\normalsize] at (axis cs:1.4,0.4){Bias\textsuperscript{2}};
+          \node[anchor=north west,text=TealBlue,font=\normalsize] at (axis cs:1.4,0.85){Variance};
+          \node[anchor=south east,align=center,font=\normalsize] at (axis cs:1.5,1.5){Total\\error};
+          \legend{}
+        \end{axis}
+    \end{tikzpicture}
+  \caption{A schematic representation of the bias-variance tradeoff. To the left of the optimum model complexity increases the chance of having an underfitted model, while to the right increases the chance of having an overfitted model.}
+  \label{fig:biasVarianceTradeOff}
+\end{wrapfigure}

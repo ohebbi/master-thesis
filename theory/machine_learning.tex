@@ -4,15 +4,15 @@ The enourmous amount of data generated in the digital world today is beyond comp
 
 However, an increasing amount of data comes hand in hand with an increasing demand of knowledge about the data. If we are unable to extract information from the data, the data serves no intention and exists as an excess. Therefore, we need methods to process and automate data analysis, which is what the promises of \textit{machine learning} covers. Machine learning can reveal patterns in data with ease where a human would face difficulties, and use this information to predict or generate new data. Many tools in machine learning is based on probability theory, which can be applied to problems involving uncertainty. Thus, machine learning is also commonly (and boringly) named as \textit{statistical learning}.
 
-There are mainly two types of machine learning, either \textit{supervised} or \textit{unsupervised} learning. In the supervised approach, the model tries to learn a mapping from inputs $\textbf{x}$ to outputs $y$, given a labeled set of pairs $\mathcal{D}=\{(\textbf{x}_i, y_i)\}^N_{i=1}$. The set $\mathcal{D}$ is known as the training set, and $N$ is the number of entries. Each training input $\textbf{x}_i$ has $D$-dimensions that describes each entry, where each dimension is known as a \textit{feature}. The features could be examplified as height or weight, or it could be something complex that has no practical meaning. The flexibility of the shape of a feature is also shared with the output. It can in principle be anything, but it is mostly assumed that the output is either \textit{categorical} or \textit{nominal} restricted by a finite set $y_i \in \{1,...,\mathcal{C} \}$. The problem is defined as \textit{classification} if the output is categorical, or \textit{regression} if the output is real-valued \cite{Murphy2012}.
+There are mainly two types of machine learning, either \textit{supervised} or \textit{unsupervised} learning. In unsupervised learning we are given inputs $\mathcal{D}=\{\textbf{x}_i\}^N_{i=1}$, and it is neccessary to use the tools of machine learning to find peculiar and interesting patterns. In the supervised approach, on the other hand, the model tries to learn a mapping from inputs $\textbf{x}$ to outputs $y$, given a labeled set of pairs $\mathcal{D}=\{(\textbf{x}_i, y_i)\}^N_{i=1}$. The set $\mathcal{D}$ is known as the training set, and $N$ is the number of entries. Each training input $\textbf{x}_i$ has $D$-dimensions that describes each entry, where each dimension is known as a \textit{feature}. The features could be examplified as height or weight, or it could be something complex that has no practical meaning. The flexibility of the shape of a feature is also shared with the output. It can in principle be anything, but it is mostly assumed that the output is either \textit{categorical} or \textit{nominal} restricted by a finite set $y_i \in \{1,...,\mathcal{C} \}$. The problem is defined as \textit{classification} if the output is categorical, or \textit{regression} if the output is real-valued \cite{Murphy2012}.
 
-In unsupervised learning we are only given inputs $\mathcal{D}=\{\textbf{x}_i\}^N_{i=1}$, and it is neccessary to use the tools of machine learning to find peculiar and interesting patterns. This is, however, outside of the scope of this thesis, since we will solely focus on supervised classification.
+%This is, however, outside of the scope of this thesis, since we will solely focus on supervised classification.
 
-\section{Supervised classification}
+\section{Supervised learning}
 
-Recall, supervised classification has as goal to learn the target output $y \in \{1,..,\mathcal{C}\}$ from the inputs $\textbf{x}$. The number of classes is $\mathcal{C}$, and depicts if the classification is \textit{binary} ($\mathcal{C}=2$), \textit{multiclass} ($\mathcal{C}>2$), or \textit{multi-label} if the class labels are not mutually exclusive (examplified with the weather can be both sunny and cold at the same time). Normally, classification is used when the problem is formulated as a multiclass classification, and hereon we will adapt to the formulated as well \cite{Murphy2012}.
+Recall, supervised learning in classification has as goal to learn the target output $y \in \{1,..,\mathcal{C}\}$ from the inputs $\textbf{x}$. The number of classes is $\mathcal{C}$, and depicts if the classification is \textit{binary} ($\mathcal{C}=2$), \textit{multiclass} ($\mathcal{C}>2$), or \textit{multi-label} if the class labels are not mutually exclusive (examplified with the weather can be both sunny and cold at the same time). Normally, classification is used when the problem is formulated as a multiclass classification, and hereon we will adapt to the formulation as well \cite{Murphy2012}.
 
-In order to be able to learn from data, we will need to formulate a function approximate. By assuming $y = f(x)$ for some unknown function $f$, we can try to approximate $f$ from a labeled training set, which we can use to make the predictions $\hat{y}=\hat{f}(\textbf{x})$. With the estimated $\hat{f}$, we can make predictions on unlabeled data and achieve a \textit{generalized model}.
+In order to be able to learn from data, we will need to formulate a function approximate. By assuming $y = f(x) + \epsilon$ for some unknown function $f$ and a random error term $\epsilon$ with mean zero, we can try to approximate $f$ from a labeled training set, which we can use to make the predictions $\hat{y}=\hat{f}(\textbf{x})$. With the estimated $\hat{f}$, we can make predictions on unlabeled data and achieve a \textit{generalized model}. The estimated function $\hat{f}$ is often considered as a black box, since we are not neccessary interested in the exact shape of the function but rather the predictions.
 
 As simple the idea behind supervised classification appears, a generalized model remains deeply dependent on the available data. Imagine a training set containing two entries. The first one is a young and tall person who is labeled as healthy. The other entry is an old and short person who is labeled sick. The pattern in this simple scenario is abundantly clear, but will face a challenge if it were to predict on a test set containing a person who is young and short.
 
@@ -21,6 +21,122 @@ Therefore, it is desirable to compute the probability of an entry belonging to o
   \hat{y} = \hat{f}(\textbf{x}) = \operatorname*{argmax}_{c=1} f(x) p(y = c|\textbf{x}, \mathcal{D}),
 \end{align}
 which represents the most probable class label and is known as the \textit{maximum a posteriori} estimate.
+
+\section{Evaluating accuracy of a model}
+
+The idea of finding one algorithm that is far more superior than any other algorithm, for all types and sizes of datasets, is of an imaginary sort. There is no algorithm that has this property, since one model might be recognized as best on one particular dataset, while others are far better on other datasets. The same goes with evaluating the model - there is no metrics that stand alone as the best metric to evaluate a model. Choosing how to actually evaluate a model can be the most challenging part of a statistical learning procedure.
+
+
+\subsection{Bias-variance tradeoff}
+
+To illustrate a challenge in choosing the correct parameters, we give an example using the mean squared error (MSE) as a \textit{cost function}, that is a measurement of how wrong the model is in term of estimating the relationship between $\textbf{X}$ and $\textbf{y}$. Additionally, assume that our data can be represented by an unknown function with the addition of some noise $\boldsymbol{\epsilon}$,
+
+\begin{align*}
+\boldsymbol{y}=f(\boldsymbol{x}) + \boldsymbol{\epsilon},
+\end{align*}
+
+where $\boldsymbol{\epsilon}$ is normally distributed with a mean equal to zero and standard deviation equal to $\sigma^2$. Furthermore, we also assume that the function $f(\boldsymbol{x})$ can be approximated to a model $\boldsymbol{\hat{y}}$, where the model is defined by a design matrix $\boldsymbol{X}$ and parameters $\boldsymbol{\beta}$.
+
+\begin{align*}
+\boldsymbol{\hat{y}} = \boldsymbol{X}\boldsymbol{\beta}
+\end{align*}
+
+
+The parameters $\boldsymbol{\beta}$ are in turn found by optimizing the mean squared error (MSE) via the cost function
+
+\begin{align*}
+C(\boldsymbol{X},\boldsymbol{\beta}) =\frac{1}{n}\sum_{i=0}^{n-1}(y_i-\hat{y}_i)^2= E\left[(\boldsymbol{y}-\boldsymbol{\hat{y}})^2\right].
+\end{align*}
+
+One can show that the cost function can be rewritten as
+
+%\begin{align*}
+%C(\boldsymbol{X},\boldsymbol{\beta}) = E\left[(\boldsymbol{y}-\boldsymbol{\hat{y}})^2\right].
+%\end{align*}
+
+\begin{align*}
+E\left[(\boldsymbol{y}-\boldsymbol{\hat{y}})^2\right]=\frac{1}{n}\sum_i(f_i- E\left[\boldsymbol{\hat{y}}\right])^2+\frac{1}{n}\sum_i(\hat{y}_i- E\left[\boldsymbol{\hat{y}}\right])^2+\sigma^2.
+\end{align*}
+
+and since the variance of $\boldsymbol{y}$ and $\boldsymbol{\epsilon}$ are both equal to $\sigma^2$, we can use the relations $E[\boldsymbol{y}] = \boldsymbol{f}$, $ E[\boldsymbol{\epsilon}] = 0 $ and $Var(\boldsymbol{y}) = Var(\boldsymbol{\epsilon}) = \sigma_{\epsilon}^2$. The mean value of $\boldsymbol{\epsilon}$ is by definition equal to zero. In addition, the function $\boldsymbol{f}$ is not a stochastic variable, and the same argument can also be used for $\boldsymbol{\hat{y}}$. This allows us to insert the expression $\boldsymbol{y}$ into the cost function
+\begin{align*}
+E[(\boldsymbol{y-\hat{y}})^2] &= E[(\boldsymbol{f + \epsilon - \hat{y}})^2].
+\end{align*}
+By using the infamous trick of both adding and subtracting simultaneously, we arrive at
+\begin{align*}
+E\left[(\boldsymbol{y}-\boldsymbol{\hat{y}})^2\right] &= E[(\boldsymbol{f + \epsilon - \hat{y}} + E[\boldsymbol{y}] - E[\boldsymbol{y}])^2 ].
+\end{align*}
+
+And simply by using the relations mentioned above concerning the expectation value for $\boldsymbol{y}$ and the variances for both $\boldsymbol{y}$ and $\epsilon$, the cost function can be rewritten to:
+
+\begin{align*}
+E\left[(\boldsymbol{y}-\boldsymbol{\hat{y}})^2\right] &=  E[(\boldsymbol{f}-E[\boldsymbol{\hat{y}}])^2] + Var(\boldsymbol{\hat{y}}) + \sigma_{\epsilon}^2 \\
+ &= \frac{1}{n}\sum_i(f_i- E\left[\boldsymbol{\hat{y}}\right])^2+\frac{1}{n}\sum_i(\hat{y}_i- E\left[\boldsymbol{\hat{y}}\right])^2+\sigma^2_{\epsilon}.
+\end{align*}
+
+The first term on the right hand side is the squared bias, the amount by which the average of our estimate differs from the true mean, while the second term represents the variance of the chosen model. The last term is the variance of the error $\boldsymbol{\epsilon}$, also known as the irreducible error. In general, an estimated function $\hat(f)$ will never be a perfect estimate for $f$ since we can not reduce the error associated introduced by $\boldsymbol{\epsilon}$. Therefore, any model will always be restricted to an upper bound of accuracy due to the irreducible error.
+
+\input{theory/tikz-plots/bias-variance.tex}
+
+The more complex model one has, the lower the bias becomes, and the higher the variance becomes, as seen in figure \ref{fig:biasVarianceTradeOff}.. If the model is not complex enough due to high bias and low variance, the algorithm can end up not learning the relevant relations between features and output, and is known as \textit{underfitting}. On the other hand, for a very complex model with low bias and high variance, the algorithm might find trends in random noise from the training data instead of the relevant features, resulting in \textit{overfitting}. An ideal model would be one that simultaneously achieves low variance and low bias. Therefore, we has to do a trade-off between how much bias and variance we would like in the model.
+
+\subsection{Accuracy, precision and recall}
+
+Given a model that has dealt with the intricacy of increasing complexity, we would like to evaluate the model's output quality. For a binary supervised classification problem we can measure the accuracy by finding how many correct predictions has been made. Prediction accuracy can provide a fine initial analysis, but it has some significant drawbacks seen in unbalanced datasets. This can be easily explained with a dataset consisting of $99:1$ ratio of class, since just guessing the majority class will result in a very high $99\%$ accuracy. Perhaps it is the $1\%$ that is the most important class, thus the accuracy score severely lacks information for the model.
+
+Therefore, we turn to other evaluation metrics such as a \textit{a confusion matrix}. A confusion matrix is a method for measuring the performance of classifiers. It is set up as a table with 4 different categories, where two of the categories are the predicted outcomes of the model/classifier and the two final categories are the true outcomes, which one wants to fit. An example of a confusion matrix for a binary classifier predicting the presence of a pregnancy is shown in table \ref{tab:confusion_matrix}.
+
+\begin{table}[!ht]
+  \centering
+  \renewcommand\arraystretch{1.5}
+  \setlength\tabcolsep{0pt}
+  \begin{tabular}{c >{\bfseries}r @{\hspace{0.7em}}c @{\hspace{0.4em}}c @{\hspace{0.7em}}l}
+    \multirow{10}{*}{\parbox{1.1cm}{\bfseries\raggedleft Actual\\ value}} &
+      & \multicolumn{2}{c}{\bfseries Prediction outcome} & \\
+    & & \bfseries p & \bfseries n & \bfseries total \\
+    & p$'$ & \MyBox{True}{Positive} & \MyBox{False}{Negative} & P$'$ \\[2.4em]
+    & n$'$ & \MyBox{False}{Positive} & \MyBox{True}{Negative} & N$'$ \\
+    & total & P & N &
+  \end{tabular}
+  \caption{A confusion matrix for a binary classifier.}
+  \label{tab:confusion_matrix}
+  \end{table}
+
+
+For the binary confusion matrix there are two possible predicted outcomes, either positive or negative. This gives rise to some terminology.
+
+\begin{itemize}
+\item True Positive (TP): The classifier correctly predicts a positive event.
+\item True Negative (TN): The classifier correctly predicts a negative event.
+\item False Positive (FP): The classifier incorrectly predicts a positive event when the true event was negative.
+\item False Negative (FN):  The classifier incorrectly predicts a negative event when the true event was positive.
+\end{itemize}
+
+From the confusion matrix one can then start estimating the performance of the model, by calculating different factors, such as
+
+\begin{itemize}
+\item \textbf{Recall} is a measure of how many truly relevant results are predicted. A high recall relates to a low false negative rate, and is defined as
+\begin{align}
+\text{Recall} = \frac{TP}{TP + FN}.
+\end{align}
+
+\item \textbf{Precision} is a measure of result relevancy. A high precision relates to a low false positive rate, and is defined as  \\
+\begin{align}
+\text{Precision} = \frac{TP}{TP + FP}.
+\end{align}
+\end{itemize}
+
+Similar to the bias-variance tradeoff, it is common to compare the recall with the precision to identify the tradeoff for different thresholds. High scores for both reveals that a classifier returns accurate results combined with returning a majority of all positive results. Therefore, an ideal classifier will return many correctly predicted results.
+
+Sometimes a classifier can have drastically different values for the precision and recall. This leads to another estimator for the performance of a classifier, which is known as the F1-score. The F1-score is defined as the harmonic mean of precision and recall,
+\begin{align*}
+\text{F1-score} = \frac{2\cdot \text{Recall} \cdot \text{Precision}}{\text{Recall} + \text{Precision}},
+\end{align*}
+and can be used to find a good tradeoff between recall and precision. The highest value of F1-score is $1$ and is considered an ideal classifier, while the lowest is $0$.
+
+\subsection{Cross-validation}
+
+
 
 \section{Decision trees}
 Classification and regression trees (CART), also called decision trees, is one of the more basic supervised algorithms, and can be used for both regression and classification tasks, as the name suggests. The strength of decision trees lays within the simplicity that allows to build more complex networks. We will in this section provide special emphasis to classification trees, but with some remarks to the regression trees to provide a brief perspective of distinctions.
@@ -141,7 +257,7 @@ where $\beta_m$ are expansion parameters that will be determined in a minimizati
 
 Then, the error rate of the training sample is given as
 \begin{align}
-  \overline{\text{err}} = \frac{1}{n} \sum_{i=0}^{n-1} I(\tilde{y}_i \neq G(\textbf{x}_i)).
+  \overline{\text{err}} = \frac{1}{n} \sum_{i=0}^{n-1} I(\hat{y}_i \neq G(\textbf{x}_i)).
 \end{align}
 
 After defining a weak classifier, we can apply it iteratively to repeatedly modified versions of the data which produce a sequence of different weak classifiers $G_m(\textbf{x})$. The function $f_M(\textbf{x})$ will be expressed in terms of
@@ -154,20 +270,20 @@ The iterative procedure can be defined as
 \end{align}
 The cost function that leads to the \textit{discrete AdaBoost}  algorithm \cite{Friedman2000} is the exponential cost function
 \begin{align}
-  C(\textbf{y},\textbf{f}) = \sum_{i=0}^{n-1} \exp (-\tilde{y}_i(f_{m-1}(\textbf{x}_i) + \beta G(\textbf{x}_i))),
+  C(\textbf{y},\textbf{f}) = \sum_{i=0}^{n-1} \exp (-\hat{y}_i(f_{m-1}(\textbf{x}_i) + \beta G(\textbf{x}_i))),
 \end{align}
-or with the weight $w_i^m = \exp(-\tilde{y}_if_{m-1}(\textbf{x}_i))$ we can rewrite to
+or with the weight $w_i^m = \exp(-\hat{y}_if_{m-1}(\textbf{x}_i))$ we can rewrite to
 \begin{align}
-  C(\textbf{y},\textbf{f}) = \sum_{i=0}^{n-1} w_i^m \exp(-\tilde{y}_i\beta G(\textbf{x}_i)).
+  C(\textbf{y},\textbf{f}) = \sum_{i=0}^{n-1} w_i^m \exp(-\hat{y}_i\beta G(\textbf{x}_i)).
 \end{align}
 We can optimize $G$ for any $\beta>0$ with
 \begin{align}
-  G_m(\textbf{x}) = \text{sign} \sum_{i=0}^{n-1} w_i^m I(\tilde{y}_i \neq G(\textbf{x}_i)).
+  G_m(\textbf{x}) = \text{sign} \sum_{i=0}^{n-1} w_i^m I(\hat{y}_i \neq G(\textbf{x}_i)).
 \end{align}
 This is the classifier that minimize the weighted error rate in predicting $y$. Furthermore, we can rewrite the cost function to
 \begin{align}
-    C &= \exp(-\beta) \sum_{\tilde{y}_i=G(x_i)} w_i^m + \exp (\beta) \sum_{\tilde{y}_i \neq G(\textbf{x}_i)} w_i^m \\
-    &= (\exp(\beta)-\exp(-\beta)\sum_{i=0}^{n-1} w_i^m I(\tilde{y}_i \neq G(x_i)) + \exp(-\beta)\sum_{i=0}^{n-1}w_i^m .
+    C &= \exp(-\beta) \sum_{\hat{y}_i=G(x_i)} w_i^m + \exp (\beta) \sum_{\hat{y}_i \neq G(\textbf{x}_i)} w_i^m \\
+    &= (\exp(\beta)-\exp(-\beta)\sum_{i=0}^{n-1} w_i^m I(\hat{y}_i \neq G(x_i)) + \exp(-\beta)\sum_{i=0}^{n-1}w_i^m .
 \end{align}
 Substituting $G_m$ into $C$ and solving for $\beta$, we obtain
 \begin{align}
@@ -175,7 +291,7 @@ Substituting $G_m$ into $C$ and solving for $\beta$, we obtain
 \end{align}
 with the error redefined as
 \begin{align}
-  \overline{\text{err}} = \frac{1}{n} \frac{ \sum_{i=0}^{n-1} w_i^m I(\tilde{y}_i \neq G_m(\textbf{x}_i)) }{\sum_{i=0}^{n-1} w_i^m}.
+  \overline{\text{err}} = \frac{1}{n} \frac{ \sum_{i=0}^{n-1} w_i^m I(\hat{y}_i \neq G_m(\textbf{x}_i)) }{\sum_{i=0}^{n-1} w_i^m}.
 \end{align}
 Finally, this leads to an update of
 \begin{align}
@@ -183,7 +299,7 @@ Finally, this leads to an update of
 \end{align}
 and the weights at the next iteration becomes
 \begin{align}
-  w_i^{m+1} = w_i^m \exp (-\tilde{y}_i \beta_m G_m(\textbf{x}_i)).
+  w_i^{m+1} = w_i^m \exp (-\hat{y}_i \beta_m G_m(\textbf{x}_i)).
 \end{align}
 With the above definitions, we can define the discrete Adaboost algorithm in Algorithm~\ref{alg:discreteAdaboost}.
 
@@ -192,7 +308,7 @@ With the above definitions, we can define the discrete Adaboost algorithm in Alg
   Initialize weights $w_i = 1/n, \quad i=0,...,n-1$, such that $\sum_{i=0}^{n-1}w_i = 1$\;
  \For{$m = 1$ : $M$}{
   Fit the classifier $f_m (\textbf{x}) \in \{-1,1\}$ using weights $w_i$ on the training data\;
-  Compute the error $\overline{\text{err}} = \frac{1}{n} \frac{ \sum_{i=0}^{n-1} w_i^m I(\tilde{y}_i \neq G_m(\textbf{x}_i)) }{\sum_{i=0}^{n-1} w_i^m}$ \;
+  Compute the error $\overline{\text{err}} = \frac{1}{n} \frac{ \sum_{i=0}^{n-1} w_i^m I(\hat{y}_i \neq G_m(\textbf{x}_i)) }{\sum_{i=0}^{n-1} w_i^m}$ \;
   Define a quantity $\alpha_m = \log \big[(1-\overline{\text{err}_m})/\overline{\text{err}}_m$ \big] \;
   Set new weights to $w_i \leftarrow w_i \exp(\alpha_m I(y_i \neq G(\textbf{x}_i)))$\;
  }
@@ -221,7 +337,7 @@ where $rho_m$ is the step length and can be find by approximating the real funct
 \begin{align}
   h_m(\textbf{x})= - \rho \textbf{g}_m(\textbf{x}).
 \end{align}
-So far, this only optimize f at a fixed set of points, but we can modify it by fitting a weak classifier to approximate the negative gradient. The resulting algorithm is shown in Algorithm~\ref{alg:gradientBoost}.
+So far, this only optimize f at a fixed set of points, but we can modify it by fitting a weak classifier to approximate the negative gradient. The resulting algorithm is shown in Algorithm~\ref{alg:gradientBoost} as the gradient boost algorithm.
 
 \begin{algorithm}[H]
 \SetAlgoLined
@@ -236,8 +352,89 @@ So far, this only optimize f at a fixed set of points, but we can modify it by f
  \label{alg:gradientBoost}
 \end{algorithm}
 
+\section{Dimensionality reduction}
 
-\section{How to measure a model}
+Supervised learning introduces models that are easy to understand, visualize and has well-defined tools and models. There are several different methods to evaluate a model with many different types of scores such as accuracy, precision and f1-scores. Unfortunately, this does not transfer to unsupervised learning. In unsupervised learning, there is no simple goal for the analysis and the evaluation tends to of a subjective matter. Therefore, unsupervised learning is often used as an \textit{exploratory data analysis} \cite{James2017}. For data consisting of hundreds or thousands of features, it is possible to apply unsupervised learning to find correlated features and reduce dimensionality of the data, potentially reducing computational effort and time usage drastically. This is the idea of \textit{principal component analysis} (PCA).
+
+\subsection{Principal component analysis}
+
+Principal component analysis is an unsupervised algorithm that tries to find a low-dimension representation of a dataset that contains as much of the variance in the data as possible. Each of the dimensions found by PCA are a linear combination of the features in the dataset, and are known as \textit{principal components}.
+
+We can write the design matrix $\boldsymbol{X}\in {\mathbb{R}}^{n\times p}$, with $p$ features and $n$ entries, in terms of its column vectors as
+\begin{align}
+\boldsymbol{X}=\begin{bmatrix} \boldsymbol{x}_0 & \boldsymbol{x}_1 & \boldsymbol{x}_2 & \dots & \dots & \boldsymbol{x}_{p-1}\end{bmatrix},
+\end{align}
+with a given vector
+\begin{align}
+\boldsymbol{x}_i^T = \begin{bmatrix}x_{0,i} & x_{1,i} & x_{2,i}& \dots & \dots x_{n-1,i}\end{bmatrix}.
+\label{eq:pc}
+\end{align}
+
+Then we can compute the \textit{covariance matrix} of the design matrix $\boldsymbol{X}$, which is a measurement of the joint variability of the $p$ features in $\boldsymbol{X}$. The covariance is defined as
+\begin{align}
+\mathrm{cov}[\boldsymbol{v},\boldsymbol{u}] =\frac{1}{n} \sum_{i=0}^{n-1}(v_i- \overline{v})(u_i- \overline{u}),
+\end{align}
+where $\boldsymbol{v}$ and $\boldsymbol{u}$ are two vectors with $n$ elements each. The covariance matrix is defined by applying the covariance for every pairwise feauture, resulting in a $p\times p$ matrix. On the diagonal, the covariance of two equal features becomes the variance of one,
+\begin{align}
+  \mathrm{cov}[\boldsymbol{u},\boldsymbol{u}] &=\frac{1}{n} \sum_{i=0}^{n-1}(u_i- \overline{u})(u_i- \overline{u}) \\
+  &=\frac{1}{n} \sum_{i=0}^{n-1}(u_i- \overline{u})^2\\
+  &=\mathrm{var}[\boldsymbol{u}].
+\end{align}
+The covariance accepts values between $0$ and infinity, which rises a computational issue due to loss of numerical precision. Therefore, we scale the covariance matrix using the correlation function
+\begin{align}
+  \mathrm{corr}[\boldsymbol{u},\boldsymbol{v}]=\frac{\mathrm{cov}[\boldsymbol{u},\boldsymbol{v}]}{\sqrt{\mathrm{var}[\boldsymbol{u}] \mathrm{var}[\boldsymbol{v}]}}.
+\end{align}
+Since all values are inbetween $-1$ and $1$, we avoid any loss of numerical precision. The resulting covariance matrix $\boldsymbol{C} \in {\mathbb{R}}^{p\times p}$ becomes
+
+\begin{align}
+  \boldsymbol{C}[\boldsymbol{x}] = \begin{bmatrix}
+\mathrm{var}[\boldsymbol{x}_0] & \mathrm{cov}[\boldsymbol{x}_0,\boldsymbol{x}_1]  & \mathrm{cov}[\boldsymbol{x}_0,\boldsymbol{x}_2] & \dots & \dots & \mathrm{cov}[\boldsymbol{x}_0,\boldsymbol{x}_{p-1}]\\
+\mathrm{cov}[\boldsymbol{x}_1,\boldsymbol{x}_0] & \mathrm{var}[\boldsymbol{x}_1]  & \mathrm{cov}[\boldsymbol{x}_1,\boldsymbol{x}_2] & \dots & \dots & \mathrm{cov}[\boldsymbol{x}_1,\boldsymbol{x}_{p-1}]\\
+\mathrm{cov}[\boldsymbol{x}_2,\boldsymbol{x}_0]   & \mathrm{cov}[\boldsymbol{x}_2,\boldsymbol{x}_1] & \mathrm{var}[\boldsymbol{x}_2] & \dots & \dots & \mathrm{cov}[\boldsymbol{x}_2,\boldsymbol{x}_{p-1}]\\
+\dots & \dots & \dots & \dots & \dots & \dots \\
+\dots & \dots & \dots & \dots & \dots & \dots \\
+\mathrm{cov}[\boldsymbol{x}_{p-1},\boldsymbol{x}_0]   & \mathrm{cov}[\boldsymbol{x}_{p-1},\boldsymbol{x}_1] & \mathrm{cov}[\boldsymbol{x}_{p-1},\boldsymbol{x}_{2}]  & \dots & \dots  & \mathrm{var}[\boldsymbol{x}_{p-1}]\\
+\end{bmatrix},
+\end{align}
+for all vectors $\boldsymbol{x}_i$ where $i=0,1,\dots,p-1$. The correlation matrix becomes
+\begin{align}
+  \boldsymbol{K}[\boldsymbol{x}] = \begin{bmatrix}
+  1 & \mathrm{corr}[\boldsymbol{x}_0,\boldsymbol{x}_1]  & \mathrm{corr}[\boldsymbol{x}_0,\boldsymbol{x}_2] & \dots & \dots & \mathrm{corr}[\boldsymbol{x}_0,\boldsymbol{x}_{p-1}]\\
+  \mathrm{corr}[\boldsymbol{x}_1,\boldsymbol{x}_0] & 1  & \mathrm{corr}[\boldsymbol{x}_1,\boldsymbol{x}_2] & \dots & \dots & \mathrm{corr}[\boldsymbol{x}_1,\boldsymbol{x}_{p-1}]\\
+  \mathrm{corr}[\boldsymbol{x}_2,\boldsymbol{x}_0]   & \mathrm{corr}[\boldsymbol{x}_2,\boldsymbol{x}_1] & 1 & \dots & \dots & \mathrm{corr}[\boldsymbol{x}_2,\boldsymbol{x}_{p-1}]\\
+  \dots & \dots & \dots & \dots & \dots & \dots \\
+  \dots & \dots & \dots & \dots & \dots & \dots \\
+  \mathrm{corr}[\boldsymbol{x}_{p-1},\boldsymbol{x}_0]   & \mathrm{corr}[\boldsymbol{x}_{p-1},\boldsymbol{x}_1] & \mathrm{corr}[\boldsymbol{x}_{p-1},\boldsymbol{x}_{2}]  & \dots & \dots  & 1\\
+  \end{bmatrix}.
+\end{align}
+
+The covariance matrix can be rewritten as a function of the design matrix,
+\begin{align}
+  \boldsymbol{C}[\boldsymbol{x}] = \frac{1}{n}\boldsymbol{X}\boldsymbol{X}^T= \mathbb{E}[\boldsymbol{X}\boldsymbol{X}^T],
+\end{align}
+where $\mathbb{E}[\boldsymbol{X}\boldsymbol{X}^T]$ is the expectation value.
+
+Further on, we assume that we can do apply a number of orthogonal transformations by some orthogonal matrices $\boldsymbol{S}=[\boldsymbol{s}_0,\boldsymbol{s}_1,\dots,\boldsymbol{s}_{p-1}]\in {\mathbb{R}}^{p\times p}$ with the column vectors $\boldsymbol{s}_i \in {\mathbb{R}}^{p}$. Additionally, we assume that there is a transformation
+\begin{align}
+  \boldsymbol{C}[\boldsymbol{y}] =\boldsymbol{S}\boldsymbol{C}[\boldsymbol{x}]\boldsymbol{S}^T = \mathbb{E}[\boldsymbol{S}\boldsymbol{X}\boldsymbol{X}^T\boldsymbol{S}^T],
+\end{align}
+such that the new matrix $\boldsymbol{C}[\boldsymbol{y}]$ is diagonal with elements $[\lambda_0,\lambda_1,\lambda_2,\dots,\lambda_{p-1}]$. By multiplying with $\boldsymbol{S}^T$, we arrive at the given eigenvalue $i$ of the covariance matrix that
+\begin{align}
+  \boldsymbol{S}^T_i\lambda_i = \boldsymbol{C}[\boldsymbol{x}]\boldsymbol{S}^T_i.
+\end{align}
+
+Dimensions with large eigenvalue have a large variation and can therefore be used to find features with useful information since we multiply the eigenvalue with the eigenvectors. When the eigenvalues are small, it means that the eigenvectors shrink accordingly and there is a small variation in these specific features.
+
+So far, we have been leading up to the classical PCA theorem. Assume an ortogonal transformation $\boldsymbol{W}\in {\mathbb{R}}^{p\times p}$. We can then define the reconstruction error
+\begin{align}
+  J(\boldsymbol{W},\boldsymbol{Z}) = \frac{1}{n}\sum_i (\boldsymbol{x}_i - \overline{\boldsymbol{x}}_i)^2,
+\end{align}
+with $\overline{\boldsymbol{x}}_i = \boldsymbol{W}\boldsymbol{z}_i$, where $\boldsymbol{z}_i$ is a row vector with dimension ${\mathbb{R}}^{n}$ of the matrix
+$\boldsymbol{Z}\in{\mathbb{R}}^{p\times n}$.
+
+The PCA theorem states that minimizing the above reconstruction error corresponds to setting $\boldsymbol{W}=\boldsymbol{S}$, which is the orthogonal matrix which diagonalizes the covariance matrix \cite{Murphy2012}. The optimal number of features that corresponds to the encoding is given by the a set of vectors $\boldsymbol{z}_i$ with at most $l$ vectors. This is defined as the orthogonal projection of the data onto the columns by the eigenvectors of the covariance matrix. Instead of using the covariance matrix, it is preferable to use the correlation matrix to keep the numerical precision for any raw implementation. We recommend the reader to read Ref. \cite{Murphy2012} p. $387$ for proof of the classical PCA theorem, as we will not elaborate any further. 
+
+Instead of choosing an arbitrarily number of dimensions to reduce down to, it is common to choose the number of dimensions that accumulate a sufficiently amount of variance, such as $95 \%$. However, it remains an subjective analysis in how many principal components  one should include as it will depend on both the specific application and specific data set. If it is impossible to give a motivation for reducing a large dataset to just two or three principal components, there might still be a reason for why to apply PCA to a dataset. PCA can be applied as a preprocessing method to reduce the dimensionality of a dataset, and therefore might drastically improve the efficiency of further supervised learning approaches.
 
 %\section{Unsupervised learning}
 %\subsection{Kmeans}

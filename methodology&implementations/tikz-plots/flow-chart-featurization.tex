@@ -1,54 +1,57 @@
 \setlength{\abovecaptionskip}{10cm}
 \begin{figure}[!ht]
 \begin{picture}(20,20)
-
 \setlength{\unitlength}{0.17in}
-\put(0,-8.5){\vector(3,0){2}}
-\put(2,-10.5){\framebox(4,4){\thead{Partition \\ dataset}}}
-\put(6,-8.5){\vector(3,0){2}}
-\put(8,-10.5){\framebox(5,4){\thead{Get objects \\ from MP}}}
-\put(13,-8.5){\line(3,0){1}}
-\put(14,-8.5){\line(0,1){6}}
-\put(14,-8.5){\line(0,-1){6}}
 
-\put(14,-2.5){\vector(3,0){1}}
-\put(15,-3.5){\framebox(9,2){\thead{Featurize composition}}}
-\put(24,-2.5){\line(3,0){1}}
+%\put(13.5, 0.5){\makebox{\thead{\textbf{Matminer featurizer}}}}
+%\put(0.,-22){\framebox(33.5,22){\thead{}}}
 
-\put(14,-5.5){\vector(3,0){1}}
-\put(15,-6.5){\framebox(9,2){\thead{Featurize structure}}}
-\put(24,-5.5){\line(3,0){1}}
+\put(-1,-8.5){\vector(1,0){2.5}}
+\put(1.5,-10.5){\framebox(4,4){\thead{Partition \\ dataset}}}
+\put(5.5,-8.5){\vector(3,0){2}}
+\put(7.5,-10.5){\framebox(5,4){\thead{Get objects \\ from MP}}}
+\put(12.5,-8.5){\line(3,0){1}}
+\put(13.5,-8.5){\line(0,1){6}}
+\put(13.5,-8.5){\line(0,-1){6}}
 
-\put(14,-8.5){\vector(3,0){1}}
-\put(15,-9.5){\framebox(9,2){\thead{Featurize site}}}
-\put(24,-8.5){\line(3,0){1}}
+\put(13.5,-2.5){\vector(3,0){1}}
+\put(14.5,-3.5){\framebox(9,2){\thead{Featurize composition}}}
+\put(23.5,-2.5){\line(3,0){1}}
 
-\put(14,-11.5){\vector(3,0){1}}
-\put(15,-12.5){\framebox(9,2){\thead{Featurize dos}}}
-\put(24,-11.5){\line(3,0){1}}
+\put(13.5,-5.5){\vector(3,0){1}}
+\put(14.5,-6.5){\framebox(9,2){\thead{Featurize structure}}}
+\put(23.5,-5.5){\line(3,0){1}}
 
-\put(14,-14.5){\vector(3,0){1}}
-\put(15,-15.5){\framebox(9,2){\thead{Featurize band}}}
-\put(24,-14.5){\line(3,0){1}}
+\put(13.5,-8.5){\vector(3,0){1}}
+\put(14.5,-9.5){\framebox(9,2){\thead{Featurize site}}}
+\put(23.5,-8.5){\line(3,0){1}}
 
-\put(25,-8.5){\line(0,1){6}}
-\put(25,-8.5){\line(0,-1){6}}
+\put(13.5,-11.5){\vector(3,0){1}}
+\put(14.5,-12.5){\framebox(9,2){\thead{Featurize dos}}}
+\put(23.5,-11.5){\line(3,0){1}}
 
-\put(25,-8.5){\vector(2,0){1}}
-\put(26,-10.5){\framebox(6,4){\thead{Done with \\ all partitons?}}}
+\put(13.5,-14.5){\vector(3,0){1}}
+\put(14.5,-15.5){\framebox(9,2){\thead{Featurize band}}}
+\put(23.5,-14.5){\line(3,0){1}}
 
-\put(29.5, -12.){\makebox{\thead{NO}}}
-\put(29,-10.5){\line(0,-1){8}}
-\put(29,-18.5){\vector(-1,0){16}}
-\put(8,-20.5){\framebox(5,4){\thead{Choose next \\ partition}}}
-\put(10.5,-16.5){\vector(0,1){6}}
+\put(24.5,-8.5){\line(0,1){6}}
+\put(24.5,-8.5){\line(0,-1){6}}
+
+\put(24.5,-8.5){\vector(2,0){1}}
+\put(25.5,-10.5){\framebox(5.5,4){\thead{Done with \\ all partitions?}}}
+
+\put(29, -12.){\makebox{\thead{NO}}}
+\put(28.5,-10.5){\line(0,-1){8}}
+\put(28.5,-18.5){\vector(-1,0){16}}
+\put(7.5,-20.5){\framebox(5,4){\thead{Select next \\ partition}}}
+\put(10,-16.5){\vector(0,1){6}}
 
 
-\put(32, -8.5){\vector(1,0){3}}
-\put(32.5, -8.){\makebox{\thead{YES}}}
+\put(31, -8.5){\vector(1,0){3.5}}
+\put(31.5, -8.){\makebox{\thead{YES}}}
 
 \end{picture}
-\caption{The process of the matminer featurizer step, as seen in figure \ref{fig:flowchart-makedata}. To limit the memory and computational usage, the data is partioned into smaller subsets where the respective objects of featurization are obtained through a query to be used in the following featurization steps. This is iteratively done until all the data has been featurized.}
+\caption{The process of the matminer featurizer step as seen in figure \ref{fig:flowchart-makedata}. To limit the memory and computational usage, the data is partioned into smaller subsets where the respective pymatgen objects are obtained through a query to be used in the following featurization steps. This is iteratively done until all the data has been featurized.}
 \label{fig:flowchart-featurization}
 \end{figure}
 \vskip15cm

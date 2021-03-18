@@ -136,7 +136,16 @@ and can be used to find a good tradeoff between recall and precision. The highes
 
 \subsection{Cross-validation}
 
+When evaluating different parameters for models, commonly done in a grid-search scheme, there is an abundant risk of performing an overfit to the test set since we can tweak the parameters to a model so it can perform optimally. To solve this problem, we can exclude a part of the dataset as a validation set (in addition to a test set). Therefore, we can train a model on the training set, and evaluate the parameters on the validation set. After a lot of trial and error and the experiment seems successful, we can do one final evaluation on the test set.
 
+Unfortunately, this reduces the number of samples that can be used for training drastically. A fix for this is to apply a cross-validation. Cross-validation is a technique used to evaluate predictive models by partitioning the original sample into a training set to train the model, and a test set to evaluate it.
+
+\input{theory/tikz-plots/cv.tex}
+
+It is common to apply cross validation into fold, yielding the name of k-fold cross-validation. In k-fold cross-validation, the sample is partioned into k equal sized subsamples, as visualized in figure \ref{fig:cv}. Of the k samples, a single sample is used as validation set while the remaining k-1 samples are used as training data. The process is then repeated k-times, such that each of the k-th subsample is used as validation set exactly one time. Therefore, all observations are used for both training and validation, and each observation is used for validation exactly once. The k results from the folds can then be averaged to produce an estimate. These train and test samples are allowed to have an imbalanced dataset, such as each class is not neccessarily represented equally in each fold. Since supervised algorithms tend to weight each instance equally, it may result in overrepresented classes getting too much weight. Even worse could be the result of an fold where one class is not represented at all, resulting in a model that can't predict a class.
+
+
+To deal with vulnerability, one can employ a stratified k-fold cross-validation. Stratification is a process that seeks to ensure that each fold is representative of all strata in the data, making each fold having approximately equal class-representation.
 
 \section{Decision trees}
 Classification and regression trees (CART), also called decision trees, is one of the more basic supervised algorithms, and can be used for both regression and classification tasks, as the name suggests. The strength of decision trees lays within the simplicity that allows to build more complex networks. We will in this section provide special emphasis to classification trees, but with some remarks to the regression trees to provide a brief perspective of distinctions.
@@ -432,9 +441,21 @@ So far, we have been leading up to the classical PCA theorem. Assume an ortogona
 with $\overline{\boldsymbol{x}}_i = \boldsymbol{W}\boldsymbol{z}_i$, where $\boldsymbol{z}_i$ is a row vector with dimension ${\mathbb{R}}^{n}$ of the matrix
 $\boldsymbol{Z}\in{\mathbb{R}}^{p\times n}$.
 
-The PCA theorem states that minimizing the above reconstruction error corresponds to setting $\boldsymbol{W}=\boldsymbol{S}$, which is the orthogonal matrix which diagonalizes the covariance matrix \cite{Murphy2012}. The optimal number of features that corresponds to the encoding is given by the a set of vectors $\boldsymbol{z}_i$ with at most $l$ vectors. This is defined as the orthogonal projection of the data onto the columns by the eigenvectors of the covariance matrix. Instead of using the covariance matrix, it is preferable to use the correlation matrix to keep the numerical precision for any raw implementation. We recommend the reader to read Ref. \cite{Murphy2012} p. $387$ for proof of the classical PCA theorem, as we will not elaborate any further. 
+The PCA theorem states that minimizing the above reconstruction error corresponds to setting $\boldsymbol{W}=\boldsymbol{S}$, which is the orthogonal matrix which diagonalizes the covariance matrix \cite{Murphy2012}. The optimal number of features that corresponds to the encoding is given by the a set of vectors $\boldsymbol{z}_i$ with at most $l$ vectors. This is defined as the orthogonal projection of the data onto the columns by the eigenvectors of the covariance matrix. Instead of using the covariance matrix, it is preferable to use the correlation matrix to keep the numerical precision for any raw implementation. Additionally, it is important to mention that PCA is very sensitive to the data, which is why one should always remember to center the data around before applying PCA.  We recommend the reader to read Ref. \cite{Murphy2012} p. $387$ for proof of the classical PCA theorem, as we will not elaborate any further. The algorithm is shown in code-listing \ref{alg:pca}.
 
-Instead of choosing an arbitrarily number of dimensions to reduce down to, it is common to choose the number of dimensions that accumulate a sufficiently amount of variance, such as $95 \%$. However, it remains an subjective analysis in how many principal components  one should include as it will depend on both the specific application and specific data set. If it is impossible to give a motivation for reducing a large dataset to just two or three principal components, there might still be a reason for why to apply PCA to a dataset. PCA can be applied as a preprocessing method to reduce the dimensionality of a dataset, and therefore might drastically improve the efficiency of further supervised learning approaches.
+\begin{algorithm}[H]
+\SetAlgoLined
+ Set up the design matrix $\boldsymbol{X}\in {\mathbb{R}}^{n\times p}$ with $p$ features and $n$ entries;
+ Center the data by subtracting the mean value for each column;\\
+ Compute the covariance matrix $\mathbb{E}[\overline{\boldsymbol{X}}\overline{\boldsymbol{X}}^T]$; \\
+ Find the eigenpairs of $\boldsymbol{C}$ with eigenvalues $[\lambda_0,\lambda_1,\dots,\lambda_{p-1}]$ and eigenvectors $[\boldsymbol{s}_0,\boldsymbol{s}_1,\dots,\boldsymbol{s}_{p-1}]$;\\
+ Order the eigenvalues, and therefore also the eigenvectors, in descending order.
+ Keep only those $l$ eigenvalues larger than a selected threshold value.
+ \caption{Principal component analysis algorithm.}
+ \label{alg:pca}
+\end{algorithm}
+
+Instead of choosing an arbitrarily number of dimensions to reduce down to, it is common to choose the number of dimensions that accumulate a sufficiently amount of variance, such as e.g. $95 \%$. However, it remains an subjective analysis in how many principal components one should include as it will depend on both the specific application and specific data set. If it is impossible to give a motivation for reducing a large dataset to just two or three principal components, there might still be a reason for why to apply PCA to a dataset. PCA can be applied as a preprocessing method to reduce the dimensionality of a dataset, and therefore might drastically improve the efficiency of further supervised learning approaches.
 
 %\section{Unsupervised learning}
 %\subsection{Kmeans}

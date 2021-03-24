@@ -1,6 +1,14 @@
-\chapter{Extraction and featurization of data}
+\chapter{Structural flow of information}
 
-The initial step for gathering and building features can be visualised through the flochart in figure \ref{fig:flowchart-makedata}. Initially, we start by extracting all entries in the Materials Project that matches a specific query. Thereafter, we apply Matminer's featurization tools to make thousands of features of the data. In a parallel step, entries that are deemed similar to the entries from the initial Materials Project query are extracted from AFLOW, AFLOW-ML, JARVIS-DFT, OQMD and Citrine Informatics. Finally, we combine the steps together as interim data and prepare the data for further analysis.
+The information stream of this project can be regarded as many modular parts connected together in logical pieces, and is strongly influenced by the process that defines a \textit{minimum viable product} (MVP) through iterative development. An MVP is commonly known (in the bussiness world) as a new product that enables the most learning out of the minimum effort possible. This method allows a product to be iteratively evolved by consistent feedback and development, which in return enables cooperation between cross-disciplinary fields.
+
+Furthermore, by having several modules serving as the fundament of the project, it is possible to achieve a long-lasting and robust product that is simple to maintain yet straightforward to develop. Bugs can be tackled through a documented code simultaneously as visible future improvements can be adressed. Therefore, the product is not regarded as completed in any terms, but rather ready for a first release after iteratively finding the mimimum viable product.
+
+The main project of this work can be found on the Github repository \textit{predicting-solid-state-qubit-candidates} \cite{Ohebbi2021}, while the validation process can be adressed at the repository \textit{predicting-ABO3-structures} \cite{Ohebbi2021a}. In this chapter we will look into the details and thoughts behind the extraction of data, building features, data preparation, data mining and eventually fabricating a generalized model that can predict unseen data with confidence.
+
+\section{Extraction and featurization of data}
+
+The initial step for gathering and building features can be visualised through the flowchart in figure \ref{fig:flowchart-makedata}. Initially, we start by extracting all entries in the Materials Project that matches a specific query. Thereafter, we apply Matminer's featurization tools to make thousands of features of the data. In a parallel step, entries that are deemed similar to the entries from the initial Materials Project query are extracted from AFLOW, AFLOW-ML, JARVIS-DFT, OQMD and Citrine Informatics. Finally, we combine the steps together as interim data and prepare the data for further analysis.
 
 \input{methodology&implementations/tikz-plots/flow-chart-data-extraction.tex}
 
@@ -8,7 +16,7 @@ The initial query has the requirement that all entries has to be derived from an
 
 From figure \ref{fig:flowchart-makedata} we notice that by using many databases we do not add additional entries that exist in some databases but is not to be found in Materials Project. This is by design since it preserves the versatility of choosing a database to work with. Therefore, one can completely ignore steps such as the initial query of Materials Project or the featurization process, and rather focus on e.g. all the $400.000$ entries existing in OQMD. The examples that follows will illustrate the ease of extracting data from several different databases, and can serve as the starting point for other research projects in computational material science.
 
-\section{Practical data extraction with Python-examples}
+\subsection{Practical data extraction with Python-examples}
 
 For this section, we will show practical examples of how to extract data that might fulfill the criteria for a material to host a qubit candidate given in the theory part. We will begin with the database of Materials Project, and then search for entries in other databases that match entries from MP. This process is reproducable as a jupyter notebook\footnote{add and insert DOI for JN 01-generateDataset-notebook.ipynb} and the databases in question are the ones refered to in the previous section.
 
@@ -30,7 +38,7 @@ The structure of extraction is centered around using the data extraction tools, 
 %\end{align}
 %A large accessibility term implies an ease in extracting information. This formula does not depend on how accessible a database' user interface is, but a discussion of documentation and user interface will be included in the examples.
 
-\subsection{Materials Project}
+\subsubsection{Materials Project}
 \label{ssec:materialsproject}
 
 The most up-to-date version of Materials Project can be extracted using the python package pymatgen, which is integrated with Materials Project REST API. Other retrievel tools that is dependent on pymatgen includes matminer, with the added functionality of returning a pandas dataframe. Copies of Materials Project are added frequently to cloud services such as Citrine Informatics, but the latest added entries to Materials Project cannot be guaranteed in such a query.
@@ -50,7 +58,7 @@ The code nippet in code listing \ref{lst:MPQuery} resembles steps $2-4$, and is 
 
 \lstinputlisting[language=Python, caption={Practical example of extracting information from Materials Project using pymatgen, resulting in a Pandas DataFrame named entries that contains the properties given after performing a filter on the database. The criteria is given as a JSON, and supports MongoDB operators.}, label={lst:MPQuery}]{methodology&implementations/code-listings/query/MPQuery.tex}
 
-\subsection{Citrine Informatics}
+\subsubsection{Citrine Informatics}
 
 Citrine Informatics is a cloud service, which means that the spectrum of stored information varies broadly. We will access research through open access for institutional and educational purposes. Information in Citrine can be stored using a scheme that is broken down into two sections, with private properties for each entry in addition to common fields that are the same for all entries.% However, the query happens swiftly and is noted as highly accessible.
 
@@ -67,7 +75,7 @@ The code listed in code listing \ref{lst:CIQuery} gives an easy example to steps
 
 \lstinputlisting[language=Python, caption={Practical example of extracting information from Citrine Informatics using matminer, resulting in a Pandas DataFrame named experimental\_entries that contains the properties given after performing a filter on the database. The criteria is given as a JSON.}, label={lst:CIQuery}]{methodology&implementations/code-listings/query/CIQuery.tex}
 
-\subsection{AFLOW}
+\subsubsection{AFLOW}
 
 The query from AFLOW API \cite{Curtarolo2012} supports lazy formatting, which means that the query is just a search and does not return values but rather an object. This object is then used in the query when asking for values. For every object it is neccessary to request the desired property, consequently making the query process significantly more time-demanding than similar queries using APIs such as pymatgen or matminer for Citrine Informatics. Hence, the accessibility is strictly limited to either searching for single compounds or if the user possess sufficient time.
 
@@ -75,7 +83,7 @@ Matminer's data retrievel tool for AFLOW is currently an ongoing issue \cite{Ros
 
 \lstinputlisting[language=Python, caption={Practical example of extracting information from AFLOW. The function can extract all information in AFLOW for a given list of compounds, however, it is a slow method and requires consistent internet connection.}, label={lst:AFLOWQuery}]{methodology&implementations/code-listings/query/AFLOWQuery.tex}
 
-\subsection{AFLOW-ML}
+\subsubsection{AFLOW-ML}
 
 In this part, we will be using a machine learning algorithm named AFLOW-ML Property Labeled Material Fragments (PLMF) \cite{Isayev2017} to predict the band gap of structures. This algorithm is compatible with a POSCAR of a compound, which can be generated by the CIF (Crystallographic Information File) that describes a crystal's generic structure. It is possible to download a structure as a poscar by using Materials Project front-end API, but is a cumbersome process to do so individually if the task includes many structures. Extracting the feature of POSCAR is yet to be implemented in the RESful API of pymatgen, thus we demonstrate the versatility of pymatgen with a workaround.
 
@@ -94,7 +102,7 @@ A significant portion of the process is tied up to obtaining the input-file for 
 \end{enumerate}
 \lstinputlisting[language=Python, caption={Practical example of extracting information from AFLOW-ML. The function will convert a CIF-file (from e.g. Materials Project) to a POSCAR, and will use it as input to AFLOW-ML. In return, one will get the structure's predicted band gap. It should be noted that this requires the AFLOW-ML library in the same directory.}, label={lst:AFLOWMLQuery}]{methodology&implementations/code-listings/query/AFLOWMLQuery.tex}
 
-\subsection{JARVIS-DFT}
+\subsubsection{JARVIS-DFT}
 
 The newest version of the JARVIS-DFT dataset can be obtained by requesting an account at the official webpage, but with the drawback that an administrator has to either accept or deny the request. Thus, the accessibility of the database is dependent on if there is an active administrator paying attention to the requests, which is a limitation experienced during this work. Another approach is to download the database through matminer, however with the limitation of not neccessarily having the latest version of the database. A third approach is to download a version of JARVIS-DFT that have been made available for requests the 30.04.2020 at http://figshare.com by Choudhary \textit{et al.} \cite{Choudhary2020}. The author provides tools for extraction, yet not compatible with the latest version of Python (3.8) at the time writing (12.03.2021). Therefore, we provide a tool to extract this data through the use of our base class.
 
@@ -114,11 +122,13 @@ One immediate limitation of our extension is that Matminer's tools is dependent 
 
 In the extended version of the featurization process, we eliminate all columns that does not have any entries with physical meaning. This is beneficial for several reasons, such as to reduce memory allocated and to preprocess the data. If there are entries existing with both physical and non-physical for the same column, we replace the non-physical meanings with $-1$ for recognition in a later step. Additionally, we convert columns that are categorical or lacks a numerical representation into a categorical portrayal. Thus, we strive to limit the neccessary steps for further processing of data into a machine learning algorithm.
 
-Even if the first version of Matminer was released in $2016$, many issues concerning daily operational use are still present. During the featurization process in this work, we manually identified $14$ erroneous entries that are summarized in the Appendix, table \ref{tab:error_entries}. These entries were excluded from the dataset.
+Even if the first version of Matminer was released in $2016$, many issues concerning daily operational use are still present. During the featurization process in this work, we manually identified $14$ (TODO: Update number) erroneous entries that are summarized in the Appendix, table \ref{tab:error_entries}. These entries were excluded from the dataset.
 
-\section{Preprocessing}
+\chapter{Data preparation and screening procedure}
 
+After the data has been selected by an initial query, followed by a thorough featurization process, we can finally investigate how the data looks like.
 
+\section{}
 
-\section{Screen procedure}
-kaffe
+\clearpage
+\input{methodology&implementations/tikz-plots/flow-chart-screen-procedure.tex}

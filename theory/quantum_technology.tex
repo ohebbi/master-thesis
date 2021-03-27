@@ -1,9 +1,6 @@
-\chapter{Semiconductor quantum platforms}
+\chapter{Quantum technologies}
 
-This chapter will provide a brief overview of the current state-of-the-art in quantum technological advances. This will not only give us insights in how the technology is being used today, but also grant us the opportunity to discuss key concepts that are fundamental to understand for this thesis. Thereafter we will look into how materials are built up, and what the characteristics of a semiconductor is.
-%Importantly, it will motivate the reasoning for finding new materials that can be used in devices for this purpose.
-
-\section{Quantum technologies}
+This chapter will provide a brief overview of the current state-of-the-art in quantum technological advances. This will not only give us insights in how the technology is being used today, but also grant us the opportunity to discuss key concepts that are fundamental to understand for this thesis. Thereafter we will look into how materials are built up, and what kind of properties a material needs to exhibit to be an eligible host for quantum devices. Finally, we will giving a few specific examples of materials with promising point defects that have been comprehensively researched. Importantly, this will motivate the reasoning for finding new materials that might excel in areas where other materials falls short for utilization in quantum technology.
 
 \textit{Quantum technology} (QT) refers to practical applications and devices that utilize the principles of quantum physics as a foundation. Technologies in this spectrum are based on concepts such as \textit{superposition}, \textit{entanglement} and \textit{coherence}, which are all closely related to one another.
 
@@ -22,13 +19,13 @@ Another concept that the reader should be familiar with is the famous Heisenberg
 \end{align}
 where $\sigma_x$ is the standard deviation for the position and $\sigma_p$ is the standard deviation in momentum. This means that we cannot accurately predict both the position and momentum of a particle at the same time. Thus, we often calculate the probability for a particle to be in a state which results in concepts such as an electron sky surrounding an atom core. However, remember that equation (\ref{eq:uncertainty}) is an inequality, which means that it is possible to create a state where neither the position nor the momentum is well defined.
 
-\subsection{Quantum computation}
+\section{Quantum computing}
 %The evolution of the digital worlds computational powers is a remarkable piece of history
 The start of the digital world's computational powers can be credited to Alan Turing. In 1937, Turing \cite{Turing1937} published a paper where he described the \textit{Turing machine}, which is regarded as the foundation of computation and computer science. It states that only the simplest form of calculus, such as boolean Algebra ($1$ for true and $0$ for false), is actually computable. This required developing hardware that could handle classical logic operations, and was the basis of transistors that are either in the state ON or OFF depending on the electrical signal. Equipped with a circuit consisting of wires and transistors, commonly known as a computer, we could develop software to solve all kinds of possible applications.
 
 Driven by the development of software, conventional computers have in accordance to Moore's law \cite{Moore1965}, doubled the amount of transistors on integrated circuit chips every two years as a result of smaller transistors. Furthermore, the clock frequency has enhanced with time, resulting in a doubling of computer performance every 18 months \cite{Pavicic2006}. Alas, miniaturization cannot go on forever as transistors are mass-produced at $5$ nm today and are expected to reach a critical limit of $3$ nm in the following years \cite{Gwennap2020}.
 
-To sustain the digital world's increasing computational demand, other alternatives than the conventional classical computer must be explored. This is where quantum computation comes into the picture. The term quantum computer is a device that exploits quantum properties to solve certain computational problems more efficiently than allowed by Boolean logic \cite{Weber2010}.
+To sustain the digital world's increasing computational demand, other alternatives than the conventional classical computer must be explored. This is where quantum computing comes into the picture. The term quantum computer is a device that exploits quantum properties to solve certain computational problems more efficiently than allowed by Boolean logic \cite{Weber2010}.
 
 The idea is to pass information in the form of a quantum bit, or \textit{qubit} for short. They are the building blocks of quantum computers, and as opposed to the conventional $0$ or $1$-bits that classical computers are based on, they can inhabit any superposition of the states $0$ or $1$. This is illustrated in figure \ref{fig:qubit and bit}.
 
@@ -44,9 +41,34 @@ It has been demonstrated that exponentially complex problems can be reduced to p
 
 Quantum computing is a highly sought-after goal, but there are extensive challenges that needs to be adressed. Controlling a complex many-qubit system is difficult, since it is not always possible to establish interactions between qubits \cite{DiVincenzo2000} and maintain entaglement over both time and distance. Additionally, decoherence and other quantum noise occurs as a result of the high volatility of quantum states, making quantum state manipulation prone to errors. The \textit{quantum error correction} protocols and the theory of \textit{threshold theorem} deals with this vulnerability, stating that noise most likely does not pose any fundamental barrier to the performance of large-scale computations \cite{Pavicic2006}.
 
+
+\subsection{Quantum computing requirements}
+As ever-promising the concepts of quantum technology are, the physical realizations are in the preliminary stage of development. Here we will concretize critical principles for a physical realisation of a quantum platform.
+
+\begin{quote}
+   ``I always said that in some sense, these criteria are exactly the ones that you would teach to kindergarten children about computers, quantum or otherwise'' DiVincenzo \cite{Georgescu2020}
+\end{quote}
+
+DiVincenzo formulated in the year of $2000$ seven basic criteria for a physical qubit system with a logic-based architecture \cite{DiVincenzo2000}.
+
+\begin{enumerate}
+  \item A scalable physical system with well characterized qubits
+  \item The ability to initialize the state of the qubits to a simple initial system
+  \item Have coherence times that are much longer than the gate operation time
+  \item Have a universal set of quantum gates
+  \item Have the ability to perform qubit-specific measurements
+  %\item The ability to convert stationary qubits to flying qubits
+  %\item The ability to faithfully transmit flying qubits between specified locations
+\end{enumerate}
+
+These five criteria must be met for a quantum platform to be considered a quantum computer.
+
+%The first five criteria (1-5) must be met for a quantum platform to be considered a quantum computer, while the two last criteria (6-7) were added for quantum communication, since its applications provide a unique advantage compared to its classical counterpart.
+
+
 %Quantum hardware and -software are both in the preliminary stage of development, and it will be interesting to follow their progress the following years.
 
-\subsection{Quantum communication}
+\section{Quantum communication}
 
 Quantum communication refers to the transfer of a state of one quantum system to another. Since information can be stored in qubits, we picture \textit{flying qubits} that transfer information from one location to another \cite{Griffiths2002}. The benefits of using flying qubits are in particular valued in quantum cryptography, since the quantum nature of qubits can be exploited to add extra layers of security \cite{Pavicic2006}.
 
@@ -67,7 +89,7 @@ A clever approach to ensure confidentiality is to send the encryption key before
 
 Most applications and experiments use optical fibers for sending information via photons, with the distance regarded as the main limitation. This is because classical repeaters are unable to enhance quantum information because of the no-cloning theorem, making photon loss in optical fiber cables inevitable. Thus, quantum communication must reinvent the repeater concept, using hardware that preserves the quantum nature \cite{Acin2018} and are compatible with wavelengths used in telecommunication. Nonetheless, secure QKD up to $400$ km has recently been demonstrated using optical fibres in academic prototypes \cite{Boaron2018}.
 
-\subsection{Quantum sensing}
+\section{Quantum sensing}
 
 Measurements are part of our digital world today to a great extent. There would be no way to exchange goods, services or information without reliable and precise measurements \cite{Acin2018}. Thus, improving the accuracy of sensors for every measurement done is desirable. One method to improve measurement accuracy, resolution and sensitivity can be by utilizing quantum sensors. Quantum sensors exploit quantum properties to measure a physical quantity \cite{Degen2017}. This is possible because quantum systems are highly susceptible to pertubations to its surroundings, and can be used to detect physical properties such as either temperature or an electrical or magnetic field \cite{Degen2017}.
 
@@ -75,29 +97,7 @@ For a quantum system to be able to function as a quantum sensors, a few criteria
 
 It is also possible to also exploit quantum entanglement to improve the precision of a measurement. This gain of precision is used to reach what is called the Heisenberg-limit, which states that the precision scales as the number of particles $N$ in an idealized quantum system \cite{Degen2017, Acin2018}, while the best classical sensors scale with $\sqrt{N}$.
 
-
-\subsection{Quantum computing requirements}
-As ever-promising the concepts of quantum technology are, the physical realizations are in the preliminary stage of development. Here we will concretize critical principles for a physical realisation of a quantum platform.
-
-\begin{quote}
-   ``I always said that in some sense, these criteria are exactly the ones that you would teach to kindergarten children about computers, quantum or otherwise'' DiVincenzo \cite{Georgescu2020}
-\end{quote}
-
-DiVincenzo formulated in the year of $2000$ seven basic criteria for a physical qubit system with a logic-based architecture \cite{DiVincenzo2000}.
-
-\begin{enumerate}
-  \item A scalable physical system with well characterized qubits
-  \item The ability to initialize the state of the qubits to a simple initial system
-  \item Have coherence times that are much longer than the gate operation time
-  \item Have a universal set of quantum gates
-  \item Have the ability to perform qubit-specific measurements
-  \item The ability to convert stationary qubits to flying qubits
-  \item The ability to faithfully transmit flying qubits between specified locations
-\end{enumerate}
-
-The first five criteria (1-5) must be met for a quantum platform to be considered a quantum computer, while the two last criteria (6-7) were added for quantum communication, since its applications provide a unique advantage compared to its classical counterpart.
-
-\subsection{Available quantum platforms}
+\section{Available quantum platforms}
 
 %Before a quantum system can be used in either quantum computing, quantum cryptography or quantum sensing, a few criterias has to be met. They are formulated by
 
@@ -121,7 +121,7 @@ A QD can normally be defined litographically using metallic gates, or as self-as
 
 Lastly, we will turn towards point defects in bulk semiconductors as a physical implementation of a quantum platform. Point defects shares many of the attributes of quantum dots, such as discrete optical transitions and controllable coherent spin states, but are vulnerable to small changes in the lattice of the semiconductor. Thus, it can be difficult to isolate a point defect from the surrounding environment. However, one can utilize the strength of the solid-state semiconductor host to isolate to some extent the point defect, yielding extended coherence times and greater optical homogeneity than other quantum dot systems. Before we dwell into the intricacies of point defect qubits as a building block for QT, we will provide the neccessary background for the crystal- and electronic structure of semiconductors.   %Thus, we will hereafter focus our attention on qubit host candidates.
 
-\section{A brief overview of materials science}
+\section{Introduction to semiconductor physics}
 
 The interactions between atoms and characteristics of matter form the foundation of materials science. The applications of materials science are extensive, with examples such as a bottle of water or to a chair to sit in.
 
@@ -150,13 +150,11 @@ The motivation behind the research on perovskites is related to the large amount
 %Her kan jeg skrive videre om NV -1 strukturen og defekten, da den blir brukt senere.
 
 
-\section{Introduction to semiconductor physics}
-
-Isolated atoms have distinct energy levels, where the Pauli exlusion principle \cite{Pauli1925} states for fermions that each energy level can at most accomodate two electrons of opposite spin. In a solid, the discrete energy levels of the isolated atom spread into continuous energy bands since the wavefunctions of the electrons in the neighboring atoms overlap. Hence, an electron is not neccessarily localized at a particular atom anymore. Every material has a unique band structure, similar to every human having their unique fingerprint.
-
-\input{theory/tikz-plots/band-gaps.tex}
+Isolated atoms have distinct energy levels, where the Pauli exlusion principle \cite{Pauli1925} states for fermions that each energy level can at most accomodate two electrons of opposite spin. In a solid, the discrete energy levels of the isolated atom spread into continuous energy bands since the wavefunctions of the electrons in the neighboring atoms overlap. Hence, an electron is not neccessarily localized at a particular atom anymore. This is examplified as every material has a unique band structure, similar to every human having their unique fingerprint.
 
 Knowing which energy bands are occupied by electrons is the key in understanding the electrical properties of solids. The highest occupied electron band at $0$ K is called the valence band (VB), while the lowest unoccupied electron band is called the conduction band (CB). The energy gap of forbidden energy levels between the maximum VB and the minimum CB is known as the band gap, and its energy is denoted as $E_g$. If a material can be classified as a semiconductor depends on the band gap and the electrical conductivity. As an example, Silicon is commonly thought of as a semiconductor, and has a band gap of about $1.12$ eV at $275$ K \cite{Martienssen2005}.
+
+\input{theory/tikz-plots/band-gaps.tex}
 
 To be able to accelerate electrons in a solid using an electrical field, they must be able to move into new energy states. At $0$ K, the entire valence band of a semiconductor is full with electrons and there are no available states nearby, making it impossible for current to flow through the material. This can be solved by using either thermal or optical energy to excite electrons from the valence band to the conduction band, in order to \textit{conduct} electricity. At room temperature, some semiconductors will have electrons excited to the conduction band solely from thermal energy matching the energy band gap \cite{BenStreetman2015}.
 
@@ -194,7 +192,7 @@ The optical properties of a host material can be greatly influenced by defects, 
 
 \section{Semiconductor candidates for quantum technology}
 
-The properties of point defects are promising in a quantum technological perspective. We have seen that point defects fasciliate deep energy levels within the band gap of the semiconductor, and provide isolation in the solid-state matrix as a result from a high degree of localization of the defect orbitals. If the host material have a small spin-orbit coupling, it could provide long coherence times for a deep level trap in localized and high-spin states. Additionally, point defects have the potential to be single-photon sources, giving rise to sharp and distinguishable optical transitions, where a significant amount of the emission can be of the energy $E_{ZPL}$. This is in particular seen in wide bandgap semiconductors, and combined with a weak electron-phonon interaction, can have the capacity to be fabricated as a high-fidelity SPS with a significant ZPL part.
+The properties of point defects are promising in a quantum technological perspective. We have seen that point defects fasciliate deep energy levels within the band gap of the semiconductor, and provide isolation in the solid-state matrix as a result from a high degree of localization of the defect orbitals. If the host material have a small spin-orbit coupling, it could provide long coherence times for a deep level trap in localized and high-spin states. Additionally, point defects have the potential to be single-photon sources, giving rise to sharp and distinguishable optical transitions, where a significant amount of the emission can be of the energy $E_{ZPL}$. This is in particular seen in wide-bandgap semiconductors, and combined with a weak electron-phonon interaction, can have the capacity to be fabricated as a high-fidelity SPS with a significant ZPL part.
 
 The most studied point defect system is the nitrogen-vacancy ($NV^{-1}$) in diamond. Figure \ref{fig: diamond electronic structure} schematically shows the different stages of constructing the negative charge state. Panel \ref{fig:diamond structure} shows the electronic states that correspond to the difference for an isolated atom and a lattice of atoms, as a superposition of $sp^3$ orbitals that generates valence and conduction bands. In panel \ref{fig:defect diamond structure}, a vacancy has been created by removing a carbon atom, and the four orbitals interact with each other resulting in two new states with $a_1$ and $t_2$ symmetry due to dangling bonds. Substituting a carbon atom with a nitrogen atom further splits the $t_2$-states into two new states. The states $a(1)$ and $e_{x'}e_y$ are of importance, as they are the GS and the ES of the qubit defects, respectively. Here, an optical spin-conserving transition can occur due to a laser light of correct wavelength \cite{Gordon2013}, as exemplified from the discussion from the last section.
 
@@ -206,9 +204,11 @@ The nitrogen-vacancy in diamond is a prominent single-photon source up to room t
 
 Unfortunately, the NV-center display restricted capababilities for quantum communication and computation. The amount of emission into the zero-phonon line is $4 \%$ at $6$ K \cite{Barclay2011}, which is low. The emission of the qubit center is not completely compatible with current optical fiber technologies, since the emission is in the red wave-length specter. Additionally, fabricating materials of diamond is far from unchallenging and serves as a signficant incentive to find other promising qubit candidates.
 
-Therefore, we turn to the search of other qubit systems that offers similar capabilities, but that are more user-friendly. In particular, we need to search for new promising materials that can host a potential qubit. Weber \textit{et al.} \cite{Weber2010} proposed in 2010 four criteria that should be met for a solid-state semiconductor material hosting a qubit defect, whereas some of the criteria has already been discussed. An ideal crystalline host should have \cite{Weber2010}
+\subsection{Qubit material host requirements}
+
+Therefore, we turn to the search of other QT compatible hosts that offers similar capabilities, but that are more user-friendly. In particular, we need to search for new promising materials that can host a potential point defect. Weber \textit{et al.} \cite{Weber2010} proposed in 2010 four criteria that should be met for a solid-state semiconductor material hosting a qubit defect, whereas some of the criteria has already been discussed. An ideal crystalline host should have \cite{Weber2010}
 \begin{itemize}
-  \item[(H1)] A wide band gap to accomodate a deep center.
+  \item[(H1)] A wide-band gap to accomodate a deep center.
   \item[(H2)] Small spin-orbit coupling in order to avoid unwanted spin flips in the defect bound states.
   \item[(H3)] Availability as high-quality, bulk, or thin-film single crystals.
   \item[(H4)] Constituent elements with naturally occuring isotopes of zero nuclear spin.
@@ -217,14 +217,6 @@ Therefore, we turn to the search of other qubit systems that offers similar capa
 %Host candidates that satisfy criteria (H1) and (H2) can be found by studying the electronic structure of the compounds. What tends to happen for defects in semiconductors, is that the electronic states associated with the defect have energies that lie within the (forbidden) band gap of the semiconductor. This is schematically drawn and explained for diamond in figure (\ref{fig: diamond electronic structure}). A large band gap can accomodate multiple highly isolated states and make them confined and isolated from interactions with the environment, which is favorable for longer coherence times. However, the desired band gap depends on the application, since the Fermi level of large band gap materials is challenging to control \cite{Bassett2019}.
 
 Table (\ref{tab:qubithosts}) lists several material host candidates that exhibit promising band gap capable of accommodating a deep level defect. The spin-orbit splitting is an indication of the strength of the spin-orbit interaction, and is taken at the $\Gamma$ point from the valence-band splitting. A smaller value may indicate less susceptibility to decoherence.
-
-Criterion (H3) is important for scalability and further potential for a large-scale fabrication. The given candidate hosts provided in table (\ref{tab:qubithosts}) can all be grown as single crystals, but with varying quality and size.
-
-Normally, nuclear spin is a major source of decoherence for all semiconductor-based quantum technologies. This would exclude the use of all elements in odd groups in the periodic table, since these elements exhibit nonzero nuclear spin. As a result, the spin-coherence time of a paramagnetic deep center \cite{Weber2010} might increase. However, nuclear spin can also induce additional quantum degrees of freedom for applications in the right configuration \cite{Bassett2019}. Therefore, criterion (H4) is not a strict requirement but is a general recommendation for reducing decoherence time.  %Therefore, we will not completely exclude all nonzero nuclear spin elements from our list.
-
-%In fact, all of the criteria could be regarded as recommendations,
-
-Weber \textit{et al} \cite{Weber2010} use criteria $(H1)-(H4)$ to specifically find analogies to the $NV^{-1}$ center in other material systems, thus leaving the discussion of other criteria out, such as the choice of crystal system. The atomic configuration and crystal structure of a material strongly influences the properties of a defect, since a defect's orbital and spin structure is dependent on its spatial symmetry \cite{Bassett2019}. In particular, it is the point group that decides which multiplicity a given energy level should have \cite{James1976}. A higher defect symmetry group generally facilitates degenerate states, which may give rise to high spin states according to Hund's rules \cite{Bassett2019, Togan2010}. Inversion symmetry in the host crystal can also be beneficial, resulting in reduced inhomogenous broadening and spectral diffusion of optical transitions as a consequence of being generally insensitive to external electric fields \cite{Bassett2019}.
 
 \begin{table}[!ht]
 \centering
@@ -235,8 +227,8 @@ Weber \textit{et al} \cite{Weber2010} use criteria $(H1)-(H4)$ to specifically f
   Material & Band gap  $E_g$ (eV) & Spin-orbit splitting $\Delta_{so}$ (meV) & Stable spinless nuclear isotopes? \\
   \hline
   3C-SiC & 2.39 & 10 & Yes \\
-  4C-SiC & 3.26 \cite{Neudeck1995} & 6.8 & Yes \\
-  6C-SiC & 3.02 & 7.1 & Yes \\
+  4H-SiC & 3.26 \cite{Neudeck1995} & 6.8 & Yes \\
+  6H-SiC & 3.02 & 7.1 & Yes \\
   AlN & 6.13 & 19 \cite{Silveira2005} & No \\
   GaN & 3.44 & 17.0 & No \\
   AlP & 2.45 & 50 \cite{Lawaetz1971} & No \\
@@ -259,4 +251,47 @@ Weber \textit{et al} \cite{Weber2010} use criteria $(H1)-(H4)$ to specifically f
 \label{tab:qubithosts}
 \end{table}
 
- \newpage
+Criterion (H3) is important for scalability and further potential for a large-scale fabrication. The given candidate hosts provided in table (\ref{tab:qubithosts}) can all be grown as single crystals, but with varying quality and size.
+
+Normally, nuclear spin is a major source of decoherence for all semiconductor-based quantum technologies. This would exclude the use of all elements in odd groups in the periodic table, since these elements exhibit nonzero nuclear spin. As a result, the spin-coherence time of a paramagnetic deep center \cite{Weber2010} might increase. However, nuclear spin can also induce additional quantum degrees of freedom for applications in the right configuration \cite{Bassett2019}. Therefore, criterion (H4) is not a strict requirement but is a general recommendation for reducing decoherence time.  %Therefore, we will not completely exclude all nonzero nuclear spin elements from our list.
+
+%In fact, all of the criteria could be regarded as recommendations,
+
+Weber \textit{et al} \cite{Weber2010} use criteria $(H1)-(H4)$ to specifically find analogies to the $NV^{-1}$ center in other material systems, thus leaving the discussion of other criteria out, such as the choice of crystal system. The atomic configuration and crystal structure of a material strongly influences the properties of a defect, since a defect's orbital and spin structure is dependent on its spatial symmetry \cite{Bassett2019}. In particular, it is the point group that decides which multiplicity a given energy level should have \cite{James1976}. A higher defect symmetry group generally facilitates degenerate states, which may give rise to high spin states according to Hund's rules \cite{Bassett2019, Togan2010}. Inversion symmetry in the host crystal can also be beneficial, resulting in reduced inhomogenous broadening and spectral diffusion of optical transitions as a consequence of being generally insensitive to external electric fields \cite{Bassett2019}.
+
+\begin{wrapfigure}{r}{0.6\textwidth}
+  \centering
+  \includegraphics[width=0.6\textwidth]{theory/figures/4H-SiC.png}
+  \caption{Schematic illustration of various point defects in 4H-SiC, where Si atoms are blue while C atoms are orange. The illustration includes the point defects Si vacancy ($\text{V}_{\text{Si}}$), C vacancy ($\text{V}_{\text{C}}$), divacancy ($\text{V}_{\text{Si}}\text{V}_{\text{C}}$), carbon antisite-vacancy pair ($\text{C}_{\text{Si}}\text{V}_{\text{C}}$), nitrogen-vacancy ($\text{N}_{\text{C}}\text{V}_{\text{Si}}$) and the vanadium impurity ($\text{V}$). }
+  \label{fig:4H-SiC}
+\end{wrapfigure}
+
+\subsection{Silicon carbide}
+
+Silicone carbide (SiC) is an emerging quantum platform that exists in a wide variety of polytypes, with $3C$, 4H and 6H being the most prominent configurations. Several of the polytypes have been demonstrated to host SPEs  with a slightly different emitter characteristic, which provides the opportunity to select the desired properties based on the variety of lattice configurations and point defects available \cite{Weber2010, Son2020, Falk2013}. While 3C has a cubic structure, we find 4H in a hexagonal structure with both hexagonal ($h$) and pseudo-cubic ($k$) lattice sites. 6H is found in a hexagonal structure with the three orientations that are labelled $h$, $k_1$ and $k_2$. Importantly, SiC in the three varieties experience wide-band gaps, low spin orbit coupling and stable spinless nuclear isotopes \cite{Neudeck1995, Weber2010, Martienssen2005}, as seen from table \ref{tab:qubithosts}. Furthermore, SiC benefits from mature fabrication on the wafer-scale, which checks the last of the four (H1-H4) QT host requirements, marking it as a suitable quantum material platform.
+
+
+The most studied emitters in SiC include the carbon antisite-vacancy pair $\text{C}_{\text{Si}}\text{V}_{\text{C}}$ that emits in the red, the silicon vacancy $\text{V}_{\text{Si}}$ that emits in the near infra-red, and the divacancy ($\text{V}_{\text{Si}}\text{V}_{\text{C}}$) and the nitrogen-vacancy center ($\text{N}_{\text{C}}\text{V}_{\text{Si}}$) that both emit at near-telecom wavelengths. Thus, the two latter emitters could potentially ease the integration with optic fiber technologies as compared to e.g. the $\text{NV}^{-}$. Additionally, the four different point defects have all been identified as room-temperature SPEs with demonstrated coherent spin control \cite{Widmann2014, }. Illustrations of several configurations of emitters in 4H-SiC are included in figure \ref{fig:4H-SiC}.
+
+\subsection{Other materials}
+
+Single photon emitters have been observed in other semiconductor materials, however most of the emitters are yet to be identified or are in an early stage of identification. Therefore, specific details about spin- or emission-related structure are yet to be implemented. In this section we will briefly mention recent promising materials for QT.
+
+One immediate potential candidate is silicon, considering the favorable device fabrication processes that are available. It has demonstrated that phosphorous impurities at Si sites can store a quantum state for over $30$ seconds, enabling their use in a potential Kane quantum computer \cite{Zhang2020}. Unfortunately, the P impurity lack any single photon source capabilities. Recently, however, the G-center arising from the carbon-interstitial carbon-substitutional ($\text{C}_{\text{s}}\text{C}_{\text{i}}$) complex was identified as an promising SPE candidate with single photon emissions at telecom wavelength \cite{Redjem2020}.
+
+Other materials that emits individual photons have been detected in other wide-band gap semiconductors, including ZnO, ZnS, GaN and AlN \cite{Zhang2020}. Unfortunately, challenges due to the specific materials complicate the implementation of defects for QT. ZnO and ZnS experience a broad emission due to a large photon involvement. GaN and AlN, on the other hand, are more susceptible to a more narrow emission, where room-temperature SPE has been demonstrated for both GaN \cite{Berhane2018} and wurtzite AlN films \cite{Xue2020}. The defect levels for AlN films have been tentatively assigned to the nitrogen-vacancy and divacancy complexes, but they tend to occur too close to the band edges for any SPE \cite{Zhang2020, Varley2016}.
+
+Two-dimensional materials such as hexagonal boron nitride ($h$-BN) are also of interest as quantum platforms \cite{Toth2019}. The structure exists in single- or multilayers, and it has been demonstrated a broad range of stable room-temperature single-photon emitters \cite{Tran2016, Tran2016a}. However, secure identification for the source of the emission is yet to be established \cite{Weston2018, Abdi2018}.
+
+\subsection{Associated challenges with material host discovery}
+
+The idea of finding new potential host candidates to utilise point defects in QT is of a challenging sort. Recall, we have made four criteria that deals with the required (H1) band gaps, (H2) spin-orbit coupling, (H3) availability and (H4) spin-zero isotopes, but we have no knowledge of if there should be more criteria or to what extent a criteron needs to be fulfilled. What we do know is that there are major advantages if materials exhibit properties such as isolation in the lattice and weak electron-photon interaciton, however, the process to provide any quantity of measurements are through approximations and material-specific properties. These approximations does not neccessarily capture quantum properties well.
+
+Furthermore, the identified candidates constitues an immensely selective group with only a handful potential hosts. As an example, all known potential hosts are unary or binary. This is probably due to the increasing complexity dealing with an additional level of interactions in the lattice. It is not to avoid that quantum technology is in its preliminary phase of development. Therefore, there are reasons to believe that many potential hosts are yet to be discovered. 
+
+%The author is not aware of any work with the objective of identifying candidate hosts, however, similar work has recently been published.
+
+%However, it is not to avoid that both quantum  hardware and -software is in its preliminary phase of development, and it will be interesting to follow up the progression the following years.
+
+
+\newpage

@@ -1,28 +1,148 @@
-%\chapter{Code for extracting data from databases}
+\chapter{Extracting information from ab-initio calculations}
 
-%\section{Materials Project}
+\section{The Born-Oppenheimer approximation}
+\label{appendix:Born-Oppenheimer}
 
-%\lstinputlisting[language=Python, caption={Class for extracting the initial query for Materials Project.}, label={lst:MP_class}]{miscellaneous/appendices/code-listings/MP.tex}
+The many-particle eigenfunction describes the wavefunction of all the electrons and nuclei and we denote it as $\Psi_{\kappa}^{en}$ for electrons (e) and nuclei (n), respectively. The Born-oppenheimer approximation assumes that nuclei, of substantially larger mass than electrons, can be treated as fixed point charges. According to this assumption, we can separate the eigenfunction into an electronic part and a nuclear part,
+\begin{align}
+  \Psi_\kappa^{en}(\textbf{r}, \textbf{R}) \approx \Psi_{\kappa}(\textbf{r}, \textbf{R})\Theta_{\kappa}(\textbf{R}),
+\end{align}
+where the electronic part is dependent on the nuclei. This is in accordance with the assumption above, since electrons can respond instantaneously to a new position of the much slower nucleus, but this is not true for the opposite scenario. To our advantage, we already have knowledge of the terms in the many-particle Hamiltionian, and we can begin by separating the Hamiltionian into electronic and nuclear parts:
 
-%\section{Citrine Informatics}
 
-%\lstinputlisting[language=Python, caption={Class for extracting data from Citrine Informatics.}, label={lst:Citrine_class}]{miscellaneous/appendices/code-listings/Citrine.tex}
+\begin{align}
+  \hat{H}^{en} = \overbrace{T_e + U_{ee} + U_{en}}^{\hat{H}^{e}} + \overbrace{T_n + U_{nn}}^{\hat{H}^{n}}.
+\end{align}
+Starting from the Schrödinger equation, we can formulate separate expressions for the electronic and the nuclear Schrödinger equations.
 
-%\section{OQMD}
+\begin{align}
+  \hat{H^{en}} \Psi_\kappa^{en}(\textbf{r},\textbf{R}) &= E_\kappa^{en}\Psi_\kappa^{en}(\textbf{r},\textbf{R}) \quad \lvert \times \int \Psi^*(\textbf{r},\textbf{R}) d\textbf{r} \\
+  \int \Psi_\kappa^*(\textbf{r},\textbf{R}) (\hat{H}^e + \hat{H}^n)\Psi_\kappa(\textbf{r},\textbf{R})\Theta_\kappa(\textbf{R})d\textbf{r} &= E_\kappa^{en} \underbrace{\int \Psi_\kappa ^* (\textbf{r},\textbf{R}) \Psi_\kappa (\textbf{r},\textbf{R}) d\textbf{r}}_{1} \Theta_\kappa(\textbf{R}).
+\end{align}
 
-%\lstinputlisting[language=Python, caption={Class for extracting data from OQMD.}, label={lst:OQMD_class}]{miscellaneous/appendices/code-listings/OQMD.tex}
+Since $\Theta_\kappa(\textbf{R})$ is independent of the the spatial coordinates to electrons, we get $E_{\kappa}$ as the total energy of the electrons in the state $\kappa$.
 
-%\section{AFLOW}
+\begin{align}
+     E_\kappa(\textbf{R}) \Theta_k(\textbf{R}) + \int \Psi_k^*(\textbf{r},\textbf{R})H^n\Psi_k(\textbf{r},\textbf{R})\Theta_k(\textbf{R})d\textbf{r} = E_k^{en} \Theta_k(\textbf{R}).
+\end{align}
 
-%\lstinputlisting[language=Python, caption={Class for extracting data from AFLOW.}, label={lst:AFLOW_class}]{miscellaneous/appendices/code-listings/AFLOW.tex}
+Now, the final integration term can be simplified by using the product rule, which results in
+\begin{align}
+    \Big( T_n+T_n^{'} + T_n^{''} +U_{nn} + E_\kappa(\textbf{R}) \Big)\Theta_\kappa(\textbf{R}) = E_\kappa^{en}\Theta_\kappa (\textbf{R}).
+\end{align}
+If we neglect $T_n'$ and $T_n^{''}$ to lower the computational efforts, we obtain the Born-Oppenheimer approximation with the electronic eigenfunction as
+\begin{align}
+    \left( T_e + U_{ee} + U_{en} \right) \Psi_\kappa (\textbf{r},\textbf{R}) = E_{\kappa}(\textbf{R})\Psi_\kappa(\textbf{r},\textbf{R})
+\end{align}
+and the nuclear eigenfunction as
+\begin{align}
+    \left(T_n + U_{nn} + E_\kappa (\textbf{R}) \right) \Theta_\kappa(\textbf{R})= E_{\kappa}^{en}(\textbf{R})\Theta_\kappa(\textbf{r},\textbf{R}).
+\end{align}
 
-%\section{AFLOW-ML}
+%These two equations are coupled together through the total energy, which is a potential in the nuclear equation.
+How are they coupled, you might ask? The total energy in the electronic equation is a potential in the nuclear equation.
 
-%\lstinputlisting[language=Python, caption={Class for extracting data from AFLOW-ML.}, label={lst:AFLOWML_class}]{miscellaneous/appendices/code-listings/AFLOW-ML.tex}
+\section{The variational principle}
+\label{appendix:variational-principle}
+So far, we have tried to make the time-independent Schrödinger equation easier with the use of an \textit{ansatz}, but we do not neccessarily have an adequate guess for the eigenfunctions and the ansatz can only give a rough estimate in most scenarios. Another approach, namely the \textit{variational principle}, states that the energy of any trial wavefunction is always an upper bound to the exact ground state energy by definition $E_0$.
+\begin{align}
+  E_0 = \bra{\psi_0 } H \ket{\psi_0} \leq \bra{\psi}H\ket{\psi} = E
+  \label{eq:variational}
+\end{align}
+The eigenfunctions of $H$ form a complete set, which means any normalized $\Psi$ can be expressed in terms of the eigenstates
+\begin{align}
+  \Psi = \sum_n c_n \psi_n, \quad \textnormal{where} \quad H\psi_n = E_n \psi_n
+\end{align}
+for all $n = 1,2, ...$. The expectation value for the energy can be calculated as
+\begin{align*}
+  \bra{\Psi}H\ket{\Psi} &= \bra{\sum_{n}c_n \psi_n} H \ket{\sum_{n'} c_{n'}\psi_{n'}} \\
+  &= \sum_n \sum_{n'} c_{n}^* c_{n'} \bra{\psi_n}H\ket{\psi_{n'}} \\
+  &= \sum_n \sum_{n'} c_{n}^* E_n c_{n'} \bra{\psi_{n}}\ket{\psi_{n'}} \\
+\end{align*}
+Here we assume that the eigenfunctions have been orthonormalized and we can utilize $\bra{\psi_{m}}\ket{\psi_{n}}=\delta_{mn}$, resulting in
+\begin{align*}
+  \sum_n c_n^*c_n E_n = \sum_n \lvert c_n \rvert^2 E_n.
+\end{align*}
+We have already stated that $\Psi$ is normalized, thus $\sum_n \lvert c_n \rvert ^2 = 1 $, and the expectation value conveniently is bound to follow equation \ref{eq:variational}.
+The quest to understand the variational principle can be summarized in a sentence - it is possible to tweak the wavefunction parameters to minimize the energy, or summed up in a mathematical phrase,
+\begin{align}
+  E_0 = \min_{\Psi \rightarrow \Psi_0} \bra{\Psi}H\ket{\Psi}.
+\end{align}
 
-%\section{JARVIS}
+\section{The Hohenberg-Kohn theorems}
 
-%\lstinputlisting[language=Python, caption={Class for extracting data from JARVIS-.}, label={lst:JARVIS_class}]{miscellaneous/appendices/code-listings/JARVIS.tex}
+\subsection{The Hohenberg-Kohn theorem 1}
+\label{appendix:theorem1}
+
+\begin{proof}
+  Assume that two external potentials $V_{ext}^{(1)}$ and $V_{ext}^{(2)}$, that differ by more than a constant, have the same ground state density $n_0(r)$. The two different potentials correspond to distinct Hamiltonians $\hat{H}_{ext}^{(1)}$ and $\hat{H}_{ext}^{(2)}$, which again give rise to distinct wavefunctions $\Psi_{ext}^{(1)}$ and $\Psi_{ext}^{(2)}$. Utilizing the variational principle, we find that no wavefunction can give an energy that is less than the energy of $\Psi_{ext}^{(1)}$ for $\hat{H}_{ext}^{(1)}$, that is
+  \begin{align}
+    E^{(1)} = \bra{\Psi^{(1)}}\hat{H}^{(1)}\ket{\Psi^{(1)}} &< \bra{\Psi^{(2)}}\hat{H}^{(1)}\ket{\Psi^{(2)}} \label{eq:E1}
+  \end{align}
+  and
+  \begin{align}
+    E^{(2)} = \bra{\Psi^{(2)}}\hat{H}^{(2)}\ket{\Psi^{(2)}} &< \bra{\Psi^{(1)}}\hat{H}^{(2)}\ket{\Psi^{(1)}}.
+    \label{eq:E2}
+  \end{align}
+  Assuming that the ground state is not degenerate, the inequality strictly holds. Since we have identical ground state densities for the two Hamiltonian's, we can rewrite the expectation value for equation \ref{eq:E1} as
+  \begin{align*}
+    E^{(1)} &= \bra{\Psi^{(1)}}\hat{H}^{(1)}\ket{\Psi^{(1)}} \\
+    &= \bra{\Psi^{(1)}}T + U_{ee} + U_{ext}^{(1)}\ket{\Psi^{(1)}} \\
+    &= \bra{\Psi^{(1)}} T + U_{ee} \ket{\Psi^{(1)}} + \int \Psi^{*(1)}(\textbf{r})V_{ext}^{(1)}\Psi^{(1)}(\textbf{r})d\textbf{r} \\
+    &= \bra{\Psi^{(1)}} T + U_{ee} \ket{\Psi^{(1)}} + \int V_{ext}^{(1)} n(\textbf{r})d\textbf{r} \\
+    &< \bra{\Psi^{(2)}}\hat{H}^{(1)}\ket{\Psi^{(2)}} \\
+    &= \bra{\Psi^{(2)}} T + U_{ee} + U_{ext}^{(1)} + \overbrace{U_{ext}^{(2)} - U_{ext}^{(2)} }^{0} \ket{\Psi^{(2)}}\\
+    &= \bra{\Psi^{(2)}} T + U_{ee} + U_{ext}^{(2)}\ket{\Psi^{(1)}} + \int \left(V_{ext}^{(1)} - V_{ext}^{(2)}\right) n(\textbf{r})d\textbf{r} \\
+    &= E^{(2)} + \int \left(V_{ext}^{(1)} - V_{ext}^{(2)}\right) n(\textbf{r})d\textbf{r}.
+  \end{align*}
+Thus,
+\begin{align}
+  E^{(1)} = E^{(2)} + \int \left(V_{ext}^{(1)} - V_{ext}^{(2)}\right) n(\textbf{r})d\textbf{r}
+\end{align}
+A similar procedure can be performed for $E^{(2)}$ in equation \ref{eq:E2}, resulting in
+
+\begin{align}
+  E^{(2)} = E^{(1)} + \int \left(V_{ext}^{(2)} - V_{ext}^{(1)}\right) n(\textbf{r})d\textbf{r}.
+\end{align}
+If we add these two equations together, we get
+\begin{align}
+  E^{(1)} + E^{(2)} < E^{(2)} + E^{(1)} &+ \int \left( V_{ext}^{(1)} - V_{ext}^{(2)}n(\textbf{r})d\textbf{r} \right) \nonumber \\  &+ \int \left( V_{ext}^{(2)} - V_{ext}^{(1)}n(\textbf{r})d\textbf{r} \right) \nonumber \\
+  E^{(1)} + E^{(2)} < E^{(2)} + E^{(1)},
+\end{align}
+which is a contradiction. Thus, the two external potentials cannot have the same ground-state density, and $V_{ext}(\textbf{\textbf{r}})$ is determined uniquely (except for a constant) by $n(\textbf{\textbf{r}})$.
+\end{proof}
+
+\subsection{The Hohenberg-Kohn theorem 2}
+\label{appendix:theorem2}
+
+\begin{proof}
+  Since the external potential is uniquely determined by the density and since the potential in turn uniquely determines the ground state wavefunction (except in degenerate situations), all the other observables of the system are uniquely determined. Then the energy can be expressed as a functional of the density.
+  \begin{align}
+    E[n] = \overbrace{T[n] + U_{ee}[n]}^{F[n]} + \overbrace{U_{en}[n]}^{\int V_{en}n(r)dr}
+    %\label{eq:densityfunctional}
+  \end{align}
+  where $F[n]$ is a universal functional because the treatment of the kinetic and internal potential energies are the same for all systems, however, it is most commonly known as the Hohenberg-Kohn functional.
+
+  In the ground state, the energy is defined by the unique ground-state density $n_0(r)$,
+  \begin{align}
+    E_0 = E[n_0] = \bra{\Psi_0}H\ket{\Psi_0}.
+  \end{align}
+  From the variational principle, a different density $n(r)$ will give a higher energy
+  \begin{align}
+    E_0 = E[n_0] = \bra{\Psi_0}H\ket{\Psi_0} < \bra{\Psi}H\ket{\Psi} = E[n]
+  \end{align}
+  Thus, the total energy is minimized for $n_0$, and so has to be the ground-state energy.
+\end{proof}
+
+\section{Self-consistent field methods}
+\label{appendix:self-consistent}
+
+So, the remaining question is, how do we solve the Kohn-Sham equation? First, we would need to define the Hartree potential, which can be found if we know the electron density. The electron density can be found from the single-electron wave-functions, however, these can only be found from solving the Kohn-Sham equation. This \textit{circle of life} has to start somewhere, but where? The process can be defined as an iterative method, \textit{a computational scheme}, as visualized in figure \ref{fig:flowchart}.
+
+\clearpage
+\input{theory/tikz-plots/self-consistent-field.tex}
+
+\clearpage
 
 \chapter{Featurizaton}
 

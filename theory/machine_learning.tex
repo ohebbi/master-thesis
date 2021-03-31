@@ -1,63 +1,60 @@
 \chapter{Machine learning}
 
-The enourmous amount of data generated in the digital world today is beyond comprehension. In $2019$, more than $500$ hours of video was uploaded to Youtube every second, totalling to over $82$ years of content every day \footnote{Source: https://www.youtube.com/intl/no/about/press/ extracted 15.02.2021}. In addition, more than 1 trillion web pages exists and has information that needs to be stored somewhere.
+The enourmous amount of data generated in the digital world today is beyond comprehension. In $2019$, more than $500$ hours of video was uploaded to Youtube every second, totalling to over $82$ years of content every day \footnote{Source: https://www.youtube.com/intl/no/about/press extracted 15.02.2021}. In addition, more than $1.5$ billion web sites exists \footnote{Source: https://www.statista.com/chart/19058/how-many-websites-are-there extracted 29.03.2021}.
 
-However, an increasing amount of data comes hand in hand with an increasing demand of knowledge about the data. If we are unable to extract information from the data, the data serves no intention and exists as an excess. Therefore, we need methods to process and automate data analysis, which is what the promises of \textit{machine learning} covers. Machine learning can reveal patterns in data with ease where a human would face difficulties, and use this information to predict or generate new data. Many tools in machine learning is based on probability theory, which can be applied to problems involving uncertainty. Thus, machine learning is also commonly (and boringly) named as \textit{statistical learning}.
+However, an increasing amount of data comes hand in hand with an increasing demand of knowledge about the data. If we are unable to extract information from the data, the data serves no intention and exists as an excess. Therefore, we need methods to process and automate data analysis, which is what the promises of \textit{machine learning} covers. Machine learning can reveal patterns in data with ease where a human would face difficulties, and use this information to predict or generate new data. Many tools in machine learning is based on probability theory, which can be applied to problems involving uncertainty. Thus, machine learning is also commonly named as \textit{statistical learning} \cite{Murphy2012}.
 
-There are mainly two types of machine learning, either \textit{supervised} or \textit{unsupervised} learning. In unsupervised learning we are given inputs $\mathcal{D}=\{\textbf{x}_i\}^N_{i=1}$, and it is neccessary to use the tools of machine learning to find peculiar and interesting patterns. In the supervised approach, on the other hand, the model tries to learn a mapping from inputs $\textbf{x}$ to outputs $y$, given a labeled set of pairs $\mathcal{D}=\{(\textbf{x}_i, y_i)\}^N_{i=1}$. The set $\mathcal{D}$ is known as the training set, and $N$ is the number of entries. Each training input $\textbf{x}_i$ has $D$-dimensions that describes each entry, where each dimension is known as a \textit{feature}. The features could be examplified as height or weight, or it could be something complex that has no practical meaning. The flexibility of the shape of a feature is also shared with the output. It can in principle be anything, but it is mostly assumed that the output is either \textit{categorical} or \textit{nominal} restricted by a finite set $y_i \in \{1,...,\mathcal{C} \}$. The problem is defined as \textit{classification} if the output is categorical, or \textit{regression} if the output is real-valued \cite{Murphy2012}.
+There are mainly two types of machine learning, either \textit{supervised} or \textit{unsupervised} learning. In unsupervised learning we are given inputs $\mathcal{D}=\{\textbf{x}_i\}^N_{i=1}$, where $\textbf{x}_i$ is a training input that has $D$-dimensions that describes each entry, where each dimension is known as a \textit{feature}. The features could be examplified as height or weight, or it could be something complex that has no practical meaning (at least not to humans). Since there are no features describing what an entry is, it is up to the tools of machine learning to find patterns in the data, and is the essence of unspervised learning. In the supervised approach, on the other hand, the model tries to learn a mapping from inputs $\textbf{x}$ to outputs $y$, given a labeled set of pairs $\mathcal{D}=\{(\textbf{x}_i, y_i)\}^N_{i=1}$. The set $\mathcal{D}$ is known as the training set, and $N$ is the number of entries. The flexibility of the shape of a feature is also shared with the output. It can in principle be anything, but it is mostly assumed that the output is either \textit{categorical} or \textit{nominal} restricted by a finite set $y_i \in \{1,...,\mathcal{C} \}$. The problem is defined as \textit{classification} if the output is categorical, or \textit{regression} if the output is real-valued \cite{Murphy2012}.
 
 %This is, however, outside of the scope of this thesis, since we will solely focus on supervised classification.
 
 \section{Supervised learning}
 
-Recall, supervised learning in classification has as goal to learn the target output $y \in \{1,..,\mathcal{C}\}$ from the inputs $\textbf{x}$. The number of classes is $\mathcal{C}$, and depicts if the classification is \textit{binary} ($\mathcal{C}=2$), \textit{multiclass} ($\mathcal{C}>2$), or \textit{multi-label} if the class labels are not mutually exclusive (examplified with the weather can be both sunny and cold at the same time). Normally, classification is used when the problem is formulated as a multiclass classification, and hereon we will adapt to the formulation as well \cite{Murphy2012}.
+Supervised learning applied to classification has as goal to learn the target output $y \in \{1,..,\mathcal{C}\}$ from the inputs $\textbf{x}$. The number of classes is $\mathcal{C}$, and depicts if the classification is \textit{binary} ($\mathcal{C}=2$), \textit{multiclass} ($\mathcal{C}>2$), or \textit{multi-label} if the class labels are not mutually exclusive (examplified with the weather can be both sunny and cold at the same time). Normally, classification is used when the problem is formulated as a multiclass classification, and hereon we will adapt to the formulation as well \cite{Murphy2012}.
 
-In order to be able to learn from data, we will need to formulate a function approximate. By assuming $y = f(x) + \epsilon$ for some unknown function $f$ and a random error term $\epsilon$ with mean zero, we can try to approximate $f$ from a labeled training set, which we can use to make the predictions $\hat{y}=\hat{f}(\textbf{x})$. With the estimated $\hat{f}$, we can make predictions on unlabeled data and achieve a \textit{generalized model}. The estimated function $\hat{f}$ is often considered as a black box, since we are not neccessary interested in the exact shape of the function but rather the predictions.
+In order to be able to learn from data, we will need to formulate a function approximate. Assume $y = f(x) + \epsilon$ for some unknown function $f$ and a random error term $\epsilon$ with mean zero. We can then try to approximate $f$ from a labeled training set, which we can use to make the predictions $\hat{y}=\hat{f}(\textbf{x})$. With the estimated $\hat{f}$ we can make predictions on unlabeled data and achieve a \textit{generalized model}. The estimated function $\hat{f}$ is often considered as a black box, since we are not neccessarily interested in the exact shape of the function but rather the predictions.
 
-As simple the idea behind supervised classification appears, a generalized model remains deeply dependent on the available data. Imagine a training set containing two entries. The first one is a young and tall person who is labeled as healthy. The other entry is an old and short person who is labeled sick. The pattern in this simple scenario is abundantly clear, but will face a challenge if it were to predict on a test set containing a person who is young and short.
-
-Therefore, it is desirable to compute the probability of an entry belonging to one class. The probability distribution is given by $p(y|\textbf{x}, \mathcal{D})$, where the probability is conditional on the input vector (test set) $x$ and the training set $\mathcal{D}$. If the output is probabilistic, we can compute the estimation to the true label as
+As simple as the idea behind supervised classification appears, a generalized model remains deeply dependent on the available data. Imagine a training set containing two entries. The first entry is a young and tall person labeled healthy. The other entry is an old and short person labeled sick. The pattern in this simple scenario is abundantly clear, but will face a challenge if it were to predict on a test set containing a person who is young and short. Therefore, it is desirable to compute the probability of an entry belonging to one class. The probability distribution is given by $p(y|\textbf{x}, \mathcal{D})$, where the probability is conditional on the input vector (test set) $x$ and the training set $\mathcal{D}$. If the output is probabilistic, we can compute the estimation to the true label as
 \begin{align}
-  \hat{y} = \hat{f}(\textbf{x}) = \operatorname*{argmax}_{c=1} f(x) p(y = c|\textbf{x}, \mathcal{D}),
+  \hat{y} = \hat{f}(\textbf{x}) = \operatorname*{argmax} f(x) p(y = 1|\textbf{x}, \mathcal{D}),
 \end{align}
-which represents the most probable class label and is known as the \textit{maximum a posteriori} estimate.
+which represents the most probable class label and is known as the \textit{maximum a posteriori} estimate \cite{Murphy2012}.
 
 \section{Evaluating accuracy of a model}
 
-The idea of finding one algorithm that is far more superior than any other algorithm, for all types and sizes of datasets, is of an imaginary sort. There is no algorithm that has this property, since one model might be recognized as best on one particular dataset, while others are far better on other datasets. The same goes with evaluating the model - there is no metrics that stand alone as the best metric to evaluate a model. Choosing how to actually evaluate a model can be the most challenging part of a statistical learning procedure.
+It would be desirable to find one superior model that we could utilize on all types and sizes of datasets. Unfortunately,
 
+%The idea of finding one algorithm that is far more superior than any other algorithm, for all types and sizes of datasets, is of an imaginary sort.
+It would be desirable to find one superior model that we could utilize on all types and sizes of datasets. Unfortunately, there is no algorithm that has this property, since one model might be recognized as best on one particular dataset, while others are far better on other datasets. This is known as the \textit{no free lunch theorem} (Wolpert 1996 \cite{Wolpert1996}). The same goes with evaluating the model - there is no metrics that stand alone as the best metric to evaluate a model. Choosing how to actually evaluate a model can be the most challenging part of a statistical learning procedure.
 
 \subsection{Bias-variance tradeoff}
 
-To illustrate a challenge in choosing the correct parameters, we give an example using the mean squared error (MSE) as a \textit{cost function}, that is a measurement of how wrong the model is in term of estimating the relationship between $\textbf{X}$ and $\textbf{y}$. Additionally, assume that our data can be represented by an unknown function with the addition of some noise $\boldsymbol{\epsilon}$,
-
+To illustrate a challenge in choosing the correct parameters, we give an example using the mean squared error (MSE) as a \textit{cost function}, which we want to minimize in order to improve the accuracy of the model \cite{Murphy2012}. Assume that our data can be represented by
 \begin{align*}
 \boldsymbol{y}=f(\boldsymbol{x}) + \boldsymbol{\epsilon},
 \end{align*}
-
-where $\boldsymbol{\epsilon}$ is normally distributed with a mean equal to zero and standard deviation equal to $\sigma^2$. Furthermore, we also assume that the function $f(\boldsymbol{x})$ can be approximated to a model $\boldsymbol{\hat{y}}$, where the model is defined by a design matrix $\boldsymbol{X}$ and parameters $\boldsymbol{\beta}$.
+where $f(\boldsymbol{x})$ is an unknown function and $\boldsymbol{\epsilon}$ is normally distributed with a mean equal to zero and variance equal to $\sigma^2$. Furthermore, we also assume that the function $f(\boldsymbol{x})$ can be approximated to a model $\boldsymbol{\hat{y}}$, where the model is defined by a design matrix $\boldsymbol{X}$ and parameters $\boldsymbol{\beta}$,
 
 \begin{align*}
-\boldsymbol{\hat{y}} = \boldsymbol{X}\boldsymbol{\beta}
+\boldsymbol{\hat{y}} = \boldsymbol{X}\boldsymbol{\beta}.
 \end{align*}
-
-
 The parameters $\boldsymbol{\beta}$ are in turn found by optimizing the mean squared error (MSE) via the cost function
 
 \begin{align*}
 C(\boldsymbol{X},\boldsymbol{\beta}) =\frac{1}{n}\sum_{i=0}^{n-1}(y_i-\hat{y}_i)^2= E\left[(\boldsymbol{y}-\boldsymbol{\hat{y}})^2\right].
 \end{align*}
-
-One can show that the cost function can be rewritten as
-
+The cost function can be rewritten as
 %\begin{align*}
 %C(\boldsymbol{X},\boldsymbol{\beta}) = E\left[(\boldsymbol{y}-\boldsymbol{\hat{y}})^2\right].
 %\end{align*}
 
 \begin{align*}
-E\left[(\boldsymbol{y}-\boldsymbol{\hat{y}})^2\right]=\frac{1}{n}\sum_i(f_i- E\left[\boldsymbol{\hat{y}}\right])^2+\frac{1}{n}\sum_i(\hat{y}_i- E\left[\boldsymbol{\hat{y}}\right])^2+\sigma^2.
+E\left[\left(\boldsymbol{y}-\boldsymbol{\hat{y}}\right)^2\right] &= \frac{1}{n}\sum_i\left(f_i- E\left[\boldsymbol{\hat{y}}\right]\right)^2+\frac{1}{n}\sum_i\left(\hat{y}_i- E\left[\boldsymbol{\hat{y}}\right]\right)^2+\sigma^2 \\
+&= E\left[\left(\boldsymbol{f}-E\left[\boldsymbol{\hat{y}}\right]\right)^2\right] + Var\left(\boldsymbol{\hat{y}}\right) + \sigma_{\epsilon}^2
 \end{align*}
+where $E[\boldsymbol{y}] = \boldsymbol{f}$, $E\left[\boldsymbol{\epsilon}\right] = \boldsymbol{0}$ and $Var\left(\boldsymbol{y}\right) = Var \left(\boldsymbol{\epsilon}\right) = \sigma_{\epsilon}^2$.
 
+\begin{comment}
 and since the variance of $\boldsymbol{y}$ and $\boldsymbol{\epsilon}$ are both equal to $\sigma^2$, we can use the relations $E[\boldsymbol{y}] = \boldsymbol{f}$, $ E[\boldsymbol{\epsilon}] = 0 $ and $Var(\boldsymbol{y}) = Var(\boldsymbol{\epsilon}) = \sigma_{\epsilon}^2$. The mean value of $\boldsymbol{\epsilon}$ is by definition equal to zero. In addition, the function $\boldsymbol{f}$ is not a stochastic variable, and the same argument can also be used for $\boldsymbol{\hat{y}}$. This allows us to insert the expression $\boldsymbol{y}$ into the cost function
 \begin{align*}
 E[(\boldsymbol{y-\hat{y}})^2] &= E[(\boldsymbol{f + \epsilon - \hat{y}})^2].
@@ -74,32 +71,34 @@ E\left[(\boldsymbol{y}-\boldsymbol{\hat{y}})^2\right] &=  E[(\boldsymbol{f}-E[\b
  &= \frac{1}{n}\sum_i(f_i- E\left[\boldsymbol{\hat{y}}\right])^2+\frac{1}{n}\sum_i(\hat{y}_i- E\left[\boldsymbol{\hat{y}}\right])^2+\sigma^2_{\epsilon}.
 \end{align*}
 
-The first term on the right hand side is the squared bias, the amount by which the average of our estimate differs from the true mean, while the second term represents the variance of the chosen model. The last term is the variance of the error $\boldsymbol{\epsilon}$, also known as the irreducible error. In general, an estimated function $\hat(f)$ will never be a perfect estimate for $f$ since we can not reduce the error associated introduced by $\boldsymbol{\epsilon}$. Therefore, any model will always be restricted to an upper bound of accuracy due to the irreducible error.
+\end{comment}
+The first term on the right hand side is the squared bias, the amount by which the average of our estimate differs from the true mean, while the second term represents the variance of the chosen model. The last term is the variance of the error $\boldsymbol{\epsilon}$, also known as the irreducible error. In general, an estimated function $\hat{f}$ will never be a perfect estimate for $f$ since we can not reduce the error introduced by $\boldsymbol{\epsilon}$. Therefore, any model will always be restricted to an upper bound of accuracy due to the irreducible error.
 
 \input{theory/tikz-plots/bias-variance.tex}
 
-The more complex model one has, the lower the bias becomes, and the higher the variance becomes, as seen in figure \ref{fig:biasVarianceTradeOff}.. If the model is not complex enough due to high bias and low variance, the algorithm can end up not learning the relevant relations between features and output, and is known as \textit{underfitting}. On the other hand, for a very complex model with low bias and high variance, the algorithm might find trends in random noise from the training data instead of the relevant features, resulting in \textit{overfitting}. An ideal model would be one that simultaneously achieves low variance and low bias. Therefore, we has to do a trade-off between how much bias and variance we would like in the model.
+%The more complex model one has, the lower the bias becomes, and the higher the variance becomes, as seen in figure \ref{fig:biasVarianceTradeOff}.
+A model with high variance will typically experience larger fluctuations around the true value, while a model with high bias corresponds to a larger error in the average of estimates. This is schematically visualized as function of model complexity in figure  \ref{fig:biasVarianceTradeOff}. If the model is not complex enough due to high bias and low variance, the algorithm can end up not learning the relevant relations between features and output. This is known as \textit{underfitting} \cite{Murphy2012}. On the other hand, a complex model with low bias and high variance might find trends in random noise from the training data instead of the relevant features, resulting in \textit{overfitting} \cite{Murphy2012}. An ideal model would be one that simultaneously achieves low variance and low bias  Therefore, we have to do a trade-off between how much bias and variance we would like in the model.
 
 \subsection{Accuracy, precision and recall}
 
-Given a model that has dealt with the intricacy of increasing complexity, we would like to evaluate the model's output quality. For a binary supervised classification problem we can measure the accuracy by finding how many correct predictions has been made. Prediction accuracy can provide a fine initial analysis, but it has some significant drawbacks seen in unbalanced datasets. This can be easily explained with a dataset consisting of $99:1$ ratio of class, since just guessing the majority class will result in a very high $99\%$ accuracy. Perhaps it is the $1\%$ that is the most important class, thus the accuracy score severely lacks information for the model.
+Given a model that has dealt with the intricacy of increasing complexity, we would like to evaluate the model's output quality. For a binary supervised classification problem we can measure the accuracy by finding how many correct predictions have been made. Prediction accuracy can provide a fine initial analysis, but it has some significant drawbacks seen in unbalanced datasets. This can be easily explained with a dataset consisting of $99:1$ ratio of class, since just guessing the majority class will result in a very high $99\%$ accuracy. Perhaps it is the $1\%$ that is the most important class, thus the accuracy score severely lacks information for the model.
 
-Therefore, we turn to other evaluation metrics such as a \textit{a confusion matrix}. A confusion matrix is a method for measuring the performance of classifiers. It is set up as a table with 4 different categories, where two of the categories are the predicted outcomes of the model/classifier and the two final categories are the true outcomes, which one wants to fit. An example of a confusion matrix for a binary classifier predicting the presence of a pregnancy is shown in table \ref{tab:confusion_matrix}.
+Therefore, we turn to other evaluation metrics such as a \textit{a confusion matrix}. A confusion matrix is a method for measuring the performance of classifiers \cite{Murphy2012}. It is set up as a table with 4 different categories, where two of the categories are the predicted outcomes of the classifier and the two final categories are the true outcomes. An example of a confusion matrix for a binary classifier is shown in table \ref{tab:confusion_matrix}.
 
 \begin{table}[!ht]
   \centering
   \renewcommand\arraystretch{1.5}
   \setlength\tabcolsep{0pt}
+  \caption{A confusion matrix for a binary classifier. The entries on the diagonal of the matrix are correctly predictions, while the rest are wrong predictions. P and N are the total number positive and negative predictions, respectively. Similarly, P$'$ and N$'$ are the number of true -positive or negative labels, respectively.}
+  \label{tab:confusion_matrix}
   \begin{tabular}{c >{\bfseries}r @{\hspace{0.7em}}c @{\hspace{0.4em}}c @{\hspace{0.7em}}l}
-    \multirow{10}{*}{\parbox{1.1cm}{\bfseries\raggedleft Actual\\ value}} &
-      & \multicolumn{2}{c}{\bfseries Prediction outcome} & \\
-    & & \bfseries p & \bfseries n & \bfseries total \\
-    & p$'$ & \MyBox{True}{Positive} & \MyBox{False}{Negative} & P$'$ \\[2.4em]
-    & n$'$ & \MyBox{False}{Positive} & \MyBox{True}{Negative} & N$'$ \\
+    \multirow{10}{*}{\parbox{1.1cm}{\bfseries\raggedleft Actual\\ label}} &
+      & \multicolumn{2}{c}{\bfseries Predicted label} & \\
+    & & \bfseries $1$ & \bfseries $0$ & \bfseries total \\
+    & $1$ & \MyBox{True}{Positive} & \MyBox{False}{Negative} & P$'$ \\[2.4em]
+    & $0$ & \MyBox{False}{Positive} & \MyBox{True}{Negative} & N$'$ \\
     & total & P & N &
   \end{tabular}
-  \caption{A confusion matrix for a binary classifier.}
-  \label{tab:confusion_matrix}
   \end{table}
 
 
@@ -112,15 +111,21 @@ For the binary confusion matrix there are two possible predicted outcomes, eithe
 \item False Negative (FN):  The classifier incorrectly predicts a negative event when the true event was positive.
 \end{itemize}
 
-From the confusion matrix one can then start estimating the performance of the model, by calculating different factors, such as
+From the confusion matrix one can then start estimating the performance of the model, by calculating different factors, such as \cite{Murphy2012}
 
 \begin{itemize}
-\item \textbf{Recall} is a measure of how many truly relevant results are predicted. A high recall relates to a low false negative rate, and is defined as
+
+\item \textbf{Specificity}, also known as the true negative rate, is the ratio of the number of correct negative examples to the number classified as negative. It is defined as
+\begin{align}
+\text{Sensitivity} = \frac{TN}{TN + FP}.
+\end{align}
+
+\item \textbf{Recall}, also known as the true positive rate, is the ratio of the number of correct positive examples to the number classified as positive. A high recall relates to a low false negative rate, and is defined as
 \begin{align}
 \text{Recall} = \frac{TP}{TP + FN}.
 \end{align}
 
-\item \textbf{Precision} is a measure of result relevancy. A high precision relates to a low false positive rate, and is defined as  \\
+\item \textbf{Precision} is the ratio of correct positive examples to the number of actual positive examples. A high precision relates to a low false positive rate, and is defined as  \\
 \begin{align}
 \text{Precision} = \frac{TP}{TP + FP}.
 \end{align}

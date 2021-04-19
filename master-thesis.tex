@@ -17,13 +17,13 @@ material host
 \frontmatter
     \maketitle
 
-    %\begin{abstract}
-    %\input{miscellaneous/abstract/abstract.tex}
-    %\end{abstract}
+    \begin{abstract}
+    \input{miscellaneous/abstract/abstract.tex}
+    \end{abstract}
 
-    %\begin{acknowledgements}
-    %\input{miscellaneous/acknowledgements/acknowledgements.tex}
-    %\end{acknowledgements}
+    \begin{acknowledgements}
+    \input{miscellaneous/acknowledgements/acknowledgements.tex}
+    \end{acknowledgements}
 
     \setcounter{tocdepth}{2}
     \tableofcontents
@@ -31,21 +31,34 @@ material host
     %\newpage
 
 \mainmatter
-    %\part{Introduction}
-      %\input{miscellaneous/introduction/introduction.tex}
+    \part{Introduction}
+      \input{miscellaneous/introduction/introduction.tex}
 
     \part{Theory}
         \input{theory/quantum_technology.tex}
         \input{theory/quantum_mechanics.tex}
         \input{theory/machine_learning.tex}
 
-    %\part{Methodology and implementation}
-        %\input{methodology&implementations/databases.tex}
-        %\input{methodology&implementations/extraction_featurization.tex}
+    \part{Methodology and implementation}
 
-    %\part{Results}
+        \input{methodology&implementations/databases.tex}
+        \input{methodology&implementations/extraction_featurization.tex}
+
+    %\part{Results and discussion}
+
       %\input{results/validation.tex}
-      %\chapter{Materials Project predictions}
+      %\input{results/optimal_parameters.tex}
+
+      %\chapter{Predictions}
+      %\section{Naive approach}
+      %\section{Determined approach}
+      %\section{Brute approach}
+      %\section{Comparing the approaches}
+
+    %\part{Concluding remarks}
+
+
+
     %  \chapter{Setting up qubit predictions}
     %  \chapter{Predicting solid-state qubit candidates}
 

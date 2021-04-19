@@ -1,0 +1,146 @@
+\chapter{Optimalization}
+
+\section{Time of extraction and featurization}
+
+
+\section{Comparing functionals for bandgaps}
+
+
+\clearpage
+\begin{figure}[ht!]
+    \centering
+    \begin{subfigure}[t]{1\textwidth}
+        \centering
+        \includegraphics{../predicting-solid-state-qubit-candidates/reports/figures/bandgaps/mp.pdf}
+        \caption{}
+    \end{subfigure}%
+
+    \begin{subfigure}[t]{1\textwidth}
+        \centering
+        \includegraphics{../predicting-solid-state-qubit-candidates/reports/figures/bandgaps/oqmd.pdf}
+        \caption{}
+    \end{subfigure}
+
+    \begin{subfigure}[t]{1\textwidth}
+        \centering
+        \includegraphics{../predicting-solid-state-qubit-candidates/reports/figures/bandgaps/aflowml.pdf}
+        \caption{}
+    \end{subfigure}
+\end{figure}
+
+\begin{figure}[t!]\ContinuedFloat
+    \centering
+    \begin{subfigure}[t]{1\textwidth}
+        \centering
+        \includegraphics{../predicting-solid-state-qubit-candidates/reports/figures/bandgaps/jarvis_tbmbj.pdf}
+        \caption{}
+    \end{subfigure}%
+
+    \begin{subfigure}[t]{1\textwidth}
+        \centering
+        \includegraphics{../predicting-solid-state-qubit-candidates/reports/figures/bandgaps/jarvis_opt.pdf}
+        \caption{}
+    \end{subfigure}
+    \caption{}
+\end{figure}
+
+Dette er en veldig lang setning for å sjekke vhvor lang stnineg er kan veære sdhf osdfja yhasd fugyasdkf abhsf ahjksdnf ahjsdfsabdnfasd fbasdfm
+
+\clearpage
+
+\section{Technical details on ML classifiers}
+
+
+
+\subsection{Naive approach}
+
+
+\begin{figure}[!tbp]
+  \begin{subfigure}[b]{0.5\textwidth}
+    \includegraphics[width=\textwidth]{../predicting-solid-state-qubit-candidates/reports/figures/pca-scores/01-naive-approach-5-RF\space.pdf}
+    \caption{}
+    \label{fig:q1-GB}
+  \end{subfigure}%
+  \hfill
+  \begin{subfigure}[b]{0.5\textwidth}
+    \includegraphics[width=\textwidth]{../predicting-solid-state-qubit-candidates/reports/figures/pca-scores/01-naive-approach-5-GB\space.pdf}
+    \caption{}
+    \label{fig:q1-RF}
+  \end{subfigure}
+
+  \begin{subfigure}[b]{0.5\textwidth}
+    \includegraphics[width=\textwidth]{../predicting-solid-state-qubit-candidates/reports/figures/pca-scores/01-naive-approach-5-DT\space.pdf}
+    \caption{}
+    \label{fig:q1-DT}
+  \end{subfigure}%
+  \hfill
+  \begin{subfigure}[b]{0.5\textwidth}
+    \includegraphics[width=\textwidth]{../predicting-solid-state-qubit-candidates/reports/figures/pca-scores/01-naive-approach-5-LOG\space.pdf}
+    \caption{}
+    \label{fig:q1-LOG}
+  \end{subfigure}
+  \caption{{Four figures displaying hyperparameter search for the first approach. The best estimator is visualized for all hyperparameters as a function of principal components during a grid search with a 5x5 stratified cross validation. The lower plots visualizes the explained variance ratio, both accumulated and stepwise. The dotted lines marks the optimal hyperparameter-combination, while the error bars display the standard deviation. }}
+\end{figure}
+
+\clearpage
+
+\subsection{Determined approach}
+
+\begin{figure}[!tbp]
+  \begin{subfigure}[b]{0.5\textwidth}
+    \includegraphics[width=\textwidth]{../predicting-solid-state-qubit-candidates/reports/figures/pca-scores/02-determined-approach-5-RF\space.pdf}
+    \caption{}
+    \label{fig:q2-GB}
+  \end{subfigure}%
+  \hfill
+  \begin{subfigure}[b]{0.5\textwidth}
+    \includegraphics[width=\textwidth]{../predicting-solid-state-qubit-candidates/reports/figures/pca-scores/02-determined-approach-5-GB\space.pdf}
+    \caption{}
+    \label{fig:q2-RF}
+  \end{subfigure}
+
+  \begin{subfigure}[b]{0.5\textwidth}
+    \includegraphics[width=\textwidth]{../predicting-solid-state-qubit-candidates/reports/figures/pca-scores/02-determined-approach-5-DT\space.pdf}
+    \caption{}
+    \label{fig:q2-DT}
+  \end{subfigure}%
+  \hfill
+  \begin{subfigure}[b]{0.5\textwidth}
+    \includegraphics[width=\textwidth]{../predicting-solid-state-qubit-candidates/reports/figures/pca-scores/02-determined-approach-5-LOG\space.pdf}
+    \caption{}
+    \label{fig:q2-LOG}
+  \end{subfigure}
+  \caption{{Four figures displaying hyperparameter search for the second approach. The best estimator is visualized for all hyperparameters as a function of principal components during a grid search with a 5x5 stratified cross validation. The lower plots visualizes the explained variance ratio, both accumulated and stepwise. The dotted lines marks the optimal hyperparameter-combination, while the error bars display the standard deviation. }}
+\end{figure}
+
+\clearpage
+
+\subsection{Brute approach}
+
+
+\begin{figure}[!tbp]
+  \begin{subfigure}[b]{0.5\textwidth}
+    \includegraphics[width=\textwidth]{../predicting-solid-state-qubit-candidates/reports/figures/pca-scores/03-brute-approach-5-RF\space.pdf}
+    \caption{}
+    \label{fig:q3-GB}
+  \end{subfigure}%
+  \hfill
+  \begin{subfigure}[b]{0.5\textwidth}
+    \includegraphics[width=\textwidth]{../predicting-solid-state-qubit-candidates/reports/figures/pca-scores/03-brute-approach-5-GB\space.pdf}
+    \caption{}
+    \label{fig:q3-RF}
+  \end{subfigure}
+
+  \begin{subfigure}[b]{0.5\textwidth}
+    \includegraphics[width=\textwidth]{../predicting-solid-state-qubit-candidates/reports/figures/pca-scores/03-brute-approach-5-DT\space.pdf}
+    \caption{}
+    \label{fig:q3-DT}
+  \end{subfigure}%
+  \hfill
+  \begin{subfigure}[b]{0.5\textwidth}
+    \includegraphics[width=\textwidth]{../predicting-solid-state-qubit-candidates/reports/figures/pca-scores/03-brute-approach-5-LOG\space.pdf}
+    \caption{}
+    \label{fig:q3-LOG}
+  \end{subfigure}
+  \caption{{Four figures displaying hyperparameter search for the third approach. The best estimator is visualized for all hyperparameters as a function of principal components during a grid search with a 5x5 stratified cross validation. The lower plots visualizes the explained variance ratio, both accumulated and stepwise. The dotted lines marks the optimal hyperparameter-combination, while the error bars display the standard deviation. }}
+\end{figure}

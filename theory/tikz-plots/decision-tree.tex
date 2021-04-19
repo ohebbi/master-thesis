@@ -1,0 +1,20 @@
+\begin{figure}[!ht]
+  \centering
+  \begin{forest}
+  [$x_2$, tikz={\draw[{Latex}-, thick] (.west) --++ (-2,0); \node[{Latex}-, thick] at (-3.5,0.1){\text{root node}};}
+      [$x_1$, tikz={\draw[{Latex}-, thick] (.west) --++ (-1,-0); \node[{Latex}-, thick] at (-3.8,-1.1){\text{interior node}};}
+          [1]
+          [0]
+      ]
+      [$x_3$, tikz={\draw[{Latex}-, thick] (0.8,-0.5) --++ (1.5,0); \node[{Latex}-, thick] at (3.4,-0.45){\text{branches}};}
+          [$x_1$
+              [1]
+              [0]
+          ]
+          [0, tikz={\draw[{Latex}-, thick] (.east) --++ (1,-0); \node[{Latex}-, thick] at (3.7,-2.3){\text{leaf node}};}]
+      ]
+  ]
+  \end{forest}
+\caption{A schematic representation of a binary classification tree, which consists of three nodes that contain information of the features $x_1, x_2$ and $x_3$.}
+\label{fig:decision-tree}
+\end{figure}

@@ -1,12 +1,16 @@
 \chapter{Validation}
 
-A thorough testing procedure is important to find out if the code is working as intentionally. The procedure might reveal the presence or absence of bugs, and as a project grows, it can give an indication if a new implementation breaks the original project. Therefore, we present a test-case scenario to test if the two machine learning algorithms are able predict the correct label. It is the same algorithm that will be used in the following chapters, and it will provide us the opportunity to understand how the algorithm works and to draw parallells between the separate works.
+A thorough testing procedure is important to find out if the code is working as intentionally. The procedure might reveal the presence or absence of bugs, and as a project grows, it can give an indication if a new implementation breaks the original project. Therefore, we present a test-case scenario to test if a few machine learning algorithms are able predict the correct label. It is the same algorithms that will be used in the following chapters, and it will provide us the opportunity to understand how the algorithm works and to draw parallells between the separate works. The entire work of the validation process can be found in the Github project \textit{predicting-ABO3-structures} \cite{Ohebbi2021a}.
 
-The validation process is a reproduction of Ref \cite{Balachandran2018}. To be able to draw any parallell to their work, we use the exact same dataset in the beginning phase. It should be noted that even if the computational aspects of the validation is closely related to Ref. \cite{Balachandran2018}, the work eventually diverges in terms of focus. In their work they include a stability analysis using convex hull analysis in DFT calculations from OQMD, however, we will in this thesis not decide whether a compound is considered stable or not in an atomic configuration.
+The validation process is a reproduction of Ref. \cite{Balachandran2018}. To be able to draw any parallell to their work, we use the exact same dataset in the beginning phase. It should be noted that even if the computational aspects of the validation is closely related to Ref. \cite{Balachandran2018}, the work eventually diverges in terms of focus. In their work they include a stability analysis using convex hull analysis in DFT calculations from OQMD, however, we will in this thesis not decide whether a compound is considered stable or not in an atomic configuration.
 
-\section{The perovskite dataset}
+\section{The ABO3 dataset}
 
-The dataset in question contains $390$ experimentally reported ABO$_3$ compounds. All compounds are charged balanced, and for every compound there is a feature explaining which structure the compound takes, either being a cubic perovskite, perovskite, or not a perovskite at all. Off the $390$ compounds, there are $254$ perovskites and $136$ non-perovskites. Of the $254$ perovskites, $232$ takes a non-cubic perovskite structure while only $22$ takes the cubic perovskite structure. Consequently, this will be visualized by two columns named Perovskite, which represents if a compound is either perovskite (1) or not perovskite (0), and Cubic, which represents if a compound is cubic perovskite (1), non-cubic perovskite (-1), or not perovskite(0).
+The data used in the validation process is offered as supplimentary data from Ref. \cite{Balachandran2018}. They provide the entire training data with both features and labels, but only provide the entries (compounds) of the test data. Therefore, it is neccessary to obtain the features for the test set ourself without knowledge if the resulting test set is identical with Ref. \cite{Balachandran2018}.
+
+The training dataset in question contains $390$ experimentally reported ABO$_3$ compounds. All compounds are charged balanced, and for every compound there is a feature explaining which structure the compound takes, either being a cubic perovskite, perovskite, or not a perovskite at all. Off the $390$ compounds, there are $254$ perovskites and $136$ non-perovskites. Of the $254$ perovskites, $232$ takes a non-cubic perovskite structure while only $22$ takes the cubic perovskite structure. Consequently, this will be visualized by two columns named Perovskite, which represents if a compound is either perovskite (1) or not perovskite (-1), and Cubic, which represents if a compound is cubic perovskite (1), non-cubic perovskite (-1), or not perovskite(0).
+
+The original training dataset consists of $41$ unique $A$ atoms and $55$ unique $B$ atoms. To generate the test set, we implement all different combinations that are eligible with a total of ($VI$) oxidation number for the $A+B$ atoms. The resulting test data contains $625$ entries and is considerable larger than the training data.
 
 \subsection{Features}
 
@@ -14,29 +18,36 @@ There are in total 9 features we can train a model on. Many of the features are 
 \begin{align}
   O = \frac{r_b}{r_O},
 \end{align}
-where $r_b$ and $r_O$ are the Shannon radii for the B-atom and oxygen ($r_O = 1.4\text{\AA}$), respectively. If the octahedral factor is $O=0.435$, it corresponds to a hard-sphere closed-packed arrangement where $B$ and $O$ ions are touching, while a six-fold coordination appear to require $0.414 < O < 0.732$ according to empirical studies \cite{Zhang2007}. $O$, $r_A$ and $r_b$ are represented as features in our data set. We can also compute the Goldschmidt tolerance factor, which is defined as
+where $r_b$ and $r_O$ are the Shannon radii for the B-atom and oxygen ($r_O = 1.4\text{\AA}$), respectively. If the octahedral factor is $O=0.435$, it corresponds to a hard-sphere closed-packed arrangement where $B$ and $O$ ions are touching, while a six-fold coordination appear to require $0.414 < O < 0.732$ according to empirical studies \cite{Zhang2007}. $O$, $r_A$ and $r_b$ are represented as features in our data set. We can also compute the Goldschmidt tolerance factor \cite{Goldschmidt1926}, which is defined as
 \begin{align}
   t = \frac{r_A + r_O}{\sqrt{2}(r_A+r_O)}.
 \end{align}
-The tolerance factor favors the following structures in the interval:
+\noindent The tolerance factor favors the following structures in the interval:
 \begin{itemize}
   \item $t>1$: Hexagonal nonperovskite.
   \item $0.9 < t < 1.0:$ Cubic perovskite.
   \item $0.75 < t < 0.9:$ Orthorombic perovskite.
   \item $t < 0.75:$ Not a perovskite.
 \end{itemize}
-If the tolerance factor is exactly $t=1$, the structure is known as perfectly cubic and is free for any structural alterations.
+\noindent If the tolerance factor is exactly $t=1$, the structure is known as perfectly cubic and is free for any structural alterations.
 
 Furthermore, the Shannon radii $r_A$ and $r_B$ can be directly correlated with the structure. Perovskites require $r_A > r_B$, and that A-atoms are in a 12-fold coordinated site if $r_A > 0.9\text{\AA}$. A-atoms also occur in a sixfold coordinated site if $r_A < 0.8\text{\AA}$ and $r_B >0.7\text{\AA}$.
 
+\begin{figure}[ht!]
+  \centering
+  \includegraphics{../predicting-perovskites/reports/figures/cubic_parallel_coordinate_plot.pdf}
+  \caption{A parallel coordinate plot of the perovskite dataset, where the color is given by the Cubic label of an entry.}
+  \label{fig:plcp}
+\end{figure}
+
 From bond valence theory we can find the valence of an ion to be the sum of valences, that is
 \begin{align}
-  V_i &= \sum_i \nu_{ij} \\
-  &= \sum_i \frac{\exp(d_o - d_{ij})}{b} \label{eq:bondlength},
+  V_i \&= \sum_i \nu_{ij} \\
+  \&= \sum_i \frac{\exp(d_o - d_{ij})}{b} \label{eq:bondlength},
 \end{align}
 where $d_{ij}$ is the bond length while $d_0$ and $b$ are parameters from experimental data. The bond length can be found from \ref{eq:bondlength} given the general value $b=1.4\text{\AA}$ and $d_0$, that can be found from Zhang \textit{et al}. database \cite{Zhang2007}. The valence of an ion is associated with its neighboring ions and the chemical bonds, and therefore the band length $d_{AO}$ and $d_{BO}$ are included in the data set.
 
-The two last features originates from the Mendeleev numbers of Villars \textit{et al.} \cite{Villars2004} for the A- and B atom. The given values positions the elements in structurally similar groups. This means that he groups the elements in the following interval.
+The two last features originates from the Mendeleev numbers of Villars \textit{et al.} \cite{Villars2004} for the A- and B atom, MA and MB, respectively. The given values positions the elements in structurally similar groups. This means that he groups the elements in the following interval.
 
 \begin{itemize}
   \item s-block $\in \{1,10\}$.
@@ -46,3 +57,129 @@ The two last features originates from the Mendeleev numbers of Villars \textit{e
   \item d-block $\in \{43,66\}$.
   \item p-block $\in \{67,10\}$.
 \end{itemize}
+
+\noindent The dataset and its features have been visualized in the parallel coordinate \cite{Inselberga} figure \ref{fig:plcp}, and reveals several trends already. We can observe that an entry's A atom should preferably have a small Mendeley number (MA) and a large bond length $d_{AO}$. Yet, perhaps the most clear trend is the tolerance factor that should be around $1$. A parallel coordinate plot can easily show trends, but becomes harder to interpret for many features and entries with a growing amount of overlapping. The trend for t values becomes harder to interpret when comparing with the distribution of entries for t-values in figure \ref{fig:hist_perov_t}. From the distribution we learn that there is an overlap of perovskites or not for tolerance factor values in the interval $0.8$ to $1.0$, but the label perovskite is in general preferred. Additionally, we see that the interval ${q1,q3}$ for the label (1) completely overlaps with the corresponding interval for non-perovskites (-1), with very few entries outside of the intervals. This is presumably due to easy labelling for entries that rest outside of the intervals, but the exclusion of entries could potentially alter any model due to not enough entries. %From the data, it is clear that any machine learning algorithm will only predict perovskites inside of the interval {0.8, 1.10}
+
+
+\begin{figure}[ht!]
+  \centering
+  \includegraphics{../predicting-perovskites/reports/figures/histogram_training_data_t.pdf}
+  \caption{The $t$-distribution of entries in the dataset for perovskite (1) or not (-1). The upper part for perovskite (1) displays minimum value at $0.80$, q1 at $0.90$, median at $0.93$, q3 at $0.97$ and max at $1.10$. For the non-perovskites (-1), the minimimum is at $0.73$, q1 at $0.87$, median at $0.99$, q3 at $1.12$ and max at $1.47$.}
+  \label{fig:hist_perov_t}
+\end{figure}
+
+\section{Implementation}
+
+The machine learning classifiers that we will utilize are logistic regression, random forest and gradient boost. The implementation is optimized for adding new algorithms from libraries such as sklearn \cite{Pedregosa2012} or imblearn \cite{Lemaitre2016} with only few lines of code. This is in particular visualized through the implementation of the current algorithms in code listing \ref{lst:insertAlgorithms}, since a special emphasis on reuse and simplicity of code is in focus of this project.
+
+\lstinputlisting[language=Python, caption={}, label={lst:insertAlgorithms}]{results/code-listings/InsertAlgorithms.tex}
+
+The predictions are divided into two parts; perovskite predictions and cubic perovskite predictions. We apply the standard scaler of sklearn \cite{Pedregosa2012} to the training data, followed up by a search of optimal hyperparameters using a $10x10$-stratified cross-validation. This ensures that the percentage of perovskites (cubic perovskites) or not are the same in every subsample in a cross validation as it is in the entire dataset. This is not neccessarily important for the perovskites predictions due to $65/35 \%$ of perovskites or not, but becomes significant for the cubic case where the ratio of cubic perovskites or not are $91/9\%$.
+
+\section{Results and discussion}
+
+Utilising three different classifiers on two different tasks, starting with prediction of perovskite and then prediction of cubic-perovskite, yields in total six different models. Here we present sets of representative results obtained by these models.
+
+\subsection{Technical details on ML classifiers}
+
+We first consider the ML classification of known ABO$_3$ into perovskite or nonperovskites. A search for optimal hyperparameters using scikit-learn's grid search scheme \cite{Pedregosa2012} reveals the following table with best parameters.
+
+Add table of how many of the training process continues, and also for test (but in next section).
+
+\begin{figure}[!tbp]
+  \begin{subfigure}[b]{0.5\textwidth}
+    \includegraphics[width=\textwidth]{../predicting-perovskites/reports/figures/grid-scores/GB\space-cubic:False.pdf}
+    \caption{Flower one.}
+    \label{fig:h1-GB}
+  \end{subfigure}%
+  \hfill
+  \begin{subfigure}[b]{0.5\textwidth}
+    \includegraphics[width=\textwidth]{../predicting-perovskites/reports/figures/grid-scores/RF\space-cubic:False.pdf}
+    \caption{Flower two.}
+    \label{fig:h1-RF}
+  \end{subfigure}
+
+  \begin{subfigure}[b]{0.5\textwidth}
+    \includegraphics[width=\textwidth]{../predicting-perovskites/reports/figures/grid-scores/DT\space-cubic:False.pdf}
+    \caption{Flower one.}
+    \label{fig:h1-DT}
+  \end{subfigure}%
+  \hfill
+  \begin{subfigure}[b]{0.5\textwidth}
+    \includegraphics[width=\textwidth]{../predicting-perovskites/reports/figures/grid-scores/LOG\space-cubic:False.pdf}
+    \caption{Flower two.}
+    \label{fig:h1-LOG}
+  \end{subfigure}
+  \caption{{Four figures displaying hyperparameter search for predicting perovskites or nonperovskites. The best estimator is visualized for all hyperparameters as a function of (a, b and c) max depth or (d) regularization strength during a grid search with a 5x5 stratified cross validation. The dotted lines marks the optimal hyperparameter-combination, while the error bars visualizes the standard deviation. }}
+\end{figure}
+
+
+
+\begin{figure}[!tbp]
+  \includegraphics[width=\textwidth]{../predicting-perovskites/reports/figures/falseNegatives-cubic:False}
+  \caption{Dette kan vendes på 90 grader?}
+  \label{fig:h1-fn}
+\end{figure}
+
+\begin{figure}[!tbp]
+  \includegraphics[width=\textwidth]{../predicting-perovskites/reports/figures/falsePositives-cubic:False}
+  \caption{Dette kan vendes på 90 grader?}
+  \label{fig:h1-fp}
+\end{figure}
+
+
+Then we consider the ML classification of known perovskites into cubic perovskites and noncubic perovskites.
+
+\clearpage
+
+\begin{figure}[!tbp]
+  \begin{subfigure}[b]{0.5\textwidth}
+    \includegraphics[width=\textwidth]{../predicting-perovskites/reports/figures/grid-scores/GB\space-cubic:True.pdf}
+    \caption{Flower one.}
+    \label{fig:h2-GB}
+  \end{subfigure}%
+  \hfill
+  \begin{subfigure}[b]{0.5\textwidth}
+    \includegraphics[width=\textwidth]{../predicting-perovskites/reports/figures/grid-scores/RF\space-cubic:True.pdf}
+    \caption{Flower two.}
+    \label{fig:h2-RF}
+  \end{subfigure}
+
+  \begin{subfigure}[b]{0.5\textwidth}
+    \includegraphics[width=\textwidth]{../predicting-perovskites/reports/figures/grid-scores/DT\space-cubic:True.pdf}
+    \caption{Flower one.}
+    \label{fig:h2-DT}
+  \end{subfigure}%
+  \hfill
+  \begin{subfigure}[b]{0.5\textwidth}
+    \includegraphics[width=\textwidth]{../predicting-perovskites/reports/figures/grid-scores/LOG\space-cubic:True.pdf}
+    \caption{Flower two.}
+    \label{fig:h2-LOG}
+  \end{subfigure}
+  \caption{Four figures displaying hyperparameter search for predicting cubic perovskites or noncubic perovskites. The best estimator is visualized for all hyperparameters as a function of (a, b and c) max depth or (d) regularization strength during a grid search with a 5x5 stratified cross validation. The dotted lines marks the optimal hyperparameter-combination, while the error bars display the standard deviation. }
+\end{figure}
+
+\clearpage
+
+\begin{figure}[!tbp]
+  \centering
+  \includegraphics[width=\textwidth]{../predicting-perovskites/reports/figures/contours/perovskite.pdf}
+  \caption{Decision boundaries of the four models from training on the feature pair $r_B$ and $t$.}
+  \label{fig:decision-boundaries}
+\end{figure}
+
+\begin{figure}[!tbp]
+  \includegraphics[width=\textwidth]{../predicting-perovskites/reports/figures/falseNegatives-cubic:True}
+  \caption{Dette kan vendes på 90 grader?}
+  \label{fig:h2-fn}
+\end{figure}
+
+\begin{figure}[!tbp]
+  \includegraphics[width=\textwidth]{../predicting-perovskites/reports/figures/falsePositives-cubic:True}
+  \caption{Dette kan vendes på 90 grader?}
+  \label{fig:h2-fp}
+\end{figure}
+
+
+
+\section{Predictions of new compounds}

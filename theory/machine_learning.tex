@@ -1,29 +1,27 @@
 \chapter{Machine learning}
 
-The enourmous amount of data generated in the digital world today is beyond comprehension. In $2019$, more than $500$ hours of video was uploaded to Youtube every second, totalling to over $82$ years of content every day \footnote{Source: https://www.youtube.com/intl/no/about/press extracted 15.02.2021}. In addition, more than $1.5$ billion web sites exists \footnote{Source: https://www.statista.com/chart/19058/how-many-websites-are-there extracted 29.03.2021}.
+The enourmous amount of data generated in the digital world today is beyond comprehension. In $2019$, more than $500$ hours of video was uploaded to Youtube every second, totalling to over $82$ years of content every day\footnote{Source: https://www.youtube.com/intl/no/about/press extracted 15.02.2021}. In addition, more than $1.5$ billion web sites exists\footnote{Source: https://www.statista.com/chart/19058/how-many-websites-are-there extracted 29.03.2021}.
 
 However, an increasing amount of data comes hand in hand with an increasing demand of knowledge about the data. If we are unable to extract information from the data, the data serves no intention and exists as an excess. Therefore, we need methods to process and automate data analysis, which is what the promises of \textit{machine learning} covers. Machine learning can reveal patterns in data with ease where a human would face difficulties, and use this information to predict or generate new data. Many tools in machine learning is based on probability theory, which can be applied to problems involving uncertainty. Thus, machine learning is also commonly named as \textit{statistical learning} \cite{Murphy2012}.
 
-There are mainly two types of machine learning, either \textit{supervised} or \textit{unsupervised} learning. In unsupervised learning we are given inputs $\mathcal{D}=\{\textbf{x}_i\}^N_{i=1}$, where $\textbf{x}_i$ is a training input that has $D$-dimensions that describes each entry, where each dimension is known as a \textit{feature}. The features could be examplified as height or weight, or it could be something complex that has no practical meaning (at least not to humans). Since there are no features describing what an entry is, it is up to the tools of machine learning to find patterns in the data, and is the essence of unspervised learning. In the supervised approach, on the other hand, the model tries to learn a mapping from inputs $\textbf{x}$ to outputs $y$, given a labeled set of pairs $\mathcal{D}=\{(\textbf{x}_i, y_i)\}^N_{i=1}$. The set $\mathcal{D}$ is known as the training set, and $N$ is the number of entries. The flexibility of the shape of a feature is also shared with the output. It can in principle be anything, but it is mostly assumed that the output is either \textit{categorical} or \textit{nominal} restricted by a finite set $y_i \in \{1,...,\mathcal{C} \}$. The problem is defined as \textit{classification} if the output is categorical, or \textit{regression} if the output is real-valued \cite{Murphy2012}.
+There are mainly two types of machine learning, either \textit{supervised} or \textit{unsupervised} learning. In unsupervised learning we are given inputs $\mathcal{D}=\{\boldsymbol{x}_i\}^N_{i=1}$, where $\boldsymbol{x}_i$ is a training input that has $D$-dimensions that describes each entry, where each dimension is known as a \textit{feature} or a \textit{descriptor}. The features could be examplified as height or weight, or it could be something complex that has no practical meaning (at least not to humans). Since there are no features describing what an entry is, it is up to the tools of machine learning to find patterns in the data, and is the essence of unspervised learning. In the supervised approach, on the other hand, the model tries to learn a mapping from inputs $\boldsymbol{x}$ to outputs $y$, given a labeled set of pairs $\mathcal{D}=\{(\boldsymbol{x}_i, y_i)\}^N_{i=1}$. The set $\mathcal{D}$ is known as the training set, and $N$ is the number of entries. The flexibility of the shape of a feature is also shared with the output. It can in principle be anything, but it is mostly assumed that the output is either \textit{categorical} or \textit{nominal} restricted by a finite set $y_i \in \{1,...,\mathcal{C} \}$. The problem is defined as \textit{classification} if the output is categorical, or \textit{regression} if the output is real-valued \cite{Murphy2012}.
 
 %This is, however, outside of the scope of this thesis, since we will solely focus on supervised classification.
 
 \section{Supervised learning}
 
-Supervised learning applied to classification has as goal to learn the target output $y \in \{1,..,\mathcal{C}\}$ from the inputs $\textbf{x}$. The number of classes is $\mathcal{C}$, and depicts if the classification is \textit{binary} ($\mathcal{C}=2$), \textit{multiclass} ($\mathcal{C}>2$), or \textit{multi-label} if the class labels are not mutually exclusive (examplified with the weather can be both sunny and cold at the same time). Normally, classification is used when the problem is formulated as a multiclass classification, and hereon we will adapt to the formulation as well \cite{Murphy2012}.
+Supervised learning applied to classification has as goal to learn the target output $y \in \{1,..,\mathcal{C}\}$ from the inputs $\boldsymbol{x}$. The number of classes is $\mathcal{C}$, and depicts if the classification is \textit{binary} ($\mathcal{C}=2$), \textit{multiclass} ($\mathcal{C}>2$), or \textit{multi-label} if the class labels are not mutually exclusive (examplified with the weather can be both sunny and cold at the same time). Normally, classification is used when the problem is formulated as a multiclass classification, and hereon we will adapt to the formulation as well \cite{Murphy2012}.
 
-In order to be able to learn from data, we will need to formulate a function approximate. Assume $y = f(x) + \epsilon$ for some unknown function $f$ and a random error term $\epsilon$ with mean zero. We can then try to approximate $f$ from a labeled training set, which we can use to make the predictions $\hat{y}=\hat{f}(\textbf{x})$. With the estimated $\hat{f}$ we can make predictions on unlabeled data and achieve a \textit{generalized model}. The estimated function $\hat{f}$ is often considered as a black box, since we are not neccessarily interested in the exact shape of the function but rather the predictions.
+In order to be able to learn from data, we will need to formulate a function approximate. Assume $y = f(x) + \epsilon$ for some unknown function $f$ and a random error term $\epsilon$ with mean zero. We can then try to approximate $f$ from a labeled training set, which we can use to make the predictions $\hat{y}=\hat{f}(\boldsymbol{x})$. With the estimated $\hat{f}$ we can make predictions on unlabeled data and achieve a \textit{generalized model}. The estimated function $\hat{f}$ is often considered as a black box, since we are not neccessarily interested in the exact shape of the function but rather the predictions.
 
-As simple as the idea behind supervised classification appears, a generalized model remains deeply dependent on the available data. Imagine a training set containing two entries. The first entry is a young and tall person labeled healthy. The other entry is an old and short person labeled sick. The pattern in this simple scenario is abundantly clear, but will face a challenge if it were to predict on a test set containing a person who is young and short. Therefore, it is desirable to compute the probability of an entry belonging to one class. The probability distribution is given by $p(y|\textbf{x}, \mathcal{D})$, where the probability is conditional on the input vector (test set) $x$ and the training set $\mathcal{D}$. If the output is probabilistic, we can compute the estimation to the true label as
+As simple as the idea behind supervised classification appears, a generalized model remains deeply dependent on the available data. Imagine a training set containing two entries. The first entry is a young and tall person labeled healthy. The other entry is an old and short person labeled sick. The pattern in this simple scenario is abundantly clear, but will face a challenge if it were to predict on a test set containing a person who is young and short. Therefore, it is desirable to compute the probability of an entry belonging to one class. The probability distribution is given by $p(y|\boldsymbol{x}, \mathcal{D})$, where the probability is conditional on the input vector (test set) $x$ and the training set $\mathcal{D}$. If the output is probabilistic, we can compute the estimation to the true label as
 \begin{align}
-  \hat{y} = \hat{f}(\textbf{x}) = \operatorname*{argmax} f(x) p(y = 1|\textbf{x}, \mathcal{D}),
+  \hat{y} = \hat{f}(\boldsymbol{x}) = \operatorname*{argmax} f(x) p(y = 1|\boldsymbol{x}, \mathcal{D}),
 \end{align}
 which represents the most probable class label and is known as the \textit{maximum a posteriori} estimate \cite{Murphy2012}.
 
 \section{Evaluating accuracy of a model}
-
-It would be desirable to find one superior model that we could utilize on all types and sizes of datasets. Unfortunately,
-
+\label{evaluating accuracy}
 %The idea of finding one algorithm that is far more superior than any other algorithm, for all types and sizes of datasets, is of an imaginary sort.
 It would be desirable to find one superior model that we could utilize on all types and sizes of datasets. Unfortunately, there is no algorithm that has this property, since one model might be recognized as best on one particular dataset, while others are far better on other datasets. This is known as the \textit{no free lunch theorem} (Wolpert 1996 \cite{Wolpert1996}). The same goes with evaluating the model - there is no metrics that stand alone as the best metric to evaluate a model. Choosing how to actually evaluate a model can be the most challenging part of a statistical learning procedure.
 
@@ -89,7 +87,7 @@ Therefore, we turn to other evaluation metrics such as a \textit{a confusion mat
   \centering
   \renewcommand\arraystretch{1.5}
   \setlength\tabcolsep{0pt}
-  \caption{A confusion matrix for a binary classifier. The entries on the diagonal of the matrix are correctly predictions, while the rest are wrong predictions. P and N are the total number positive and negative predictions, respectively. Similarly, P$'$ and N$'$ are the number of true -positive or negative labels, respectively.}
+  \caption{A confusion matrix for a binary classifier. The entries true positive and true negative on the diagonal of the matrix are correctly predictions, while false positive and false negative are wrongly made predictions. P and N are the total number positive and negative predictions, respectively. Similarly, P$'$ and N$'$ are the number of true -positive or negative labels, respectively.}
   \label{tab:confusion_matrix}
   \begin{tabular}{c >{\bfseries}r @{\hspace{0.7em}}c @{\hspace{0.4em}}c @{\hspace{0.7em}}l}
     \multirow{10}{*}{\parbox{1.1cm}{\bfseries\raggedleft Actual\\ label}} &
@@ -100,18 +98,14 @@ Therefore, we turn to other evaluation metrics such as a \textit{a confusion mat
     & total & P & N &
   \end{tabular}
   \end{table}
-
-
-For the binary confusion matrix there are two possible predicted outcomes, either positive or negative. This gives rise to some terminology.
+\noindent For the binary confusion matrix there are two possible predicted outcomes, either positive or negative. This gives rise to some terminology.
 
 \begin{itemize}
 \item True Positive (TP): The classifier correctly predicts a positive event.
 \item True Negative (TN): The classifier correctly predicts a negative event.
 \item False Positive (FP): The classifier incorrectly predicts a positive event when the true event was negative.
 \item False Negative (FN):  The classifier incorrectly predicts a negative event when the true event was positive.
-\end{itemize}
-
-From the confusion matrix one can then start estimating the performance of the model, by calculating different factors, such as \cite{Murphy2012}
+\end{itemize} From the confusion matrix one can then start estimating the performance of the model, by calculating different factors, such as \cite{Murphy2012}
 
 \begin{itemize}
 
@@ -129,9 +123,7 @@ From the confusion matrix one can then start estimating the performance of the m
 \begin{align}
 \text{Precision} = \frac{TP}{TP + FP}.
 \end{align}
-\end{itemize}
-
-Similar to the bias-variance tradeoff, it is common to compare the recall with the precision to identify the tradeoff for different thresholds. High scores for both reveals that a classifier returns accurate results combined with returning a majority of all positive results. Therefore, an ideal classifier will return many correctly predicted results.
+\end{itemize} Similar to the bias-variance tradeoff, it is common to compare the recall with the precision to identify the tradeoff for different thresholds. High scores for both reveals that a classifier returns accurate results combined with returning a majority of all positive results.
 
 Sometimes a classifier can have drastically different values for the precision and recall. This leads to another estimator for the performance of a classifier, which is known as the F1-score. The F1-score is defined as the harmonic mean of precision and recall,
 \begin{align*}
@@ -139,51 +131,49 @@ Sometimes a classifier can have drastically different values for the precision a
 \end{align*}
 and can be used to find a good tradeoff between recall and precision. The highest value of F1-score is $1$ and is considered an ideal classifier, while the lowest is $0$.
 
-\subsection{Cross-validation}
-
+\subsection{Cross validation}
+\label{cross-validation}
 When evaluating different parameters for models, commonly done in a grid-search scheme, there is an abundant risk of performing an overfit to the test set since we can tweak the parameters to a model so it can perform optimally. To solve this problem, we can exclude a part of the dataset as a validation set (in addition to a test set). Therefore, we can train a model on the training set, and evaluate the parameters on the validation set. After a lot of trial and error and the experiment seems successful, we can do one final evaluation on the test set.
 
-Unfortunately, this reduces the number of samples that can be used for training drastically. A fix for this is to apply a cross-validation. Cross-validation is a technique used to evaluate predictive models by partitioning the original sample into a training set to train the model, and a test set to evaluate it.
+Unfortunately, this reduces the number of samples that can be used for training drastically. A fix for this is to apply \textit{cross validation} (CV) \cite{Murphy2012}. Cross validation is a technique used to evaluate predictive models by partitioning the original sample into a training set to train the model, and a test set to evaluate it.
 
 \input{theory/tikz-plots/cv.tex}
+\noindent It is common to apply cross validation into fold, yielding the name of k-fold cross validation. In k-fold cross validation, the training set is partioned into k equal sized subsamples, as visualized in figure \ref{fig:cv}. Of the k samples, a single sample is used as validation set while the remaining k-1 samples are used as training data. The process is then repeated k-times, such that each of the k subsamples are used as a validation set exactly once. Therefore, all observations are used for both training and validation, and each observation is used for validation exactly once. The k results from the folds can then be averaged to produce an estimate. The subsamples are allowed to have an imbalanced dataset, so that each class is not neccessarily represented equally in each fold. Since supervised algorithms tend to weigh each instance equally, this may result in overrepresented classes being favored during training of the model. Even worse could be the result of a fold where one class is not represented at all, resulting in a model that do not learn how to predict a class at all.
 
-It is common to apply cross validation into fold, yielding the name of k-fold cross-validation. In k-fold cross-validation, the sample is partioned into k equal sized subsamples, as visualized in figure \ref{fig:cv}. Of the k samples, a single sample is used as validation set while the remaining k-1 samples are used as training data. The process is then repeated k-times, such that each of the k-th subsample is used as validation set exactly one time. Therefore, all observations are used for both training and validation, and each observation is used for validation exactly once. The k results from the folds can then be averaged to produce an estimate. These train and test samples are allowed to have an imbalanced dataset, such as each class is not neccessarily represented equally in each fold. Since supervised algorithms tend to weight each instance equally, it may result in overrepresented classes getting too much weight. Even worse could be the result of an fold where one class is not represented at all, resulting in a model that can't predict a class.
-
-
-To deal with vulnerability, one can employ a stratified k-fold cross-validation. Stratification is a process that seeks to ensure that each fold is representative of all strata in the data, making each fold having approximately equal class-representation.
+To deal with the vulnerability of imbalanced datasets in CV, one can employ a stratified k-fold cross validation technique. Stratification is a process that seeks to ensure that each fold is representative of all classes (also named \textit{strata} in this context) in the data, making each fold having approximately equal class-representation.
 
 \section{Decision trees}
-Classification and regression trees (CART), also called decision trees, is one of the more basic supervised algorithms, and can be used for both regression and classification tasks, as the name suggests. The strength of decision trees lays within the simplicity that allows to build more complex networks. We will in this section provide special emphasis to classification trees, but with some remarks to the regression trees to provide a brief perspective of distinctions.
+Classification and regression trees (CART), also called decision trees, are one of the more basic supervised algorithms. They can be used for both regression and classification tasks, but we will for the relevancy of this work provide a special emphasis to classification trees.  %The strength of decision trees lays within the simplicity that allows to build more complex networks.
+%We will in this section provide special emphasis to classification trees, but with some remarks to the regression trees to provide a brief perspective of distinctions.
 
-The idea behind decision trees is to find the features that contain the most information regarding the target feature, and then split up the dataset along the values of these features. This feature selection enables the target feature values for the resulting underlying dataset to be as \textit{pure} as possible. The features that can reproduce the best target features are normally said to be the most informative features.
+The idea behind decision trees is to find the features that contain the most information regarding the target, and then split up the dataset along the values of these features. This feature selection enables the target values for the resulting underlying dataset to be as \textit{pure} as possible, which means the dataset only contains one class \cite{Murphy2012}. The features that can reproduce the best target features are normally said to be the most informative features.
 
-A decision tree can be divided a \textit{root node}, \textit{interior nodes}, and the final \textit{leaf nodes}. Each entity are connected by \textit{branches}. The decision tree is able to learn an underlying structure of the training data and can, given some assumptions, make predictions on unseen query instances. It is the leaf nodes that accomodates the predictions we will make for new entries that is presented to our trained model.
+A decision tree can be divided into a \textit{root node}, \textit{interior nodes}, and the final \textit{leaf nodes}, commonly known as \textit{terminal nodes}. The nodes are connected by \textit{branches}. The decision tree is able to learn an underlying structure of the training data and can, given some assumptions, make predictions on unseen observations. These predictions are based on the information stored in the leaf nodes in the tree.
 
-The process behind a decision tree can be seen as a top-down approach. First, we make a leaf provide the classification of a given instance. Then, a node specifies a test of some attribute of the instance, while a branch corresponds to a possible value of an attribute. This allows an entry to be classified by starting at the root node of the tree with corresponding testing of the attribute specified by this node. Subsequently, the instance move down the tree branch corresponding to the value of the attribute. Then the steps can be repeated for a new subtree rooted at the new node.
+\input{theory/tikz-plots/decision-tree.tex}
+\noindent The process behind a decision tree can be seen as a top-down approach. First, we make a leaf provide the classification of a given instance. Then, a node specifies a test of some attribute of the instance, while a branch corresponds to a possible value of an attribute. Subsequently, the instance move down the tree branch corresponding to the value of the attribute. Then the steps can be repeated for a new subtree rooted at the new node.
 
-A classification tree mainly differs to a regression tree by the response of the prediction, since it produces a qualitative response rather than a quantitative one. For a regression tree, the response is given by the mean response of the training observations that belong to the same terminal node. For a classification tree, on the contrary, the response is given by the most commonly occuring class of training observations in the region which it belongs. Thus, the interpretation process includes both the class prediction corresponding to a particular terminal node region, but also in the class proportions among the training observations that fall into that region.
+A classification tree differs from a regression tree by the response of the prediction, since it produces a qualitative response rather than a quantitative one. The response is given by the most commonly occuring class of training observations specified by the attribute of the node. A schematic representation of a classification tree is visualised in figure \ref{fig:decision-tree}. %Thus, the interpretation process includes both the class prediction corresponding to a particular terminal node region, but also in the class proportions among the training observations that fall into that region.
 
 \subsection{Growing a classification tree}
 
-In growing a classification tree, a process called recursive binary splitting is applied which involves mainly two steps.
+In growing a classification tree, a process called recursive binary splitting is applied. This involves two steps:
 
 \begin{enumerate}
-  \item Split the set of possible values $(x_1, x_2,...,x_p)$ into $J$ distrinct an non-overlapping regions $R_1, R_2, ..., R_{J}$.
+  \item Split the set of possible values $(x_1, x_2,...,x_p)$ into $J$ distinct non-overlapping regions $R_1, R_2, ..., R_{J}$.
   \item If an observation falls within the region $R_J$, we make the prediction given by the most commonly occuring class of training observations in $R_{J}$.
 \end{enumerate}
+The computational aspect of recursively doing this for every possible combination of features does not defend its use, and therefore the common strategy is to use a top-down approach. Binary splitting begins at the top of the tree and consecutively splits the \textit{predictor space}, which is a space that describes all possible combinations of the features in the dataset. This is indicated by two new branches further down the tree. It should be noted that the top-down approach is a greedy approach, since the best split is made at each step of the tree-growing process, instead of trying to pick a split that will lead to a better tree in a future step.
 
-The computational aspect of recursively doing this for every possible combination of features does not defend its use, and therefore the common strategy is to use a top-down approach. Thus, it begins at the top of the tree and consecutively splits the predictor space. This is indicated by two new branches further down the tree. It should be noted that the top-down approach is a greedy approach, since the best split is made at each step of the tree-growing process, instead of trying to pick a split that will lead to a better tree in a future step.
-
-We can define a \textit{probability density function} (PDF) $p_{mk}$ that represents the number of observations $k$ in a region $R_m$ with $N_m$ observations. This likelihood function can be represented in terms of the proportion $I(y_i = k)$ of observations of this class in region $R_m$ as
+We can define a \textit{probability density function} (PDF) $p_{mk}$ that represents the number of observations $k$ in a region $R_m$ with $N_m$ observations. This likelihood function can be represented in terms of observations of a class in region $R_m$ as
 \begin{align}
-  p_{mk} = \frac{1}{N_m} \sum_{x_i \in R_m} I(y_i = k)
+  p_{mk} = \frac{1}{N_m} \sum_{x_i \in R_m} I(y_i = k),
 \end{align}
-
-Hitherto, the splitting of the nodes have been decided by the misclassification error
+where the \textit{indicator} $I$ function equals zero if we misclassify and one if we classify correctly. Therefore, we can define the splitting of the nodes by the misclassification error
 \begin{align}
-  p_{mk} = \frac{1}{N_m} \sum_{x_i \in R_m} I(y_i \neq k) = 1 - p_{mk}.
+  m_{e} = \frac{1}{N_m} \sum_{x_i \in R_m} I(y_i \neq k) = 1 - p_{mk}.
 \end{align}
-where the \textit{indicator} function $I$ equals one if we misclassify and equals zero if we classify correctly. However, other methods exists such as the Gini index
+However, other methods exists such as the Gini index
 \begin{align}
   g = \sum_{k=1}^{K} p_{mk} (1-p_{mk})
 \end{align}
@@ -191,51 +181,40 @@ and the information entropy
 \begin{align}
   s = - \sum_{k=1}^{K} p_{mk} \log p_{mk}.
 \end{align}
-The two latter approaches are more sensitive to node purity than the misclassification error, i.e. only containing one class, and are in general preferred \cite{Murphy2012}.
+The two latter approaches are more sensitive to node purity than the misclassification error, i.e. only containing one class, and are in general preferred \cite{Murphy2012} for splitting of the nodes in a decision tree.
 
 \subsection{Classification algorithm}
-The CART algorithm splits the data set in two subsets using a single feature $k$ and a threshold $t_k$. The pair of quantities $(k,t_k)$ that constitute the purest subset using the gini factor $G$ results in the cost function
+The CART algorithm splits the data set in two subsets using a single feature $k$ and a threshold $t_k$. The pair of quantities $(k,t_k)$ that constitute the purest subset using the Gini factor $G$ results in the cost function
 \begin{align}
   C(k, t_k) = \frac{m_{\text{left}}}{m}G_{\text{left}} + \frac{m_{\text{right}}}{m}G_{\text{right}},
 \end{align}
-where $G_{\text{left} / \text{right}}$ measures the impurity of left or right subset and $m_{\text{left} / \text{right}}$ is the number of instances on either the left or the right subset. The algorithm tries to minimize the cost function to find the pair by splitting the training set in two, and then following the same logic for the next subsets. It will continue to do this recursively until it reaches the maximum depth hyperparameter, or if the next split does not reduce impurity.
+where $G_{\text{left}}$ ($G_{\text{right}}$) measures the impurity of the left (right) subset and $m_{\text{left}}$  ($m_{\text{right}}$) is the number of instances on the left (right) subset. The algorithm tries to minimize the cost function to find the pair $(k,t_k)$ by splitting the training set in two, and then following the same logic for the next subsets. It will continue to do this recursively until it reaches the maximum depth hyperparameter, or if the next split does not reduce impurity.
 
 \subsection{Pruning a tree}
 
-A decision tree has the ability to turn into a very complex model, making it significantly prone to overfitting. Therefore, techniques that deals with this vulnerability must be implemented.
+A decision tree has the ability to turn into a very complex model, making it prone to overfitting. Pre-puning is a method that stops the growing of a tree if the decrease in error is not sufficient to justify an increasingly complex model by adding an extra subtree. However, this method should not be implemented for models with a large number of features, since features with small predictive powers might be extensively removed which might result in a tree without any splits at all \cite{Murphy2012}. Post-pruning, or just pruning, is the standard method which involves growing the tree to full size, and then prune the tree by cutting branches. To determine how much to prune it, we can use a cross-validated scheme to evaluate the amount of terminal nodes that has the lowest error.
 
-Pre-puning is a method that stops the growing of a tree if the decrease in error is not sufficient to justify an increasing complex model by adding an extra subtree. However, this implementation has the liability for features that have small predictive power as this might cause a model without any splits at all.
 
-Post-pruning, or just pruning, is the standard method which involves growing the tree to full size, and then prune it. To determine how far to prune it, we can use a cross-validated scheme to evaluate the amount of terminal nodes that has the lowest error.
+%However, this implementation has the liability for features that have small predictive power as this might cause a model without any splits at all.
+\subsection{Pros and cons of decision trees}
 
-\subsection{Pros and cons for decision trees}
+Decision trees have several clear advantages compared to other algorithms. They are easy to understand and can be visualised effortlessly for small trees. The algorithm is completely invariant to scaling of the data since each feature is processed separately. Additionally, decision trees can handle both continuous and categorical data and can model interactions between different descriptive features.
 
-Decision trees have several clear advantages compared to other algorithms. They are easy to understand, also known as a \textit{white box}, and can be visualised effortlessly for small trees. The algorithm is completely invariant to scaling of the data since each feature is processed separately. Additionally, decision trees can handle both continuous and categorical data and can model interactions between different descriptive features.
-
-As auspicious the advantages of decision trees seems, they are inevitable prone to overfitting and hence does not generalize the data well. Even with pre-puning, post-pruning and setting a maximum depth of terminal nodes, the algorithm is still prone for overfitting \cite{Guido2016}. Another important issue concerns training on unbalanced datasets where one class occurs more frequently than other classes, since this will lead to biased trees because the algorithm will favor the more occuring class. Furthermore, small changes in the data may lead to a completely different tree.
-
-Many of these issues can be adressed by using ensemble methods such as either bagging, random forest, or boosting, and can result in a solid improvement of the predictive perfomance of trees.
+As auspicious the advantages of decision trees seems, they are inevitably prone to overfitting and hence does not generalize well. Even with pre-pruning, post-pruning and setting a maximum depth of terminal nodes, the algorithm is still prone to overfit \cite{Guido2016}. Another important issue concerns training on unbalanced datasets where one class occurs more frequently than other classes, since this will lead to biased trees because the algorithm will favor the more occuring class. Furthermore, small changes in the data may lead to a completely different tree. Many of these issues can be adressed by using ensemble methods such as either bagging, random forest, or boosting, and can result in a solid improvement of the predictive perfomance of trees.
 
 \section{Ensemble methods}
 
-By using a single decision tree, we often end up with an overfitted model that possess a high variance. Luckily, we can apply methods that aggregate different machine learning algorithms to reduce variance. If each of the algorithms get slightly different results, as they learn different part of the data, we can combine the results into something that is better than any one algorithm alone. These approaches falls under the categorory of ensemble methods, and will be elaborated further in this section. % to construct complex forests, or perhaps more appropiately named \textit{jungles}.
+By using a single decision tree, we often end up with an overfitted model that possess a high variance. Luckily, we can apply methods that aggregate different machine learning algorithms to reduce variance. If each of the algorithms get slightly different results, as they learn different parts of the data, we can combine the results into something that is better than any one algorithm alone. These approaches fall under the categorory of ensemble methods, and will be elaborated upon in this section. % to construct complex forests, or perhaps more appropiately named \textit{jungles}.
 
 \subsection{Bagging}
 
-\textit{Bootstrap aggregation}, or just \textit{bagging}, is an ensemble method that involves averaging many estimates. If we have $M$ trained trees on different subsamples of the data, chosen randomly, we can compute the ensemble
+\textit{Bootstrap aggregation}, or just \textit{bagging}, is an ensemble method that involves averaging many estimates \cite{Murphy2012}. If we have $M$ trained trees on different subsamples of the data, chosen randomly, we can compute the ensemble
 \begin{align}
-  f(\textbf{x}) = \sum_{b=1}^M \frac{1}{B}f_b(\textbf{x})
+  f(\boldsymbol{x}) = \frac{1}{B} \sum_{b=1}^B f_b(\boldsymbol{x}),
 \end{align}
-where $f_b$ is the $b$'th tree.
+where $f_b$ is the $b$'th tree. Simply re-running the same algorithm on different subsamples can result in a small variance reduction compared to a single tree due to highly correlated predictors, which showcase the need for better approaches.
 
-Simply re-running the same algorithm on different subsamples can result in a small variance reduction compared to a single tree due to highly correlated predictors, which showcase the need for better approaches.
-
-\textit{Random forests} provides an improvement of normal bagged trees by choosing a random sample of $m$ predictors as split candidates from the full set of $p$ predictors. The split is restricted in choosing only one of the $m$ predictors. Normally, the value of $m$ is chosen as
-
-\begin{align}
-  m \approx \sqrt{p},
-\end{align}
-which means that at each split in a tree, the algorithm is restricted to a very small portion of the available predictors. The specific about the algorithm can be found in Algorithm~\ref{alg:randomforest}.
+\textit{Random forests} provide an improvement of normal bagged trees by choosing a random sample of $m$ predictors as split candidates from the full set of $p$ predictors. The split is restricted in choosing only one of the $m$ predictors, which are normally chosen as either $m \approx \sqrt{p} $ or $m \approx \log{p}$. This means that at each split in a tree, the algorithm is restricted to a very small portion of the available predictors. %The specific about the algorithm can be found in Algorithm~\ref{alg:randomforest}.
 
 \begin{algorithm}[H]
 \SetAlgoLined
@@ -249,71 +228,70 @@ which means that at each split in a tree, the algorithm is restricted to a very 
    Split the node into daughter nodes\;
    }
  }
- Output the ensemble of trees $\{T_b\}_1^B$ and make predictions
+ Output the ensemble of trees $\{T_b\}_{b=1}^B$ and make predictions
  \caption{Random forest algorithm.}
  \label{alg:randomforest}
 \end{algorithm}
 
+\noindent By introducing randomness into the model, we arrive at a suprisingly capable model that has a high predictive accuracy \cite{Caruana2006}. This can be examplified by supposing that there is one strong predictor in a dataset, together with several other fairly strong predictors. Most of the trees will use this strong predictor at the top split, which means that the bagged trees will look quite similar to each other and will have highly correlated predictions.
 
-By inducing randomness into the model, we arrive at a suprisingly capable model that has a high predictive accuracy \cite{Caruana2006}. This can be examplified by supposing that there is one strong predictor in a dataset, together with several other fairly strong predictors. Most of the trees will use this strong predictor at the top split, which means that the bagged trees will look quite similar to each other and will have highly correlated predictions.
-
-However, even with higher prediction accuracy, it comes as a compromise since we loose the easy ability of model interpretation. A single tree can be easy to understand, but interpretation of a huge jungle of trees does not neccessarily seem appealing for even an experienced data scientist. Furthermore, a random forest does not substantially reduce the variance as averaging many uncorrelated trees would do, as we will soon find out.
+However, even with higher prediction accuracy, it comes as a compromise since we lose the easy ability of model interpretation. A single tree can be easy to understand, but interpretation of a huge jungle of trees does not neccessarily seem appealing for even an experienced data scientist. Furthermore, a random forest does not substantially reduce the variance as averaging many uncorrelated trees would do, as we will soon find out.
 
 \subsection{Boosting}
 
-Boosting is an ensemble method that fits an additive expansion in a set of elementary basis functions. The basic idea is to combine several weak classifiers, that are only just better than a random guess, in order to create a good classifier. This can be done in an iterative approach were we apply a weak classifier to modify the data. For each iteration, we make sure to weight the observations that are misclassified with a factor. The method is known as adaptive, since the algorithm is able to adapt during the learning process.
+Boosting is an ensemble method that fits an additive expansion in a set of elementary basis functions \cite{Murphy2012}. The basic idea is to combine several weak classifiers, that are only just better than a random guess, in order to create a good classifier. This can be done in an iterative approach were we apply a weak classifier to modify the data. For each iteration, we make sure to weigh the observations that are misclassified with a factor. The method is known as adaptive boosting, since the algorithm is able to adapt during the learning process.
 
 In \textit{forward stagewise additive modeling} we want to find an adaptive model
 \begin{align}
-  f_M (\textbf{x}) = \sum_{i=1}^M \beta_m b(\textbf{x}; \gamma_m)
+  f_M (\boldsymbol{x}) = \sum_{m=1}^M \beta_m G_m(\boldsymbol{x}; \gamma_m),
 \end{align}
-where $\beta_m$ are expansion parameters that will be determined in a minimization process, and $b(\textbf{x};\gamma_m)$ are functions of the multivariable parameter $\textbf{x}$ that are described by the parameters $\gamma_m$. We will in this example consider a binary classification problem with the outcomes $\gamma_i \in \{-1,1\}$ where $i=0,1,2,...,n-1$ as the set of observables. The predictions are produced by the classification function $G(\textbf{x})$.
-
-Then, the error rate of the training sample is given as
+where $\beta_m$ are expansion parameters that will be determined in a minimization process, and $b(\boldsymbol{x};\gamma_m)$ are functions of the multivariable parameter $\boldsymbol{x}$ that are described by the parameters $\gamma_m$. We will in this example consider a binary classification problem with the outcomes $\gamma_i \in \{-1,1\}$ where $i=0,1,2,...,n-1$ are the set of observables. The predictions are produced by the classification function $G(\boldsymbol{x})$. The error rate of the training sample is given as
 \begin{align}
-  \overline{\text{err}} = \frac{1}{n} \sum_{i=0}^{n-1} I(\hat{y}_i \neq G(\textbf{x}_i)).
+  \overline{\text{err}} = \frac{1}{n} \sum_{i=0}^{n-1} I(\hat{y}_i \neq G(\boldsymbol{x}_i)).
 \end{align}
 
-After defining a weak classifier, we can apply it iteratively to repeatedly modified versions of the data which produce a sequence of different weak classifiers $G_m(\textbf{x})$. The function $f_M(\textbf{x})$ will be expressed in terms of
+\noindent After defining a weak classifier, we can apply it iteratively to repeatedly modified versions of the data producing a sequence of different weak classifiers $G_m(\boldsymbol{x})$. The iterative procedure can be defined as
 \begin{align}
-  G_M(\textbf{x})=\text{sign}\sum_{i=1}^M \alpha_mG_m(\textbf{x}).
+  f_m(\boldsymbol{x}) = f_{m-1}(\boldsymbol{x}) + \beta_mG_m(\boldsymbol{x}),
+  \label{eq:fsam}
 \end{align}
-The iterative procedure can be defined as
+where the function $f_M(\boldsymbol{x})$ will be expressed in terms of
 \begin{align}
-  f_m(\textbf{x}) = f_{m-1}(\textbf{x}) + \beta_mG_m(\textbf{x}).
+  G(\boldsymbol{x})=\text{sign}\sum_{i=1}^M \alpha_mG_m(\boldsymbol{x}),
 \end{align}
-The cost function that leads to the \textit{discrete AdaBoost}  algorithm \cite{Friedman2000} is the exponential cost function
+where $\alpha_m$ is the weight that descibes the contribution from the weak classifier $G_m(\boldsymbol{x})$.
+The main idea is that we do not go back and adjust earlier parameters, which is why this is called \textit{forward} stagewise additive modeling.
+
+We can demonstrate a binary classification example using the exponential cost function that leads to the \textit{discrete AdaBoost} algorithm \cite{Friedman2000} at step $m$,
 \begin{align}
-  C(\textbf{y},\textbf{f}) = \sum_{i=0}^{n-1} \exp (-\hat{y}_i(f_{m-1}(\textbf{x}_i) + \beta G(\textbf{x}_i))),
+  %C(\boldsymbol{y},\boldsymbol{f}) = \sum_{i=0}^{n-1} \exp (-\hat{y}_i(f_{m-1}(\boldsymbol{x}_i) + \beta G(\boldsymbol{x}_i))).
+  C(\boldsymbol{y},\boldsymbol{f}) = \sum_{i=0}^{n-1} w_i^m \exp(-\hat{y}_i\beta G(\boldsymbol{x}_i)),
 \end{align}
-or with the weight $w_i^m = \exp(-\hat{y}_if_{m-1}(\textbf{x}_i))$ we can rewrite to
-\begin{align}
-  C(\textbf{y},\textbf{f}) = \sum_{i=0}^{n-1} w_i^m \exp(-\hat{y}_i\beta G(\textbf{x}_i)).
-\end{align}
+where $w_i^m = \exp(-\hat{y}_if_{m-1}(\boldsymbol{x}_i))$ is the weight of the corresponding observable $i$.
+%\begin{align}
+%  C(\boldsymbol{y},\boldsymbol{f}) = \sum_{i=0}^{n-1} w_i^m \exp(-\hat{y}_i\beta G(\boldsymbol{x}_i)).
+%\end{align}
 We can optimize $G$ for any $\beta>0$ with
 \begin{align}
-  G_m(\textbf{x}) = \text{sign} \sum_{i=0}^{n-1} w_i^m I(\hat{y}_i \neq G(\textbf{x}_i)).
+  G_m(\boldsymbol{x}) = \text{sign} \sum_{i=0}^{n-1} w_i^m I(\hat{y}_i \neq G(\boldsymbol{x}_i)).
 \end{align}
 This is the classifier that minimize the weighted error rate in predicting $y$. Furthermore, we can rewrite the cost function to
 \begin{align}
-    C &= \exp(-\beta) \sum_{\hat{y}_i=G(x_i)} w_i^m + \exp (\beta) \sum_{\hat{y}_i \neq G(\textbf{x}_i)} w_i^m \\
-    &= (\exp(\beta)-\exp(-\beta)\sum_{i=0}^{n-1} w_i^m I(\hat{y}_i \neq G(x_i)) + \exp(-\beta)\sum_{i=0}^{n-1}w_i^m .
+    %C &= \exp(-\beta) \sum_{\hat{y}_i=G(x_i)} w_i^m + \exp (\beta) \sum_{\hat{y}_i \neq G(\boldsymbol{x}_i)} w_i^m \\
+    C &= (\exp(\beta)-\exp(-\beta)\sum_{i=0}^{n-1} w_i^m I(\hat{y}_i \neq G(x_i)) + \exp(-\beta)\sum_{i=0}^{n-1}w_i^m.
+    \label{eq:exponentialcost}
 \end{align}
 Substituting $G_m$ into $C$ and solving for $\beta$, we obtain
 \begin{align}
-  \beta_m = \frac{1}{2} \log \frac{1 - \overline{\text{err}}}{\overline{\text{err}}}
+  \beta_m = \frac{1}{2} \log \frac{1 - \overline{\text{err}}}{\overline{\text{err}}},
 \end{align}
 with the error redefined as
 \begin{align}
-  \overline{\text{err}} = \frac{1}{n} \frac{ \sum_{i=0}^{n-1} w_i^m I(\hat{y}_i \neq G_m(\textbf{x}_i)) }{\sum_{i=0}^{n-1} w_i^m}.
+  \overline{\text{err}} = \frac{1}{n} \frac{ \sum_{i=0}^{n-1} w_i^m I(\hat{y}_i \neq G_m(\boldsymbol{x}_i)) }{\sum_{i=0}^{n-1} w_i^m}.
 \end{align}
-Finally, this leads to an update of
+Finally, this leads to an update of $f_m(\boldsymbol{x})$ as defined in equation \ref{eq:fsam} and the weights at the next iteration becomes
 \begin{align}
-  f_m(x) = f_{m-1}(\textbf{x}) + \beta_m G_m (\textbf{x})
-\end{align}
-and the weights at the next iteration becomes
-\begin{align}
-  w_i^{m+1} = w_i^m \exp (-\hat{y}_i \beta_m G_m(\textbf{x}_i)).
+  w_i^{m+1} = w_i^m \exp (-\hat{y}_i \beta_m G_m(\boldsymbol{x}_i)).
 \end{align}
 With the above definitions, we can define the discrete Adaboost algorithm in Algorithm~\ref{alg:discreteAdaboost}.
 
@@ -321,62 +299,64 @@ With the above definitions, we can define the discrete Adaboost algorithm in Alg
 \SetAlgoLined
   Initialize weights $w_i = 1/n, \quad i=0,...,n-1$, such that $\sum_{i=0}^{n-1}w_i = 1$\;
  \For{$m = 1$ : $M$}{
-  Fit the classifier $f_m (\textbf{x}) \in \{-1,1\}$ using weights $w_i$ on the training data\;
-  Compute the error $\overline{\text{err}} = \frac{1}{n} \frac{ \sum_{i=0}^{n-1} w_i^m I(\hat{y}_i \neq G_m(\textbf{x}_i)) }{\sum_{i=0}^{n-1} w_i^m}$ \;
+  Fit the classifier $f_m (\boldsymbol{x}) \in \{-1,1\}$ using weights $w_i$ on the training data\;
+  Compute the error $\overline{\text{err}} = \frac{1}{n} \frac{ \sum_{i=0}^{n-1} w_i^m I(\hat{y}_i \neq G_m(\boldsymbol{x}_i)) }{\sum_{i=0}^{n-1} w_i^m}$ \;
   Define a quantity $\alpha_m = \log \big[(1-\overline{\text{err}_m})/\overline{\text{err}}_m$ \big] \;
-  Set new weights to $w_i \leftarrow w_i \exp(\alpha_m I(y_i \neq G(\textbf{x}_i)))$\;
+  Set new weights to $w_i \leftarrow w_i \exp(\alpha_m I(y_i \neq G(\boldsymbol{x}_i)))$\;
  }
- Compute the new classifier $G(\textbf{x}) = \sum_{i=0}^{n-1} \alpha_m I(y_i \neq G(\textbf{x}_i))$;
+ Compute the new classifier $G(\boldsymbol{x}) = \sum_{i=0}^{n-1} \alpha_m I(y_i \neq G(\boldsymbol{x}_i))$;
  \caption{Discrete Adaboost algorithm.}
  \label{alg:discreteAdaboost}
 \end{algorithm}
 
-It is possible to apply different cost functions resulting in a variety of boosting algorithms, which AdaBoost is an example with the cost function being the exponential cost function. But instead of deriving new versions of boosting based on different cost functions, we can find one generic method. The approach is known as \textit{gradient boosting} \cite{friedman2001}.
-
-Initially, we want to minimize
+\noindent It is possible to apply different cost functions resulting in a variety of boosting algorithms. AdaBoost is an example with the cost function in equation~\ref{eq:exponentialcost}. But instead of deriving new versions of boosting based on different cost functions, we can find one generic method. This approach is known as \textit{gradient boosting} \cite{friedman2001}. Initially, we want to minimize
 \begin{align}
-  \hat{\textbf{f}} = \text{argmin}_f L(\textbf{f}),
+  \hat{\boldsymbol{f}} = \argmin_f L(\boldsymbol{f}),
 \end{align}
-where $\textbf{f} = \big(f(\textbf{x}_1, ..., f(\textbf{x}_N)) \big)$ are the parameters of the models, and $L$ is a chosen loss function.
+where $\boldsymbol{f} = \big(f(\boldsymbol{x}_1), ..., f(\boldsymbol{x}_N)) \big)$ are the parameters of the models, and $L$ is a chosen loss function.
 
-This can be solved stagewise, using an approach named \textit{gradient descent}. At step $m$, let $\textbf{g}_m$ be the gradient evaluated at $f(x_i) = f_{m-1}$:
+This can be solved stagewise, using an approach named \textit{gradient descent}. At step $m$, let $\boldsymbol{g}_m$ be the gradient evaluated at $f(\boldsymbol{x}_i) = f_{m-1}(\boldsymbol{x}_i)$:
 \begin{align}
-  \textbf{g}_m(\textbf{x}_i) = \Bigg[ \frac{\partial L(y_i, f(\textbf{x}_i))}{\partial f(\textbf{x}_i)} \Bigg]_{f(\textbf{x}_i)=f_{m-1}(\textbf{x}_i)}.
+  \boldsymbol{g}_m(\boldsymbol{x}_i) = \Bigg[ \frac{\partial L(y_i, f(\boldsymbol{x}_i))}{\partial f(\boldsymbol{x}_i)} \Bigg]_{f(\boldsymbol{x}_i)=f_{m-1}(\boldsymbol{x}_i)}.
 \end{align}
 Then we can update
 \begin{align}
-  \textbf{f}_m = \textbf{f}_{m-1} - \rho_m \textbf{g}_m,
+  \boldsymbol{f}_m = \boldsymbol{f}_{m-1} - \rho_m \boldsymbol{g}_m,
 \end{align}
-where $rho_m$ is the step length and can be find by approximating the real function
+where $\rho_m$ is the step length and can be found by approximating the real function
 \begin{align}
-  h_m(\textbf{x})= - \rho \textbf{g}_m(\textbf{x}).
+  h_m(\boldsymbol{x})= - \rho \boldsymbol{g}_m(\boldsymbol{x}).
 \end{align}
-So far, this only optimize f at a fixed set of points, but we can modify it by fitting a weak classifier to approximate the negative gradient. The resulting algorithm is shown in Algorithm~\ref{alg:gradientBoost} as the gradient boost algorithm.
+So far, this only optimizes $f$ at a fixed set of points, but we can modify it by fitting a weak classifier to approximate the negative gradient. Additionally, we add a step length parameter $0<\nu<1$ to perform partial updates, also known as \textit{shrinking} \cite{Murphy2012}. The gradient boost algorithm is shown in Algorithm~\ref{alg:gradientBoost}.
 
 \begin{algorithm}[H]
 \SetAlgoLined
-  Initialize the estimate $f_0(\textbf{x})$\;
+  Initialize the estimate $f_0(\boldsymbol{x})$\;
  \For{$m = 1$ : $M$}{
-  Compute the negative gradient vector $\textbf{u}_m = - \partial C(\textbf{y},\textbf{f})/\partial \textbf{f}(\textbf{x})$ at $\textbf{f}(\textbf{x})=\textbf{f}_{m-1}$\;
-  Fit the base learner to the negative gradient $h_m(\textbf{u}_m, \textbf{x})$\;
-  Update the estimate $f_m(\textbf{x}) = f_{m-1} (\textbf{x}) + \nu h_m (\textbf{u}_m, \textbf{x})$\;
+  Compute the negative gradient vector $\boldsymbol{u}_m = - \partial C(\boldsymbol{y},\boldsymbol{f})/\partial \boldsymbol{f}(\boldsymbol{x})$ at $\boldsymbol{f}(\boldsymbol{x})=\boldsymbol{f}_{m-1}$\;
+  Fit the base learner to the negative gradient $h_m(\boldsymbol{u}_m, \boldsymbol{x})$\;
+  Update the estimate $f_m(\boldsymbol{x}) = f_{m-1} (\boldsymbol{x}) + \nu h_m (\boldsymbol{u}_m, \boldsymbol{x})$\;
  }
- Output the final estimation $f_M(\textbf{x}) = \sum_{m=1}^M \nu h_m (\textbf{u}_m, \textbf{x})$
+ Output the final estimation $f_M(\boldsymbol{x}) = \sum_{m=1}^M \nu h_m (\boldsymbol{u}_m, \boldsymbol{x})$
  \caption{Gradient boost algorithm.}
  \label{alg:gradientBoost}
 \end{algorithm}
 
 \section{Dimensionality reduction}
+%There are several different methods to evaluate a model with many different types of scores such as accuracy, precision and f1-scores.
+Supervised learning introduces models that can be easy to understand, visualize and has well-defined tools and models. However, a dataset can be tedious to work with due to a large amount of descriptors. These descriptors may also be correlated, which means that no new information will be learned from a correlated feature and therefore could be disregarded. Furthermore, a large dataset pose a computational challenge and a reduction in descriptors could potentially reduce the computational time and effort required for any data analysis. Therefore, it would be beneficial to apply a method that finds correlated descriptors and reduce dimensionality of a dataset. This is the idea of \textit{principal component analysis} (PCA).
 
-Supervised learning introduces models that are easy to understand, visualize and has well-defined tools and models. There are several different methods to evaluate a model with many different types of scores such as accuracy, precision and f1-scores. Unfortunately, this does not transfer to unsupervised learning. In unsupervised learning, there is no simple goal for the analysis and the evaluation tends to of a subjective matter. Therefore, unsupervised learning is often used as an \textit{exploratory data analysis} \cite{James2017}. For data consisting of hundreds or thousands of features, it is possible to apply unsupervised learning to find correlated features and reduce dimensionality of the data, potentially reducing computational effort and time usage drastically. This is the idea of \textit{principal component analysis} (PCA).
+%Unfortunately, this does not transfer to unsupervised learning. In unsupervised learning, there is no simple goal for the analysis and the evaluation tends to be of a subjective matter. Therefore, unsupervised learning is often used as an \textit{exploratory data analysis} \cite{James2017}. For data consisting of hundreds or thousands of features, it is possible to apply unsupervised learning to find correlated features and reduce dimensionality of the data, potentially reducing computational effort and time usage drastically. This is the idea of \textit{principal component analysis} (PCA).
 
 \subsection{Principal component analysis}
+\label{pca}
 
-Principal component analysis is an unsupervised algorithm that tries to find a low-dimension representation of a dataset that contains as much of the variance in the data as possible. Each of the dimensions found by PCA are a linear combination of the features in the dataset, and are known as \textit{principal components}.
+Principal component analysis is an algorithm that tries to find a low-dimension representation of a dataset that contains as much of the variance in the data as possible \cite{Murphy2012, James2017}. Each of the dimensions found by PCA are a linear combination of the features in the dataset, and are known as \textit{principal components}.
 
 We can write the design matrix $\boldsymbol{X}\in {\mathbb{R}}^{n\times p}$, with $p$ features and $n$ entries, in terms of its column vectors as
 \begin{align}
 \boldsymbol{X}=\begin{bmatrix} \boldsymbol{x}_0 & \boldsymbol{x}_1 & \boldsymbol{x}_2 & \dots & \dots & \boldsymbol{x}_{p-1}\end{bmatrix},
+\label{eq:designmatrix}
 \end{align}
 with a given vector
 \begin{align}
@@ -384,17 +364,15 @@ with a given vector
 \label{eq:pc}
 \end{align}
 
-Then we can compute the \textit{covariance matrix} of the design matrix $\boldsymbol{X}$, which is a measurement of the joint variability of the $p$ features in $\boldsymbol{X}$. The covariance is defined as
+\noindent Then we can compute the \textit{covariance matrix} of the design matrix $\boldsymbol{X}$, which is a measurement of the joint variability of the $p$ features in $\boldsymbol{X}$. The covariance is defined as
 \begin{align}
 \mathrm{cov}[\boldsymbol{v},\boldsymbol{u}] =\frac{1}{n} \sum_{i=0}^{n-1}(v_i- \overline{v})(u_i- \overline{u}),
 \end{align}
 where $\boldsymbol{v}$ and $\boldsymbol{u}$ are two vectors with $n$ elements each. The covariance matrix is defined by applying the covariance for every pairwise feauture, resulting in a $p\times p$ matrix. On the diagonal, the covariance of two equal features becomes the variance of one,
 \begin{align}
-  \mathrm{cov}[\boldsymbol{u},\boldsymbol{u}] &=\frac{1}{n} \sum_{i=0}^{n-1}(u_i- \overline{u})(u_i- \overline{u}) \\
-  &=\frac{1}{n} \sum_{i=0}^{n-1}(u_i- \overline{u})^2\\
-  &=\mathrm{var}[\boldsymbol{u}].
+  \mathrm{cov}[\boldsymbol{u},\boldsymbol{u}] &=\frac{1}{n} \sum_{i=0}^{n-1}(u_i- \overline{u})(u_i- \overline{u}) = \mathrm{var}[\boldsymbol{u}].
 \end{align}
-The covariance accepts values between $0$ and infinity, which rises a computational issue due to loss of numerical precision. Therefore, we scale the covariance matrix using the correlation function
+The covariance can take values between $\pm \infty$, which give rise to computational issues due to loss of numerical precision. Therefore, we scale the covariance matrix by the variance. This is known as the correlation function
 \begin{align}
   \mathrm{corr}[\boldsymbol{u},\boldsymbol{v}]=\frac{\mathrm{cov}[\boldsymbol{u},\boldsymbol{v}]}{\sqrt{\mathrm{var}[\boldsymbol{u}] \mathrm{var}[\boldsymbol{v}]}}.
 \end{align}
@@ -410,7 +388,7 @@ Since all values are inbetween $-1$ and $1$, we avoid any loss of numerical prec
 \mathrm{cov}[\boldsymbol{x}_{p-1},\boldsymbol{x}_0]   & \mathrm{cov}[\boldsymbol{x}_{p-1},\boldsymbol{x}_1] & \mathrm{cov}[\boldsymbol{x}_{p-1},\boldsymbol{x}_{2}]  & \dots & \dots  & \mathrm{var}[\boldsymbol{x}_{p-1}]\\
 \end{bmatrix},
 \end{align}
-for all vectors $\boldsymbol{x}_i$ where $i=0,1,\dots,p-1$. The correlation matrix becomes
+for all vectors $\boldsymbol{x}_i$ where $i=0,1,\dots,p-1$. The correlation matrix $\boldsymbol{K}[\boldsymbol{x}]$ becomes
 \begin{align}
   \boldsymbol{K}[\boldsymbol{x}] = \begin{bmatrix}
   1 & \mathrm{corr}[\boldsymbol{x}_0,\boldsymbol{x}_1]  & \mathrm{corr}[\boldsymbol{x}_0,\boldsymbol{x}_2] & \dots & \dots & \mathrm{corr}[\boldsymbol{x}_0,\boldsymbol{x}_{p-1}]\\
@@ -422,35 +400,37 @@ for all vectors $\boldsymbol{x}_i$ where $i=0,1,\dots,p-1$. The correlation matr
   \end{bmatrix}.
 \end{align}
 
-The covariance matrix can be rewritten as a function of the design matrix,
+\noindent The covariance matrix can be rewritten as a function of the design matrix,
 \begin{align}
-  \boldsymbol{C}[\boldsymbol{x}] = \frac{1}{n}\boldsymbol{X}\boldsymbol{X}^T= \mathbb{E}[\boldsymbol{X}\boldsymbol{X}^T],
+  %\frac{1}{n}\boldsymbol{X}\boldsymbol{X}^T=
+  \boldsymbol{C}[\boldsymbol{x}] = \mathbb{E}[\boldsymbol{X}\boldsymbol{X}^T] - \mathbb{E}[\boldsymbol{X}] \mathbb{E}[\boldsymbol{X}^T],
 \end{align}
-where $\mathbb{E}[\boldsymbol{X}\boldsymbol{X}^T]$ is the expectation value.
+where $\mathbb{E}[\boldsymbol{X}\boldsymbol{X}^T]$ is the expectation value, and assuming we have normalized the data such that $\mathbb{E}[X] = 0$, we can remove the last term.
 
 Further on, we assume that we can do apply a number of orthogonal transformations by some orthogonal matrices $\boldsymbol{S}=[\boldsymbol{s}_0,\boldsymbol{s}_1,\dots,\boldsymbol{s}_{p-1}]\in {\mathbb{R}}^{p\times p}$ with the column vectors $\boldsymbol{s}_i \in {\mathbb{R}}^{p}$. Additionally, we assume that there is a transformation
 \begin{align}
   \boldsymbol{C}[\boldsymbol{y}] =\boldsymbol{S}\boldsymbol{C}[\boldsymbol{x}]\boldsymbol{S}^T = \mathbb{E}[\boldsymbol{S}\boldsymbol{X}\boldsymbol{X}^T\boldsymbol{S}^T],
 \end{align}
-such that the new matrix $\boldsymbol{C}[\boldsymbol{y}]$ is diagonal with elements $[\lambda_0,\lambda_1,\lambda_2,\dots,\lambda_{p-1}]$. By multiplying with $\boldsymbol{S}^T$, we arrive at the given eigenvalue $i$ of the covariance matrix that
+such that the new matrix $\boldsymbol{C}[\boldsymbol{y}]$ is diagonal with elements $[\lambda_0,\lambda_1,\lambda_2,\dots,\lambda_{p-1}]$. By multiplying with $\boldsymbol{S}^T$, we arrive at the given eigenvalue number $i$ of the covariance matrix that
 \begin{align}
-  \boldsymbol{S}^T_i\lambda_i = \boldsymbol{C}[\boldsymbol{x}]\boldsymbol{S}^T_i.
+  \boldsymbol{s}^T_i\lambda_i = \boldsymbol{C}[\boldsymbol{x}]\boldsymbol{s}^T_i.
 \end{align}
 
-Dimensions with large eigenvalue have a large variation and can therefore be used to find features with useful information since we multiply the eigenvalue with the eigenvectors. When the eigenvalues are small, it means that the eigenvectors shrink accordingly and there is a small variation in these specific features.
+Dimensions with large eigenvalue have a large variation and can therefore be used to find features with useful information since we multiply the eigenvalue with the eigenvectors. When the eigenvalues are small, it means that the eigenvectors shrink accordingly and there is a small variation in these specific features \cite{Marsland2014}.
 
-So far, we have been leading up to the classical PCA theorem. Assume an ortogonal transformation $\boldsymbol{W}\in {\mathbb{R}}^{p\times p}$. We can then define the reconstruction error
+So far, we have been leading up to the classical PCA theorem. Assume that the data is represented as in equation \ref{eq:designmatrix} with $\mathbb{E}[X]=0$, and assume that there exists an orthogonal transformation $\boldsymbol{W}\in {\mathbb{R}}^{p\times p}$. We can then define the reconstruction error
+
 \begin{align}
   J(\boldsymbol{W},\boldsymbol{Z}) = \frac{1}{n}\sum_i (\boldsymbol{x}_i - \overline{\boldsymbol{x}}_i)^2,
 \end{align}
-with $\overline{\boldsymbol{x}}_i = \boldsymbol{W}\boldsymbol{z}_i$, where $\boldsymbol{z}_i$ is a row vector with dimension ${\mathbb{R}}^{n}$ of the matrix
+with $\overline{\boldsymbol{x}}_i = \boldsymbol{W}\boldsymbol{z}_i$, where $\boldsymbol{z}_i$ is a column vector with dimension ${\mathbb{R}}^{n}$ of the matrix
 $\boldsymbol{Z}\in{\mathbb{R}}^{p\times n}$.
 
-The PCA theorem states that minimizing the above reconstruction error corresponds to setting $\boldsymbol{W}=\boldsymbol{S}$, which is the orthogonal matrix which diagonalizes the covariance matrix \cite{Murphy2012}. The optimal number of features that corresponds to the encoding is given by the a set of vectors $\boldsymbol{z}_i$ with at most $l$ vectors. This is defined as the orthogonal projection of the data onto the columns by the eigenvectors of the covariance matrix. Instead of using the covariance matrix, it is preferable to use the correlation matrix to keep the numerical precision for any raw implementation. Additionally, it is important to mention that PCA is very sensitive to the data, which is why one should always remember to center the data around before applying PCA.  We recommend the reader to read Ref. \cite{Murphy2012} p. $387$ for proof of the classical PCA theorem, as we will not elaborate any further. The algorithm is shown in code-listing \ref{alg:pca}.
+The PCA theorem states that minimizing the above reconstruction error corresponds to setting $\boldsymbol{W}=\boldsymbol{S}$, which is the orthogonal matrix that diagonalizes the covariance matrix \cite{Murphy2012}. The optimal number of features that correspond to the encoding is given by the set of vectors $\boldsymbol{z}_i$ with at most $l$ vectors. This is defined as the orthogonal projection of the data onto the columns spanned by the eigenvectors of the covariance matrix. Instead of using the covariance matrix, it is preferable to use the correlation matrix to avoid loss of numerical precision. Additionally, it is important to mention that the covariance matrix is sensitive to the standardization of variables, which is why one should always remember to center the data around before applying PCA.  We recommend the reader to read Ref. \cite{Murphy2012} p. $387$ for proof of the classical PCA theorem, as we will not elaborate any further. The algorithm for PCA is shown in Algorithm~\ref{alg:pca}.
 
 \begin{algorithm}[H]
 \SetAlgoLined
- Set up the design matrix $\boldsymbol{X}\in {\mathbb{R}}^{n\times p}$ with $p$ features and $n$ entries;
+ Set up the design matrix $\boldsymbol{X}\in {\mathbb{R}}^{n\times p}$ with $p$ features and $n$ entries;\\
  Center the data by subtracting the mean value for each column;\\
  Compute the covariance matrix $\mathbb{E}[\overline{\boldsymbol{X}}\overline{\boldsymbol{X}}^T]$; \\
  Find the eigenpairs of $\boldsymbol{C}$ with eigenvalues $[\lambda_0,\lambda_1,\dots,\lambda_{p-1}]$ and eigenvectors $[\boldsymbol{s}_0,\boldsymbol{s}_1,\dots,\boldsymbol{s}_{p-1}]$;\\
@@ -460,7 +440,36 @@ The PCA theorem states that minimizing the above reconstruction error correspond
  \label{alg:pca}
 \end{algorithm}
 
-Instead of choosing an arbitrarily number of dimensions to reduce down to, it is common to choose the number of dimensions that accumulate a sufficiently amount of variance, such as e.g. $95 \%$. However, it remains an subjective analysis in how many principal components one should include as it will depend on both the specific application and specific data set. If it is impossible to give a motivation for reducing a large dataset to just two or three principal components, there might still be a reason for why to apply PCA to a dataset. PCA can be applied as a preprocessing method to reduce the dimensionality of a dataset, and therefore might drastically improve the efficiency of further supervised learning approaches.
+\noindent Instead of choosing an arbitrary number of dimensions to reduce down to, it is common to choose the number of dimensions that accumulate a sufficient amount of variance. However, it remains a subjective analysis in how many principal components one should include as it will depend on both the specific application and specific data set. If it is impossible to give a motivation for reducing a large dataset to just two or three principal components, there might still be a reason for why to apply PCA to a dataset. PCA can be applied as a preprocessing method to reduce the dimensionality of a dataset, and therefore might drastically improve the efficiency of further supervised learning approaches.
+
+\section{Practical challenges associated with machine learning}
+
+So far, we have covered substantially researched topics such as dimensionality reduction, supervised algorithms and metric evaluation. However, there exists parts of machine learning that does not neccessarily get as much attention, but yet are crucial for the objective of machine learning. In this section, we will briefly mention both known and unknown challenges that are part of building a machine learning model.
+
+The initial phase consists of gathering information systematically. This could be perhaps the most time-consuming part of the entire process, motivated by questions such as how much data is neccessary. The answer to this question is as vague as the question itself, since there is no lower or upper bound but rather a general recommendation that the more data the better. Additionally, we should have an hypothesis that we are collecting descriptors of something that can explain the objective of the entire machine learning process. Indeed, the promises of machine learning are limited to data containing good descriptors. For a supervised learning algorithm, it is neccessary to have one descriptor for the training data that contains information about what should be learned.
+
+Thereafter follows an analysis of the data quality, often called \textit{pre-processing}. This includes identifying outliers and finding out what to do about any potential missing value in the data. Normally, solutions such as removing outliers and filling any missing value with either the mean, median or zero are applied. The data is also required to be transformed into continuous or categorical values. For the latter case we can carry out a one-hot encoding to ensure that any algorithm does not assume one category being more important to another due to a larger number. Furthermore, it could be neccessary to scale the data and reduce dimensionality, with the motivation discussed in section \ref{pca}.
+
+If the algorithm has not been chosen yet, this is the time to do so. A clever first-hand approach is to apply a simple algorithm that is not computational demanding to see how it performs on a subset of the data. If the performance is satisfactory, any implementation of a more sophisticated algorithm could be redundant.
+
+Next, the search for optimal hyperparameters while maintaining a generalized model can pose a challenge, but is achiveable. It is popular to apply a cross validation during this process with different evaluation metrics, as discussed in section \ref{evaluating accuracy}.
+
+Eventually, with a chosen algorithm and its optimal hyperparameters, we train the algorithm on the entire preprocessed training data and then perform predictions on unseen data. To avoid any bias in the predictions, it is crucial that predictions on unseen data is done only once. The reason for this is that we do not want to optimalize any model for the actual test data, since this would reduce the generalization and increase the bias.
+
+%is the data reliable??? bias? Quality of data? Are we measuring something that can explain the objective?
+
+
+%- data gathering (long time. DO we have enough data??? As much data as possible)
+%- data cleaning (Hows the quality? Remove outliers, fill missing values using mean, median or zero)
+%- data labelling
+%- choosing a statistical learning method
+%- Apply preprocessing or not (continuous variables and categorical values)
+%- find optimal hyperparameters while avoiding overfitting on subsets of data (computational effort)
+%- have we achieved a generalized model? We can understand the simpler models, but as complexity increases we are bound to just accept many models as black boxes.
+%- compute labels on unseen data (test data predictions)
+
+%``Young technology is a double-edged sword. In one hand, it incorporates the latest technology and developments, but on the other hand, it is not production-ready''
+
 
 %\section{Unsupervised learning}
 %\subsection{Kmeans}

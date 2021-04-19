@@ -25,6 +25,8 @@ The most common HTTP-methods are GET, POST and HEAD, which are used to either re
 
 \begin{table}[!ht]
 \centering
+\caption{Numeric status code for response. The leftmost digit decide the type of response, while the two follow-up digits depends on the implemented API.}
+\label{tab:requests}
 \noindent\makebox[\textwidth]{
 \begin{tabular}{M{2.5cm} M{11.0cm}}
   \hline
@@ -39,8 +41,6 @@ The most common HTTP-methods are GET, POST and HEAD, which are used to either re
   \hline
 \end{tabular}
 }
-\caption{Numeric status code for response. The leftmost digit decide the type of response, while the two follow-up digits depends on the implemented API.}
-\label{tab:requests}
 \end{table}
 
 A RESTful (Representational State Transfer) allows users to communicate with a server via a HTTP using a REST Architectural Style \cite{Battle2008}. This enables the utilisation of Uniform Resource Identifiers (URI), where each object is represented as a unique resource and can be requested in a uniform manner. Importantly, this allows the use of both URIs and HTTP methods in an API, such that an object is represented by an unique URI whereas a HTTP-method can act on the object. This action will then return either the result of the action, or structured data that represents the object.
@@ -53,6 +53,8 @@ To provide a Python example, we can check the response by doing a GET request at
 
 \begin{table}[!ht]
 \centering
+\caption{A selection of databases of computational material science sorted after number of compounds. Abbreviations used are Novel Materials Discovery (NOMAD), Automatic-FLOW for Materials Discovery (AFLOW), Materials Project (MP), Inorganic Crystal Structure Database (ICSD) and Open Quantum Materials Database (OQMD). The number of entries can give the wrong perception of size of each respective database, as it does not visualise how many calculations have been done for each entry, nor if there might be duplicates.}
+\label{tab:databases}
 %\begin{tabular}{clclclclc}
 \noindent\makebox[\textwidth]{
   \begin{tabular}{M{3.0cm} M{3.5cm} M{2.5cm} M{2.5cm}}
@@ -69,12 +71,12 @@ To provide a Python example, we can check the response by doing a GET request at
   \hline
 \end{tabular}
 }
-\caption{A selection of databases of computational material science sorted after number of compounds. Abbreviations used are Novel Materials Discovery (NOMAD), Automatic-FLOW for Materials Discovery (AFLOW), Materials Project (MP), Inorganic Crystal Structure Database (ICSD) and Open Quantum Materials Database (OQMD). The number of entries can give the wrong perception of size of each respective database, as it does not visualise how many calculations have been done for each entry, nor if there might be duplicates.}
-\label{tab:databases}
 \end{table}
 
 \begin{table}[!ht]
 \centering
+\caption{A selection of cloud services that offers database-storage. Abbreviations used are Computational Materials Repository (CMR), NIMS Materials Database (MatNavi), PRedictive Integrated Structural Materials Science (PRISMS), Materials Platform for Data Science (MPDS) and the Materials Data Fascility (MDF).}
+\label{tab:cloud_service}
 \noindent\makebox[\textwidth]{
   \begin{tabular}{M{3.0cm} M{3.0cm} M{3.0cm}}
   \hline
@@ -92,8 +94,6 @@ To provide a Python example, we can check the response by doing a GET request at
   \hline
 \end{tabular}
 }
-\caption{A selection of cloud services that offers database-storage. Abbreviations used are Computational Materials Repository (CMR), NIMS Materials Database (MatNavi), PRedictive Integrated Structural Materials Science (PRISMS), Materials Platform for Data Science (MPDS) and the Materials Data Fascility (MDF).}
-\label{tab:cloud_service}
 \end{table}
 
 \subsection{Open-source Python libraries for material analysis}

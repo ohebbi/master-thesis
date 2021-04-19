@@ -1,4 +1,6 @@
 \usepackage{amsmath}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{argmin}
 \usepackage{amsthm}
 \usepackage{amssymb}
 \usepackage[top=4cm,bottom=4cm,left=2.8cm,right=3.75cm,asymmetric,twoside]{geometry}
@@ -17,13 +19,40 @@
       \vfil}%
   }%
 }
+\usepackage{grffile}
 \usepackage{epigraph} % quote
 \usepackage{graphicx} %Read pdfs
 \usepackage{wrapfig} %wrapping text to fig
 \usepackage{tikz} %draw figures
 \usetikzlibrary{shapes,calc,fadings,decorations.pathreplacing,positioning,arrows.meta}
+\usepackage{forest}
+\forestset{
+    .style={
+        for tree={
+            base=bottom,
+            child anchor=north,
+            align=center,
+            s sep+=1cm,
+    straight edge/.style={
+        edge path={\noexpand\path[\forestoption{edge},thick,-{Latex}]
+        (!u.parent anchor) -- (.child anchor);}
+    },
+    if n children={0}
+        {tier=word, draw, thick, rectangle}
+        {draw, diamond, thick, aspect=2},
+    if n=1{%
+        edge path={\noexpand\path[\forestoption{edge},thick,-{Latex}]
+        (!u.parent anchor) -| (.child anchor) node[pos=.2, above] {Y};}
+        }{
+        edge path={\noexpand\path[\forestoption{edge},thick,-{Latex}]
+        (!u.parent anchor) -| (.child anchor) node[pos=.2, above] {N};}
+        }
+        }
+    }
+}
 \usepackage{subcaption} %subcaption
 \usepackage[font=small,labelfont=bf,width=0.9\textwidth]{caption}
+\captionsetup[table]{skip=10pt}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[sc, osf]{mathpazo}

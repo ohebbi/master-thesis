@@ -24,7 +24,7 @@
 \usepackage{graphicx} %Read pdfs
 \usepackage{wrapfig} %wrapping text to fig
 \usepackage{tikz} %draw figures
-\usetikzlibrary{shapes,calc,fadings,decorations.pathreplacing,positioning,arrows.meta}
+
 \usepackage{forest}
 \forestset{
     .style={
@@ -53,7 +53,6 @@
 \usepackage{subcaption} %subcaption
 \usepackage[font=small,labelfont=bf,width=0.9\textwidth]{caption}
 \captionsetup[table]{skip=10pt}
-\usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[sc, osf]{mathpazo}
 \usepackage[euler-digits]{eulervm}
@@ -69,9 +68,14 @@
 \usepackage{chemformula}
 \usepackage{mathtools}
 \usepackage[dvipsnames]{xcolor}
+\usepackage[utf8]{inputenc}
 \usepackage{pgfplots}
+\DeclareUnicodeCharacter{2212}{−}
+\usepgfplotslibrary{groupplots,dateplot}
+\usetikzlibrary{patterns,shapes.arrows, arrows.meta,bending, shapes,calc,fadings,decorations.pathreplacing,positioning,arrows.meta}
+\pgfplotsset{compat=newest}
+
 \usepackage{sansmath}
-\usetikzlibrary{arrows.meta,bending}
 \tikzset{>=stealth,
 OptimumStyle/.style={align=center,anchor=east,rotate=90,font=\scriptsize}
 }

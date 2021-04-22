@@ -1,4 +1,4 @@
-\chapter{Information flow?}
+\chapter{Information flow}
 
 The information stream of this project can be regarded as many modular parts connected together in logical pieces, and is strongly influenced by the process that defines a \textit{minimum viable product} (MVP) through iterative development. An MVP is commonly known (in the bussiness world) as a new product that enables the most learning out of the minimum effort possible. This method allows a product to be iteratively evolved by consistent feedback and development, which in return enables cooperation between cross-disciplinary fields.
 
@@ -71,7 +71,7 @@ In this example, we will gather experimental data using the module matminer. The
   \item Apply the query.
 \end{enumerate}
 
-The code listed in code listing \ref{lst:CIQuery} gives an easy example to steps $2-4$ with experimental data as filter.
+The code listed in code listing \ref{lst:CIQuery} gives an easy example to steps $2-4$ with experimental data as filter, which results in an almost instant query.
 
 \lstinputlisting[language=Python, caption={Practical example of extracting information from Citrine Informatics using matminer, resulting in a Pandas DataFrame named experimental\_entries that contains the properties given after performing a filter on the database. The criteria is given as a JSON.}, label={lst:CIQuery}]{methodology&implementations/code-listings/query/CIQuery.tex}
 
@@ -82,6 +82,8 @@ The query from AFLOW API \cite{Curtarolo2012} supports lazy formatting, which me
 Matminer's data retrievel tool for AFLOW is currently an ongoing issue \cite{Rosenbrock2017}, thus we present in code listing \ref{lst:AFLOWQuery} a function that extracts information from AFLOW and returns a Pandas DataFrame. In contrast to Materials Project and Citrine Informatics, AFLOW does not require an API-key for a query, which reduces the amount of steps to obtain data. The class searches for an stored AFLOW-data, and initialises a MP-query with the initial criteria if not successful. The resulting query will then be used as input to AFLOW.
 
 \lstinputlisting[language=Python, caption={Practical example of extracting information from AFLOW. The function can extract all information in AFLOW for a given list of compounds, however, it is a slow method and requires consistent internet connection.}, label={lst:AFLOWQuery}]{methodology&implementations/code-listings/query/AFLOWQuery.tex}
+
+Restricted by the available API, the resulting query of $25212$ entries in Materials Project took place during the period from january to february $2021$ and took in total $23$ days. Unfortunately, less than $0.02$\% of the entries screened from Materials Project was present in AFLOW.
 
 \subsubsection{AFLOW-ML}
 
@@ -102,6 +104,16 @@ A significant portion of the process is tied up to obtaining the input-file for 
 \end{enumerate}
 \lstinputlisting[language=Python, caption={Practical example of extracting information from AFLOW-ML. The function will convert a CIF-file (from e.g. Materials Project) to a POSCAR, and will use it as input to AFLOW-ML. In return, one will get the structure's predicted band gap. It should be noted that this requires the AFLOW-ML library in the same directory.}, label={lst:AFLOWMLQuery}]{methodology&implementations/code-listings/query/AFLOWMLQuery.tex}
 
+The resulting ab-initio calculations used an average of $57$s/compound, which in total sums up to $16.6$ days. In contrast to AFLOW, $100\%$ of the entries was present due to the fact that it is not based on a database but rather a model.
+
+\subsubsection{OQMD}
+
+To extract information from the OQMD, the easiest way was through the interface of Matminer. The difficulty of extraction are mostly regarded to column which are not assigned to a type, however, this is taken care of in the extraction class visualized in code listing \ref{lst:OQMDQuery}.
+
+\lstinputlisting[language=Python, caption={Practical example of extracting information from OQMD through Matminer.}, label={lst:OQMDQuery}]{methodology&implementations/code-listings/query/OQMDQuery.tex}
+
+The query is done almost instantly, resulting in a DataFrame containing over $400.000$ entries, where $40$\% of the entries are matching an entry of the initial MP query.
+
 \subsubsection{JARVIS-DFT}
 
 The newest version of the JARVIS-DFT dataset can be obtained by requesting an account at the official webpage, but with the drawback that an administrator has to either accept or deny the request. Thus, the accessibility of the database is dependent on if there is an active administrator paying attention to the requests, which is a limitation experienced during this work. Another approach is to download the database through matminer, however with the limitation of not neccessarily having the latest version of the database. A third approach is to download a version of JARVIS-DFT that have been made available for requests the 30.04.2020 at http://figshare.com by \citeauthor{Choudhary2020} \cite{Choudhary2020}. The author provides tools for extraction, yet not compatible with the latest version of Python (3.8) at the time writing (12.03.2021). Therefore, we provide a tool to extract this data through the use of our base class.
@@ -110,9 +122,11 @@ The newest version of the JARVIS-DFT dataset can be obtained by requesting an ac
 
 We observe that there is no advanced search filter when loading the database from matminer. The author of matminer regards this as the user's task, and is indeed easily done through the use of the python library Pandas.
 
+The resulting screening of $25212$ entries from Materials Project was done almost instantly, and it was found $11$\% and $17.8$\% similar entries for the TBMBJ and OptB88 functionals with MP, respectively. Moreover, JARVIS-DFT contains information about spin-orbit splitting, but only $0.12\%$ of the calculations was found as a match with the initial MP query.
+
 \section{Matminer featurization}
 
-Before applying any machine learning algorithm, raw data needs to be transformed into a numerical representation that reflects the relationship between the input and output data. This transformation is known as generating descriptors or features, however, we will in this work adapt the name \textit{featurization}. The open source library of Matminer provides many tools to featurize existing features extracted from Materials Project. In this section we will describe how to extract the features from an initial Materials Project query result (see subsection. \ref{ssec:materialsproject}), and the resulting features. It is beyond the scope of this work to go in-depth of each feature since the resulting dataset contains a quantity of several thousand features, but we will here take the liberty to serve a brief overview of the features and refer to each respective citation for more information. The respective table with information regarding $39$ distinct matminer featurizers is situated in the Appendix, table \ref{table:featurizers}.
+Before applying any machine learning algorithm, raw data needs to be transformed into a numerical representation that reflects the relationship between the input and output data. This transformation is known as generating descriptors or features, however, we will in this work adapt the name \textit{featurization}. The open source library of Matminer provides many tools to featurize existing features extracted from Materials Project. In this section we will describe how to extract the features from an initial Materials Project query result (see subsection. \ref{ssec:materialsproject}), and the resulting features. It is beyond the scope of this work to go in-depth of each feature since the resulting dataset contains a quantity of more than $4500$ features, but we will here take the liberty to serve a brief overview of the features and refer to each respective citation for more information. The respective table with information regarding $39$ distinct matminer featurizers is situated in the Appendix, table \ref{table:featurizers}.
 
 The motivation behind the choice of featurizers is that we do not precisely know which features that describes a good potential host. A few potential candidates were briefly mentioned in section \ref{promising-material-hosts}, while most candidates are probably yet do be discovered. If we  had precise knowledge of what to look for, then there is a good chance that the list of hosts would be longer. Therefore, we strive to collect an achievable quantity of descriptors with the hope of getting wiser in terms of describing a potential material host.
 
@@ -130,9 +144,9 @@ In the extended version of the featurization process, we eliminate all columns t
 
 After selecting entries based on an initial query from Materials Project followed by a thorough featurization process using Matminer, we face a challenge in terms of defining a training set that we can train data on. This is not only challenging due to the lack of known candidates, but also due to the intricacy of defining materials as bad candidates. Therefore, in this section we describe three different approaches of finding a training set consisting of (1) good candidates and (0) bad candidates.
 
-\subsection{First approach}
+\subsection{First approach; the Ferrenti approach}
 
-The first approach on defining a training set is based on the criteria from the paper \citetitle{Ferrenti2020} of \citeauthor{Ferrenti2020} \cite{Ferrenti2020}. They suggest a data mining process consisting of four stages by systematically evaluating the suitability of host materials from Materials Project. This procedure is referred to as \textit{data mining}, and we will initially begin with looking at labelling good candidates.
+The first approach on defining a training set is based on the criteria from the paper \citetitle{Ferrenti2020} of \citeauthor{Ferrenti2020} \cite{Ferrenti2020}, therefore we will name this approach \textit{the Ferrenti approach}. They suggest a data mining process consisting of four stages by systematically evaluating the suitability of host materials from Materials Project. This procedure is referred to as \textit{data mining}, and we will initially begin with looking at labelling good candidates.
 
 \subsubsection{Labelling good candidates}
 
@@ -221,9 +235,9 @@ If we were to turn around all criteria defined in the four stages above (except 
 
 We include only ICSD entries and a lower band gap limit for consistency, since our data does not contain entries outside of these limits. The number of entries after stage $1$ is $1520$, while stage $2$ reduces the entries to $684$.
 
-\subsection{Second approach}
+\subsection{Second approach; the augmented Ferrenti approach}
 
-In the second approach we try to make adjustment of the first approach to improve the dataset. This approach is therefore named (TODO: insert-cool-name).
+In the second approach we try to make adjustment of the first approach to improve the dataset. This approach is therefore named \textit{the augmented Ferrenti Approach}.
 
 \subsubsection{Labelling good candidates}
 
@@ -276,18 +290,20 @@ For bad candidates, we implement the same strategy as defined for bad candidates
 }
 \end{table}
 
-\subsection{Third approach}
+\subsection{Third approach; the insightful approach}
 
-The third approach is vastly different than the two first approaches in terms of labelling, therefore it is named \textit{A different approach}.
+The third approach is vastly different than the two first approaches in terms of labelling, therefore it is named \textit{the insightful approach}.
 
-Recall, in section \ref{promising-material-hosts} we discussed alternative promising material host candidates. The third approach for finding good candidates is to search our current data for any materials that overlap with known good candidates. We will distinguish between hosts that can accomodate a deep point defect or not with the potential of being a SPS, which significantly reduces the amount of known candidates and a resulting training set. This restriction also excludes potential materials that exhibit strong and ionic interactions in the lattice.
+Recall, in section \ref{promising-material-hosts} we discussed alternative promising material host candidates. The third approach for finding good candidates is to search our current data for any materials that overlap with known good candidates. Due to a concern of having a too small dataset, we will include materials that are promising and have shown suitable properties to accomodate deep defects that can exhibit quantum effects.
+
+%This restriction also excludes potential materials that exhibit strong and ionic interactions in the lattice.
 
 \subsubsection{Labelling good candidates}
 
 \begin{itemize}
   \item[]{\textbf{Stage 1}}
   \begin{itemize}
-  \item matches the formulas SiC, BN, GaN, AlP, GaP, AlAs, ZnS, ZnSe, ZnTe, CdS, Y$_3$Al$_5$O$_{12}$, Y$_2$Si$_5$O$_5$, C or Si
+  \item matches the formulas SiC \cite{Neudeck1995, Weber2010, Son2020, Falk2013, Martienssen2005}, BN \cite{Toth2019, Atatuere2018}, MoS$_2$\cite{Atatuere2018}, WSe$_2$\cite{Atatuere2018}, WS$_2$\cite{Atatuere2018}, GaN \cite{Berhane2018}, GaAs \cite{Wang2014}, AlN \cite{Weber2010, Xue2020}, ZnS \cite{Zhang2020}, ZnSe \cite{Weber2010}, ZnO \cite{Zhang2020}, AlP\cite{Weber2010}, GaP\cite{Weber2010}, AlAs\cite{Weber2010}, ZnTe\cite{Weber2010}, CdS\cite{Weber2010}, SiGe \cite{Hardy2019}, C \cite{Taylor2008, Barclay2011, Gordon2013} or Si \cite{Redjem2020, Zhang2020}.
   \item is present in the ICSD database.
   \end{itemize}
   \item[]{\textbf{Stage 2}}
@@ -300,23 +316,75 @@ Recall, in section \ref{promising-material-hosts} we discussed alternative promi
   \end{itemize}
 \end{itemize}
 
-After stage $1$, it was found $175$ matching formulas which included $8$ entries that had a bandgap lower than $0.5$eV. These entries were structures that was reported as unstable in terms of energy above hull calculations, and would decompose into entries that were already present in the data after stage $1$ with bandgap substantially larger than $0.5$. We chose to exclude these entries with an additional band gap restriction due to the fact that the bandgap is not large enough to accomodate a deep defect. Therefore, these entries were instead labelled as bad entries.
+After stage $1$, it was found $202$ matching formulas which included $12$ entries that had a bandgap lower than $0.5$eV. These entries were structures that was reported as unstable in terms of energy above hull calculations, and would decompose into entries that were already present in the data after stage $1$ with bandgap substantially larger than $0.5$. We choose to exclude these entries with an additional band gap restriction due to the fact that the bandgap is not large enough to accomodate a deep defect. Therefore, these entries were instead labelled as bad entries.
 
-Entries matching the formula C, SiC or BN were manually screened to see if the entries have a matching structure to the respective candidates discussed in section \ref{diamond} and \ref{silicon-carbide} and \ref{promising-material-hosts}, respectively. For C, we admit only three-dimensional diamond-like structures, as explicitly stated in the column tags at Materials Project. Two-dimensional graphite-like structures are labelled as bad candidates, while complex structures (eg. C$_{28}$, C$_{48}$, C$_{60}$) were moved to the test set. For SiC, we admit only entries with the polytypes $3$C, $4$H and $6$H, moving structures similar to $2$H to the test set. Concerning BN, we only admit two-dimensional structures.
+Entries matching the formula C, SiC, BN, MoS$_2$, WSe$_2$ and  WS$_2$ were manually screened to see if the entries have a matching structure to the respective candidates discussed in section \ref{diamond} and \ref{silicon-carbide} and \ref{promising-material-hosts}, respectively. For C, we admit only three-dimensional diamond-like structures, as explicitly stated in the column tags at Materials Project. Two-dimensional graphite-like structures are labelled as bad candidates, while complex structures (eg. C$_{28}$, C$_{48}$, C$_{60}$) were moved to the test set. For SiC, we admit only entries with the polytypes $3$C, $4$H and $6$H, while moving structures similar to $2$H to the test set. Concerning the other materials, we only admit two-dimensional structures.
+
+The materials AlP, GaP, AlAs, ZnTe and CdS were manually screened for tetrahedrally coordinated structures, and have been included since \citeauthor{Weber2010} \cite{Weber2010} has identified them as potential promising candidates due to acceptable properties defined in requirements (H1-H4) in section \ref{ssec:qubit-material-host-requirements}. We note that only tetrahedrally coordinated structures of the given formulas were present after the bandgap restriction of $0.5eV$.
+
+Since the number of elements in the good candidates are not containing more than two elements, we decide to remove the feature that explains how many elements due to that we do not want the model to discriminate based on this feature. After three stages, a total of $172$ entries were labelled as good candidates.
 
 \subsubsection{Labelling bad entries}
 
-Since the training data that constitutes good candidates are few, we choose to add $100$ random entries from the dataset of bad candidates used in approach $1$ and $2$, in addition to the entries stated above. We only add a subsample for increasing the potential dimensional space for predictions of candidates while avoiding having a too inbalanced dataset.
+Since the training data that constitutes good candidates are few, we choose to add $400$ random entries from the dataset of bad candidates used in approach $1$ and $2$, in addition to the entries stated above. We only add a subsample for increasing the potential dimensional space for predictions of candidates while avoiding having a too inbalanced dataset.
+
+\clearpage
+
+\begin{figure}[ht!]
+    \centering
+    \begin{subfigure}{1\textwidth}
+        \centering
+          \input{../predicting-solid-state-qubit-candidates/reports/figures/parallel_coordinates/01-ferrenti-approach.pgf}
+    \end{subfigure}
+    \begin{subfigure}{1\textwidth}
+        \centering
+          \input{../predicting-solid-state-qubit-candidates/reports/figures/parallel_coordinates/02-augmented-ferrenti-approach.pgf}
+    \end{subfigure}
+    \begin{subfigure}{1\textwidth}
+        \centering
+          \input{../predicting-solid-state-qubit-candidates/reports/figures/parallel_coordinates/03-insightful-approach.pgf}
+    \end{subfigure}
+    \vspace*{-95mm}
+    \caption{Parallel coordinate plots for the different approaches. To limit the data cluttering, we have random collected up to $250$ entries for each class and made the lines transparent. For the insightful approach, we have used all entries $172$ entries.}
+    \label{fig:parallel-coordinates-approaches}
+\end{figure}
+
+\clearpage
+
 
 \subsection{Comparison of the approaches}
 
-The three approaches provide special emphasis on each their goal. Approach $1$ is dependent on choosing only elements with zero spin isotopes together with practical filters, while approach $2$ allows a larger variety of elements and removes the practical reasons for excluding elements. Thus, approach $1$ targets a more narrow prediction space than approach $2$ does, and we would expect that approach $2$ will lead to more predicted candidates compared to approach $1$. However, perhaps the most restricted approach is approach $3$. Since we only include known candidates, they should share the same properties and therefore provide a very narrow prediction space.
+The three approaches provide special emphasis on each their goal. The Ferrenti approach is dependent on choosing only elements with zero spin isotopes together with practical filters, while the augmented Ferrenti approach allows a larger variety of elements and removes the practical reasons for excluding elements. Thus, the first approach targets a more narrow prediction space than the second approach does, and we would expect that the second approach will lead to more predicted candidates compared to approach one. However, perhaps the most restricted approach is the insightful approach. Since we only include known candidates, they should share the same properties and therefore provide a very narrow prediction space.
 
-Unfortunately, the downside of including all the known candidates in one approach is that it becomes increasingly challenging to evaluate the approach or the resulting model. For the two first approaches, we can see if some of the known candidates are present in the predictions, while this is not possible for the latter approach. %Yet, we can still compare the other predictions and see how much overlap there is.
+Unfortunately, the downside of including all the known candidates in one approach is that it becomes increasingly challenging to evaluate the approach or the resulting model. For the two first approaches, we can see if some of the known candidates are present in the predictions, while this is not possible for the latter approach.
 
-% since we apply an exploratory visualization of features to fin
+We provide a visualization of each approach's training data as a parallel coordinate plot for a few selected features in \ref{fig:parallel-coordinates-approaches}. Parallel coordinate schemes \cite{Inselberg1985, Inselberga1990} represents a multi-dimensional data tuple as one polyline crossing parallel axis. The selected features are found on the x-axis, while the y-axis show the value of the data present. Thus, parallel coordinate plots can turn complex many dimensional data into a compact two-dimensional representation. However, due to data cluttering and that one entry can potentially reserve a large visual area of the figure, the utilization becomes limited when facing large datasets \cite{Ericsona}. Therefore, we have chosen to plot a random sample of each class with an upper limit of $250$ per class with transparent lines.
 
-\newpage
+The Ferrenti approach and the augmented Ferrenti approach share similarities, such as only having polar space groups present and having an equal amount of upper limit for both ionic character and covalent range. Additionally, they share that entries constitute of up to five different elements. Interestingly, we can see that even if the augmented Ferrenti approach is less restricted, it appears that the entries map over the same dimension based on \ref{fig:parallel-coordinates-approaches}.
+
+The biggest difference is seen for the insightful approach. The chosen entries do not posess any magnetization, even if there are both polar and nonpolar space groups present. The range of covalent radius and maximum ionic character is significantly lower than the two other approaches.
+
+\begin{figure}[!tbp]
+    \centering
+    \begin{subfigure}{0.5\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{../predicting-solid-state-qubit-candidates/reports/figures/pca-2d-plots/01-ferrenti-approach.pdf}
+    \end{subfigure}%
+    \begin{subfigure}{0.5\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{../predicting-solid-state-qubit-candidates/reports/figures/pca-2d-plots/02-augmented-ferrenti-approach.pdf}
+    \end{subfigure}
+    \begin{subfigure}{0.5\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{../predicting-solid-state-qubit-candidates/reports/figures/pca-2d-plots/03-insightful-approach.pdf}
+    \end{subfigure}
+    \vspace*{-95mm}
+    \caption{Two-dimensional scatter plots for the three different approaches. We have found the two eigenvectors corresponding to the two largest eigenvalues of the covariance-matrix, that is the two most important principal components, of the initial data from the Materials Project query. Then, we have transformed the three training sets resulting from the three approches and visualized it as a scatter plot for visualization purposes.}
+    \label{fig:2dscatterplotpca}
+\end{figure}
+
+To visualize the complexity of the training sets, we have found the two largest eigenvalues of the covariance matrix of the initial data from Materials Project, and transformed the training sets according to the corresponding two eigenvectors. The resulting scatter plots is found in figure \ref{fig:2dscatterplotpca}. In green squares, we find the good candidates for each approach, while the labelled bad candidates are dressed in red triangles. Due to the simplicity of reducing the number of features down to $2$ features, both good and bad candidates for the Ferrenti approach are overlapping which could be challenging for any model that would try to learn a clear-cut boundary. However, for the insightful approach, we can already start to see a trend where the upper left part of the figure is dominated by good candidates. Therefore, we can expect that the two Ferrenti approaches would need either supplementary dimensions for further distinguishment, or could be in trouble of finding a generalized model.
+
 
 \begin{comment}
 \begin{figure}[t]{1\textwidth}
@@ -326,7 +394,7 @@ Unfortunately, the downside of including all the known candidates in one approac
 \end{figure}%
 \end{comment}
 
-\section{Building a model}
+\section{Model selection}
 
 After building a dataset through extraction, featurization and labelling, we turn our attention towards training a model. The flowchart is visualized in figure \ref{fig:flowchart-screening}. After gathering and featurization, we achieve the interim data that goes through a final data preparation step to become preprocessed data. Then, we perform a data mining step using three different approaches as discussed in the last section. For each of the three approaches, we train and predict in the step called supervised learning. In the summary, we compare the different approaches and results.
 
@@ -334,8 +402,8 @@ In the data preparation step, we assess the quality of the data. Due to the larg
 
 Four different supervised models has been selected for each of the three approaches defined in the previous section, resulting in a total of $12$ unique models. As discussed in section \ref{evaluating accuracy}, models are unique and does not neccessarily perform optimal on all kinds of data. Therefore, the four models have been selected as a function of increasing complexity and ranges from the simplistic logistic regression and decision trees and up to random forest and gradient boost. We utilize the implementation of sklearn for all models \cite{Pedregosa2012}.
 
-Due to the fact that the current dimension of the entire dataset is still large, we apply the dimensionality reduction technique PCA to the data. This is benefical for several reasons, such as finding correlated features and reducing any dimensional. Additionally, it opens up for a visualized interpretation if we were to choose $3$ or less principal components.
-
-The optimal parameters are then searched for with the use of sklearn's gridsearch and imblearn's pipeline \cite{Pedregosa2012, Lemaitre2016}. Imblearn's pipeline enable the use of resampling methods, in contrast to sklearn's pipeline, but does not differ in any other way. In the pipeline, we provide a standardscaler that scales the data such that every feature will have a mean of $0$ and a standard deviation of $1$ \cite{Pedregosa2012}. Thereafter follows the dimensionality reduction and a supervised learning algorithm. It should be noted that the number of optimal principal components, up to an upper limit of accumulated explained variance of $95\%$, are also searched for in the grid-search scheme.
+Due to the fact that the current dimension of the entire dataset is still large, we apply the dimensionality reduction technique PCA to the dataset. This is benefical for several reasons, such as finding correlated features and reducing any dimensional. Additionally, it opens up for a visualized interpretation if we were to choose $3$ or less principal components.
 
 \input{methodology&implementations/tikz-plots/flow-chart-screen-procedure.tex}
+
+The optimal parameters are then searched for with the use of sklearn's gridsearch and imblearn's pipeline \cite{Pedregosa2012, Lemaitre2016}. Imblearn's pipeline enable the use of resampling methods, in contrast to sklearn's pipeline, but does not differ in any other way. In the pipeline, we provide a standardscaler that scales the data such that every feature will have a mean of $0$ and a standard deviation of $1$ \cite{Pedregosa2012}. Thereafter follows the dimensionality reduction and a supervised learning algorithm. It should be noted that the number of optimal principal components, up to an upper limit of accumulated explained variance of $95\%$, are also searched for in the grid-search scheme.

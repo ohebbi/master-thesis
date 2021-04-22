@@ -1,6 +1,35 @@
 \chapter{Optimalization}
 
+This chapter is named optimalization due to its contents; here we will account for the choices we compose to optimize a potential machine learning algorithm. Initially, that involves finding what information is stored within the databases and the compromise of gathering the information, which further evolves to
+
+\begin{comment}
 \section{Time of extraction and featurization}
+
+The initial thought behind
+
+\begin{table}[!ht]
+\centering
+\caption{}
+\label{tab:timing-extraction}
+\noindent\makebox[\textwidth]{
+\begin{tabular}{M{3.0cm} M{4.0cm} M{4.0cm}}
+  \hline
+  \hline
+  Database & Extraction period & Estimated time usage  \\
+  \hline
+  Materials Project & December $2020$ & $5$ min \\
+  Citrine Informatics & December $2020$ & $2$ min  \\
+  OQMD & December $2020$ & $3$ min \\
+  AFLOW & January $2020$ - February $2021$ & $17$ days \\
+  AFLOW-ML & January $2020$ - February $2021$ & $16$ days \\
+  JARVIS-DFT & January $2020$ & $5$ min \\
+  \hline
+  \hline
+\end{tabular}
+}
+\end{table}
+
+\end{comment}
 
 
 \section{Comparing functionals for bandgaps}
@@ -41,18 +70,18 @@
         \includegraphics{../predicting-solid-state-qubit-candidates/reports/figures/bandgaps/jarvis_opt.pdf}
         \caption{}
     \end{subfigure}
+    \vspace*{-95mm}
     \caption{}
 \end{figure}
-
-Dette er en veldig lang setning for å sjekke vhvor lang stnineg er kan veære sdhf osdfja yhasd fugyasdkf abhsf ahjksdnf ahjsdfsabdnfasd fbasdfm
 
 \clearpage
 
 \section{Technical details on ML classifiers}
 
+In this section we will provide technical details on the classifiers considering the training process. For each approach, we will apply combinations of principal components ranging from just one to several and look at the resulting implications. For each approach we can end up with over twenty different optimalization processes, which in total could potentially result in over sixty models in total. Therefore, we will not make an extensive analysis for every model, but emphasis important distinctions between the models and provide background for principal choices made. However, it should be noted that an an extensive automated analysis is distributed through the MIT license at the Github repository \textit{predicting-solid-state-qubit-candidates} \cite{Ohebbi2021}.
 
+\subsection{The Ferrenti approach}
 
-\subsection{Naive approach}
 
 
 \begin{figure}[!tbp]
@@ -79,12 +108,13 @@ Dette er en veldig lang setning for å sjekke vhvor lang stnineg er kan veære s
     \caption{}
     \label{fig:q1-LOG}
   \end{subfigure}
+  \vspace*{-95mm}
   \caption{{Four figures displaying hyperparameter search for the first approach. The best estimator is visualized for all hyperparameters as a function of principal components during a grid search with a 5x5 stratified cross validation. The lower plots visualizes the explained variance ratio, both accumulated and stepwise. The dotted lines marks the optimal hyperparameter-combination, while the error bars display the standard deviation. }}
 \end{figure}
 
 \clearpage
 
-\subsection{Determined approach}
+\subsection{The augmented Ferrenti approach}
 
 \begin{figure}[!tbp]
   \begin{subfigure}[b]{0.5\textwidth}
@@ -110,12 +140,13 @@ Dette er en veldig lang setning for å sjekke vhvor lang stnineg er kan veære s
     \caption{}
     \label{fig:q2-LOG}
   \end{subfigure}
+  \vspace*{-95mm}
   \caption{{Four figures displaying hyperparameter search for the second approach. The best estimator is visualized for all hyperparameters as a function of principal components during a grid search with a 5x5 stratified cross validation. The lower plots visualizes the explained variance ratio, both accumulated and stepwise. The dotted lines marks the optimal hyperparameter-combination, while the error bars display the standard deviation. }}
 \end{figure}
 
 \clearpage
 
-\subsection{Brute approach}
+\subsection{The insightful approach}
 
 
 \begin{figure}[!tbp]
@@ -142,5 +173,6 @@ Dette er en veldig lang setning for å sjekke vhvor lang stnineg er kan veære s
     \caption{}
     \label{fig:q3-LOG}
   \end{subfigure}
+  \vspace*{-95mm}
   \caption{{Four figures displaying hyperparameter search for the third approach. The best estimator is visualized for all hyperparameters as a function of principal components during a grid search with a 5x5 stratified cross validation. The lower plots visualizes the explained variance ratio, both accumulated and stepwise. The dotted lines marks the optimal hyperparameter-combination, while the error bars display the standard deviation. }}
 \end{figure}

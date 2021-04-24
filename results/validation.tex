@@ -35,15 +35,16 @@ Furthermore, the Shannon radii $r_A$ and $r_B$ can be directly correlated with t
 
 \begin{figure}[ht!]
   \centering
-  \includegraphics{../predicting-perovskites/reports/figures/cubic_parallel_coordinate_plot.pdf}
-  \caption{A parallel coordinate plot of the perovskite dataset, where the color is given by the Cubic label of an entry.}
+  \includegraphics{../predicting-perovskites/reports/figures/parallel_coordinates/cubicCase.pdf}
+  \vspace*{-130mm}
+  \caption{A parallel coordinate plot of the perovskite dataset, where the color is given by the cubic label of an entry. A cubic perovskite is labelled as 1, while only a perovskite as -1, or not a perovskite as 0.}
   \label{fig:plcp}
 \end{figure}
 
 From bond valence theory we can find the valence of an ion to be the sum of valences, that is
 \begin{align}
-  V_i \&= \sum_i \nu_{ij} \\
-  \&= \sum_i \frac{\exp(d_o - d_{ij})}{b} \label{eq:bondlength},
+  V_i &= \sum_i \nu_{ij} \\
+  &= \sum_i \frac{\exp(d_o - d_{ij})}{b} \label{eq:bondlength},
 \end{align}
 where $d_{ij}$ is the bond length while $d_0$ and $b$ are parameters from experimental data. The bond length can be found from \ref{eq:bondlength} given the general value $b=1.4\text{\AA}$ and $d_0$, that can be found from Zhang \textit{et al}. database \cite{Zhang2007}. The valence of an ion is associated with its neighboring ions and the chemical bonds, and therefore the band length $d_{AO}$ and $d_{BO}$ are included in the data set.
 
@@ -58,12 +59,12 @@ The two last features originates from the Mendeleev numbers of Villars \textit{e
   \item p-block $\in \{67,10\}$.
 \end{itemize}
 
-\noindent The dataset and its features have been visualized in the parallel coordinate \cite{Inselberga} figure \ref{fig:plcp}, and reveals several trends already. We can observe that an entry's A atom should preferably have a small Mendeley number (MA) and a large bond length $d_{AO}$. Yet, perhaps the most clear trend is the tolerance factor that should be around $1$. A parallel coordinate plot can easily show trends, but becomes harder to interpret for many features and entries with a growing amount of overlapping. The trend for t values becomes harder to interpret when comparing with the distribution of entries for t-values in figure \ref{fig:hist_perov_t}. From the distribution we learn that there is an overlap of perovskites or not for tolerance factor values in the interval $0.8$ to $1.0$, but the label perovskite is in general preferred. Additionally, we see that the interval ${q1,q3}$ for the label (1) completely overlaps with the corresponding interval for non-perovskites (-1), with very few entries outside of the intervals. This is presumably due to easy labelling for entries that rest outside of the intervals, but the exclusion of entries could potentially alter any model due to not enough entries. %From the data, it is clear that any machine learning algorithm will only predict perovskites inside of the interval {0.8, 1.10}
-
+\noindent The dataset and its features have been visualized in the parallel coordinate \cite{Inselberg1985} figure \ref{fig:plcp}, and reveals several trends already. We can observe that an entry's A atom should preferably have a small Mendeley number (MA) and a large bond length $d_{AO}$. Yet, perhaps the most clear trend is the tolerance factor that should be around $1$. A parallel coordinate plot can easily show trends, but becomes harder to interpret for many features and entries with a growing amount of overlapping. The trend for t values becomes harder to interpret when comparing with the distribution of entries for t-values in figure \ref{fig:hist_perov_t}. From the distribution we learn that there is an overlap of perovskites or not for tolerance factor values in the interval $0.8$ to $1.0$, but the label perovskite is in general preferred. Additionally, we see that the interval ${q1,q3}$ for the label (1) completely overlaps with the corresponding interval for non-perovskites (-1), with very few entries outside of the intervals. This is presumably due to easy labelling for entries that rest outside of the intervals, but the exclusion of entries could potentially alter any model due to not enough entries. %From the data, it is clear that any machine learning algorithm will only predict perovskites inside of the interval {0.8, 1.10}
 
 \begin{figure}[ht!]
   \centering
   \includegraphics{../predicting-perovskites/reports/figures/histogram_training_data_t.pdf}
+  \vspace*{-130mm}
   \caption{The $t$-distribution of entries in the dataset for perovskite (1) or not (-1). The upper part for perovskite (1) displays minimum value at $0.80$, q1 at $0.90$, median at $0.93$, q3 at $0.97$ and max at $1.10$. For the non-perovskites (-1), the minimimum is at $0.73$, q1 at $0.87$, median at $0.99$, q3 at $1.12$ and max at $1.47$.}
   \label{fig:hist_perov_t}
 \end{figure}
@@ -78,61 +79,90 @@ The predictions are divided into two parts; perovskite predictions and cubic per
 
 \section{Results and discussion}
 
-Utilising three different classifiers on two different tasks, starting with prediction of perovskite and then prediction of cubic-perovskite, yields in total six different models. Here we present sets of representative results obtained by these models.
+Utilising four different classifiers on two different tasks, starting with prediction of perovskite and then prediction of the predicted perovskites into cubic perovskite or only perovskites, yields in total eight different models. We search for optimal parameters for each of the two tasks. Decision tree, random forest and gradient boost share the range of maximum depth starting from $1$ and up to $8$, while we optimise logistic regression for regularization parameters in the range of $10^{-3}$ to $10^5$.
 
 \subsection{Technical details on ML classifiers}
 
-We first consider the ML classification of known ABO$_3$ into perovskite or nonperovskites. A search for optimal hyperparameters using scikit-learn's grid search scheme \cite{Pedregosa2012} reveals the following table with best parameters.
+\subsubsection{Perovskite case}
+We first consider the ML classification of known ABO$_3$ into perovskite or nonperovskites. A search for optimal hyperparameters using scikit-learn's grid search scheme \cite{Pedregosa2012} reveals the following table with optimal parameters \ref{tab:perovskite-optimal}. We find that all classifiers have for all scores at least $90\%$ accuracy, with gradient boost performing sligthly better than the rest.
 
-Add table of how many of the training process continues, and also for test (but in next section).
+\begin{table}[!ht]
+\centering
+\caption{Table with corresponding best estimators during a grid search scheme for predicting perovskites or not. The test score is here referred to as a balanced accuracy score, and we list all standard deviations in paranthesis.}
+\label{tab:perovskite-optimal}
+\noindent\makebox[\textwidth]{
+\begin{tabular}{M{2.0cm} M{2.5cm} M{2.5cm} M{2.5cm} M{2.5cm} }
+  \hline
+  \hline
+   Model & Mean test & Mean precision & Mean recall & Mean f1  \\
+  \hline
+  LOG & $0.90(0.041)$ & $0.92(0.034)$ & $0.95(0.023)$ & $0.94(0.024)$ \\
+  DT  & $0.90(0.029)$ & $0.93(0.029)$ & $0.95(0.033)$ & $0.94(0.017)$ \\
+  RF  & $0.93(0.023)$ & $0.96(0.025)$ & $0.95(0.024)$ & $0.95(0.015)$ \\
+  GB  & $0.94(0.025)$ & $0.96(0.025)$ & $0.94(0.036)$ & $0.95(0.019)$ \\
+  \hline
+\end{tabular}
+}
+\end{table}
+
+The parameter search is visualized in figure \ref{fig:perovskite-params} for all four models. For logistic regression, we find that by increasing the regulariation the model becomes more general due to a better compromise between precision and recall. For the decision tree model, we find that the optimal maximum number of depth should be $4$. It is clear that the training accuracy increases for larger depth, yet the other test evaluation metrics does not improve, causing the model do be prone for overfitting. Random forest, on the other hand, experience an improvement in scores for all metrics with increasing depth, except for the recall. We find a high recall for all models with an underfitting model due to a imbalanced dataset with a larger amount of perovskites than nonperovskites, and recall is the metric for evaluating if perovskites are correctly predicted. Random forest experience a good compromise between recall and precision with maximum depth at $7$. Lastly, we find the optimal depth of gradient boost as $4$, whereas larger values tend towards overfitting.
 
 \begin{figure}[!tbp]
   \begin{subfigure}[b]{0.5\textwidth}
-    \includegraphics[width=\textwidth]{../predicting-perovskites/reports/figures/grid-scores/GB\space-cubic:False.pdf}
-    \caption{Flower one.}
-    \label{fig:h1-GB}
+    \input{../predicting-perovskites/reports/figures/grid-scores/LOG-cubic:False.tex}
+    \caption{}
+    \label{fig:per-LOG}
   \end{subfigure}%
   \hfill
   \begin{subfigure}[b]{0.5\textwidth}
-    \includegraphics[width=\textwidth]{../predicting-perovskites/reports/figures/grid-scores/RF\space-cubic:False.pdf}
-    \caption{Flower two.}
-    \label{fig:h1-RF}
+    \input{../predicting-perovskites/reports/figures/grid-scores/DT-cubic:False.tex}
+    \caption{}
+    \label{fig:per-DT}
   \end{subfigure}
 
   \begin{subfigure}[b]{0.5\textwidth}
-    \includegraphics[width=\textwidth]{../predicting-perovskites/reports/figures/grid-scores/DT\space-cubic:False.pdf}
-    \caption{Flower one.}
-    \label{fig:h1-DT}
+    \input{../predicting-perovskites/reports/figures/grid-scores/RF-cubic:False.tex}
+    \caption{}
+    \label{fig:per-RF}
   \end{subfigure}%
   \hfill
   \begin{subfigure}[b]{0.5\textwidth}
-    \includegraphics[width=\textwidth]{../predicting-perovskites/reports/figures/grid-scores/LOG\space-cubic:False.pdf}
-    \caption{Flower two.}
-    \label{fig:h1-LOG}
+    \input{../predicting-perovskites/reports/figures/grid-scores/GB-cubic:False.tex}
+    \caption{}
+    \label{fig:per-GB}
   \end{subfigure}
-  \vspace*{-95mm}
+  \vspace*{-130mm}
   \caption{{Four figures displaying hyperparameter search for predicting perovskites or nonperovskites. The best estimator is visualized for all hyperparameters as a function of (a, b and c) max depth or (d) regularization strength during a grid search with a 5x5 stratified cross validation. The dotted lines marks the optimal hyperparameter-combination, while the error bars visualizes the standard deviation. }}
+  \label{fig:perovskite-params}
 \end{figure}
 
+A total of $25$ classification attempts were done, and we choose the cubic training dataset based on perovskites that the models were able to predict correctly atleast $50\%$ of the time. None of the perovskites were excluded for Random forest and gradient boost due to high correct prediction rate, but $11$ perovskites were wrongly predicted as nonperovskites by the logistic regression, while the number was $4$ for the decision tree model.
+
+\subsubsection{Cubic perovskite case}
 
 
+
+\begin{comment}
 \begin{figure}[!tbp]
   \includegraphics[width=\textwidth]{../predicting-perovskites/reports/figures/falseNegatives-cubic:False}
+  \vspace*{-130mm}
   \caption{Dette kan vendes på 90 grader?}
   \label{fig:h1-fn}
 \end{figure}
 
 \begin{figure}[!tbp]
   \includegraphics[width=\textwidth]{../predicting-perovskites/reports/figures/falsePositives-cubic:False}
+  \vspace*{-130mm}
   \caption{Dette kan vendes på 90 grader?}
   \label{fig:h1-fp}
 \end{figure}
 
+\end{comment}
+\clearpage
 
 Then we consider the ML classification of known perovskites into cubic perovskites and noncubic perovskites.
 
-\clearpage
-
+\begin{comment}
 \begin{figure}[!tbp]
   \begin{subfigure}[b]{0.5\textwidth}
     \includegraphics[width=\textwidth]{../predicting-perovskites/reports/figures/grid-scores/GB\space-cubic:True.pdf}
@@ -157,34 +187,36 @@ Then we consider the ML classification of known perovskites into cubic perovskit
     \caption{Flower two.}
     \label{fig:h2-LOG}
   \end{subfigure}
-  \vspace*{-95mm}
+  \vspace*{-130mm}
   \caption{Four figures displaying hyperparameter search for predicting cubic perovskites or noncubic perovskites. The best estimator is visualized for all hyperparameters as a function of (a, b and c) max depth or (d) regularization strength during a grid search with a 5x5 stratified cross validation. The dotted lines marks the optimal hyperparameter-combination, while the error bars display the standard deviation. }
 \end{figure}
-
+\end{comment}
 \clearpage
+
+\begin{comment}
 
 \begin{figure}[!tbp]
   \centering
   \includegraphics[width=\textwidth]{../predicting-perovskites/reports/figures/contours/perovskite.pdf}
-  \vspace*{-95mm}
+  \vspace*{-130mm}
   \caption{Decision boundaries of the four models from training on the feature pair $r_B$ and $t$.}
   \label{fig:decision-boundaries}
 \end{figure}
 
 \begin{figure}[!tbp]
   \includegraphics[width=\textwidth]{../predicting-perovskites/reports/figures/falseNegatives-cubic:True}
-  \vspace*{-95mm}
+  \vspace*{-130mm}
   \caption{Dette kan vendes på 90 grader?}
   \label{fig:h2-fn}
 \end{figure}
 
 \begin{figure}[!tbp]
   \includegraphics[width=\textwidth]{../predicting-perovskites/reports/figures/falsePositives-cubic:True}
-  \vspace*{-95mm}
+  \vspace*{-130mm}
   \caption{Dette kan vendes på 90 grader?}
   \label{fig:h2-fp}
 \end{figure}
-
+\end{comment}
 
 
 \section{Predictions of new compounds}

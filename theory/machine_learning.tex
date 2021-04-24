@@ -98,7 +98,7 @@ Therefore, we turn to other evaluation metrics such as a \textit{a confusion mat
     & total & P & N &
   \end{tabular}
   \end{table}
-\noindent For the binary confusion matrix there are two possible predicted outcomes, either positive or negative. This gives rise to some terminology.
+For the binary confusion matrix there are two possible predicted outcomes, either positive or negative. This gives rise to some terminology.
 
 \begin{itemize}
 \item True Positive (TP): The classifier correctly predicts a positive event.
@@ -108,8 +108,7 @@ Therefore, we turn to other evaluation metrics such as a \textit{a confusion mat
 \end{itemize} From the confusion matrix one can then start estimating the performance of the model, by calculating different factors, such as \cite{Murphy2012}
 
 \begin{itemize}
-
-\item \textbf{Specificity}, also known as the true negative rate, is the ratio of the number of correct negative examples to the number classified as negative. It is defined as
+\item \textbf{Sensitivity}, also known as the true negative rate, is the ratio of the number of correct negative examples to the number classified as negative. It is defined as
 \begin{align}
 \text{Sensitivity} = \frac{TN}{TN + FP}.
 \end{align}
@@ -125,11 +124,23 @@ Therefore, we turn to other evaluation metrics such as a \textit{a confusion mat
 \end{align}
 \end{itemize} Similar to the bias-variance tradeoff, it is common to compare the recall with the precision to identify the tradeoff for different thresholds. High scores for both reveals that a classifier returns accurate results combined with returning a majority of all positive results.
 
+
 Sometimes a classifier can have drastically different values for the precision and recall. This leads to another estimator for the performance of a classifier, which is known as the F1-score. The F1-score is defined as the harmonic mean of precision and recall,
 \begin{align*}
 \text{F1-score} = \frac{2\cdot \text{Recall} \cdot \text{Precision}}{\text{Recall} + \text{Precision}},
 \end{align*}
 and can be used to find a good tradeoff between recall and precision. The highest value of F1-score is $1$ and is considered an ideal classifier, while the lowest is $0$.
+
+However, the f1 score is insensitive to the number of negative predictions. Therefore, an adjustment of the normal accuracy is in place. The name of this metric is called the balanced accuracy, which equally weights how many true positive and true negative,
+\begin{align*}
+  \text{Balanced accuracy} = \frac{1}{2} \left( \text{Recall} + \text{Sensitivity} \right),
+\end{align*}
+which makes it particular handy for imbalanced datasets.
+
+We have now only scratched the surface of potential evaluation metrics, and as a final note we would like to emphasis that it is up to the implementer which evaluation metric one should use. %Therefore, one can consider the choice of metric as a subjective choice.
+
+%Therefore, the amount of evaluation metrics and methods one can implement are vast, and it should be noted that the final note
+%On an end note, we repeat that the final evaluation of which metric to choose is up to
 
 \subsection{Cross validation}
 \label{cross-validation}
@@ -141,6 +152,77 @@ Unfortunately, this reduces the number of samples that can be used for training 
 \noindent It is common to apply cross validation into fold, yielding the name of k-fold cross validation. In k-fold cross validation, the training set is partioned into k equal sized subsamples, as visualized in figure \ref{fig:cv}. Of the k samples, a single sample is used as validation set while the remaining k-1 samples are used as training data. The process is then repeated k-times, such that each of the k subsamples are used as a validation set exactly once. Therefore, all observations are used for both training and validation, and each observation is used for validation exactly once. The k results from the folds can then be averaged to produce an estimate. The subsamples are allowed to have an imbalanced dataset, so that each class is not neccessarily represented equally in each fold. Since supervised algorithms tend to weigh each instance equally, this may result in overrepresented classes being favored during training of the model. Even worse could be the result of a fold where one class is not represented at all, resulting in a model that do not learn how to predict a class at all.
 
 To deal with the vulnerability of imbalanced datasets in CV, one can employ a stratified k-fold cross validation technique. Stratification is a process that seeks to ensure that each fold is representative of all classes (also named \textit{strata} in this context) in the data, making each fold having approximately equal class-representation.
+
+\section{Logistic regression}
+
+Logistic regression, or \textit{logit}, is considered a \textit{soft} classification algorithm, which means that an output of the algorithm is considered to be categorical instead of numerical.
+
+Assume we have a dataset with $\boldsymbol{x}_i = {x_{i1}, x_{i2}, .., x_{ip}}$ input data, where we have $p$ predictors for each corresponding output data $y_i$. The outcomes $y_i$ are discrete and can only take certain values or classes. In our case we have two classes with $y_i$ either being equal to $0$ or $1$. Therefore, the probability that a datapoint belongs to either class can be given by the Sigmoid function, %which is meant to represent the likelihood for a given event,
+
+\begin{align*}
+p(x) = \frac{1}{1+ e^{-x}} = \frac{e^{x}}{1+ e^{x}}.
+\end{align*}
+
+\noindent Furthermore, we have the parameters $\boldsymbol{\beta} = {\beta_1, \beta_2, ..., \beta_p}$ of our fitting of the Sigmoid function, where the probabilities are defined as
+\begin{align*}
+p(y_i|\boldsymbol{x}_i \boldsymbol{\beta}) = \frac{e{(\boldsymbol{x}_i \boldsymbol{\beta})}}{1 + e^{(\boldsymbol{x}_i \boldsymbol{\beta})}}.
+\end{align*}
+
+\noindent The goal of logistic regression is then to correctly predict the category of a given dataset, which has different outcomes, by using an optimal parameter $\boldsymbol{\beta}$ that maximises the probability of seeing the observed data. How we find the parameters $\boldsymbol{\beta} = {\beta_1, \beta_2, ..., \beta_p}$ of the model, is to use the principle of \textit{maximum likelihood estimation} (MLE),
+
+% We aim thus at maximizing the probability of seeing the observed data. We can then approximate the likelihood in terms of the product of the individual probabilities of a specific outcome yi, that is
+
+% Under the assumption that every sample x is independent, the likelihood is given by
+
+\begin{align*}
+P(\boldsymbol{\beta}) = \prod_{i=1}^{n} \left[ p(y_i=1|\boldsymbol{x}_i \boldsymbol{\beta}) \right]^{y_i} \left[1- p(y_i=1|\boldsymbol{x}_i \boldsymbol{\beta}) \right]^{1-y_i},
+\end{align*}
+\noindent where we obtain the log-likelihood function, which is easier to work with, since the log-likelihood turns the exponentials into summations,% \cite{morten1}. \\
+
+\begin{align*}
+C(\boldsymbol{\beta}) = \sum_{i=1}^n \left(y_i(\boldsymbol{x}_i \boldsymbol{\beta}) - \log{(1 + \exp{(\boldsymbol{x}_i \boldsymbol{\beta})})}  \right).
+\end{align*}
+
+\noindent Finally, choose our cost function for the \textit{cross entropy}, which is defined as the negative log-likelihood,
+
+% Note that maximising the logarithm of a function is equivalent to maximising the function itself.
+% Thus taking \beta to maximise the log-likelihood is equivalent to maximising the likelihood itself.
+% Finally, we take our cost function to be the so called cross entropy which is defined as the negative log-likelihood.
+
+%
+\begin{align*}
+C(\boldsymbol{\beta}) = - \sum_{i=1}^n \left(y_i(\boldsymbol{x}_i \boldsymbol{\beta}) - \log{(1 + \exp{(\boldsymbol{x}_i \boldsymbol{\beta})})}  \right)
+\end{align*}
+
+\noindent To maximize the accuracy and precision of the logistic regression model, we need to find the optimal parameters $\boldsymbol{\beta}$ by minimising the cross entropy.
+
+\subsection{Stochastic gradient descent}
+
+One common numerical method for finding the minimum of a function is \textit{stochastic gradient descent} (SGD). The fundamental idea of SGD comes from the observation that the cost function can be written as a sum over $n$ data points $\{\boldsymbol{x}_i\}_{i=1}^{n}$,
+\begin{align*}
+C(\boldsymbol{\beta}) = \sum_{i=1}^{n} c_i(\boldsymbol{x}_i,\beta).
+\end{align*}
+
+\noindent We can compute the gradient as
+\begin{align*}
+\nabla_{\beta} C(\boldsymbol{\beta}) =  \sum_{i=1}^{n} \nabla_{\beta} c_i(\boldsymbol{x}_i,\beta)
+\end{align*}
+
+\noindent Then, it is possible to introduce a randomness by only taking the gradient on a small interval of the data, called a minibatch. With $n$ total data points, and $M$ datapoints per minibatch, the number of minibatches is then $\frac{n}{M}$.
+
+The idea is now to approximate the gradient by replacing the sum over all data points with a sum over the data points in one of the minibatches picked at random in each gradient descent step,
+
+\begin{align*}
+\nabla_{\beta} C(\boldsymbol{\beta}) =  \sum_{i=1}^{n} \nabla_{\beta} c_i(\boldsymbol{x}_i,\beta) \to \sum_{i \in B_k}^{n} \nabla_{\beta} c_i(\boldsymbol{x}_i,\beta),
+\end{align*}
+
+ \noindent where $B_k$ is the set of all minibatches, with $k=1, ..,\frac{n}{M}$. One step of gradient descent is then defined by
+
+\begin{align*}
+\beta_{j+1} = \beta_j - \gamma_j \sum_{i \in B_k}^{n} \nabla_{\beta} c_i(\boldsymbol{x}_i,\beta)
+\end{align*}
+
+\noindent where $k$ is picked at random with equal probability from $[1, \frac{n}{M}]$ and $\gamma_j$ is the step length. An iteration over the number of minibathces $(\frac{n}{M})$ is commonly referred to as an epoch. Thus, it is typical to choose a number of epochs and for each epoch iterate over the number of minibatches. 
 
 \section{Decision trees}
 Classification and regression trees (CART), also called decision trees, are one of the more basic supervised algorithms. They can be used for both regression and classification tasks, but we will for the relevancy of this work provide a special emphasis to classification trees.  %The strength of decision trees lays within the simplicity that allows to build more complex networks.

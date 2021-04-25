@@ -1,3 +1,3 @@
 # master-thesis
 
-Repo for master thesis. In progress.
+This is the main repository for the master thesis of Oliver Hebnes (2021).

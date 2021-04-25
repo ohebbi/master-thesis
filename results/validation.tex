@@ -108,6 +108,11 @@ We first consider the ML classification of known ABO$_3$ into perovskite or nonp
 The parameter search is visualized in figure \ref{fig:perovskite-params} for all four models. For logistic regression, we find that by increasing the regulariation the model becomes more general due to a better compromise between precision and recall. For the decision tree model, we find that the optimal maximum number of depth should be $4$. It is clear that the training accuracy increases for larger depth, yet the other test evaluation metrics does not improve, causing the model do be prone for overfitting. Random forest, on the other hand, experience an improvement in scores for all metrics with increasing depth, except for the recall. We find a high recall for all models with an underfitting model due to a imbalanced dataset with a larger amount of perovskites than nonperovskites, and recall is the metric for evaluating if perovskites are correctly predicted. Random forest experience a good compromise between recall and precision with maximum depth at $7$. Lastly, we find the optimal depth of gradient boost as $4$, whereas larger values tend towards overfitting.
 
 \begin{figure}[!tbp]
+  \begin{subfigure}[b]{1.0\textwidth}
+    \centering
+    \input{../predicting-solid-state-qubit-candidates/reports/figures/pca-scores/03-insightful-approach-176-label.tex}
+  \end{subfigure}
+  \par\bigskip
   \begin{subfigure}[b]{0.5\textwidth}
     \input{../predicting-perovskites/reports/figures/grid-scores/LOG-cubic:False.tex}
     \caption{}

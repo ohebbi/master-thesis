@@ -125,59 +125,77 @@ When searching for the optimal number of principal components, we iterated over 
 
 \subsection{The Ferrenti approach}
 
-We visualize the grid search for the optimal number of principal components in figure \ref{fig:01-pca}, where we present the mean training score, mean test score and mean f1 score as a function of principal components used in the models. For each principal component, we visualize the optimal combination of hyperparameters based on the f1-score in the model. Common to all models is the improvement of scores up to around $50$ principal components, where random forest and the decision tree slowly starts to overfit. From figure \ref{fig:q1-DT}, we see that the metrics gets heavily effected for larger values of principal components except for decision trees. We can observe that the f1-score is not varying as much as the other metrics due to an increasing number of positive predictions. This means that the accuracy of positive predictions are dominating the overall accuracy measurement, and we would expect a large amount of training data being predicted as positive candidates. Similar to decision trees are random forest, which also show sign of overfitting for larger values of principal components. However, as a result of several weak trees, it show smaller signs of overfitting than the indications seen by the decision tree algorithm.
+We visualize the grid search for the optimal number of principal components in figure \ref{fig:01-pca}, where we present the mean accuracy on the training set, and the balanced accuracy, precision, recall and f1 score on the test set as a function of principal components used in the models. For each principal component, we visualize the optimal combination of hyperparameters based on the f1-score in the model. Common to all models is the improvement of scores up to around $50$ principal components, where random forest and the decision tree slowly starts to overfit for larger values. For decision trees, we observe a large fluctuation for principal components larger than $100$. The f1-score is not varying as much as the other metrics due to an increasing number of positive predictions. This means that the accuracy of positive predictions are dominating the overall accuracy measurement, and we would expect a large amount of training data being predicted as positive candidates for those combinations. However, we see that the fluctuations are smaller in size for the optimal number of principal components. Similar to the decision tree is the random forest model, which also show sign of overfitting for larger values of principal components. The recall score is unaltered for increasing principal components, but consequently we find the precision declining due to a large amount of predicted false positives.  However, as a result of several weak trees, it show smaller signs of overfitting than the indications seen by the decision tree algorithm.
 
-Gradient boost, on the other hand, experience minor changes for larger number of principal components, where the automated optimal component marked could easily be $50$ principal components less without any remarks to the models metrics. We find that by using only a few principal components will make it reach almost $100\%$ training accuracy, but does not show any sign on overfitting.
+Gradient boost, on the other hand, experience minor changes for larger number of principal components, where the optimal number of components marked could be $50$ principal components less without any remarks to the models metrics. We find that by using only a few principal components will make it reach almost $100\%$ training accuracy, but does not show any clear sign on overfitting. Similarly, logistic regression show signs of almost a perfect classifier, with high scores for all metrics.
 
-In \ref{tab:01-pc}, we find the precise measurements for each evaluation metric for the optimal number of principal components, which is visualized as dotted lines in figure \ref{fig:01-pca}. We find that the best performing model is logistic regression, but is dependent on a large amount of principal components. Random forest and gradient boost perform comparably, with and f1 score of $0.93$ and $0.95$, respectively.  %Yet, with almost a $100\%$ score in both test and f1, the model is perhaps overfitted. Decision trees scores an $f1$ score of $0.84$, but
+\begin{wrapfigure}{R}{0.5\textwidth}
 
-%Logistic regression, in figure \ref{fig:q1-DT}, improves all metrics and does perform overall best according to the metrics.
+  \begin{subfigure}[b]{1.0\textwidth}
+  \input{../predicting-solid-state-qubit-candidates/reports/figures/pca-scores/03-insightful-approach-176-label.tex}
+  \end{subfigure}
 
+  \begin{subfigure}[b]{1.0\textwidth}
+  \input{../predicting-solid-state-qubit-candidates/reports/figures/grid-scores/01-ferrenti-approach-GB.tex}
+  \end{subfigure}
+  \vspace*{-130mm}
+  \caption{Parameter search for the Ferrenti approach regarding maximum depth for gradient boost for several metrics, where the error bars visualize the standard deviation.}
+  \label{fig:gb-01-overfit}
+\end{wrapfigure}
+
+In table \ref{tab:01-pc}, we find the precise measurements for each evaluation metric for the optimal number of principal components, which is visualized as dotted lines in figure \ref{fig:01-pca}. The relevant hyperparameter for logistic regression were the maximum iterations, which were set at $400$, and the regulariation term, which was found optimal at $10^{-1}$. For random forest and decision trees, we find the maximum depth of $7$, while gradient boost was found to overfit for deeper depths, as visualized in figure \ref{fig:gb-01-overfit} and thus we found an optimal compromise at $4$. We find that the best performing model is logistic regression, but is dependent on a large amount of principal components. Random forest and gradient boost perform comparably, with and f1 score of $0.93$ and $0.95$, respectively. However, it seems that only logistic regression is able to improve for additional principal components after the first $100$.
+
+\clearpage
 
 \begin{figure}[ht!]
+  \begin{subfigure}[b]{1.0\textwidth}
+    \centering
+    \input{../predicting-solid-state-qubit-candidates/reports/figures/pca-scores/03-insightful-approach-176-label.tex}
+  \end{subfigure}
+  \par\bigskip
   \begin{subfigure}[b]{0.5\textwidth}
-    \input{../predicting-solid-state-qubit-candidates/reports/figures/pca-scores/01-ferrenti-approach-176-LOG-final.tex}
+    \input{../predicting-solid-state-qubit-candidates/reports/figures/pca-scores/01-ferrenti-approach-176-LOG.tex}
     \caption{}
     \label{fig:q1-LOG}
   \end{subfigure}%
   \hfill
   \begin{subfigure}[b]{0.5\textwidth}
-    \input{../predicting-solid-state-qubit-candidates/reports/figures/pca-scores/01-ferrenti-approach-176-DT-final.tex}
+    \input{../predicting-solid-state-qubit-candidates/reports/figures/pca-scores/01-ferrenti-approach-176-DT.tex}
     \caption{}
     \label{fig:q1-DT}
   \end{subfigure}
 
   \begin{subfigure}[b]{0.5\textwidth}
-    \input{../predicting-solid-state-qubit-candidates/reports/figures/pca-scores/01-ferrenti-approach-176-RF-final.tex}
+    \input{../predicting-solid-state-qubit-candidates/reports/figures/pca-scores/01-ferrenti-approach-176-RF.tex}
     \caption{}
     \label{fig:q1-RF}
   \end{subfigure}%
   \hfill
   \begin{subfigure}[b]{0.5\textwidth}
-    \input{../predicting-solid-state-qubit-candidates/reports/figures/pca-scores/01-ferrenti-approach-176-GB-final.tex}
+    \input{../predicting-solid-state-qubit-candidates/reports/figures/pca-scores/01-ferrenti-approach-176-GB.tex}
     \caption{}
     \label{fig:q1-GB}
   \end{subfigure}
   \vspace*{-130mm}
-  \caption{{Four visualizations for each model of the grid-search with the resulting optimal number of principal compoonents through a $5\times 5$ stratified cross-validation. The upper limit of principal components is decided by the explained accumulated variance at $95\%$, while the optimal model is found by using the $f1$ score. The specific scores for the arbitrary number of principal components is found in the Appendix \ref{appendix:Optimalization}.}}
+  \caption{{Four figures displaying hyperparameter search for the Ferrenti approach. The best estimator is visualized for all hyperparameters as a function of principal components during a grid search with a $5\times5$ stratified cross validation, and the dotted lines marks the optimal hyperparameter-combination. Train stands for normal training accuracy, while test is the balanced accuracy on the test set. Precision, recall and f1 scores are based on the test set. The upper limit of principal components is decided by the explained accumulated variance at $95\%$, while the optimal model is found using the $f1$ score.}}
   \label{fig:01-pca}
 \end{figure}
-
+%The specific scores for the arbitrary number of principal components is found in the Appendix \ref{appendix:Optimalization}.  The lower plots visualizes the explained variance ratio, both accumulated and stepwise.
 
 \begin{table}[!ht]
 \centering
-\caption{Table }
+\caption{A table of the optimal number of principal components and the respective scores (standard deviation), as visualized in the dash-dotted line in figure \ref{fig:01-pca}.}
 \label{tab:01-pc}
 \noindent\makebox[\textwidth]{
-\begin{tabular}{M{2.0cm} M{3.0cm} M{3.0cm} M{3.0cm} }
+\begin{tabular}{M{1.0cm} M{1.0cm} M{2.0cm} M{2.0cm}M{2.0cm}M{2.0cm} }
   \hline
   \hline
-   Model & Optimal number of PC & Mean (std) test score &  Mean (std) f1-score \\
+   Model & PC & Mean test &  Mean precision & Mean recall & mean f1\\
   \hline
-  LOG & 173 & $0.98(0.008)$ & $ 0.99(0.006)$ \\
-  DT & 37 & $0.79(0.024)$ & $ 0.84(0.020)$ \\
-  RF & 50 & $0.90(0.020)$  & $ 0.93(0.014)$ \\
-  GB & 104 & $0.93(0.014)$ & $ 0.95(0.010)$ \\
+  LOG & $171$ & $0.98(0.012)$ & $0.98(0.011)$ & $0.99(0.007)$ & $0.99(0.007)$ \\
+  DT & $37$   & $0.77(0.034)$ & $0.84(0.034)$ & $0.85(0.044)$ & $0.84(0.022)$ \\
+  RF & $53$   & $0.87(0.027)$ & $0.88(0.022)$ & $0.98(0.010)$ & $0.93(0.014)$ \\
+  GB & $107$  & $0.92(0.016)$ & $0.92(0.015)$ & $0.98(0.010)$ & $0.95(0.009)$ \\
   \hline
 \end{tabular}
 }
@@ -213,49 +231,88 @@ In \ref{tab:01-pc}, we find the precise measurements for each evaluation metric 
 \end{figure}
 \end{comment}
 
-\clearpage
+
 
 \subsection{The augmented Ferrenti approach}
 
-\begin{figure}[!tbp]
-  \begin{subfigure}[b]{0.5\textwidth}
-    \includegraphics[width=\textwidth]{../predicting-solid-state-qubit-candidates/reports/figures/pca-scores/02-determined-approach-5-RF\space.pdf}
-    \caption{}
-    \label{fig:q2-GB}
-  \end{subfigure}%
-  \hfill
-  \begin{subfigure}[b]{0.5\textwidth}
-    \includegraphics[width=\textwidth]{../predicting-solid-state-qubit-candidates/reports/figures/pca-scores/02-determined-approach-5-GB\space.pdf}
-    \caption{}
-    \label{fig:q2-RF}
-  \end{subfigure}
+For the augmented Ferrenti approach, we find the parameter grid search for principal components visualized in figure \ref{fig:02-pca}. All models experience an almost perfect recall score for $1$ principal component due to the largely imbalanced dataset with $2141$ good and $684$ bad candidates, which is a ratio of $75:25 \%$. This is a result due to the models being able to correctly label many good candidates compared to the amount of labelling them as bad candidates. On the other hand, we find a small precision for $1$ component since the model predicts many materials, both actually labelled good and bad, as good candidates, and the latter case is in particularly large. This trend is revealed when looking at the balanced accuracy score. For all figures, it remains the lowest score of the evaluation metrics largely due to the inaccuracy of true negatives for the cross validations. Therefore, one can argue that we should use the balanced accuracy score for evaluation and not the f1 score, but the choice is independent on evaluation metric since the optimal f1 score is also the optimal balanced accuracy score for all figures.
 
-  \begin{subfigure}[b]{0.5\textwidth}
-    \includegraphics[width=\textwidth]{../predicting-solid-state-qubit-candidates/reports/figures/pca-scores/02-determined-approach-5-DT\space.pdf}
-    \caption{}
-    \label{fig:q2-DT}
-  \end{subfigure}%
-  \hfill
-  \begin{subfigure}[b]{0.5\textwidth}
-    \includegraphics[width=\textwidth]{../predicting-solid-state-qubit-candidates/reports/figures/pca-scores/02-determined-approach-5-LOG\space.pdf}
-    \caption{}
-    \label{fig:q2-LOG}
-  \end{subfigure}
-  \vspace*{-95mm}
-  \caption{{Four figures displaying hyperparameter search for the second approach. The best estimator is visualized for all hyperparameters as a function of principal components during a grid search with a 5x5 stratified cross validation. The lower plots visualizes the explained variance ratio, both accumulated and stepwise. The dotted lines marks the optimal hyperparameter-combination, while the error bars display the standard deviation. }}
-\end{figure}
+Overall, the search for optimal hyperparameters in figure \ref{fig:02-pca} for the augmented Ferrenti approach bear resemblance to the figure \ref{fig:01-pca} for the Ferrenti approach. Logistic regression performs optimally for many principal component, and is the only model that continues to improve with an increasing number of components. The decision trees model experience a large fluctuation of scores, where the number of false positives is dominating the balanced accuracy score. Random forest experience less fluctuations compared to the decision tree as a consequence of the many weak learners, while gradient boost does not improve after around $100$ principal components.
+
+The optimal hyperparameters are summarized in table \ref{tab:02-pc}. We find that the logistic regression model with $175$ principal components peform more or less as a perfect classifier with overall high scores. The decision tree and random forest models have similar balanced accuracy score with $0.69$ and $0.70$, respectively, due to challenges associated in predicting true negative labels for $25$ principal components. Lastly, we find gradient boost perform optimally at $93$ principal components with a balanced accuracy score of $0.85$. The relevant hyperparameters were the regularization strength of logistic regression, which was set as $10^{-1}$. Smaller values resulted in worse scores, while increasing values did not noteworthy alter the results. The decision tree and random forest found an optimal maximum depth of $7$, where smaller values resulted in low precision but high recall. Therefore, the choice was made to fasciliate a compromise between precision and recall. For gradient boost, we find the optimal maximum depth as $4$ due to a decline in overall metrics for increasing depth except for training accuracy, which could potentially result in overfitting.
+
+\begin{table}[!ht]
+\centering
+\caption{A table of the optimal number of principal components and the respective scores (standard deviation), as visualized in the dash-dotted line in figure \ref{fig:02-pca}.}
+\label{tab:02-pc}
+\noindent\makebox[\textwidth]{
+\begin{tabular}{M{1.0cm} M{1.0cm} M{2.0cm} M{2.0cm}M{2.0cm}M{2.0cm} }
+  \hline
+  \hline
+   Model & PC & Mean test &  Mean precision & Mean recall & mean f1\\
+  \hline
+  LOG & $175$ & $0.98(0.008)$ & $0.99(0.004)$ & $0.99(0.004)$ & $0.99(0.003)$ \\
+  DT & $25$   & $0.69(0.034)$ & $0.86(0.015)$ & $0.93(0.021)$ & $0.90(0.008)$ \\
+  RF & $25$   & $0.70(0.028)$ & $0.86(0.011)$ & $1.00(0.003)$ & $0.93(0.006)$ \\
+  GB & $93$   & $0.85(0.025)$ & $0.93(0.011)$ & $0.99(0.004)$ & $0.96(0.007)$ \\
+  \hline
+\end{tabular}
+}
+\end{table}
 
 \clearpage
-
-\subsection{The insightful approach}
-
-
-
 \begin{figure}[ht!]
   \begin{subfigure}[b]{1.0\textwidth}
     \centering
     \input{../predicting-solid-state-qubit-candidates/reports/figures/pca-scores/03-insightful-approach-176-label.tex}
   \end{subfigure}
+\par\bigskip
+  \begin{subfigure}[b]{0.5\textwidth}
+    \input{../predicting-solid-state-qubit-candidates/reports/figures/pca-scores/02-augmented-ferrenti-approach-176-LOG.tex}
+    \caption{}
+    \label{fig:q2-LOG}
+  \end{subfigure}%
+  \hfill
+  \begin{subfigure}[b]{0.5\textwidth}
+    \input{../predicting-solid-state-qubit-candidates/reports/figures/pca-scores/02-augmented-ferrenti-approach-176-DT.tex}
+    \caption{}
+    \label{fig:q2-DT}
+  \end{subfigure}
+
+  \begin{subfigure}[b]{0.5\textwidth}
+    \input{../predicting-solid-state-qubit-candidates/reports/figures/pca-scores/02-augmented-ferrenti-approach-176-RF.tex}
+    \caption{}
+    \label{fig:q2-RF}
+  \end{subfigure}%
+  \hfill
+  \begin{subfigure}[b]{0.5\textwidth}
+    \input{../predicting-solid-state-qubit-candidates/reports/figures/pca-scores/02-augmented-ferrenti-approach-176-GB.tex}
+    \caption{}
+    \label{fig:q2-GB}
+  \end{subfigure}
+  \vspace*{-130mm}
+  \caption{{Four figures displaying hyperparameter search for the augmented Ferrenti approach. The best estimator is visualized for all hyperparameters as a function of principal components during a grid search with a $5\times5$ stratified cross validation, and the dotted lines marks the optimal hyperparameter-combination. Train stands for normal training accuracy, while test is the balanced accuracy on the test set. Precision, recall and f1 scores are based on the test set. The upper limit of principal components is decided by the explained accumulated variance at $95\%$, while the optimal model is found using the $f1$ score.}}
+  \label{fig:02-pca}
+\end{figure}
+%Four figures displaying hyperparameter search for the second approach. The best estimator is visualized for all hyperparameters as a function of principal components during a grid search with a 5x5 stratified cross validation. The lower plots visualizes the explained variance ratio, both accumulated and stepwise. The dotted lines marks the optimal hyperparameter-combination, while the error bars display the standard deviation.
+
+\subsection{The insightful approach}
+
+Lastly, we turn to the insightful approach, which involves $418$ bad and $172$ good candidates. However, in contrast to the two other datasets, the majority of the entries are labelled as bad candidates.
+
+The grid search for the optimal number of principal components is visualized in figure \ref{fig:03-pca}. Interestingly, we find that all models experience high scores for just a few principal component, where $1$ principal component earns at least $0.875$ in score for all evaluation metrics. This information was also revealed for an earlier 2D-visualization of a scatter plot showing the two most important principal components in figure \ref{fig:2dscatterplotpca}, and consequently can make the models find the optimal decision boundary more easily.
+
+Logistic regression experience improvement of all scores for increasing number of principal components, yet only up $5\%$ in scores compared to the $1D$-representation of $1$ principal components. Thus, one can argue if the increase in performance is worth it considering a one-dimensional representation with just a few percentage loss of performance. However, with multiple principal components, we find the largest increase in precision, which is a sign that the one-dimensional representation tend to wrongly predicts candidates as good when they are in fact bad. The decision tree and the random forest models exhibit best performance for just a few principal components, and experience considerable overfitting for larger values. Gradient boost, in contrast to the two other approaches, also experience best performance for a few principal components.
+
+The optimal hyperparameters are summarized in table \ref{tab:03-pca}, where all models exhibit high evalution metrics. Importantly, we find the difference in number of principal component as most prominent, where logistic regression finds an optimum at $129$ with the f1 score of $0.94$. The decision tree model use only $3$ principal components to achieve a $f1$ score of $0.91$, while random forest needs $11$ principal components to gain a f1 score of $0.94$. Lastly, gradient boost performs optimally at $7$ principal components with a mean f1 score of $0.93$. The relevant hyperparameters was the regularization term for logistic regression, which was set as $10^{-1}$, and the maximum number of iterations as $200$. The decision tree used an maximum depth of $4$, where larger values increased the training accuracy but not any other metric. Random forest was set with maximum depth of $7$, and gradient boost was given $4$.
+
+\clearpage
+\begin{figure}[ht!]
+  \begin{subfigure}[b]{1.0\textwidth}
+    \centering
+    \input{../predicting-solid-state-qubit-candidates/reports/figures/pca-scores/03-insightful-approach-176-label.tex}
+  \end{subfigure}
+  \par\bigskip
   \begin{subfigure}[b]{0.5\textwidth}
     \input{../predicting-solid-state-qubit-candidates/reports/figures/pca-scores/03-insightful-approach-176-LOG.tex}
     \caption{}
@@ -280,25 +337,25 @@ In \ref{tab:01-pc}, we find the precise measurements for each evaluation metric 
   \end{subfigure}
 
   \vspace*{-130mm}
-  \caption{{Four visualizations for each model of the grid-search with the resulting optimal number of principal compoonents through a $5\times 5$ stratified cross-validation. The upper limit of principal components is decided by the explained accumulated variance at $95\%$, while the optimal model is found using the $f1$ score.}}
+  \caption{{Four figures displaying hyperparameter search for the insightful approach. The best estimator is visualized for all hyperparameters as a function of principal components during a grid search with a $5\times5$ stratified cross validation, and the dotted lines marks the optimal hyperparameter-combination. Train stands for normal training accuracy, while test is the balanced accuracy on the test set. Precision, recall and f1 scores are based on the test set. The upper limit of principal components is decided by the explained accumulated variance at $95\%$, while the optimal model is found by using the $f1$ score.}}
   \label{fig:03-pca}
 \end{figure}
 
 
 \begin{table}[!ht]
 \centering
-\caption{Table }
-\label{tab:03-pc}
+\caption{A table of the optimal number of principal components and the respective scores (standard deviation), as visualized in the dash-dotted line in figure \ref{fig:03-pca}.}
+\label{tab:03-pca}
 \noindent\makebox[\textwidth]{
-\begin{tabular}{M{2.0cm} M{3.0cm} M{3.0cm} M{3.0cm}M{3.0cm}M{3.0cm} }
+\begin{tabular}{M{1.0cm} M{1.0cm} M{2.0cm} M{2.0cm}M{2.0cm}M{2.0cm} }
   \hline
   \hline
-   Model & PC & Mean test &  Mean recall & Mean precision & mean f1\\
+   Model & PC & Mean test & Mean precision & Mean recall  & mean f1\\
   \hline
-  LOG & $129$ & $0.96(0.018)$ & $0.96(0.036)$ & $0.93(0.041)$ & $0.94(0.025)$ \\
-  DT & $3$    & $0.94(0.025)$ & $0.92(0.050)$ & $0.91(0.048)$ & $0.91(0.032)$ \\
-  RF & $11$   & $0.96(0.019)$ & $0.95(0.040)$ & $0.93(0.039)$ & $0.94(0.024)$ \\
-  GB & $7$    & $0.95(0.023)$ & $0.94(0.047)$ & $0.92(0.044)$ & $0.93(0.030)$ \\
+  LOG & $129$ & $0.96(0.018)$ & $0.93(0.041)$ & $0.96(0.036)$ & $0.94(0.025)$ \\
+  DT & $3$    & $0.94(0.025)$ & $0.91(0.048)$ & $0.92(0.050)$ & $0.91(0.032)$ \\
+  RF & $11$   & $0.96(0.019)$ & $0.93(0.039)$ & $0.95(0.040)$ & $0.94(0.024)$ \\
+  GB & $7$    & $0.95(0.023)$ & $0.92(0.044)$ & $0.94(0.047)$ & $0.93(0.030)$ \\
   \hline
 \end{tabular}
 }

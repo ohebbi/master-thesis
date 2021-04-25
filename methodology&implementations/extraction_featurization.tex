@@ -274,7 +274,7 @@ For bad candidates, we implement the same strategy as defined for bad candidates
 \caption{A table showing the number of entries through the data mining process for good candidates in approach $2$ and bad candidates in approach $1$ and $2$.}
 \label{tab:good-bad-candidates}
 \noindent\makebox[\textwidth]{
-\begin{tabular}{M{3.0cm} M{4.0cm} M{4.0cm} M{2.5cm}}
+\begin{tabular}{M{3.0cm} M{3.0cm} M{3.0cm} M{2.5cm}}
   \hline
   \hline
   Stage & Good candidates approach $2$ & Bad candidates approach $1$ and $2$ & Ratio \\
@@ -294,7 +294,7 @@ For bad candidates, we implement the same strategy as defined for bad candidates
 
 The third approach is vastly different than the two first approaches in terms of labelling, therefore it is named \textit{the insightful approach}.
 
-Recall, in section \ref{promising-material-hosts} we discussed alternative promising material host candidates. The third approach for finding good candidates is to search our current data for any materials that overlap with known good candidates. Due to a concern of having a too small dataset, we will include materials that are promising and have shown suitable properties to accomodate deep defects that can exhibit quantum effects.
+Recall, in section \ref{promising-material-hosts} we discussed alternative promising material host candidates. The third approach for finding good candidates is to search our current data for any materials that overlap with known good candidates. Due to a concern of having a too small dataset, we will include materials that are promising and have shown suitable properties to accomodate deep defects that potentially can exhibit quantum effects.
 
 %This restriction also excludes potential materials that exhibit strong and ionic interactions in the lattice.
 
@@ -326,7 +326,7 @@ Since the number of elements in the good candidates are not containing more than
 
 \subsubsection{Labelling bad entries}
 
-Since the training data that constitutes good candidates are few, we choose to add $400$ random entries from the dataset of bad candidates used in approach $1$ and $2$, in addition to the entries stated above. We only add a subsample for increasing the potential dimensional space for predictions of candidates while avoiding having a too inbalanced dataset.
+Since the training data that constitutes good candidates are few, we choose to add $400$ random entries from the dataset of bad candidates used in approach $1$ and $2$, in addition to the entries stated above. We only add a subsample for increasing the potential dimensional space for predictions of candidates while avoiding having a too inbalanced dataset. Thus, the total amount of bad candidates accumulates to $418$ entries.
 
 \clearpage
 

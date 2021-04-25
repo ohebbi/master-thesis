@@ -133,7 +133,7 @@ and can be used to find a good tradeoff between recall and precision. The highes
 
 However, the f1 score is insensitive to the number of negative predictions. Therefore, an adjustment of the normal accuracy is in place. The name of this metric is called the balanced accuracy, which equally weights how many true positive and true negative,
 \begin{align*}
-  \text{Balanced accuracy} = \frac{1}{2} \left( \text{Recall} + \text{Sensitivity} \right),
+  \text{Balanced accuracy} = \frac{1}{2} \left( \frac{\text{TP}}{\text{TP} + \text{FN}} + \frac{\text{TN}}{\text{TN} + \text{FP}} \right),
 \end{align*}
 which makes it particular handy for imbalanced datasets.
 
@@ -222,7 +222,7 @@ The idea is now to approximate the gradient by replacing the sum over all data p
 \beta_{j+1} = \beta_j - \gamma_j \sum_{i \in B_k}^{n} \nabla_{\beta} c_i(\boldsymbol{x}_i,\beta)
 \end{align*}
 
-\noindent where $k$ is picked at random with equal probability from $[1, \frac{n}{M}]$ and $\gamma_j$ is the step length. An iteration over the number of minibathces $(\frac{n}{M})$ is commonly referred to as an epoch. Thus, it is typical to choose a number of epochs and for each epoch iterate over the number of minibatches. 
+\noindent where $k$ is picked at random with equal probability from $[1, \frac{n}{M}]$ and $\gamma_j$ is the step length. An iteration over the number of minibathces $(\frac{n}{M})$ is commonly referred to as an epoch. Thus, it is typical to choose a number of epochs and for each epoch iterate over the number of minibatches.
 
 \section{Decision trees}
 Classification and regression trees (CART), also called decision trees, are one of the more basic supervised algorithms. They can be used for both regression and classification tasks, but we will for the relevancy of this work provide a special emphasis to classification trees.  %The strength of decision trees lays within the simplicity that allows to build more complex networks.

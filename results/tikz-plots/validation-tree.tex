@@ -1,0 +1,43 @@
+\begin{figure}[!ht]
+  \centering
+  \begin{forest}
+    for tree={l sep=1em, s sep=1em, anchor=center, inner sep=0.3em, fill=red!50, circle}
+    [$625$ ABO$_3$ compounds, node box, alias=bagging, above=1em
+    [Logistic regression,node box,alias=a1
+      [$414$]
+      [$211$,fill=green!50,edge label={node[above=1ex,green arrow]{}}
+        [$195$]
+        [$16$,fill=green!50,edge label={node[above=1ex,green arrow]{}}
+        ]
+      ]
+    ]
+    [Decision tree,node box,alias=a1
+      [$382$]
+      [$243$,fill=green!50,edge label={node[above=1ex,green arrow]{}}
+        [$212$]
+        [$31$,fill=green!50,edge label={node[above=1ex,green arrow]{}}
+        ]
+      ]
+    ]
+    [Random forest,node box,alias=a1
+      [$438$]
+      [$187$,fill=green!50,edge label={node[above=1ex,green arrow]{}}
+        [$157$]
+        [$30$,fill=green!50,edge label={node[above=1ex,green arrow]{}}
+        ]
+      ]
+    ]
+    [Gradient boost,node box,alias=a1
+      [$419$]
+      [$206$,fill=green!50,edge label={node[above=1ex,green arrow]{}}
+        [$198$]
+        [$8$,fill=green!50,edge label={node[above=1ex,green arrow]{}}
+        ]
+      ]
+    ]
+    ]
+  \end{forest}
+\vspace*{-125mm}
+\caption{A figure visualizing the top-down workflow of predicting new ABO$_3$ cubic perovskites for all models. First layer of predictions display the number of predicted perovskites in green, while nonperovskites in red. Thereafter follows the prediction of perovskites into cubic perovskites in green, while only perovskites as red.}
+\label{fig:workflow}
+\end{figure}

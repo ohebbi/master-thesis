@@ -98,25 +98,29 @@ We acknowledge that many compositions deemed as good candidates consists of eith
     \centering
     \includegraphics[trim={10cm 0cm 12cm 4cm},clip, scale=0.5]{../predicting-solid-state-qubit-candidates/reports/figures/pca-3d-plots/training-data-3d.png}
     \caption{Hvor stort er dette bildet?}
-    \label{}
+    \label{fig:3d-1}
   \end{subfigure}
   \begin{subfigure}{0.5\textwidth}
     \centering
     \includegraphics[trim={10cm 0cm 12cm 4cm},clip, scale=0.5]{../predicting-solid-state-qubit-candidates/reports/figures/pca-3d-plots/training-data-isosurface-3d.png}
     \caption{Hvor stort er dette bildet?}
-    \label{}
+    \label{fig:3d-2}
   \end{subfigure}
   \begin{subfigure}{0.5\textwidth}
     \centering
     \includegraphics[trim={10cm 0cm 12cm 4cm},clip, scale=0.5]{../predicting-solid-state-qubit-candidates/reports/figures/pca-3d-plots/test-set-iso-3d.png}
     \caption{Hvor stort er dette bildet?}
-    \label{}
+    \label{fig:3d-3}
   \end{subfigure}
 \end{figure}
 
 
 \section{Comparison of the approaches}
 
-Out of the three approaches, we find that the augmented approach is the least restricted approach and admits the most entries. The Ferrenti approach also admits a large amount of entries, and is considered to not be very different from the Augmented Ferrenti approach. The models in the two approaches are unable to reproduce the criteria that the approaches are based on, such as band gap restriction or polar space group. Of course, the materials that the two initial approaches label as good candidates are challenging to go through due to their extensive lengths, whereas the insightful approach predicts fewer good candidates and we are able to manually verify many of the compounds. However, we note that we found predicted good candidates with band gap lower than $0.5$eV for the insightful approach as well.
+Out of the three approaches, we find that the augmented approach is the least restricted approach and admits the most entries. The Ferrenti approach also admits a large amount of entries, and is considered to not be very different from the Augmented Ferrenti approach. The models in the two approaches are unable to reproduce the criteria that the approaches are based on, such as band gap restriction or polar space group. Of course, the materials that the two initial approaches label as good candidates are challenging to go through due to their extensive lengths, whereas the insightful approach predicts fewer good candidates and we are able to manually verify many of the compounds. However, we note that we found predicted good candidates with band gap lower than $0.5$eV for the insightful approach as well, but to a smaller extent.
+
+comment about MP bandgap and AFLOWML bandgap is still lower and inconsistent with experimental values.
 
 Of the $85$ predicted good candidates with band gap lower than $0.5$eV that the models in the insightful approach agreed upon, we find $54$ of them also predicted as good by all models in the augmented Ferrenti approach. Similarly, $35$ of them are also predicted as good by all the models in the Ferrenti approach.
+
+The constructed dataset consists of compounds formed by all possible combinations of surfaces, interfaces, nanostructures, compositions and structures. We note that this complexity is not neccessarily reflected in the descriptors. In particular, comment about the quantum effect not present in the dataset, and dft's unability to model.

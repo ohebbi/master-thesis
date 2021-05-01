@@ -4,7 +4,7 @@ The information stream of this project can be regarded as many modular parts con
 
 Furthermore, by having several modules serving as the fundament of the project, it is possible to achieve a long-lasting and robust product that is simple to maintain yet straightforward to develop. Bugs can be tackled through a documented code simultaneously as visible future improvements can be adressed. Therefore, the product is not regarded as completed in any terms, but rather ready for a first release after iteratively finding the mimimum viable product.
 
-The main project of this work can be found on the Github repository \textit{predicting-solid-state-qubit-candidates} \cite{Ohebbi2021}. In this chapter we will look into the details and thoughts behind the extraction of data, building features, data preparation, data mining and eventually fabricating a generalized model that can predict unseen data with confidence.
+The main project of this work can be found on the Github repository \textit{predicting-solid-state-qubit-candidates} \cite{Ohebbi2021}. In this chapter we will look into the details and thoughts behind the extraction of data, constructing features, data preparation, data mining and eventually fabricating a generalized model that can predict unseen data with confidence.
 
 \section{Extraction and featurization of data}
 
@@ -15,6 +15,42 @@ The initial step for gathering and building features can be visualised through t
 The initial query has the requirement that all entries has to be derived from an experimental ICSD entry, and is reasoned by that we can identify equivalent entries in other databases. Furthermore, all entries in the Materials Project needs to have a band gap larger than $0.1$eV. Recall that Materials Project applies the functional GGA in estimating the band gap, which is known to severely underestimate the given electronic property. Therefore, we have chosen a low value to not rule out any potential candidates but high enough to leave out all materials that can be considered metallic. Thus, out of a total of $139.367$ entries in Materials Project, our initial requirement is satisfied by $25.352$ of the entries.
 
 From figure \ref{fig:flowchart-makedata} we notice that by using many databases we do not add additional entries that exist in some databases but is not to be found in Materials Project. This is by design since it preserves the versatility of choosing a database to work with. Therefore, one can completely ignore steps such as the initial query of Materials Project or the featurization process, and rather focus on e.g. all the $400.000$ entries existing in OQMD. The examples that follows will illustrate the ease of extracting data from several different databases, and can serve as the starting point for other research projects in computational material science.
+
+\subsection{API and HTTP requests}
+
+To extract information from a database it is convenient to interact through an \textit{API} (Application Programming Interface), which defines important variables such as the kind of requests to be made, how to make them and the data format for transmission. Importantly, this permits communication between different software medias. An API is entirely customizable, and can be made to extend existing functionality or tailormade for specific user-demanding modules.
+
+The APIs that will be encountered is handled by the use of \textit{HTTP} (Hypertext Transfer Protocol), which in its simplest form is a protocol that allows the fetching of resources. The protocol is client-server based, such as the client is requesting information and the server is responding to the request.
+
+The most common HTTP-methods are GET, POST and HEAD, which are used to either retrieve, send, or get information about data, respectively. The latter request is usually done before a GET-method for requests considering large amount of data, since this can be a significant variable for the client's bandwith and load time. Following a request, the server normally responds with one of the status codes in table \ref{tab:requests}.
+
+\begin{table}[!ht]
+\centering
+\caption{Numeric status code for response. The leftmost digit decide the type of response, while the two follow-up digits depends on the implemented API.}
+\label{tab:requests}
+\noindent\makebox[\textwidth]{
+\begin{tabular}{M{2.5cm} M{11.0cm}}
+  \hline
+  \hline
+   Status code & Description \\
+  \hline
+  2xx & OK - request was successful \\
+  3xx & Resource was redirected \\
+  4xx & Request failed due to either unsuccessful authentication or client error. \\
+  5xx & Request failed due to server error. \\
+  \hline
+  \hline
+\end{tabular}
+}
+\end{table}
+
+A RESTful (Representational State Transfer) allows users to communicate with a server via a HTTP using a REST Architectural Style \cite{Battle2008}. This enables the utilisation of Uniform Resource Identifiers (URI), where each object is represented as a unique resource and can be requested in a uniform manner. Importantly, this allows the use of both URIs and HTTP methods in an API, such that an object is represented by an unique URI whereas a HTTP-method can act on the object. This action will then return either the result of the action, or structured data that represents the object.
+
+To provide a Python example, we can check the response by doing a GET request at the database Materials Project RESTful API in code listing \ref{lst:general_uri_request}. We use the preamble to version 2 of Materials Project, and add an API-check and an API-key. The response is shown in code listing \ref{lst:general_uri_response}. From the output, it is possible to tell that the supplied API-key is not valid, however, the request is valid.
+
+\lstinputlisting[language=Python, caption={Practical example of getting a response from Materials Project database. }, label={lst:general_uri_request}]{methodology&implementations/code-listings/general_uri_request.tex}
+
+\lstinputlisting[style=mystyle, caption={Practical example of response from Materials Project request based on \ref{lst:general_uri_request}. The request was done 28. january 2020.}, label={lst:general_uri_response}]{methodology&implementations/code-listings/general_uri_response.tex}
 
 \subsection{Practical data extraction with Python-examples}
 
@@ -41,7 +77,7 @@ Every data extraction class is based on an abstract parent class. The advantages
 \subsubsection{Materials Project}
 \label{ssec:materialsproject}
 
-The most up-to-date version of Materials Project can be extracted using the python package pymatgen, which is integrated with Materials Project REST API. Other retrievel tools that is dependent on pymatgen includes matminer, with the added functionality of returning a pandas dataframe. Copies of Materials Project are added frequently to cloud services such as Citrine Informatics, but the latest added entries to Materials Project cannot be guaranteed in such a query.
+The most up-to-date version of Materials Project can be extracted using the python package pymatgen, which is integrated with Materials Project REST API. Other retrievel tools that is dependent on pymatgen includes matminer, with the added functionality of returning a pandas dataframe. Copies of Materials Project exist in many databases, but the latest added entries are not guaranteed to be included in them. %Copies of Materials Project are added frequently to cloud services such as Citrine Informatics, but the latest added entries to Materials Project cannot be guaranteed in such a query.
 
 Entries in Materials Project are characterized using more than 60 features\footnote{All features can be viewed in the documentation of the project: https://github.com/materialsproject/mapidoc/master/materials}, some features being irrelevant for some materials while fundamental for others. The data is divided into three different branches, where the first can be described as basic properties of materials including over $30$ features, while the second branch describes experimental thermochemical information. The last branch yields information about a particular calculation, in particular information that's relevant for running a DFT script.
 
@@ -60,7 +96,7 @@ The code nippet in code listing \ref{lst:MPQuery} resembles steps $2-4$, and is 
 
 \subsubsection{Citrine Informatics}
 
-Citrine Informatics is a cloud service, which means that the spectrum of stored information varies broadly. We will access research through open access for institutional and educational purposes. Information in Citrine can be stored using a scheme that is broken down into two sections, with private properties for each entry in addition to common fields that are the same for all entries.% However, the query happens swiftly and is noted as highly accessible.
+Citrine Informatics is a framework consisting of both HT-DFT calculations and experimental data, which means that the spectrum of stored information varies broadly. We will access research through open access for institutional and educational purposes. Information in Citrine can be stored using a scheme that is broken down into two sections, with private properties for each entry in addition to common fields that are the same for all entries.% However, the query happens swiftly and is noted as highly accessible.
 
 In this example, we will gather experimental data using the module matminer. The following steps are required to extract information from Citrine Informatics.
 
@@ -140,7 +176,7 @@ In the extended version of the featurization process, we eliminate all columns t
 
 \noindent Even if the first version of Matminer was released in $2016$, many issues concerning daily operational use are still present. During the featurization process in this work, we manually identified $14$ (TODO: Update number) erroneous entries that are summarized in the Appendix, table \ref{tab:error_entries}, which were excluded from the dataset. These entries were part of the reason why the featurization process is a time-consuming process, as there is currently no implementation in Matminer that can potential pick up and catch erroneous entries in Materials Project. The process of manually catching such an entry was identified by featurization of single entries causing one of two problems. The first problem could be that an entry could be causing a memory leak which leads to an exceedingly large memory allocation, or it could be that the featurization process needed days to calculate oxidation states for a structure.
 
-\section{Labelling of data}
+\section{Data mining}
 
 After selecting entries based on an initial query from Materials Project followed by a thorough featurization process using Matminer, we face a challenge in terms of defining a training set that we can train data on. This is not only challenging due to the lack of known candidates, but also due to the intricacy of defining materials as bad candidates. Therefore, in this section we describe three different approaches of finding a training set consisting of (1) good candidates and (0) bad candidates.
 
@@ -400,10 +436,10 @@ After building a dataset through extraction, featurization and labelling, we tur
 
 In the data preparation step, we assess the quality of the data. Due to the large dimension of $25000 \times 4500$, we can afford to be picky and therefore we assume that there is a large amount of non-physical values present, accordingly we fill all the missing values with zero and remove all columns with more than $70\%$ containing only zeros. This value was chosen since all categorical features have at least $30\%$ of an respective class present in the column, and a majority of the removed columns contained between $90\%$ and $100\%$ only zeros. This reduces the dimensionality substantially to only $679$ features. It should be noted that other methods of data preparation resulted in equivalent preprocessed data due to the large amount of missing values in the data.
 
-Four different supervised models has been selected for each of the three approaches defined in the previous section, resulting in a total of $12$ unique models. As discussed in section \ref{evaluating accuracy}, models are unique and does not neccessarily perform optimal on all kinds of data. Therefore, the four models have been selected as a function of increasing complexity and ranges from the simplistic logistic regression and decision trees and up to random forest and gradient boost. We utilize the implementation of sklearn for all models \cite{Pedregosa2012}.
+Four different supervised models has been selected for each of the three approaches defined in the previous section, resulting in a total of $12$ unique models. As discussed in section \ref{evaluating accuracy}, models are unique and does not neccessarily perform optimal on all kinds of data. Therefore, the four models have been selected as a function of increasing complexity and ranges from the simplistic logistic regression and decision trees and up to random forest and gradient boost. We utilize the implementation of Scikit-learn for all models \cite{Pedregosa2012}.
 
 \input{methodology&implementations/tikz-plots/flow-chart-screen-procedure.tex}
 
 \noindent Due to the fact that the current dimension of the entire dataset is still large, we apply the dimensionality reduction technique PCA to the dataset. This is benefical for several reasons, such as finding correlated features and reducing dimensionality. Additionally, it opens up for a visualized interpretation if we were to choose $3$ or less principal components.
 
-The optimal parameters are then searched for with the use of sklearn's gridsearch and imblearn's pipeline \cite{Pedregosa2012, Lemaitre2016}. Imblearn's pipeline enable the use of resampling methods, in contrast to sklearn's pipeline, but does not differ in any other way. In the pipeline, we provide a standardscaler that scales the data such that every feature will have a mean of $0$ and a standard deviation of $1$ \cite{Pedregosa2012}. Thereafter follows the dimensionality reduction and a supervised learning algorithm. It should be noted that the number of optimal principal components, up to an upper limit of accumulated explained variance of $95\%$, are also searched for in the grid-search scheme.
+The optimal parameters are then searched for with the use of Scikit-learn's gridsearch and imblearn's pipeline \cite{Pedregosa2012, Lemaitre2016}. Imblearn's pipeline enable the use of resampling methods, in contrast to Scikit-learn's pipeline, but does not differ in any other way. In the pipeline, we provide a standardscaler that scales the data such that every feature will have a mean of $0$ and a standard deviation of $1$ \cite{Pedregosa2012}. Thereafter follows the dimensionality reduction and a supervised learning algorithm. It should be noted that the number of optimal principal components, up to an upper limit of accumulated explained variance of $95\%$, are also searched for in the grid-search scheme.

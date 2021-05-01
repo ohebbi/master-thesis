@@ -1,15 +1,24 @@
-\chapter{Understanding information from ab-initio calculations}
+\chapter{The new paradigm of novel materials discovery}
+% The new paradigm of computational material science
+%
+% Novel discovery of
+% Modern novel materials discovery
 
-In this work we will be looking into information gained by \textit{ab-initio} calculations, which means "from first principles". Initially, the method of the calculations can be regarded as a black box where one provides the structure of a material as input, which the black box in return feed us the outcome in terms of interesting constants or a different structure. In this chapter we provide the neccessary knowledge to understand what is happening inside the black box, and the quality of the output. The significance of this will be crystal clear when we later have to interpret information regarding several thousands solid-state systems, and not a single material. In particular, the quality of the output is dependent on being consistent.
+The discovery of novel materials enables the development of technological advances that are neccessary to overcome challenges faced in the society, and is a principal ingredient in defining who we are and what we have become. We have witnessed the material epochs starting from the bronze age, iron age and up to the era of modern silicon technologies, and we find novel materials transformed into other industries as well \cite{Jain2016, Magee2012}.
 
-The black box is based on a successful theory called density functional theory (DFT), which is an approach for predicting physical properties of solid-state systems. We will ony summarize the neccessary theory behind density functional theory, leaving most of the quantum-mechanical world untouched. We will start with an explanation of why it is difficult to calculate interactions between particles, and then review key approximations and methods regarding the theory. However, even if density functional theory solves some problems, it also introduce new challenges, which will be thoroughly discussed.
+However, the modern times have radically changed the methods of discovering novel materials. In the last decades, we have observed the generation of huge amount of theoretical and experimental data, commonly known as \textit{Big data}. In the fields of computational material science, this inception is mainly enabled due to the success of \textit{the density functional theory} (DFT). Conversely, to keep up with the pace of data generation, a new field named \textit{Data science} combines the interdisciplinary fields of mathematics, statistics, computer science and programming to solve the challenge of extracting knowledge from unfeasibly big and complex data \cite{Agrawal2016, Schleder2019}. This is considered the fourth paradigm of science, and is visualized together with the previous paradigms of science in figure \ref{fig:4th-paradigm}.
 
-%Lastly, we will in particular look into
+\begin{figure}[ht!]
+  \centering
+  \includegraphics{theory/figures/4th-paradigm-hd.jpg}
+  \caption{The four science paradigms: empirical, theoretical, computational, and data-driven. Figure taken from Ref.  \cite{Schleder2019}, which was originally adapted from Ref. \cite{Agrawal2016}.}
+  \label{fig:4th-paradigm}
+\end{figure}
 
-%canonical variables
-%dynamical variables
-%operator
-%canonical substitusion
+This chapter aims to provide the neccessary understanding of the new research paradigm in the context of computational materials science and novel materials discovery. Starting from the beginning, we will be looking into information gained by \textit{ab-initio} calculations, which means "from first principles". %In particular, it involves a summary of the neccessary theory behind the density functional theory, thus leaving most of the quantum-mechanical world untouched.
+Since DFT is not a theory one simply understands, we will begin with an initial discussion of why it is difficult to calculate interactions between particles, followed up by a review of key approximations and methods regarding the theory. However, even if density functional theory solves some problems, it also introduce new challenges, which will be thoroughly discussed.
+
+Thereafter, we try to provide a logical sequence into the emergence of high-throughput (HT) methods and tools neccessary to handle the resulting information. Finally, we review a state-of-the-art approach of novel materials discovery enabled by the new paradigm of big data and data science.
 
 \begin{comment}
 \section{The single-electron Schrödringer equation}
@@ -101,8 +110,11 @@ The shape of en eigenfunction has normally high spatial symmetri that depends on
 \end{comment}
 \section{Introduction to density functional theory}
 
-To fully understanding what challenges the density functional theory solves, we will need to investigate how we can calculate the forces acting inside a crystal. Since these forces are happening on a microscopic scale, we will need to utilize the theory of quantum mechanics.
+Initially, the method of the calculations can be regarded as a black box where one provides the structure of a material as input, which the black box in return feed us the outcome in terms of interesting constants or a different structure. The black box is based on a successful theory called density functional theory (DFT), which is an approach for predicting physical properties of solid-state systems. In this and the next section we provide the neccessary knowledge to understand what is happening inside the black box, and the quality of the output.
 
+%The significance of this will be crystal clear when we later have to interpret information regarding several thousands solid-state systems, and not a single material. In particular, the quality of the output is dependent on being consistent.
+
+To fully understanding what challenges the density functional theory solves, we will need to investigate how we can calculate the forces acting inside a crystal. Since these forces are happening on a microscopic scale, we will need to utilize the theory of quantum mechanics.
 
 %However, the fundamental theory remains the same and we will start our venture with the Schrödinger equation.
 
@@ -137,7 +149,7 @@ If we place a simple electron with mass $m_e$ in its own system, it will be in  
 \begin{align}
   T_e = - \sum_{j=1}^{N_e} \frac{\hslash^2\nabla_j}{2m_e}.
 \end{align}
-All the electrons are negatively charged, causing repulsive Coulomb interactions between each and every electron, totalling to
+All the electrons are negatively charged, causing repulsive Coulomb interactions between each electron, totalling to
 \begin{align}
   U_{ee} = \sum_{j=1}^{N_e}\sum_{j'<j} \frac{q^2}{\lvert r_j - r_{j'}\rvert}.
   \label{eq:electron-electron}
@@ -182,7 +194,7 @@ As we venture along from a one-electron system to a two-electron systen, we enco
 \end{align}
 where the two first terms are the kinetic energies of the electrons, while the third term is a potential that describes the repulsive Coloumb interaction between the two electrons. The last term is the external potential, well known from the earlier scenario with only one electron.
 \end{comment}
-The next question in line is to find a wavefunction $\Psi(\boldsymbol{r},\boldsymbol{R})$ that depends on all of the electrons in the system. The Hartre \cite{Persson2020} approximation to this is to assume that electrons can be described independently, suggesting the \textit{ansatz} for a two-electron wavefunction
+The next question in line is to find a wavefunction $\Psi(\boldsymbol{r},\boldsymbol{R})$ that depends on all of the electrons in the system. The Hartree \cite{Persson2020, DavidSholl2009} approximation to this is to assume that electrons can be described independently, suggesting the \textit{ansatz} for a two-electron wavefunction
 \begin{align}
   \Psi_\kappa(\boldsymbol{r}_1,\boldsymbol{r}_2) = A \cdot \psi_1(\boldsymbol{r}_1) \psi_2(\boldsymbol{r}_2),
 \end{align}
@@ -202,13 +214,13 @@ So far, we have tried to make the time-independent Schrödinger equation easier 
 
 \section{The density functional theory}
 
-Hitherto we have tried to solve the Schrödinger equation to get a ground state wave function, and from there we can obtain ground state properties, such as the ground state total energy. One fundamental problem that exists when trying to solve the many-electron Schrödinger equation is that the wavefunction is a complicated function that depends on $3N_e$ variables\footnote{not including spin}.
+Hitherto we have tried to solve the Schrödinger equation to get a ground state wave function, and from there we can obtain ground state properties. One fundamental problem that exists when trying to solve the many-electron Schrödinger equation is that the wavefunction is a complicated function that depends on $3N_e$ variables\footnote{not including spin}.
 
 Hohenberg and Kohn \cite{Hohenberg1964} showed in 1964 that the ground-state density $n_0(r) = \lvert \Psi_0 (r)\rvert$ determines a general external potential, which includes $U_{en}$, up to an additive constant, and thus also the Hamiltonian \cite{Toulouse2019}. From another point of view, the theory states that all physical ground-state properties of the many-electron system are unique functionals of the density \cite{Persson2020}. A consequence of this is that the number of variables is reduced from $3N_e$ to $3$, significantly reducing the computational efforts.
 
 However, the scheme is not without limitations, as the density functional theory (DFT) can only be used to find all the ground-state physical properties if the exact functional of the electron density is known. And $57$ years after Hohenberg and Kohn published their paper, the exact functional still remains unknown.
 
-We will start this chapter with a brief mention of the Hohenberg-Kohn theorems and its implications, before we delve further into the Kohn-Sham equation. From the
+We will start this chapter with a brief mention of the Hohenberg-Kohn theorems and its implications, before we delve further into the Kohn-Sham equation.
 
 \subsection{The Hohenberg-Kohn theorems}
 
@@ -277,7 +289,8 @@ Finally, we can define the total energy of the system according to Kohn-Sham the
 \end{align}
 If $V_{xc}$ is exact, and $E[n]$ gives the true total energy, we still do not know if the energy eigenvalues $\epsilon_s^{KS}$ are the true single-electron eigenvalues. However, there exists one exception, which is that the highest occupied eigenvalue of a finite system has to be exact if the density is exact.
 
-The only task that is left for us now is to find the exact expression for $E_{xc}[n]$ as a functional of the density $n(r)$. With that expression, we would be able to calculate the total energies of any material, and most likely solve a few of the biggest puzzles in the history of humankind. Unfortunately, the exchange-correlation potential is unknown for most systems.
+The only task that is left for us now is to find the exact expression for $E_{xc}[n]$ as a functional of the density $n(r)$. With that expression, we would be able to calculate the total energies of any material%, and most likely solve a few of the biggest puzzles in the history of humankind.
+Unfortunately, the exchange-correlation potential is unknown for most systems.
 
 It is possible to solve the Kohn-Sham equations by applying a self-consistent field method. This is a computational scheme, and for further details one can consult the appendix \ref{appendix:self-consistent}.
 
@@ -336,7 +349,76 @@ where $E_{x}^{GGA}$ is GGA exchange energy \cite{Klimes2009}.
 
 If we had known the exact exchange-correlation functional, the density functional theory would yield the exact total energy. Alas, that is not the case and we are bound to use approximations in forms of functionals. What is common for all approximations is that they are specifically designed to solve one given optimization, therefore it is not neccessarily one functional that is consider superior in all fields of interest. One could consider that the hybrid functionals due to a high accuracy overall should be dominant, but that is only if one have the computational capacity required. The accuracy of calculations is dependent on which functional being used, and normally a higher accuracy means the use of a more complex and computationally demanding functional.
 
-Nonetheless, density functional theory is considered a very successful approach and Walter Kohn was awarded the Nobel Price in chemistry in 1998 for his development of the density-functional theory \cite{Freitas1999}. It is especially regarded as successful in contexts where DFT can make important contributions to scientific questions where it would be essentially impossible to determine through experiments \cite{DavidSholl2009}. One can only hope that the future will be as bright as the past, and that this successful theory provides incentives for further growth in the next generation.
+Nonetheless, density functional theory is considered a very successful approach and Walter Kohn was awarded the Nobel Price in chemistry in 1998 for his development of the density-functional theory \cite{Freitas1999}. It has matured into the undisputed choice of method for electronic structure calculations \cite{Schleder2019}. It is especially regarded as successful in contexts where DFT can make important contributions to scientific questions where it would be essentially impossible to determine through experiments \cite{DavidSholl2009}. %One can only hope that the future will be as bright as the past, and that this successful theory provides incentives for further growth in the next generation.
+
+\section{High-throughput information storage}
 
 
-%\section{Input and output of ab-initio methods}
+Fuelled by the widespread application of DFT in material science, we observe an increase of computational capacity due to advances in simulation methods, computational science and technologies \cite{Schleder2019}. The time required for calculations has been reduced substantially, and enables more time on simulation setup and analysis. Ultimately, this has led to a new type of workflow called high-throughput \cite{Yang2017}, where one can automate input creation and perform several (up to millions) simulations in parallel instead of performing many manually-prepared simulations. The HT engines are required to be fast and accurate, otherwise the purpose of its existence is lost. We will in this thesis mainly focus on high throughput in the context of first principles DFT calculations.
+
+Normally, the implementation of HT-DFT methods is done in three steps. In the first step we perform thermodynamic or electronic structure calculations for a large number of materials. For the second step, we store the information gathered in a systematic database, normally known as a material repository. For the third and final step, we characterize and select novel materials or analyse and extract new physical insight \cite{Schleder2019}. In general, the two first steps are performed on high-performance computers (HPC), and are defining for the third step due to the vast amount of interesting properties of materials. Importantly, one needs to consider the ultimate goal in step three initially before deciding upon materials and properties to calculate.
+
+One of the largest government funding projects is the $2011$ launched Material Genome Initiative (MGI) \cite{Warren2018} which seeks to accelerate the discovery, design, development and deployment of novel materials through the creation of a materials innovation infrastructure. As a result, we have seen an intensive implementation of material repositories that fascilitate sharing and distribution of step $1$ and $2$, with the ultimate goal of storing calculated properties of all feasible structures of materials \cite{Schuett2020}. Examples include AFLOW \cite{Curtarolo2012, Curtarolo2012a, Calderon2015}, Materials Project \cite{Jain2013}, OQMD \cite{Saal2013, Kirklin2015} and JARVIS-DFT \cite{Choudhary2020}. On the other hand, we find a less diverse selection of experimental databases, with perhaps the most known being the Inorganic Crystal Structure Database (ICSD) \cite{Allen1987}.
+
+In this section, we describe a few of the most widely known high-throughput databases, codes and tools, with an emphasis of what the particular speciality of each database is.
+
+\subsection{Materials project}
+
+Materials project \cite{Jain2013} is an open source project that offers a variety of properties of over one hundred thousand of inorganic crystalline materials. It is known as the initiator of materials genomics and has as its mission to accelerate the discovery of new technological materials, with an emphasis on batteries and electrodes, through advanced scientific computic and innovative design.
+
+ %Some features, eg. density of state (dos), bandstructure, Pourbaix diagram etc., are characterized by using the module pymatgen.
+
+Every compound has an initial relaxation of cell and lattice parameters performed using a $1000 k$-point mesh to ensure that all properties calculated are representative of the idealized unit cell for each respective crystal structure. The functional GGA is used to calculate band structures, while for transition metals it is applied $+U$ correction to correct for correlation effects in d- and f-orbital systems that are not addressed by GGA calculations \cite{Wang2006}. The thermodynamic stability for each phase with respect to decomposition, is also calculated. This is denoted as E Above Hull, with a value of zero is defined as the most stable phase at a given composition, while larger positive values indicate increased instability.
+
+Each material contains multiple computations for different purposes, resulting in different 'tasks'. The reason behind this is that each computation has a purpose, such as to calculate the band structure or energy. Therefore, it is possible to receive several tasks for one material which results in more features per material.
+
+\subsection{AFLOW}
+
+The AFLOW\cite{Curtarolo2012, Curtarolo2012a, Calderon2015} repository is an automatic software framework for the calculations of a wide range of inorganic material properties. They utilise the GGA-PBE functional within VASP with projector-augmented wavefunction (PAW) potentials to relax twice and optimize the ICSD-sourced structur. They are using a $3000-6000$ $k$-point mesh, indicating a more computationally expensive calculation compared to the Materials Project. Next, the band structure is calculated with an even higher $k$-point density, in addition to the $+U$ correction term for most occupied d- and f-orbital systems, resulting in a standard band gap \cite{Setyawan2010}. Furthermore, they apply a standard fit gathered from a study of DFT-computed versus experimentally measured band gap widths to the initial calculated value, obtaining a fitted band gap \cite{Setyawan2011}.
+
+\subsection{Open Quantum Materials Database}
+
+The Open Quantum Materials Database (OQDM) \cite{Saal2013, Kirklin2015} is a free and available database of DFT-calculations. It has included thermodynamic and structural properties of more than $600.000$ materials, including all unique entries in the Inorganic Crystal Structure Database (ICSD) consisting of less than $34$ atoms \cite{Ferrenti2020}.
+
+The DFT calculations are performed with the VASP software whereas the electron exchange and correlation are described with the GGA-PBE, while using the PAW potentials. They relax a structure using $4000-8000$ $k$-point mesh, indicating an even increasing computational expensive calculation than AFLOW again. Several element-specific settings are included such as using the $+U$ extension for various transition metals, lanthanides and actinides. In addition, any calculation containing 3d or actinide elements are spin-polarized with a ferromagnetic alignment of spins to capture possible magnetism. However, the authors note that this approach does not capture complex magnetic, such as antiferromagnetism, which has been found to result in substantial errors for the formation energy \cite{Stevanovic2012}.
+
+\subsection{JARVIS}
+
+Joint Automated Repository for Various Integrated Simulations (JARVIS) \cite{Choudhary2020} - DFT is an open database based based on the VASP software to perform a variety of material property calculations. It consists of roughly $40.000$ 3D and $1.000$ 2D materials using the vdW-DF-OptB88 van der Waals functional, which was originally designed to improve the approximation of properties of two-dimensional van der Waals materials, but has also shown to be effective for bulk materials \cite{Thonhauser2007, Klimes2011}. The functional has shown accurate predictions for lattice-parameters and energetics for both vDW and non-vdW bonded materials  \cite{Choudhary2018}.
+
+Structures included in the data set are originally taken from the materials project, and then re-optimized using the OPT-functional. Finally, the combination of the OPT and modified Becke-Johnson (mBJ) functionals are used to obtain a representative band gap of each structure, since both have shown unprecedented accuracy in the calculation of band gap compared to any other DFT-based calculation methods \cite{Choudhary2018a}.
+
+The JARVIS-DFT database is part of a bigger platform that includes JARVIS-FF, which is the evaluation of classical forcefield with respect to DFT-data, and JARVIS-ML, which consists of 25 machine learning to predict properties of materials. In addition, JARVIS-DFT also includes a data set of 1D-nanowire and 0D-molecular materials, yet not publically distributed.
+
+\section{Materials informatics}
+
+Despite a computationally demanding step $1$ and a sophisticated database architecture defined in step $2$, the third step remains more important in discovery of novel materials. In the third step, we apply constraints to the database in order to filter or select the best candidates according to the desired attributes \cite{Schleder2019}, and is referred to as data \textit{mining} and data \textit{screening}. To achieve the most insight, we normally apply the constraints in a sequential manner to identify any potential underlying trend. The materials that satisfy the first constraint moves on to the next round, while the rest are eliminated from further consideration. The constraints can be applied either by the understanding of properties, human intuition or through a close interaction with a machine learning (ML) algorithm, where the latter will be extensively studied in the next chapter.
+
+\begin{figure}[ht!]
+  \centering
+  \includegraphics{theory/figures/ht-workflow.jpg}
+  \caption{Schematic representation of the workflow of novel materials discovery.  Figure taken from Ref. \cite{Schleder2019}, which was originally adapted from Refs. \cite{Mounet2018, Acosta2018, Polini2013}.}
+  \label{fig:ht-workflow}
+\end{figure}
+
+\noindent Together, the three steps resembles figure \ref{fig:ht-workflow}. From building compounds based on elements, calculating theoretical, computational and experimental properties, storing the information in databases and applying material screening and machine learning, to finally receiving a material prediction. If the material prediction is verified iteratively by many independent sources, the time to market for new technologies based on a new material takes approximately $20$ years \cite{Eagar1995}.
+
+Importantly, the data driven paradigm enables a new approach for novel material discovery. The traditional approach, namely the \textit{direct approach}, rely on the calculation of properties given the structure and composition of a material, such that the search for eligible candidates exhibiting the target property is performed tediously case by case. In other words, what is the property of a given material. However, the \textit{inverse approach} is of integral importance in this work: given a desired property, what material can present it \cite{Schleder2019}?
+
+The application of machine learning and data-driven techniques to material science have developed into a new field named materials informatics \cite{Rajan2005}. Alex Szalay, director of the US National Virtual Observatory project, described informatics for astronomy in $2003$ as the following.
+\begin{quote}
+   “Science was originally empirical, like Leonardo making wonderful drawings of nature. Next came the theorists who tried to write down equations that explained observed behaviors, like Kepler or Einstein. Then, when we got to complex enough systems like the clustering of a million galaxies, there came the computer simulations – the computational branch of science. Now, we are getting into the data exploration part of science, which is kind of a little bit of them all” Alex Szalay \cite{Szalay2003}
+\end{quote}
+\noindent The formulation is true also for material informatics, where the scope is to discover relations between known standard features and materials properties through a combination of \textit{a bit of everything}.
+
+\subsection{Materials informatics software packages}
+
+In practice, several software packages exists for the purpose of generating, describing, visualizing, calculating or predicting properties of materials.
+
+The Atomic Simulation Environment (ASE) is an environment in the Python programming language that includes several tools and modules for setting up, modifying and analyze atomistic simulations \cite{Larsen2017}. It is in particular used together with the Computational Materials Repository (CMR) \cite{Landis2012}.
+
+Another commonly used module is the Python Materials Genomics (pymatgen) \cite{Ong2013}. This is a well-documented open module with both introductory and advanced use case examples written in Jupyter Notebook for easy reproducibility, and is integrated with the Materials Project RESTful API.
+
+An increasingly popular library is matminer \cite{Ward2018}, which is an open-source toolkit for material analysis written in Python. Matminer is powered by a group known as \textit{Hacking Materials Research Group}\footnote{Project's Github site: https://github.com/hackingmaterials.}. Matminer provides modules to extract data information from a wide variety of databases. Additionally, they provide the tools to construct possibly thousands of features from calculations based on a materials composition, structure and DFT-calculations, and have modules for visualization and automatic machine learning.
+
+AFLOW-ML \cite{Isayev2017} is an API that uses machine learning to predict thermomechanical and electronic properties based on the chemical composition and atomic structure alone, which they denote as \textit{fragment descriptors}. They start with applying a classification model to predict if a compound is either a metal or an insulator, where the latter is confirmed with an additional regression model to predict the band gap width. To be able to predict properties on an independent data set, they utilise a fivefold cross validation process for each model. They report a $93$\% prediction success rate of their initial binary classification model, whereas the majority of the wrongful predictions are narrow-gap semiconductors. The authors does not compare their predicted band gap to experimental values, but it is found that $93$\% of the machine-learning-derived values are within $25$\% of the DFT $+U$-calculated band gap width \cite{Ferrenti2020}.

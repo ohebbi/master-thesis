@@ -97,19 +97,13 @@ To provide a Python example, we can check the response by doing a GET request at
 \end{table}
 
 \subsection{Open-source Python libraries for material analysis}
-Many of the databases share convenient modules that are used to adapt, visualize, calculate or predict properties, making it easier for scientists to utilise the databases.
-%matminer
-%seamless module compatibility
-The Atomic Simulation Environment (ASE) is an environment in the Python programming language that includes several tools and modules for setting up, modifying and analyze atomistic simulations \cite{Larsen2017}. It is in particular used together with the cloud service Computational Materials Repository (CMR).
 
-Another commonly used module is the Python Materials Genomics (pymatgen) \cite{Ong2013}. This is a well-documented open module with both introductory and advanced use case examples written in Jupyter Notebook for easy reproducibility, and is integrated with the Materials Project RESTful API.
-
-Another exceedingly popular library is matminer \cite{Ward2018}, which is an open-source toolkit for material analysis written in Python. Matminer is powered by a group known as \textit{Hacking Materials Research Group} \footnote{Project's Github site: https://github.com/hackingmaterials.}. Matminer provides modules to extract data sets from many cloud-services and databases, with examples in table \ref{tab:databases} and \ref{tab:cloud_service}. Additionally, they provide the tools to extract possibly thousands of features from calculations based on DFT and more, and have modules for visualization and automatic machine learning. These tools will be examplified in the next chapter.
 
 TODO : Add paragraph about sklearn.
 
 A full selection of python libraries used and their versions can be found in the Github page (TODO: Add github page.)
 
+\begin{comment}
 \section{Databases and cloud services}
 
 Every database has its own speciality, and no two databases are the same. There exists entries that are fundamentally identical in several databases, but with different properties as a consequence of parameters used, such as the functional utilised in VASP or the relaxation scheme. This section digs up what exactly is each respective database's claim to fame.
@@ -150,3 +144,4 @@ Joint Automated Repository for Various Integrated Simulations (JARVIS) \cite{Cho
 Structures included in the data set are originally taken from the materials project, and then re-optimized using the OPT-functional. Finally, the combination of the OPT and modified Becke-Johnson (mBJ) functionals are used to obtain a representative band gap of each structure, since both have shown unprecedented accuracy in the calculation of band gap compared to any other DFT-based calculation methods \cite{Choudhary2018a}.
 
 The JARVIS-DFT database is part of a bigger platform that includes JARVIS-FF, which is the evaluation of classical forcefield with respect to DFT-data, and JARVIS-ML, which consists of 25 machine learning to predict properties of materials. In addition, JARVIS-DFT also includes a data set of 1D-nanowire and 0D-molecular materials, yet not publically distributed.
+\end{comment}

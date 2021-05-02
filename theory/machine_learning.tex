@@ -450,7 +450,7 @@ with a given vector
 \begin{align}
 \mathrm{cov}[\boldsymbol{v},\boldsymbol{u}] =\frac{1}{n} \sum_{i=0}^{n-1}(v_i- \overline{v})(u_i- \overline{u}),
 \end{align}
-where $\boldsymbol{v}$ and $\boldsymbol{u}$ are two vectors with $n$ elements each. The covariance matrix is defined by applying the covariance for every pairwise feauture, resulting in a $p\times p$ matrix. On the diagonal, the covariance of two equal features becomes the variance of one,
+where $\boldsymbol{v}$ and $\boldsymbol{u}$ are two vectors with $n$ elements each. The covariance matrix is defined by applying the covariance for every pairwise feauture, resulting in a $p\times p$ matrix. \begin{comment}On the diagonal, the covariance of two equal features becomes the variance of one,
 \begin{align}
   \mathrm{cov}[\boldsymbol{u},\boldsymbol{u}] &=\frac{1}{n} \sum_{i=0}^{n-1}(u_i- \overline{u})(u_i- \overline{u}) = \mathrm{var}[\boldsymbol{u}].
 \end{align}
@@ -481,8 +481,9 @@ for all vectors $\boldsymbol{x}_i$ where $i=0,1,\dots,p-1$. The correlation matr
   \mathrm{corr}[\boldsymbol{x}_{p-1},\boldsymbol{x}_0]   & \mathrm{corr}[\boldsymbol{x}_{p-1},\boldsymbol{x}_1] & \mathrm{corr}[\boldsymbol{x}_{p-1},\boldsymbol{x}_{2}]  & \dots & \dots  & 1\\
   \end{bmatrix}.
 \end{align}
-
-\noindent The covariance matrix can be rewritten as a function of the design matrix,
+The covariance matrix
+\end{comment}
+\noindent We can rewrite it as a function of the design matrix,
 \begin{align}
   %\frac{1}{n}\boldsymbol{X}\boldsymbol{X}^T=
   \boldsymbol{C}[\boldsymbol{x}] = \mathbb{E}[\boldsymbol{X}\boldsymbol{X}^T] - \mathbb{E}[\boldsymbol{X}] \mathbb{E}[\boldsymbol{X}^T],
@@ -498,7 +499,7 @@ such that the new matrix $\boldsymbol{C}[\boldsymbol{y}]$ is diagonal with eleme
   \boldsymbol{s}^T_i\lambda_i = \boldsymbol{C}[\boldsymbol{x}]\boldsymbol{s}^T_i.
 \end{align}
 
-Dimensions with large eigenvalue have a large variation and can therefore be used to find features with useful information since we multiply the eigenvalue with the eigenvectors. When the eigenvalues are small, it means that the eigenvectors shrink accordingly and there is a small variation in these specific features \cite{Marsland2014}.
+\noindent Dimensions with large eigenvalue have a large variation and can therefore be used to find features with useful information since we multiply the eigenvalue with the eigenvectors. When the eigenvalues are small, it means that the eigenvectors shrink accordingly and there is a small variation in these specific features \cite{Marsland2014}.
 
 So far, we have been leading up to the classical PCA theorem. Assume that the data is represented as in equation \ref{eq:designmatrix} with $\mathbb{E}[X]=0$, and assume that there exists an orthogonal transformation $\boldsymbol{W}\in {\mathbb{R}}^{p\times p}$. We can then define the reconstruction error
 

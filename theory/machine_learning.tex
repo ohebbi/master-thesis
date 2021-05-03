@@ -74,14 +74,14 @@ The first term on the right hand side is the squared bias, the amount by which t
 
 \input{theory/tikz-plots/bias-variance.tex}
 
-%The more complex model one has, the lower the bias becomes, and the higher the variance becomes, as seen in figure \ref{fig:biasVarianceTradeOff}.
-A model with high variance will typically experience larger fluctuations around the true value, while a model with high bias corresponds to a larger error in the average of estimates. This is schematically visualized as function of model complexity in figure  \ref{fig:biasVarianceTradeOff}. If the model is not complex enough due to high bias and low variance, the algorithm can end up not learning the relevant relations between features and output. This is known as \textit{underfitting} \cite{Murphy2012}. On the other hand, a complex model with low bias and high variance might find trends in random noise from the training data instead of the relevant features, resulting in \textit{overfitting} \cite{Murphy2012}. An ideal model would be one that simultaneously achieves low variance and low bias  Therefore, we have to do a trade-off between how much bias and variance we would like in the model.
+%The more complex model one has, the lower the bias becomes, and the higher the variance becomes, as seen in \autoref{fig:biasVarianceTradeOff}.
+A model with high variance will typically experience larger fluctuations around the true value, while a model with high bias corresponds to a larger error in the average of estimates. This is schematically visualized as function of model complexity in figure  \autoref{fig:biasVarianceTradeOff}. If the model is not complex enough due to high bias and low variance, the algorithm can end up not learning the relevant relations between features and output. This is known as \textit{underfitting} \cite{Murphy2012}. On the other hand, a complex model with low bias and high variance might find trends in random noise from the training data instead of the relevant features, resulting in \textit{overfitting} \cite{Murphy2012}. An ideal model would be one that simultaneously achieves low variance and low bias  Therefore, we have to do a trade-off between how much bias and variance we would like in the model.
 
 \subsection{Accuracy, precision and recall}
 
 Given a model that has dealt with the intricacy of increasing complexity, we would like to evaluate the model's output quality. For a binary supervised classification problem we can measure the accuracy by finding how many correct predictions have been made. Prediction accuracy can provide a fine initial analysis, but it has some significant drawbacks seen in unbalanced datasets. This can be easily explained with a dataset consisting of $99:1$ ratio of class, since just guessing the majority class will result in a very high $99\%$ accuracy. Perhaps it is the $1\%$ that is the most important class, thus the accuracy score severely lacks information for the model.
 
-Therefore, we turn to other evaluation metrics such as a \textit{a confusion matrix}. A confusion matrix is a method for measuring the performance of classifiers \cite{Murphy2012}. It is set up as a table with 4 different categories, where two of the categories are the predicted outcomes of the classifier and the two final categories are the true outcomes. An example of a confusion matrix for a binary classifier is shown in table \ref{tab:confusion_matrix}.
+Therefore, we turn to other evaluation metrics such as a \textit{a confusion matrix}. A confusion matrix is a method for measuring the performance of classifiers \cite{Murphy2012}. It is set up as a table with 4 different categories, where two of the categories are the predicted outcomes of the classifier and the two final categories are the true outcomes. An example of a confusion matrix for a binary classifier is shown in \autoref{tab:confusion_matrix}.
 
 \begin{table}[!ht]
   \centering
@@ -149,7 +149,7 @@ When evaluating different parameters for models, commonly done in a grid-search 
 Unfortunately, this reduces the number of samples that can be used for training drastically. A fix for this is to apply \textit{cross validation} (CV) \cite{Murphy2012}. Cross validation is a technique used to evaluate predictive models by partitioning the original sample into a training set to train the model, and a test set to evaluate it.
 
 \input{theory/tikz-plots/cv.tex}
-\noindent It is common to apply cross validation into fold, yielding the name of k-fold cross validation. In k-fold cross validation, the training set is partioned into k equal sized subsamples, as visualized in figure \ref{fig:cv}. Of the k samples, a single sample is used as validation set while the remaining k-1 samples are used as training data. The process is then repeated k-times, such that each of the k subsamples are used as a validation set exactly once. Therefore, all observations are used for both training and validation, and each observation is used for validation exactly once. The k results from the folds can then be averaged to produce an estimate. The subsamples are allowed to have an imbalanced dataset, so that each class is not neccessarily represented equally in each fold. Since supervised algorithms tend to weigh each instance equally, this may result in overrepresented classes being favored during training of the model. Even worse could be the result of a fold where one class is not represented at all, resulting in a model that do not learn how to predict a class at all.
+\noindent It is common to apply cross validation into fold, yielding the name of k-fold cross validation. In k-fold cross validation, the training set is partioned into k equal sized subsamples, as visualized in \autoref{fig:cv}. Of the k samples, a single sample is used as validation set while the remaining k-1 samples are used as training data. The process is then repeated k-times, such that each of the k subsamples are used as a validation set exactly once. Therefore, all observations are used for both training and validation, and each observation is used for validation exactly once. The k results from the folds can then be averaged to produce an estimate. The subsamples are allowed to have an imbalanced dataset, so that each class is not neccessarily represented equally in each fold. Since supervised algorithms tend to weigh each instance equally, this may result in overrepresented classes being favored during training of the model. Even worse could be the result of a fold where one class is not represented at all, resulting in a model that do not learn how to predict a class at all.
 
 To deal with the vulnerability of imbalanced datasets in CV, one can employ a stratified k-fold cross validation technique. Stratification is a process that seeks to ensure that each fold is representative of all classes (also named \textit{strata} in this context) in the data, making each fold having approximately equal class-representation.
 
@@ -235,7 +235,7 @@ A decision tree can be divided into a \textit{root node}, \textit{interior nodes
 \input{theory/tikz-plots/decision-tree.tex}
 \noindent The process behind a decision tree can be seen as a top-down approach. First, we make a leaf provide the classification of a given instance. Then, a node specifies a test of some attribute of the instance, while a branch corresponds to a possible value of an attribute. Subsequently, the instance move down the tree branch corresponding to the value of the attribute. Then the steps can be repeated for a new subtree rooted at the new node.
 
-A classification tree differs from a regression tree by the response of the prediction, since it produces a qualitative response rather than a quantitative one. The response is given by the most commonly occuring class of training observations specified by the attribute of the node. A schematic representation of a classification tree is visualised in figure \ref{fig:decision-tree}. %Thus, the interpretation process includes both the class prediction corresponding to a particular terminal node region, but also in the class proportions among the training observations that fall into that region.
+A classification tree differs from a regression tree by the response of the prediction, since it produces a qualitative response rather than a quantitative one. The response is given by the most commonly occuring class of training observations specified by the attribute of the node. A schematic representation of a classification tree is visualised in \autoref{fig:decision-tree}. %Thus, the interpretation process includes both the class prediction corresponding to a particular terminal node region, but also in the class proportions among the training observations that fall into that region.
 
 \subsection{Growing a classification tree}
 
@@ -296,7 +296,7 @@ By using a single decision tree, we often end up with an overfitted model that p
 \end{align}
 where $f_b$ is the $b$'th tree. Simply re-running the same algorithm on different subsamples can result in a small variance reduction compared to a single tree due to highly correlated predictors, which showcase the need for better approaches.
 
-\textit{Random forests} provide an improvement of normal bagged trees by choosing a random sample of $m$ predictors as split candidates from the full set of $p$ predictors. The split is restricted in choosing only one of the $m$ predictors, which are normally chosen as either $m \approx \sqrt{p} $ or $m \approx \log{p}$. This means that at each split in a tree, the algorithm is restricted to a very small portion of the available predictors. %The specific about the algorithm can be found in Algorithm~\ref{alg:randomforest}.
+\textit{Random forests} provide an improvement of normal bagged trees by choosing a random sample of $m$ predictors as split candidates from the full set of $p$ predictors. The split is restricted in choosing only one of the $m$ predictors, which are normally chosen as either $m \approx \sqrt{p} $ or $m \approx \log{p}$. This means that at each split in a tree, the algorithm is restricted to a very small portion of the available predictors. %The specific about the algorithm can be found in Algorithm~\autoref{alg:randomforest}.
 
 \begin{algorithm}[H]
 \SetAlgoLined
@@ -371,11 +371,11 @@ with the error redefined as
 \begin{align}
   \overline{\text{err}} = \frac{1}{n} \frac{ \sum_{i=0}^{n-1} w_i^m I(\hat{y}_i \neq G_m(\boldsymbol{x}_i)) }{\sum_{i=0}^{n-1} w_i^m}.
 \end{align}
-Finally, this leads to an update of $f_m(\boldsymbol{x})$ as defined in equation \ref{eq:fsam} and the weights at the next iteration becomes
+Finally, this leads to an update of $f_m(\boldsymbol{x})$ as defined in equation \autoref{eq:fsam} and the weights at the next iteration becomes
 \begin{align}
   w_i^{m+1} = w_i^m \exp (-\hat{y}_i \beta_m G_m(\boldsymbol{x}_i)).
 \end{align}
-With the above definitions, we can define the discrete Adaboost algorithm in Algorithm~\ref{alg:discreteAdaboost}.
+With the above definitions, we can define the discrete Adaboost algorithm in Algorithm~\autoref{alg:discreteAdaboost}.
 
 \begin{algorithm}[H]
 \SetAlgoLined
@@ -391,7 +391,7 @@ With the above definitions, we can define the discrete Adaboost algorithm in Alg
  \label{alg:discreteAdaboost}
 \end{algorithm}
 
-\noindent It is possible to apply different cost functions resulting in a variety of boosting algorithms. AdaBoost is an example with the cost function in equation~\ref{eq:exponentialcost}. But instead of deriving new versions of boosting based on different cost functions, we can find one generic method. This approach is known as \textit{gradient boosting} \cite{friedman2001}. Initially, we want to minimize
+\noindent It is possible to apply different cost functions resulting in a variety of boosting algorithms. AdaBoost is an example with the cost function in equation~\autoref{eq:exponentialcost}. But instead of deriving new versions of boosting based on different cost functions, we can find one generic method. This approach is known as \textit{gradient boosting} \cite{friedman2001}. Initially, we want to minimize
 \begin{align}
   \hat{\boldsymbol{f}} = \argmin_f L(\boldsymbol{f}),
 \end{align}
@@ -409,7 +409,7 @@ where $\rho_m$ is the step length and can be found by approximating the real fun
 \begin{align}
   h_m(\boldsymbol{x})= - \rho \boldsymbol{g}_m(\boldsymbol{x}).
 \end{align}
-So far, this only optimizes $f$ at a fixed set of points, but we can modify it by fitting a weak classifier to approximate the negative gradient. Additionally, we add a step length parameter $0<\nu<1$ to perform partial updates, also known as \textit{shrinking} \cite{Murphy2012}. The gradient boost algorithm is shown in Algorithm~\ref{alg:gradientBoost}.
+So far, this only optimizes $f$ at a fixed set of points, but we can modify it by fitting a weak classifier to approximate the negative gradient. Additionally, we add a step length parameter $0<\nu<1$ to perform partial updates, also known as \textit{shrinking} \cite{Murphy2012}. The gradient boost algorithm is shown in Algorithm~\autoref{alg:gradientBoost}.
 
 \begin{algorithm}[H]
 \SetAlgoLined
@@ -501,7 +501,7 @@ such that the new matrix $\boldsymbol{C}[\boldsymbol{y}]$ is diagonal with eleme
 
 \noindent Dimensions with large eigenvalue have a large variation and can therefore be used to find features with useful information since we multiply the eigenvalue with the eigenvectors. When the eigenvalues are small, it means that the eigenvectors shrink accordingly and there is a small variation in these specific features \cite{Marsland2014}.
 
-So far, we have been leading up to the classical PCA theorem. Assume that the data is represented as in equation \ref{eq:designmatrix} with $\mathbb{E}[X]=0$, and assume that there exists an orthogonal transformation $\boldsymbol{W}\in {\mathbb{R}}^{p\times p}$. We can then define the reconstruction error
+So far, we have been leading up to the classical PCA theorem. Assume that the data is represented as in equation \autoref{eq:designmatrix} with $\mathbb{E}[X]=0$, and assume that there exists an orthogonal transformation $\boldsymbol{W}\in {\mathbb{R}}^{p\times p}$. We can then define the reconstruction error
 
 \begin{align}
   J(\boldsymbol{W},\boldsymbol{Z}) = \frac{1}{n}\sum_i (\boldsymbol{x}_i - \overline{\boldsymbol{x}}_i)^2,
@@ -509,7 +509,7 @@ So far, we have been leading up to the classical PCA theorem. Assume that the da
 with $\overline{\boldsymbol{x}}_i = \boldsymbol{W}\boldsymbol{z}_i$, where $\boldsymbol{z}_i$ is a column vector with dimension ${\mathbb{R}}^{n}$ of the matrix
 $\boldsymbol{Z}\in{\mathbb{R}}^{p\times n}$.
 
-The PCA theorem states that minimizing the above reconstruction error corresponds to setting $\boldsymbol{W}=\boldsymbol{S}$, which is the orthogonal matrix that diagonalizes the covariance matrix \cite{Murphy2012}. The optimal number of features that correspond to the encoding is given by the set of vectors $\boldsymbol{z}_i$ with at most $l$ vectors. This is defined as the orthogonal projection of the data onto the columns spanned by the eigenvectors of the covariance matrix. Instead of using the covariance matrix, it is preferable to use the correlation matrix to avoid loss of numerical precision. Additionally, it is important to mention that the covariance matrix is sensitive to the standardization of variables, which is why one should always remember to center the data around before applying PCA.  We recommend the reader to read Ref. \cite{Murphy2012} p. $387$ for proof of the classical PCA theorem, as we will not elaborate any further. The algorithm for PCA is shown in Algorithm~\ref{alg:pca}.
+The PCA theorem states that minimizing the above reconstruction error corresponds to setting $\boldsymbol{W}=\boldsymbol{S}$, which is the orthogonal matrix that diagonalizes the covariance matrix \cite{Murphy2012}. The optimal number of features that correspond to the encoding is given by the set of vectors $\boldsymbol{z}_i$ with at most $l$ vectors. This is defined as the orthogonal projection of the data onto the columns spanned by the eigenvectors of the covariance matrix. Instead of using the covariance matrix, it is preferable to use the correlation matrix to avoid loss of numerical precision. Additionally, it is important to mention that the covariance matrix is sensitive to the standardization of variables, which is why one should always remember to center the data around before applying PCA.  We recommend the reader to read Ref. \cite{Murphy2012} p. $387$ for proof of the classical PCA theorem, as we will not elaborate any further. The algorithm for PCA is shown in Algorithm~\autoref{alg:pca}.
 
 \begin{algorithm}[H]
 \SetAlgoLined
@@ -531,11 +531,11 @@ So far, we have covered substantially researched topics such as dimensionality r
 
 The initial phase consists of gathering information systematically. This could be perhaps the most time-consuming part of the entire process, motivated by questions such as how much data is neccessary. The answer to this question is as vague as the question itself, since there is no lower or upper bound but rather a general recommendation that the more data the better. Additionally, we should have an hypothesis that we are collecting descriptors of something that can explain the objective of the entire machine learning process. Indeed, the promises of machine learning are limited to data containing good descriptors. For a supervised learning algorithm, it is neccessary to have one descriptor for the training data that contains information about what should be learned.
 
-Thereafter follows an analysis of the data quality, often called \textit{pre-processing}. This includes identifying outliers and finding out what to do about any potential missing value in the data. Normally, solutions such as removing outliers and filling any missing value with either the mean, median or zero are applied. The data is also required to be transformed into continuous or categorical values. For the latter case we can carry out a one-hot encoding to ensure that any algorithm does not assume one category being more important to another due to a larger number. Furthermore, it could be neccessary to scale the data and reduce dimensionality, with the motivation discussed in section \ref{pca}.
+Thereafter follows an analysis of the data quality, often called \textit{pre-processing}. This includes identifying outliers and finding out what to do about any potential missing value in the data. Normally, solutions such as removing outliers and filling any missing value with either the mean, median or zero are applied. The data is also required to be transformed into continuous or categorical values. For the latter case we can carry out a one-hot encoding to ensure that any algorithm does not assume one category being more important to another due to a larger number. Furthermore, it could be neccessary to scale the data and reduce dimensionality, with the motivation discussed in section \autoref{pca}.
 
 If the algorithm has not been chosen yet, this is the time to do so. A clever first-hand approach is to apply a simple algorithm that is not computational demanding to see how it performs on a subset of the data. If the performance is satisfactory, any implementation of a more sophisticated algorithm could be redundant.
 
-Next, the search for optimal hyperparameters while maintaining a generalized model can pose a challenge, but is achiveable. It is popular to apply a cross validation during this process with different evaluation metrics, as discussed in section \ref{evaluating accuracy}.
+Next, the search for optimal hyperparameters while maintaining a generalized model can pose a challenge, but is achiveable. It is popular to apply a cross validation during this process with different evaluation metrics, as discussed in section \autoref{evaluating accuracy}.
 
 Eventually, with a chosen algorithm and its optimal hyperparameters, we train the algorithm on the entire preprocessed training data and then perform predictions on unseen data. To avoid any bias in the predictions, it is crucial that predictions on unseen data is done only once. The reason for this is that we do not want to optimalize any model for the actual test data, since this would reduce the generalization and increase the bias.
 

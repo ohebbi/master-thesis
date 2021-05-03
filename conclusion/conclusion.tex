@@ -1,18 +1,26 @@
-\chapter{Conclusion}
+\chapter*{Conclusion}
 
-In this present work, we performed an exploratory analysis for identifying new potential qubit material hosts candidates using machine learning.
+In this present work, we performed an exploratory analysis for identifying new potential qubit material hosts candidates using machine learning. In the process of becoming acquainted with the databases, we have developed tools for simple data extraction and processing for six high-throughput databases, including AFLOWlib, AFLOW-ML, Citrination, Materials Project, OQMD and JARVIS-DFT. We utilized the high-throughput code and tools of Matminer to extend a featurization process done by MODnet. Due to a small amount of similar entries in the databases, we apply the featurization procedure to a subsample of $25.000$ materials in the Material Project.
 
-In the process of becoming acquainted with the databases, we have developed tools for simple data extraction and processing for six high-throughput databases, including AFLOWlib, AFLOW-ML, Citrination, Materials Project, OQMD and JARVIS-DFT. We utilized the high-throughput code and tools of Matminer to extend a featurization process done by MODnet. Due to a small amount of similar entries in the databases, we apply the featurization procedure to a subsample of $25.000$ materials in the Material Project.
+Thereafter, we developed and implemented three approaches to define good and bad candidates, namely the Ferrenti approach, the augmented Ferrenti approach and the insightful approach. For each of the approaches, we applied the dimensionality reduction technique principal component and trained the machine learning algorithms logistic regression, decision tree, random forest and gradient boost. We find the Ferrenti approach and the augmented Ferrenti approach not being able to correctly predict properties that favour materials that can fascilitate any quantum effects, since the machine learning trends reveals unconsistent results of both good and bad candidates. We credit this result to the general and inaccurate criteria for the two approaches, in addition to the absent of any features describing potential quantum effects. However, the insightful approach delivers more consistent candidates and provides promising materials such as ZnGeP$_2$, BC$_2$N, BP, RuC, Ge, GeC, BP and InP. Additionally, we find that all models in the three approaches agree on $28$ good materials, where $1$ is elemental, $20$ are binary and $7$ are tertiary. We suggest these materials as the most promising candidates for future experimental synthesis of novel qubit materials hosts. %, and many more after a manual screening in the post analysis. We suggest these materials
+\clearpage
+\section*{Future prospects}
 
-Thereafter, we developed and implemented three approaches to define good and bad candidates, namely the Ferrenti approach, the augmented Ferrenti approach and the insightful approach. For each of the approaches, we applied the dimensionality reduction technique principal component and trained the machine learning algorithms logistic regression, decision tree, random forest and gradient boost. We find the Ferrenti approach and the augmented Ferrenti approach not being able to correctly predict properties that favour materials that can fascilitate any quantum effects, since the machine learning trends reveals unconsistent results of both good and bad candidates. We credit this result to the general and inaccurate criteria for the two approaches, in addition to the absent of any features describing potential quantum effets. However, the insightful approach delivers more consistent candidates and provides promising materials such as ZnGeP$_2$, Ge, GeC, BP, LnP, and many more after a manual screening in the post analysis. 
+Due to the time restriction regarding producing a thesis, the to-do list is packed with possible future improvements and implementations.
+\vspace{10pt}
 
-\chapter{Future remarks}
+\textbf{TODO:}
+\begin{itemize}
+  \item Apply unsupervised learning to the data and investigate if there are potential candidates that are grouped together with known good candidates.
+  \item Add new features from Matminer and other HT-DFT to provide a larger feature space. Additionally, choose a smaller set of features to see if it is possible to describe similar results with fewer features.
+  \item Construct a new data set with better initial conditions, e.g. only choose compositions that have a calculated electronic structure and density of state. This will result in a smaller dataset, but with potential higher data quality.
+  \item Apply machine learning algorithms to predict missing key properties in the data, e.g. spin orbit coupling. Can also other  quantum properties be quantified and consequently be predicted?
+  \item Predict the stability of potential defects in the sites of a given structure.
+\end{itemize}
 
+%\textbf{Future remarks}
+%Due to an explosive interest in the field of material informatics.
 
-
-\textbf{Future remarks}
-Due to an explosive interest in the field of material informatics.
-
-- future remarks
--- new features Matminer
--- better starting materials (e.g. all with included bandstructure/dos)
+%- future remarks
+%-- new features Matminer
+%-- better starting materials (e.g. all with included bandstructure/dos)

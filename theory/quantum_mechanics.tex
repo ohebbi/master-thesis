@@ -7,7 +7,7 @@
 
 The discovery of novel materials enables the development of technological advances that are neccessary to overcome challenges faced in the society, and is a principal ingredient in defining who we are and what we have become. We have witnessed the material epochs starting from the bronze age, iron age and up to the era of modern silicon technologies, and we find novel materials transformed into other industries as well \cite{Jain2016, Magee2012}.
 
-However, the modern times have radically changed the methods of discovering novel materials. In the last decades, we have observed the generation of huge amount of theoretical and experimental data, commonly known as \textit{Big data}. In the fields of computational material science, this inception is mainly enabled due to the success of \textit{the density functional theory} (DFT). Conversely, to keep up with the pace of data generation, a new field named \textit{Data science} combines the interdisciplinary fields of mathematics, statistics, computer science and programming to solve the challenge of extracting knowledge from unfeasibly big and complex data \cite{Agrawal2016, Schleder2019}. This is considered the fourth paradigm of science, and is visualized together with the previous paradigms of science in figure \ref{fig:4th-paradigm}.
+However, the modern times have radically changed the methods of discovering novel materials. In the last decades, we have observed the generation of huge amount of theoretical and experimental data, commonly known as \textit{Big data}. In the fields of computational material science, this inception is mainly enabled due to the success of \textit{the density functional theory} (DFT). Conversely, to keep up with the pace of data generation, a new field named \textit{Data science} combines the interdisciplinary fields of mathematics, statistics, computer science and programming to solve the challenge of extracting knowledge from unfeasibly big and complex data \cite{Agrawal2016, Schleder2019}. This is considered the fourth paradigm of science, and is visualized together with the previous paradigms of science in figure \autoref{fig:4th-paradigm}.
 
 \begin{figure}[ht!]
   \centering
@@ -29,13 +29,13 @@ We will start of investigating the Schrödinger equation with only one electron 
     i\hslash \frac{\partial \Psi}{\partial t} = -\frac{\hslash^2}{2m}\nabla^2 \Psi + V\Psi
     \label{eq:Schrödinger}
 \end{align}
-for a convenient external potential $V_{ext}(r)$ that is independent of time. We will try to look for solutions for (\ref{eq:Schrödinger}) by separating the wave function into a space-dependent and time-dependent function
-%Most wavefunctions are solutions to (\ref{eq:Schrödinger}), but if the wavefunction describes a stationary state, the wavefunction has to be an eigenfunction to H for reasons that will become clear shortly.
+for a convenient external potential $V_{ext}(r)$ that is independent of time. We will try to look for solutions for (\autoref{eq:Schrödinger}) by separating the wave function into a space-dependent and time-dependent function
+%Most wavefunctions are solutions to (\autoref{eq:Schrödinger}), but if the wavefunction describes a stationary state, the wavefunction has to be an eigenfunction to H for reasons that will become clear shortly.
 \begin{align}
   \Psi(r,t) = \psi(r)\phi(t).
   \label{eq:separation}
 \end{align}
-By inserting ordinary derivatives and dividing each side with equation (\ref{eq:separation}), our Schrödinger equation (\ref{eq:Schrödinger}) now reads
+By inserting ordinary derivatives and dividing each side with equation (\autoref{eq:separation}), our Schrödinger equation (\autoref{eq:Schrödinger}) now reads
 \begin{align}
   i\hslash \frac{1}{\phi(t)}\frac{d\phi(t)}{dt} = - \frac{\hslash^2}{2m} \frac{1}{\psi(r)}\nabla^2 \psi + V(r)
 \end{align}
@@ -51,9 +51,9 @@ and
   \frac{\hslash^2}{2m} \frac{1}{\psi(r)}\nabla^2 \psi + V(r) = E\psi(r)
   \label{eq:tise}
 \end{align}
-where the first equation (\ref{eq:time}) has a general solution $\phi(t) = C \exp (-iEt/\hslash)$ and $C=1$ after normalization, and the second equation (\ref{eq:tise}) is known as time-independent Schrödinger equation. These two equations are connected through the variable $\varepsilon$.
+where the first equation (\autoref{eq:time}) has a general solution $\phi(t) = C \exp (-iEt/\hslash)$ and $C=1$ after normalization, and the second equation (\autoref{eq:tise}) is known as time-independent Schrödinger equation. These two equations are connected through the variable $\varepsilon$.
 
-By utilizing variable separation to get equation (\ref{eq:separation}), we find that the wavefunction is describing a stationary state with probability density
+By utilizing variable separation to get equation (\autoref{eq:separation}), we find that the wavefunction is describing a stationary state with probability density
 \begin{align*}
   \lvert \Psi (r,t)\rvert ^2 &= \Psi^*\Psi \\
   &= \Psi^* e^{iEt/\hslash} \Psi e^{-i Et/\hslash} \\
@@ -63,7 +63,7 @@ that is independent of time. Conveniently, this is also true for every expectati
 \begin{align}
     \hat{H}(r, p) = \frac{p^2}{2m} + V(r) = -\frac{\hslash^2}{2m}\nabla^2 + V(r)
 \end{align}
-simplifying equation \ref{eq:tise} to
+simplifying equation \autoref{eq:tise} to
 \begin{align}
   \hat{H} \psi = E\psi
   \label{eq:tise_nesten}
@@ -101,7 +101,7 @@ where $c_\kappa$ is a constant. A general wavefunction does not neccessarily des
 \begin{align*}
   E = \sum_{\kappa} \lvert c_\kappa \rvert \varepsilon_\kappa.
 \end{align*}
-Solving Schrödinger equation for a general wavefunction is rather troublesome. Fortunately, we can use the eigenfunctions instead, transforming equation \ref{eq:tise_nesten} into time-independent Schrödinger equation for eigenfunctions
+Solving Schrödinger equation for a general wavefunction is rather troublesome. Fortunately, we can use the eigenfunctions instead, transforming equation \autoref{eq:tise_nesten} into time-independent Schrödinger equation for eigenfunctions
 \begin{align}
   \hat{H} \psi_{\kappa}(r) = \varepsilon_\kappa \psi_\kappa(r).
 \end{align}
@@ -111,7 +111,7 @@ The shape of en eigenfunction has normally high spatial symmetri that depends on
 \end{comment}
 \section{Introduction to density functional theory}
 
-Initially, the method of the calculations can be regarded as a black box where one provides the structure of a material as input, which the black box in return feed us the outcome in terms of interesting constants or a different structure. The black box is based on a successful theory called density functional theory (DFT), which is an approach for predicting physical properties of solid-state systems. In this and the next section we provide the neccessary knowledge to understand what is happening inside the black box, and the quality of the output.
+Initially, the method of the calculations can be regarded as a black box where one provides the structure of a material as input, which the black box in return feed us the outcome in terms of interesting constants or a different structure. The black box is based on a successful theory called density functional theory, which is an approach for predicting physical properties of solid-state systems. In this and the next section we provide the neccessary knowledge to understand what is happening inside the black box, and the quality of the output.
 
 %The significance of this will be crystal clear when we later have to interpret information regarding several thousands solid-state systems, and not a single material. In particular, the quality of the output is dependent on being consistent.
 
@@ -133,7 +133,7 @@ are extremely rare. More conveniently, we can generate a general wavefunction by
 where $c_\kappa$ is a constant and $\psi_\kappa$ is the $\kappa$-th eigenfunction. A general wavefunction does not neccessarily describe stationary states, and consequently does not have distrinct energies but is rather represented statistically from the expectation value
 \begin{align}
   E = \sum_\kappa \lvert c_\kappa \rvert E_\kappa.
-\end{align} Solving the Schrödinger equation for a general wavefunction is rather troublesome, but luckily we can use the eigenfunctions instead, transforming equation \ref{eq:tdse} into the time-independent Schrödinger equation for eigenfunctions
+\end{align} Solving the Schrödinger equation for a general wavefunction is rather troublesome, but luckily we can use the eigenfunctions instead, transforming equation \autoref{eq:tdse} into the time-independent Schrödinger equation for eigenfunctions
 \begin{align}
   \hat{H}\psi_\kappa(\boldsymbol{r}) = E_\kappa \psi_k(\boldsymbol{r}),
 \end{align}
@@ -171,7 +171,7 @@ where $Z_a$ is the atom number of nuclei number $a$. The system now contains $N_
   \begin{aligned}
     \hat{H} = &- \sum_{j=1}^{N_e} \frac{\hslash^2\nabla_j}{2m_e} - \sum_{a=1}^{N_n} \frac{\hslash^2\nabla_a}{2m_n} + \sum_{j=1}^{N_e}\sum_{j'<j} \frac{q^2}{\lvert r_j - r_{j'}\rvert} \\ &+\sum_{a=1}^{N_n}\sum_{a'<a} \frac{q^2 Z_aZ_{a'}}{\lvert R_a - R_{a'}\rvert } - \sum_{j=1}^{N_e} \sum_{a=1}^{N_n} \frac{q^2Z_a}{\lvert r_j-R_a\rvert}.
   \end{aligned}
-\end{align} A few problems arise when trying to solve the many-particle Schrödinger equation. Firstly, the amount of atoms in a crystal is very, very massive. As an example, we can numerically try to calculate the equation \ref{eq:electron-electron} for a $1$mm$^3$ silicon-crystal that contains $7\cdot 10^{20}$ electrons. For this particular problem, we will pretend to use the current fastest supercomputer Fugaku \cite{Top500} that can calculate $514$ TFlops, and we will assume that we need $2000$ Flops to calculate each term inside the sum \cite{Persson2020}, and we need to calculate it $N_e \cdot N_e/2$ times for the (tiny) crystal. The entire electron-electron interaction calculation would take $2.46 \cdot 10^{19}$ years to finish for a tiny crystal. Thus, the large amount of particles translates into a challenging numerical problem.
+\end{align} A few problems arise when trying to solve the many-particle Schrödinger equation. Firstly, the amount of atoms in a crystal is very, very massive. As an example, we can numerically try to calculate the equation \autoref{eq:electron-electron} for a $1$mm$^3$ silicon-crystal that contains $7\cdot 10^{20}$ electrons. For this particular problem, we will pretend to use the current fastest supercomputer Fugaku \cite{Top500} that can calculate $514$ TFlops, and we will assume that we need $2000$ Flops to calculate each term inside the sum \cite{Persson2020}, and we need to calculate it $N_e \cdot N_e/2$ times for the (tiny) crystal. The entire electron-electron interaction calculation would take $2.46 \cdot 10^{19}$ years to finish for a tiny crystal. Thus, the large amount of particles translates into a challenging numerical problem.
 
 %In one cubic-centimeter of a crystal, there are around $10^{23}$ electrons. This number is roughly the same as the number of stars in the universe, grain of sand on all beaches in the world, or currently $1.41\cdot 10^{19}$ times the amount of Home and Away episodes made since 1988.
 
@@ -183,7 +183,7 @@ The many-particle eigenfunction describes the wavefunction of all the electrons 
 \begin{align}
   \Psi_\kappa^{en}(\boldsymbol{r}, \boldsymbol{R}) \approx \Psi_{\kappa}(\boldsymbol{r}, \boldsymbol{R})\Theta_{\kappa}(\boldsymbol{R}),
 \end{align}
-where the electronic part is dependent on the nuclei. This is in accordance with the assumption above, since electrons can respond instantaneously to a new position of the much slower nucleus, but this is not true for the opposite scenario. From here, one can obtain the electronic and nuclear eigenfunction, with the derivation shown in \ref{appendix:Born-Oppenheimer}.
+where the electronic part is dependent on the nuclei. This is in accordance with the assumption above, since electrons can respond instantaneously to a new position of the much slower nucleus, but this is not true for the opposite scenario. From here, one can obtain the electronic and nuclear eigenfunction, with the derivation shown in \autoref{appendix:Born-Oppenheimer}.
 
 
 \subsection{The Hartree and Hartree-Fock approximation}
@@ -211,7 +211,7 @@ For systems containing more than one particles, the factor $1/\sqrt{2}$ becomes 
 So far, we have tried to make the time-independent Schrödinger equation easier with the use of an \textit{ansatz}, but we do not neccessarily have an adequate guess for the eigenfunctions and the ansatz can only give a rough estimate in most scenarios. Another approach, namely the \textit{variational principle}, states that the energy of any trial wavefunction is always an upper bound to the exact ground state energy by definition $E_0$.
 \begin{align}
   E_0 = \bra{\psi_0 } H \ket{\psi_0} \leq \bra{\psi}H\ket{\psi} = E
-\end{align} This enables a minimization of energy in terms of wavefunction parameters. A more thorough walk-through of the variational principle is included in appendix \ref{appendix:variational-principle}.
+\end{align} This enables a minimization of energy in terms of wavefunction parameters. A more thorough walk-through of the variational principle is included in appendix \autoref{appendix:variational-principle}.
 
 \section{The density functional theory}
 
@@ -230,7 +230,7 @@ We will start this chapter with a brief mention of the Hohenberg-Kohn theorems a
 \end{theorem}
 
 The theorem can be proved by utilising the variational principle for two different external potentials with the same ground state density.
-The proof is included in appendix \ref{appendix:theorem1}.
+The proof is included in appendix \autoref{appendix:theorem1}.
 
 \begin{theorem}
   There exists a variational principle for the energy density functional such that, if $n$ is not the electron density of the ground state, then $E\left[ n_0 \right] < E\left[ n \right]$.
@@ -241,7 +241,7 @@ From theorem 1, we know that the external potential is uniquely determined by th
   E[n] = \overbrace{T[n] + U_{ee}[n]}^{F[n]} + U_{en}[n].
   \label{eq:densityfunctional}
 \end{align}
-where $F[n]$ is an universel functional known as the Hohenberg-Kohn functional. The proof for theorem 2 is found in appendix \ref{appendix:theorem2}.
+where $F[n]$ is an universel functional known as the Hohenberg-Kohn functional. The proof for theorem 2 is found in appendix \autoref{appendix:theorem2}.
 
 \subsection{The Kohn-Sham equation}
 So far, we have tried to make the challenging Schrödinger equation less challenging by simplifying it, with the last attempt containing the Hohenberg-Kohn's theorems where the theory states that the total ground-state energy can, in principle, be determined exactly once we have found the ground-state density.
@@ -254,7 +254,7 @@ where $\psi_j^{KS}(r_j)$ are some auxiliary independent single-particle wavefunc
 \begin{align}
   n(\boldsymbol{r}) = \sum_{j=1}^{N_e}\lvert \psi_j^{KS}(\boldsymbol{r})\rvert^2.
 \end{align}
-Recalling that equation \ref{eq:densityfunctional} describes the total energy as a functional of the density,
+Recalling that equation \autoref{eq:densityfunctional} describes the total energy as a functional of the density,
 \begin{align}
   E[n] = T[n] + U_{ee}[n] + U_{en}[n],
 \end{align}
@@ -293,7 +293,7 @@ If $V_{xc}$ is exact, and $E[n]$ gives the true total energy, we still do not kn
 The only task that is left for us now is to find the exact expression for $E_{xc}[n]$ as a functional of the density $n(r)$. With that expression, we would be able to calculate the total energies of any material%, and most likely solve a few of the biggest puzzles in the history of humankind.
 Unfortunately, the exchange-correlation potential is unknown for most systems.
 
-It is possible to solve the Kohn-Sham equations by applying a self-consistent field method. This is a computational scheme, and for further details one can consult the appendix \ref{appendix:self-consistent}.
+It is possible to solve the Kohn-Sham equations by applying a self-consistent field method. This is a computational scheme, and for further details one can consult the appendix \autoref{appendix:self-consistent}.
 
 %In this approximation we have used Hartree energy where the self-interaction correction is neglected, raising less accurate results. It is possible to use other approximations for $T_s[n]$ and $U_s[n]$ than Hartree wavefunctions, and good approximations will result in a low $E_{xc}[n]$ because $T_s[n]$ and $U_s[n]$ will get closer and closer to the true values.
 
@@ -319,7 +319,7 @@ In the light of the merits of the LDA, an extensive search for new approximation
 \end{align}
 The GGA is a good approximation for the cases where the electron density varies slowly, but faces difficulties in many materials with rapidly varying gradients in the density, causing the GGA to fail. Thus, the annotation \textit{generalized} in GGA is set to include the different approaches to deal with this challenge. Two of the most commonly implemented GGA functionals are the non-empirical approaches Perdew-Wang 91 (PW91) \cite{Perdew1992} and Perdew-Burke-Ernzerhof (PBE) \cite{Perdew1996}.
 
-Both LDA and GGA are commonly known to severely underestimate the band gaps of semiconductor materials, in addition to incorrectly predicting charge localizations originating from narrow bands or associated with local lattice distortions around defects \cite{Freysoldt2014}. The latter limitation is thought to be due to self-interaction in the Hartree potential in equation \ref{eq:singleKS}.
+Both LDA and GGA are commonly known to severely underestimate the band gaps of semiconductor materials, in addition to incorrectly predicting charge localizations originating from narrow bands or associated with local lattice distortions around defects \cite{Freysoldt2014}. The latter limitation is thought to be due to self-interaction in the Hartree potential in equation \autoref{eq:singleKS}.
 
 To improve the accuracy of excited state properties estimations, other methods have been developed. Tran and Blaha (TB) \cite{Tran2009} adapted the exchange potential suggested by Becke-Roussel (BR) \cite{Becke2006} that leads to band gaps close to experimental values while still using a cheap semilocal method \cite{Koller2011}. The modified TB-mBJ version introduces a parameter relative to the BJ version,
 \begin{align}
@@ -402,15 +402,15 @@ Despite a computationally demanding step $1$ and a sophisticated database archit
   \label{fig:ht-workflow}
 \end{figure}
 
-\noindent Together, the three steps resembles figure \ref{fig:ht-workflow}. From building compounds based on elements, calculating theoretical, computational and experimental properties, storing the information in databases and applying material screening and machine learning, to finally receiving a material prediction. If the material prediction is verified iteratively by many independent sources, the time to market for new technologies based on a new material takes approximately $20$ years \cite{Eagar1995}.
+\noindent Together, the three steps resembles figure \autoref{fig:ht-workflow}. From building compounds based on elements, calculating theoretical, computational and experimental properties, storing the information in databases and applying material screening and machine learning, to finally receiving a material prediction. If the material prediction is verified iteratively by many independent sources, the time to market for new technologies based on a new material takes approximately $20$ years \cite{Eagar1995}.
 
 Importantly, the data driven paradigm enables a new approach for novel material discovery. The traditional approach, namely the \textit{direct approach}, rely on the calculation of properties given the structure and composition of a material, such that the search for eligible candidates exhibiting the target property is performed tediously case by case. In other words, what is the property of a given material. However, the \textit{inverse approach} is of integral importance in this work: given a desired property, what material can present it \cite{Schleder2019}?
 
 The application of machine learning and data-driven techniques to material science have developed into a new field named materials informatics \cite{Rajan2005}. Alex Szalay, director of the US National Virtual Observatory project, described informatics for astronomy in $2003$ as the following.
 \begin{quote}
-   “Science was originally empirical, like Leonardo making wonderful drawings of nature. Next came the theorists who tried to write down equations that explained observed behaviors, like Kepler or Einstein. Then, when we got to complex enough systems like the clustering of a million galaxies, there came the computer simulations – the computational branch of science. Now, we are getting into the data exploration part of science, which is kind of a little bit of them all” Alex Szalay \cite{Szalay2003}
+   ``Science was originally empirical, like Leonardo making wonderful drawings of nature. Next came the theorists who tried to write down equations that explained observed behaviors, like Kepler or Einstein. Then, when we got to complex enough systems like the clustering of a million galaxies, there came the computer simulations – the computational branch of science. Now, we are getting into the data exploration part of science, which is kind of a little bit of them all'' Alex Szalay \cite{Szalay2003}
 \end{quote}
-\noindent The formulation is true also for material informatics, where the scope is to discover relations between known standard features and materials properties through a combination of \textit{a bit of everything}.
+\noindent The formulation is true also for material informatics, where the scope is to discover relations between known standard features and materials properties through a combination of \emph{a bit of everything}.
 
 \subsection{Materials informatics software packages}
 
@@ -424,13 +424,13 @@ An increasingly popular library is matminer \cite{Ward2018}, which is an open-so
 
 AFLOW-ML \cite{Isayev2017} is an API that uses machine learning to predict thermomechanical and electronic properties based on the chemical composition and atomic structure alone, which they denote as \textit{fragment descriptors}. They start with applying a classification model to predict if a compound is either a metal or an insulator, where the latter is confirmed with an additional regression model to predict the band gap width. To be able to predict properties on an independent data set, they utilise a fivefold cross validation process for each model. They report a $93$\% prediction success rate of their initial binary classification model, whereas the majority of the wrongful predictions are narrow-gap semiconductors. The authors does not compare their predicted band gap to experimental values, but it is found that $93$\% of the machine-learning-derived values are within $25$\% of the DFT $+U$-calculated band gap width \cite{Ferrenti2020}.
 
-\subsection{Associated challenges with novel materials discovery}
+\subsection{Associated challenges with materials informatics}
 
 %Despite the new and promising methods recently
 
 Despite the promising methods recently developed for novel materials discovery, there are considerable challenges that needs to be adressed.
 
-The data generated by HT-DFT are estimates of varying degree depending on functional applied. In perspective of this work, we emphasis the underestimation of predicted band gaps. In particular, we find the (arguably) most popular materials science database Materials Project estimate band gaps with the GGA functional (+U for transition metals). If we were to use their data, it is important to validate its quality, such that we can conclude with the correct information at hand.
+The data generated by HT-DFT are estimates of varying degree depending on functional applied. In perspective of this work, we emphasis the underestimation of predicted band gaps. In particular, we find the (arguably) most popular materials science database Materials Project estimate band gaps with the GGA functional (+U for transition metals). If we were to use their data, it is important to validate its quality, such that we can draw conclusions with the correct information at hand.
 
 Furthermore, out of the (so far) $118$ discovered elements, there are potentially millions of combinations that constitute distinct materials. Only a small fraction of these materials have their basic properties determined \cite{Springer2017}. If we were to involve all combinations of surfaces, nanostructures and inorganic materials, the complexity would increase substantially. This has two consequences. Firstly, due to the small number of determined properties, we are bound to continue with estimates for probably a long time. Perhaps more optimistic is the second consequence, since it is reasonable to believe that materials with promising properties are still to be discovered in almost every field \cite{Pedregosa2012}.
 

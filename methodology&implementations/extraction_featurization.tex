@@ -8,21 +8,19 @@ The main project of this work can be found on the Github repository \textit{pred
 
 \section{Extraction and featurization of data}
 
-The initial step for gathering and building features can be visualised through the flowchart in figure \autoref{fig:flowchart-makedata}. Initially, we start by extracting all entries in the Materials Project that matches a specific query. Thereafter, we apply Matminer's featurization tools to make thousands of features of the data. In a parallel step, entries that are deemed similar to the entries from the initial Materials Project query are extracted from AFLOW, AFLOW-ML, JARVIS-DFT, OQMD and Citrine Informatics. Finally, we combine the steps together as interim data that is ready for further analysis.
+The initial step for gathering and building features can be visualised through the flowchart in \autoref{fig:flowchart-makedata}. Initially, we start by extracting all entries in the Materials Project that matches a specific query. Thereafter, we apply Matminer's featurization tools to make thousands of features of the data. In a parallel step, entries that are deemed similar to the entries from the initial Materials Project query are extracted from AFLOW, AFLOW-ML, JARVIS-DFT, OQMD and Citrine Informatics. Finally, we combine the steps together as interim data that is ready for further analysis.
 
 \input{methodology&implementations/tikz-plots/flow-chart-data-extraction.tex}
 
 The initial query has the requirement that all entries has to be derived from an experimental ICSD entry, and is reasoned by that we can identify equivalent entries in other databases. Furthermore, all entries in the Materials Project needs to have a band gap larger than $0.1$eV. Recall that Materials Project applies the functional GGA in estimating the band gap, which is known to severely underestimate the given electronic property. Therefore, we have chosen a low value to not rule out any potential candidates but high enough to leave out all materials that can be considered metallic. Thus, out of a total of $139.367$ entries in Materials Project, our initial requirement is satisfied by $25.352$ of the entries.
 
-From figure \autoref{fig:flowchart-makedata} we notice that by using many databases we do not add additional entries that exist in some databases but is not to be found in Materials Project. This is by design since it preserves the versatility of choosing a database to work with. Therefore, one can completely ignore steps such as the initial query of Materials Project or the featurization process, and rather focus on e.g. all the $400.000$ entries existing in OQMD. The examples that follows will illustrate the ease of extracting data from several different databases, and can serve as the starting point for other research projects in computational material science.
+From \autoref{fig:flowchart-makedata} we notice that by using many databases we do not add additional entries that exist in some databases but is not to be found in Materials Project. This is by design since it preserves the versatility of choosing a database to work with. Therefore, one can completely ignore steps such as the initial query of Materials Project or the featurization process, and rather focus on e.g. all the $400.000$ entries existing in OQMD. The examples that follows will illustrate the ease of extracting data from several different databases, and can serve as the starting point for other research projects in materials informatics.
 
 \subsection{API and HTTP requests}
 
 To extract information from a database it is convenient to interact through an \textit{API} (Application Programming Interface), which defines important variables such as the kind of requests to be made, how to make them and the data format for transmission. Importantly, this permits communication between different software medias. An API is entirely customizable, and can be made to extend existing functionality or tailormade for specific user-demanding modules.
 
 The APIs that will be encountered is handled by the use of \textit{HTTP} (Hypertext Transfer Protocol), which in its simplest form is a protocol that allows the fetching of resources. The protocol is client-server based, such as the client is requesting information and the server is responding to the request.
-
-The most common HTTP-methods are GET, POST and HEAD, which are used to either retrieve, send, or get information about data, respectively. The latter request is usually done before a GET-method for requests considering large amount of data, since this can be a significant variable for the client's bandwith and load time. Following a request, the server normally responds with one of the status codes in \autoref{tab:requests}.
 
 \begin{table}[!ht]
 \centering
@@ -44,17 +42,20 @@ The most common HTTP-methods are GET, POST and HEAD, which are used to either re
 }
 \end{table}
 
+The most common HTTP-methods are GET, POST and HEAD, which are used to either retrieve, send, or get information about data, respectively. The latter request is usually done before a GET-method for requests considering large amount of data, since this can be a significant variable for the client's bandwith and load time. Following a request, the server normally responds with one of the status codes in \autoref{tab:requests}.
+
+\lstinputlisting[language=Python, float, caption={Practical example of getting a response from Materials Project database. }, label={lst:general_uri_request}]{methodology&implementations/code-listings/general_uri_request.tex}
+
 A RESTful (Representational State Transfer) allows users to communicate with a server via a HTTP using a REST Architectural Style \cite{Battle2008}. This enables the utilisation of Uniform Resource Identifiers (URI), where each object is represented as a unique resource and can be requested in a uniform manner. Importantly, this allows the use of both URIs and HTTP methods in an API, such that an object is represented by an unique URI whereas a HTTP-method can act on the object. This action will then return either the result of the action, or structured data that represents the object.
 
-To provide a Python example, we can check the response by doing a GET request at the database Materials Project RESTful API in code listing \autoref{lst:general_uri_request}. We use the preamble to version 2 of Materials Project, and add an API-check and an API-key. The response is shown in code listing \autoref{lst:general_uri_response}. From the output, it is possible to tell that the supplied API-key is not valid, however, the request is valid.
+\lstinputlisting[style=mystyle, float, caption={Practical example of response from Materials Project request based on \autoref{lst:general_uri_request}. The request was done 28. january 2020.}, label={lst:general_uri_response}]{methodology&implementations/code-listings/general_uri_response.tex}
 
-\lstinputlisting[language=Python, caption={Practical example of getting a response from Materials Project database. }, label={lst:general_uri_request}]{methodology&implementations/code-listings/general_uri_request.tex}
+To provide a Python example, we can check the response by doing a GET request at the database Materials Project RESTful API in \autoref{lst:general_uri_request}. We use the preamble to version 2 of Materials Project, and add an API-check and an API-key. The response is shown in \autoref{lst:general_uri_response}. From the output, it is possible to tell that the supplied API-key is not valid, however, the request is valid.
 
-\lstinputlisting[style=mystyle, caption={Practical example of response from Materials Project request based on \autoref{lst:general_uri_request}. The request was done 28. january 2020.}, label={lst:general_uri_response}]{methodology&implementations/code-listings/general_uri_response.tex}
 
 \subsection{Practical data extraction with Python-examples}
 
-For this section, we will show practical examples of how to extract data that might fulfill the criteria for a material to host a qubit candidate given in the theory part. We will begin with the database of Materials Project, and then search for entries in other databases that match entries from MP. This process is reproducable as a jupyter notebook\footnote{add and insert DOI for JN 01-generateDataset-notebook.ipynb} and the databases in question are the ones refered to in the previous section.
+For this section, we will show practical examples of how to extract data that might fulfill the criteria for a material to host a qubit candidate given in the theory part. We will begin with the database of Materials Project, and then search for entries in other databases that match entries from MP. The databases in question are the ones refered to in the previous section.
 
 Instead of building multiple HTTP-methods from scratch, we will here take a look at the easiest method at obtaining data from each database. The range of data in a database can consist of data from a few entries up to an unlimited amount of entries with even further optional parameters, and has limitless use in applications. However, the amount of data in a database is irrelevant if the data is inaccessible. Therefore, we provide a toolbox in how to extract information in the easiest way possible. This includes looking into the APIs that supports data-extraction and that are recommended by each respective database.
 
@@ -91,9 +92,7 @@ To extract information from the database, we will be utilising the module pymatg
 \end{enumerate}
 
 The code nippet in code listing \autoref{lst:MPQuery} resembles steps $2-4$, and is filtered as the inital query. %For this particular query we have set the filter as four items. Firstly, we would like to exclude all spin zero isotopes using the MongoDB operator that matches non of the values specified in the array. Thereafter, we would like to have a compound that is deemed similar to an ICSD entry. All of the resulting entries have be deemed non-magnetic (NM), and lastly, all compounds with polar space groups will be excluded.
-
-\lstinputlisting[language=Python, caption={Practical example of extracting information from Materials Project using pymatgen, resulting in a Pandas DataFrame named entries that contains the properties given after performing a filter on the database. The criteria is given as a JSON, and supports MongoDB operators.}, label={lst:MPQuery}]{methodology&implementations/code-listings/query/MPQuery.tex}
-
+\lstinputlisting[language=Python, float, caption={Practical example of extracting information from Materials Project using pymatgen, resulting in a Pandas DataFrame named entries that contains the properties given after performing a filter on the database. The criteria is given as a JSON, and supports MongoDB operators.}, label={lst:MPQuery}]{methodology&implementations/code-listings/query/MPQuery.tex}
 \subsubsection{Citrine Informatics}
 
 Citrine Informatics is a framework consisting of both HT-DFT calculations and experimental data, which means that the spectrum of stored information varies broadly. We will access research through open access for institutional and educational purposes. Information in Citrine can be stored using a scheme that is broken down into two sections, with private properties for each entry in addition to common fields that are the same for all entries.% However, the query happens swiftly and is noted as highly accessible.
@@ -109,7 +108,7 @@ In this example, we will gather experimental data using the module matminer. The
 
 The code listed in code listing \autoref{lst:CIQuery} gives an easy example to steps $2-4$ with experimental data as filter, which results in an almost instant query.
 
-\lstinputlisting[language=Python, caption={Practical example of extracting information from Citrine Informatics using matminer, resulting in a Pandas DataFrame named experimental\_entries that contains the properties given after performing a filter on the database. The criteria is given as a JSON.}, label={lst:CIQuery}]{methodology&implementations/code-listings/query/CIQuery.tex}
+\lstinputlisting[language=Python, float, caption={Practical example of extracting information from Citrine Informatics using matminer, resulting in a Pandas DataFrame named experimental\_entries that contains the properties given after performing a filter on the database. The criteria is given as a JSON.}, label={lst:CIQuery}]{methodology&implementations/code-listings/query/CIQuery.tex}
 
 \subsubsection{AFLOW}
 
@@ -117,7 +116,7 @@ The query from AFLOW API \cite{Curtarolo2012} supports lazy formatting, which me
 
 Matminer's data retrievel tool for AFLOW is currently an ongoing issue \cite{Rosenbrock2017}, thus we present in code listing \autoref{lst:AFLOWQuery} a function that extracts information from AFLOW and returns a Pandas DataFrame. In contrast to Materials Project and Citrine Informatics, AFLOW does not require an API-key for a query, which reduces the amount of steps to obtain data. The class searches for an stored AFLOW-data, and initialises a MP-query with the initial criteria if not successful. The resulting query will then be used as input to AFLOW.
 
-\lstinputlisting[language=Python, caption={Practical example of extracting information from AFLOW. The function can extract all information in AFLOW for a given list of compounds, however, it is a slow method and requires consistent internet connection.}, label={lst:AFLOWQuery}]{methodology&implementations/code-listings/query/AFLOWQuery.tex}
+\lstinputlisting[language=Python, float, caption={Practical example of extracting information from AFLOW. The function can extract all information in AFLOW for a given list of compounds, however, it is a slow method and requires consistent internet connection.}, label={lst:AFLOWQuery}]{methodology&implementations/code-listings/query/AFLOWQuery.tex}
 
 Restricted by the available API, the resulting query of $25212$ entries in Materials Project took place during the period from january to february $2021$ and took in total $23$ days. Unfortunately, less than $0.02$\% of the entries screened from Materials Project was present in AFLOW.
 
@@ -138,15 +137,15 @@ A significant portion of the process is tied up to obtaining the input-file for 
   \end{enumerate}
     \item Insert POSCAR to AFLOW-ML.
 \end{enumerate}
-\lstinputlisting[language=Python, caption={Practical example of extracting information from AFLOW-ML. The function will convert a CIF-file (from e.g. Materials Project) to a POSCAR, and will use it as input to AFLOW-ML. In return, one will get the structure's predicted band gap. It should be noted that this requires the AFLOW-ML library in the same directory.}, label={lst:AFLOWMLQuery}]{methodology&implementations/code-listings/query/AFLOWMLQuery.tex}
+\lstinputlisting[language=Python, float, caption={Practical example of extracting information from AFLOW-ML. The function will convert a CIF-file (from e.g. Materials Project) to a POSCAR, and will use it as input to AFLOW-ML. In return, one will get the structure's predicted band gap. It should be noted that this requires the AFLOW-ML library in the same directory.}, label={lst:AFLOWMLQuery}]{methodology&implementations/code-listings/query/AFLOWMLQuery.tex}
 
-The resulting ab-initio calculations used an average of $57$s/compound, which in total sums up to $16.6$ days. In contrast to AFLOW, $100\%$ of the entries was present due to the fact that it is not based on a database but rather a model.
+The resulting ab-initio calculations used an average of $57$s/compound, which in total sums up to $16.6$ days. In contrast to AFLOW, $100\%$ of the entries was present due to the fact that it is not based on a database but rather a machine learning model.
 
 \subsubsection{OQMD}
 
-To extract information from the OQMD, the easiest way was through the interface of Matminer. The difficulty of extraction are mostly regarded to column which are not assigned to a type, however, this is taken care of in the extraction class visualized in code listing \autoref{lst:OQMDQuery}.
+To extract information from the OQMD, the easiest way was through the interface of Matminer. The difficulty of extraction are mostly regarded to columns which are not assigned to a type, however, this is taken care of in the extraction class visualized in code listing \autoref{lst:OQMDQuery}.
 
-\lstinputlisting[language=Python, caption={Practical example of extracting information from OQMD through Matminer.}, label={lst:OQMDQuery}]{methodology&implementations/code-listings/query/OQMDQuery.tex}
+\lstinputlisting[language=Python, float, caption={Practical example of extracting information from OQMD through Matminer.}, label={lst:OQMDQuery}]{methodology&implementations/code-listings/query/OQMDQuery.tex}
 
 The query is done almost instantly, resulting in a DataFrame containing over $400.000$ entries, where $40$\% of the entries are matching an entry of the initial MP query.
 
@@ -154,7 +153,7 @@ The query is done almost instantly, resulting in a DataFrame containing over $40
 
 The newest version of the JARVIS-DFT dataset can be obtained by requesting an account at the official webpage, but with the drawback that an administrator has to either accept or deny the request. Thus, the accessibility of the database is dependent on if there is an active administrator paying attention to the requests, which is a limitation experienced during this work. Another approach is to download the database through matminer, however with the limitation of not neccessarily having the latest version of the database. A third approach is to download a version of JARVIS-DFT that have been made available for requests the 30.04.2020 at http://figshare.com by \citeauthor{Choudhary2020} \cite{Choudhary2020}. The author provides tools for extraction, yet not compatible with the latest version of Python (3.8) at the time writing (12.03.2021). Therefore, we provide a tool to extract this data through the use of our base class.
 
-\lstinputlisting[language=Python, caption={Practical example of extracting information from JARVIS-DFT. For this example, we exclude all metals by removing all non-measured band gaps.}, label={lst:JARVISDFTQuery}]{methodology&implementations/code-listings/query/JARVISDFTQuery.tex}
+\lstinputlisting[language=Python, float, caption={Practical example of extracting information from JARVIS-DFT. For this example, we exclude all metals by removing all non-measured band gaps.}, label={lst:JARVISDFTQuery}]{methodology&implementations/code-listings/query/JARVISDFTQuery.tex}
 
 We observe that there is no advanced search filter when loading the database from matminer. The author of matminer regards this as the user's task, and is indeed easily done through the use of the python library Pandas.
 
@@ -164,27 +163,27 @@ The resulting screening of $25212$ entries from Materials Project was done almos
 
 Before applying any machine learning algorithm, raw data needs to be transformed into a numerical representation that reflects the relationship between the input and output data. This transformation is known as generating descriptors or features, however, we will in this work adapt the name \textit{featurization}. The open source library of Matminer provides many tools to featurize existing features extracted from Materials Project. In this section we will describe how to extract the features from an initial Materials Project query result (see subsection. \autoref{ssec:materialsproject}), and the resulting features. It is beyond the scope of this work to go in-depth of each feature since the resulting dataset contains a quantity of more than $4500$ features, but we will here take the liberty to serve a brief overview of the features and refer to each respective citation for more information. The respective table with information regarding $39$ distinct matminer featurizers is situated in the Appendix, \autoref{table:featurizers}.
 
-The motivation behind the choice of featurizers is that we do not precisely know which features that describes a good potential host. A few potential candidates were briefly mentioned in section \autoref{promising-material-hosts}, while most candidates are probably yet do be discovered. If we  had precise knowledge of what to look for, then there is a good chance that the list of hosts would be longer. Therefore, we strive to collect an achievable quantity of descriptors with the hope of getting wiser in terms of describing a potential material host.
+The motivation behind the choice of featurizers is that we do not precisely know which features that describes a suitable potential host. A few potential candidates were briefly mentioned in section \autoref{promising-material-hosts}, while most candidates are probably yet do be discovered. If we  had precise knowledge of what to look for, then there is a suitable chance that the list of hosts would be longer. Therefore, we strive to collect an achievable quantity of descriptors with the hope of getting wiser in terms of describing a potential material host.
 
 To apply matminer's featurization tools, we extend an existing implementation by \citeauthor{Breuck2021} \cite{Breuck2021} called the Materials Optimal Descriptor Network (MODNet). The author \citeauthor{Breuck2021} specifies that MODNet is a supervised machine learning framework for learning material properties based on either composition or crystal structure. To provide the training data for their model, MODNet featurizes (through matminer) structures either from Materials Project or in the form of a structure object made by pymatgen. Their current implementation provides featurization for compositions, structures and sites. However, matminer also provides featurization tools for density of states (DOS) and band structures, therefore we modify MODNet and extend it to fascilitate such featurizations.
 
 \input{methodology&implementations/tikz-plots/flow-chart-featurization.tex}
 
-\noindent One immediate limitation of our extension is that Matminer's tools is dependent on a pymatgen DOS- and bandstructure object. These objects contains information up to $10$MB, and becomes a challenge when dealing with data containing several thousand such objects. This is solved by the required features for matminer's featurization for a subsample of the data, followed by a featurization process of the same subsample. When the feaurization is done, we store the new features and throw away the pymatgen features. This is done iteratively for the entire data set. Thus, a compromise between applying several queries and storing information has been done. The scheme can be visualised as the flow chart seen in figure \autoref{fig:flowchart-featurization}.
+\noindent One immediate limitation of our extension is that Matminer's tools is dependent on a pymatgen DOS- and bandstructure object. These objects contains information up to $10$MB, and becomes a challenge when dealing with data containing several thousand such objects. This is solved by the required features for matminer's featurization for a subsample of the data, followed by a featurization process of the same subsample. When the feaurization is done, we store the new features and throw away the pymatgen features. This is done iteratively for the entire data set. Thus, a compromise between applying several queries and storing information has been done. The scheme can be visualised as the flow chart seen in \autoref{fig:flowchart-featurization}.
 
 In the extended version of the featurization process, we eliminate all columns that does not have any entries with physical meaning. This is beneficial for several reasons, such as to reduce memory allocated and to preprocess the data. If there are entries existing with both physical and non-physical for the same column, we replace the non-physical meanings with $-1$ for recognition in a later step. Additionally, we convert columns that are categorical or lacks a numerical representation into a categorical portrayal. Thus, we strive to limit the neccessary steps for further processing of data into a machine learning algorithm. Nevertheless, the featurization process results in $4876$ descriptors.
 
-Even if the first version of Matminer was released in $2016$, many issues concerning daily operational use are still present. During the featurization process in this work, we manually identified $14$ (TODO: Update number) erroneous entries that are summarized in the Appendix, \autoref{tab:error_entries}, which were excluded from the dataset. These entries were part of the reason why the featurization process is a time-consuming process, as there is currently no implementation in Matminer that can potential pick up and catch erroneous entries in Materials Project. The process of manually catching such an entry was identified by featurization of single entries causing one of two problems. The first problem could be that an entry could be causing a memory leak which leads to an exceedingly large memory allocation, or it could be that the featurization process needed days to calculate oxidation states for a structure.
+Even if the first version of Matminer was released in $2016$, many issues concerning daily operational use are still present. During the featurization process in this work, we manually identified $14$ erroneous entries that are summarized in the Appendix, \autoref{tab:error_entries}, which were excluded from the dataset. These entries were part of the reason why the featurization process is a time-consuming process, as there is currently no implementation in Matminer that can potential pick up and catch erroneous entries in Materials Project. The process of manually catching such an entry was identified by featurization of single entries causing one of two problems. The first problem could be that an entry could be causing a memory leak which leads to an exceedingly large memory allocation, or it could be that the featurization process needed days to calculate oxidation states for a structure.
 
 \section{Data mining}
 
-After selecting entries based on an initial query from Materials Project followed by a thorough featurization process using Matminer, we face a challenge in terms of defining a training set that we can train data on. This is not only challenging due to the lack of known candidates, but also due to the intricacy of defining materials as bad candidates. Therefore, in this section we describe three different approaches of finding a training set consisting of (1) good candidates and (0) bad candidates.
+After selecting entries based on an initial query from Materials Project followed by a thorough featurization process using Matminer, we face a challenge in terms of defining a training set that we can train data on. This is not only challenging due to the lack of known candidates, but also due to the intricacy of defining materials as unsuitable candidates. Therefore, in this section we describe three different approaches of finding a training set consisting of (1) suitable candidates and (0) unsuitable candidates.
 
 \subsection{First approach; the Ferrenti approach}
 
-The first approach on defining a training set is based on the criteria from the paper \citetitle{Ferrenti2020} of \citeauthor{Ferrenti2020} \cite{Ferrenti2020}, therefore we will name this approach \textit{the Ferrenti approach}. They suggest a data mining process consisting of four stages by systematically evaluating the suitability of host materials from Materials Project. This procedure is referred to as \textit{data mining}, and we will initially begin with looking at labelling good candidates.
+The first approach on defining a training set is based on the criteria from the paper \citetitle{Ferrenti2020} of \citeauthor{Ferrenti2020} \cite{Ferrenti2020}, therefore we will name this approach \textit{the Ferrenti approach}. They suggest a data mining process consisting of four stages by systematically evaluating the suitability of host materials from Materials Project. This procedure is referred to as \textit{data mining}, and we will initially begin with looking at labelling suitable candidates.
 
-\subsubsection{Labelling good candidates}
+\subsubsection{Labelling suitable candidates}
 
 The first stage consists of the following steps to include materials that
 \begin{itemize}
@@ -197,7 +196,8 @@ The first stage consists of the following steps to include materials that
   \end{itemize}
 \end{itemize}
 
-\noindent The restriction of materials to only contain elements with at least $50\%$ nuclear spin-free isotopes might help with reducing decoherence for all semiconductor-based quantum technologies, as discussed in section \autoref{ssec:qubit-material-host-requirements}. The limit is chosen due to that elemental species with at least $50\%$ nuclear spin free isotopes could likely be isotopically enriched to higher concentrations \cite{Ferrenti2020}, which has been accomplished for carbon \cite{Markham2011, Balasubramanian2009} and silicon \cite{Tyryshkin2011}. In particular, the restriction excludes the use of $53$ elements from any species. Any magnetic noise or any presence of electric dipole moment could also potentially increase decoherence of defects. Therefore, we try to reduce any decoherence by restricting materials to possess highly symmetric structures which are nonmagnetic.
+\noindent The restriction of materials to only contain elements with at least $50\%$ nuclear spin-free isotopes might help with reducing decoherence for all semiconductor-based quantum technologies, as discussed in section \autoref{ssec:qubit-material-host-requirements}.
+The limit is chosen due to that elemental species with at least $50\%$ nuclear spin free isotopes could likely be isotopically enriched to higher concentrations \cite{Ferrenti2020}, which has been accomplished for carbon \cite{Markham2011, Balasubramanian2009} and silicon \cite{Tyryshkin2011}. In particular, the restriction excludes the use of $53$ elements from any species. Any magnetic noise or any presence of electric dipole moment could also potentially increase decoherence of defects. Therefore, we try to reduce any decoherence by restricting materials to possess highly symmetric structures which are nonmagnetic.
 
 Stage two consists applying additional filtering due to practical reasons. This includes removing all materials containing radioactive or toxic elements, as well as removing noble gases because none exists as solids under standard conditions. Rare-earth metals were also excluded due to the difficulty of obtaining pure materials that are sufficiently free of nuclear spin. Lastly, we remove entries that occur mostly in very complex cluster structures (Ru, Os) or are not present in any identified phases (Fe, Ni). Therefore, the additional filter constitutes of obtaining materials that
 \begin{itemize}
@@ -213,30 +213,30 @@ Stage two consists applying additional filtering due to practical reasons. This 
 \begin{itemize}
   \item[]{\textbf{Stage 3}}
   \begin{itemize}
-  \item a bandgap larger than $0.5eV$ as calculated by MP PBE-GGA.
+  \item a bandgap larger than $0.5$ eV as calculated by MP PBE-GGA.
   \end{itemize}
 \end{itemize}
 
-\noindent Finally, the last stage consists of identifying the thermodynamic stability of each compound. A large energy above hull (E Above Hull) is an indication of an unstable compound and would likely cause decomposition, therefore the last filter requires the materials to have
+\noindent Finally, the last stage consists of identifying the thermodynamic stability of each compound. A large energy above hull per atom is an indication of an unstable compound and would likely cause decomposition, therefore the last filter requires the materials to have
 
 \begin{itemize}
   \item[]{\textbf{Stage 4}}
   \begin{itemize}
-  \item a calculated E Above Hull $<0.2eV/$atom.
+  \item a calculated E Above Hull $<0.2$ eV/atom.
   \end{itemize}
 \end{itemize}
 
-\noindent The quantity of entries through the different stages have been visualized in \autoref{tab:approach-1-good-candidates}. The table compares our and their implementation of the same screen procedure with different results. In particular, we see that the remaining materials that have survived four stages of filtering are twice as many. This could be due to the date of extracting since it differs with $13$ months, since over $14.000$ new entries were added to Materials Project. However, another reason could be due to that they have done additional manual screening. Unfortunately, precise information of which entries that were excluded from the manual filtering were not included in neither the article or the supplementary information \cite{Ferrenti2020}. Yet, after doing a data mining procedure we have found $1046$ potential candidates that exhibit promising features.
+\noindent The quantity of entries through the different stages have been visualized in \autoref{tab:approach-1-suitable-candidates}. The table compares our and their implementation of the same screen procedure with different results. In particular, we see that the remaining materials that have survived four stages of filtering are twice as many. This could be due to the date of extracting since it differs with $13$ months, since over $14.000$ new entries were added to Materials Project. However, another reason could be due to that they have done additional manual screening. Unfortunately, precise information of which entries that were excluded from the manual filtering were not included in neither the article or the supplementary information \cite{Ferrenti2020}. Yet, after doing a data mining procedure we have found $1046$ potential candidates that exhibit promising features.
 
 \begin{table}[!ht]
 \centering
 \caption{A table that compares two different implementations of the same screen procedure. \citeauthor{Ferrenti2020} extracted information March of $2020$, while we did the extraction during April of $2021$. The adjusted difference is given as our reported entries divided on their reported entries.}
-\label{tab:approach-1-good-candidates}
+\label{tab:approach-1-suitable-candidates}
 \noindent\makebox[\textwidth]{
 \begin{tabular}{M{3.0cm} M{4.0cm} M{4.0cm} M{2.0cm}}
   \hline
   \hline
-  Stage & Good candidates based on \citeauthor{Ferrenti2020} \cite{Ferrenti2020} & Good candidates based on approach $1$ & Adjusted difference \\
+  Stage & Suitable candidates based on \citeauthor{Ferrenti2020} \cite{Ferrenti2020} & Suitable candidates based on approach $1$ & Adjusted difference \\
   \hline
   Total entries in Materials Project \cite{Jain2013, Ong2015} & $125.223$ & $139.367$ & $11\%$\\
   \hline
@@ -250,11 +250,15 @@ Stage two consists applying additional filtering due to practical reasons. This 
 }
 \end{table}
 
-\subsubsection{Labelling bad candidates}
+\subsubsection{Labelling unsuitable candidates}
 
-We have now defined good candidates, and turn our attention to defining bad candidates. This is perhaps the difficult part, since we do not know exactly which properties or combination of features a material needs to exhibit for it to be excluded from any use in quantum technology. Therefore, we try to find the opposite criteria of the four stages that defined good candidates.
+We have now defined suitable candidates, and turn our attention to defining unsuitable candidates. This is perhaps the difficult part, since we do not know exactly which properties or combination of features a material needs to exhibit for it to be excluded from any use in quantum technology. Therefore, we try to find the opposite criteria of the four stages that defined suitable candidates.
 
-If we were to turn around all criteria defined in the four stages above (except for energy above hull), it would result in only $52$ entries which would make the combined data set very imbalanced. Instead, we try to provide a more general process that includes a larger variety of entries, which could potentially increase the predictor space for bad candidates. The screening procedure for stage $1$ requires bad candidates to
+If we were to turn around all criteria defined in the four stages above (except for energy above hull), it would result in only $52$ entries which would make the combined data set very imbalanced. Instead, we try to provide a more general process that includes a larger variety of entries, which could potentially increase the prediction space for unsuitable candidates.
+
+Since our initial query to Materials Project only includes materials with band gaps larger than $0.1$ eV with an associated ICSD-number, we are required to use these criteria for unsuitable candidates for consistency. This means that materials that does not meet these restrictions are not actually present in our data.
+
+The screening procedure for the Ferrenti approach requires unsuitable candidates to
 
 \begin{itemize}
   \item[]{\textbf{Stage 1}}
@@ -265,21 +269,26 @@ If we were to turn around all criteria defined in the four stages above (except 
   \end{itemize}
   \item[]{\textbf{Stage 2}}
   \begin{itemize}
-  \item have a bandgap larger than $0.1eV$ as calculated by MP PBE-GGA.
+  \item have a bandgap larger than $0.1$ eV as calculated by MP PBE-GGA.
   \end{itemize}
 \end{itemize}
 
-We include only ICSD entries and a lower band gap limit for consistency, since our data does not contain entries outside of these limits. The number of entries after stage $1$ is $1520$, while stage $2$ reduces the entries to $684$.
+%We include only ICSD entries and a lower band gap limit for consistency, since our data does not contain entries outside of these limits.
+The number of entries after stage $1$ is $1520$, while stage $2$ reduces the entries to $684$.
 
 \subsection{Second approach; the augmented Ferrenti approach}
 
 In the second approach we try to make adjustment of the first approach to improve the dataset. This approach is therefore named \textit{the augmented Ferrenti Approach}.
 
-\subsubsection{Labelling good candidates}
+\subsubsection{Labelling suitable candidates}
 
-The first approach included unphysical criteria such as removing elements that are either radioactive, toxic, elements not occuring under standard conditions, or rare-earth elements that are difficult to obtain. In this approach, we remove those constraints since these are not criteria that neccessarily deem a material as either good or bad for QT, and it is eventually up to experimentalists for evaluation of such practicalities. Therefore, we remove stage $2$.
+The first approach included criteria that were not motivated by physics-based criteria, such as removing elements that are either radioactive, toxic, elements not occuring under standard conditions, or rare-earth elements that are difficult to obtain. In this approach, we remove those constraints since these are not criteria that neccessarily deem a material as either suitable or unsuitable for QT, and it is eventually up to experimentalists for evaluation of such practicalities. Therefore, we remove stage $2$.
 
-We will in this approach not consider if a material is stable or not, since this is eventually up to experimentalists to evaluate. Additionally, we will include a few interesting elements that showed promising properties as discussed in section \autoref{promising-material-hosts}, and was originally excluded due to lack of spin zero isotopes. Thus, the second approach consists of the following steps to include materials that
+We will in this approach not consider if a material is stable or not, since this is eventually up to experimentalists to evaluate. Additionally, we will include a few interesting elements that showed promising properties as discussed in section \autoref{promising-material-hosts}, and was originally excluded due to lack of spin zero isotopes.
+
+By removing restrictions, we are faced with a very large dataset that can result in a very imbalanced dataset. To deal with this, we add a stricter band gap criteria. This is beneficial since we this might allow us to see if the model is able to learn a stricter band gap or if it leads to a larger difference between the Ferrenti approach and the augmented Ferrenti approach. Furthermore, we can be more certain if a band gap can accomodate a deep defect. % Therefore, we can be considerable more certain if a band gap can accomodate a deep defect.% due to an increasing amount of entries when removing restrictions.
+
+Thus, the augmented Ferrenti approach consists of the following steps to include materials that
 
 \begin{itemize}
   \item[]{\textbf{Stage 1}}
@@ -299,21 +308,19 @@ We will in this approach not consider if a material is stable or not, since this
   \end{itemize}
 \end{itemize}
 
-Since we have removed restrictions, we can also infer a stronger one for the band gap. Therefore, we can be considerable more certain if a band gap can a accomodate deep defect due to an increasing amount of entries when removing restrictions.
+\subsubsection{Labelling unsuitable candidates}
 
-\subsubsection{Labelling bad candidates}
-
-For bad candidates, we implement the same strategy as defined for bad candidates in approach $1$. The resulting table for both good and bad candidates is found in \autoref{tab:good-bad-candidates}. The table reveals a considerable imbalanced dataset with up to $75 \%$ being good candidates, while only $25 \%$ of the training data are labelled as bad candidates. However, the training set is $78 \%$ larger than in approach $1$.
+For unsuitable candidates, we implement the same strategy as defined for unsuitable candidates in approach $1$. The resulting table for both suitable and unsuitable candidates is found in \autoref{tab:suitable-unsuitable-candidates}. The table reveals a considerable imbalanced dataset with up to $75 \%$ being suitable candidates, while only $25 \%$ of the training data are labelled as unsuitable candidates. However, the training set is $78 \%$ larger than in approach $1$.
 
 \begin{table}[!ht]
 \centering
-\caption{A table showing the number of entries through the data mining process for good candidates in approach $2$ and bad candidates in approach $1$ and $2$.}
-\label{tab:good-bad-candidates}
+\caption{A table showing the number of entries through the data mining process for suitable candidates in approach $2$ and unsuitable candidates in approach $1$ and $2$.}
+\label{tab:suitable-unsuitable-candidates}
 \noindent\makebox[\textwidth]{
 \begin{tabular}{M{3.0cm} M{3.0cm} M{3.0cm} M{2.5cm}}
   \hline
   \hline
-  Stage & Good candidates approach $2$ & Bad candidates approach $1$ and $2$ & Ratio \\
+  Stage & Suitable candidates approach $2$ & Unsuitable candidates approach $1$ and $2$ & Ratio \\
   \hline
   Total entries in Materials Project \cite{Jain2013, Ong2015} & $139.367$ & $139.367$ & - \\
   \hline
@@ -330,11 +337,11 @@ For bad candidates, we implement the same strategy as defined for bad candidates
 
 The third approach is vastly different than the two first approaches in terms of labelling, therefore it is named \textit{the insightful approach}.
 
-Recall, in section \autoref{promising-material-hosts} we discussed alternative promising material host candidates. The third approach for finding good candidates is to search our current data for any materials that overlap with known good candidates. Due to a concern of having a too small dataset, we will include materials that are promising and have shown suitable properties to accomodate deep defects that potentially can exhibit quantum effects.
+Recall, in \autoref{promising-material-hosts} we discussed alternative promising material host candidates. The third approach for finding suitable candidates is to search our current data for any materials that overlap with known suitable candidates. Due to a concern of having a too small dataset, we will include materials that are promising and have shown suitable properties to accomodate deep defects that potentially can exhibit quantum effects.
 
 %This restriction also excludes potential materials that exhibit strong and ionic interactions in the lattice.
 
-\subsubsection{Labelling good candidates}
+\subsubsection{Labelling suitable candidates}
 
 \begin{itemize}
   \item[]{\textbf{Stage 1}}
@@ -352,17 +359,21 @@ Recall, in section \autoref{promising-material-hosts} we discussed alternative p
   \end{itemize}
 \end{itemize}
 
-After stage $1$, it was found $202$ matching formulas which included $12$ entries that had a bandgap lower than $0.5$eV. These entries were structures that was reported as unstable in terms of energy above hull calculations, and would decompose into entries that were already present in the data after stage $1$ with bandgap substantially larger than $0.5$. We choose to exclude these entries with an additional band gap restriction due to the fact that the bandgap is not large enough to accomodate a deep defect. Therefore, these entries were instead labelled as bad entries.
+After stage $1$, it was found $202$ matching formulas which included $12$ entries that had a bandgap lower than $0.5$ eV. These entries were structures that was reported as unstable in terms of energy above hull calculations, and we chose to include them since they would decompose into entries that were already present in the data after stage $1$ with bandgap substantially larger than $0.5$ eV. %We chose to include these entries due to the fact that they all
 
-Entries matching the formula C, SiC, BN, MoS$_2$, WSe$_2$ and  WS$_2$ were manually screened to see if the entries have a matching structure to the respective candidates discussed in section \autoref{diamond} and \autoref{silicon-carbide} and \autoref{promising-material-hosts}, respectively. For C, we admit only three-dimensional diamond-like structures, as explicitly stated in the column tags at Materials Project. Two-dimensional graphite-like structures are labelled as bad candidates, while complex structures (eg. C$_{28}$, C$_{48}$, C$_{60}$) were moved to the test set. For SiC, we admit only entries with the polytypes $3$C, $4$H and $6$H, while moving structures similar to $2$H to the test set. Concerning BN, MoS$_2$, WSe$_2$ and  WS$_2$, we only admit two-dimensional structures.
+% with an additional band gap restriction due to the fact that the bandgap is not large enough to accomodate a deep defect.
+
+Therefore, these entries were instead labelled as unsuitable entries.
+
+Entries matching the formula C, SiC, BN, MoS$_2$, WSe$_2$ and WS$_2$ were manually screened to see if the entries have a matching structure to the respective candidates discussed in \autoref{diamond} and \ref{silicon-carbide} and \ref{promising-material-hosts}, respectively. For C, we admit only three-dimensional diamond-like structures, as explicitly stated in the column tags at Materials Project. Two-dimensional graphite-like structures are labelled as unsuitable candidates, while complex structures (eg. C$_{28}$, C$_{48}$, C$_{60}$) were moved to the test set. For SiC, we admit only entries with the polytypes $3$C, $4$H and $6$H, while moving structures similar to $2$H to the test set. Concerning BN, MoS$_2$, WSe$_2$ and  WS$_2$, we only admit two-dimensional structures.
 
 The materials AlP, GaP, AlAs, ZnTe and CdS were manually screened for tetrahedrally coordinated structures, and have been included since \citeauthor{Weber2010} \cite{Weber2010} has identified them as potential promising candidates due to acceptable properties defined in requirements (H1-H4) in section \autoref{ssec:qubit-material-host-requirements}. We note that only tetrahedrally coordinated structures of the given formulas were present after the bandgap restriction of $0.5eV$.
 
-Since the number of elements in the good candidates are not containing more than two elements, we decide to remove the feature that explains how many elements due to that we do not want the model to discriminate based on this feature. After three stages, a total of $172$ entries were labelled as good candidates.
+Since the number of elements in the suitable candidates are not containing more than two elements, we decide to remove the feature that explains how many elements due to that we do not want the model to discriminate based on this feature. After three stages, a total of $172$ entries were labelled as suitable candidates.
 
-\subsubsection{Labelling bad entries}
+\subsubsection{Labelling unsuitable entries}
 
-Since the training data that constitutes good candidates are few, we choose to add $400$ random entries from the dataset of bad candidates used in approach $1$ and $2$, in addition to the entries stated above. We only add a subsample for increasing the potential dimensional space for predictions of candidates while avoiding having a too inbalanced dataset. Thus, the total amount of bad candidates accumulates to $418$ entries.
+Since the training data that constitutes suitable candidates are few, we choose to add $400$ random entries from the dataset of unsuitable candidates used in approach $1$ and $2$, in addition to the entries stated above. We only add a subsample for increasing the potential dimensional space for predictions of candidates while avoiding having a too inbalanced dataset. Thus, the total amount of unsuitable candidates accumulates to $418$ entries.
 
 \clearpage
 
@@ -381,7 +392,7 @@ Since the training data that constitutes good candidates are few, we choose to a
           \input{../predicting-solid-state-qubit-candidates/reports/figures/parallel_coordinates/03-insightful-approach.pgf}
     \end{subfigure}
     \vspace*{-95mm}
-    \caption{Parallel coordinate plots for the different approaches. To limit the data cluttering, we have random collected up to $250$ entries for each class and made the lines transparent. For the insightful approach, we have used all $172$ good candidates.}
+    \caption{Parallel coordinate plots for the different approaches. To limit the data cluttering, we have random collected up to $250$ entries for each class and made the lines transparent. For the insightful approach, we have used all $172$ suitable candidates.}
     \label{fig:parallel-coordinates-approaches}
 \end{figure}
 
@@ -419,7 +430,7 @@ The biggest difference is seen for the insightful approach. The chosen entries d
     \label{fig:2dscatterplotpca}
 \end{figure}
 
-To visualize the complexity of the training sets, we have found the two largest eigenvalues of the covariance matrix of the initial data from Materials Project, and transformed the training sets according to the corresponding two eigenvectors. The resulting scatter plots is found in figure \autoref{fig:2dscatterplotpca}. In green squares, we find the good candidates for each approach, while the labelled bad candidates are dressed in red triangles. Due to the simplicity of reducing the number of features down to $2$ features, both good and bad candidates for the Ferrenti approach are overlapping which could be challenging for any model that would try to learn a clear-cut boundary. However, for the insightful approach, we can already start to see a trend where the upper left part of the figure is dominated by good candidates. Therefore, we can expect that the two Ferrenti approaches would need either supplementary dimensions for further distinguishment, or could be in trouble of finding a generalized model.
+To visualize the complexity of the training sets, we have found the two largest eigenvalues of the covariance matrix of the initial data from Materials Project, and transformed the training sets according to the corresponding two eigenvectors. The resulting scatter plots is found in \autoref{fig:2dscatterplotpca}. In green squares, we find the suitable candidates for each approach, while the labelled unsuitable candidates are dressed in red triangles. Due to the simplicity of reducing the number of features down to $2$ features, both suitable and unsuitable candidates for the Ferrenti approach are overlapping which could be challenging for any model that would try to learn a clear-cut boundary. However, for the insightful approach, we can already start to see a trend where the upper left part of the figure is dominated by suitable candidates. Therefore, we can expect that the two Ferrenti approaches would need either supplementary dimensions for further distinguishment, or could be in trouble of finding a generalized model.
 
 
 \begin{comment}
@@ -432,7 +443,7 @@ To visualize the complexity of the training sets, we have found the two largest 
 
 \section{Model selection}
 
-After building a dataset through extraction, featurization and labelling, we turn our attention towards training a model. The flowchart is visualized in figure \autoref{fig:flowchart-screening}. After gathering and featurization, we achieve the interim data that goes through a final data preparation step to become preprocessed data. Then, we perform a data mining step using three different approaches as discussed in the last section. For each of the three approaches, we train and predict in the step called supervised learning. In the summary, we compare the different approaches and results.
+After building a dataset through extraction, featurization and labelling, we turn our attention towards training a model. The flowchart is visualized in \autoref{fig:flowchart-screening}. After gathering and featurization, we achieve the interim data that goes through a final data preparation step to become preprocessed data. Then, we perform a data mining step using three different approaches as discussed in the last section. For each of the three approaches, we train and predict in the step called supervised learning. In the summary, we compare the different approaches and results.
 
 In the data preparation step, we assess the quality of the data. Due to the large dimension of $25000 \times 4500$, we can afford to be picky and therefore we assume that there is a large amount of non-physical values present, accordingly we fill all the missing values with zero and remove all columns with more than $70\%$ containing only zeros. This value was chosen since all categorical features have at least $30\%$ of an respective class present in the column, and a majority of the removed columns contained between $90\%$ and $100\%$ only zeros. This reduces the dimensionality substantially to only $679$ features. It should be noted that other methods of data preparation resulted in equivalent preprocessed data due to the large amount of missing values in the data.
 

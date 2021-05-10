@@ -350,22 +350,29 @@ Recall, in \autoref{promising-material-hosts} we discussed alternative promising
   \item is present in the ICSD database.
   \end{itemize}
   \item[]{\textbf{Stage 2}}
-  \begin{itemize}
-  \item have a bandgap larger than $0.5eV$ as calculated by MP PBE-GGA.
-  \end{itemize}
-  \item[]{\textbf{Stage 3}}
+  %\begin{itemize}
+  %\item have a bandgap larger than $0.5eV$ as calculated by MP PBE-GGA.
+  %\end{itemize}
+  %\item[]{\textbf{Stage 3}}
   \begin{itemize}
   \item Manual screening of correct structures.
   \end{itemize}
 \end{itemize}
 
-After stage $1$, it was found $202$ matching formulas which included $12$ entries that had a bandgap lower than $0.5$ eV. These entries were structures that was reported as unstable in terms of energy above hull calculations, and we chose to include them since they would decompose into entries that were already present in the data after stage $1$ with bandgap substantially larger than $0.5$ eV. %We chose to include these entries due to the fact that they all
+After stage $1$, it was found $202$ matching formulas which included $12$ entries that had a bandgap lower than $0.5$ eV. These entries were structures that was reported as unstable in terms of energy above hull calculations, and would decompose into entries that were already present in the data after stage $1$ with bandgap substantially larger than $0.5$ eV. We choose to include all except for C (mp-$568410$) \cite{mp-568410} with MP calculated band gap of $0.12$ eV, and AFLOW-ML found this compound to be a metal. Therefore, we labelled this compound as an unsuitable candidate instead.
 
-% with an additional band gap restriction due to the fact that the bandgap is not large enough to accomodate a deep defect.
+%We choose to exclude the entries were both the MP calculated and AFLOW-ML predicted band gap is lower than $0.2$ eV due to
 
-Therefore, these entries were instead labelled as unsuitable entries.
+%We choose to exclude these entries with an additional band gap restriction due to the fact that the bandgap is not large enough to accomodate a deep defect.
 
-Entries matching the formula C, SiC, BN, MoS$_2$, WSe$_2$ and WS$_2$ were manually screened to see if the entries have a matching structure to the respective candidates discussed in \autoref{diamond} and \ref{silicon-carbide} and \ref{promising-material-hosts}, respectively. For C, we admit only three-dimensional diamond-like structures, as explicitly stated in the column tags at Materials Project. Two-dimensional graphite-like structures are labelled as unsuitable candidates, while complex structures (eg. C$_{28}$, C$_{48}$, C$_{60}$) were moved to the test set. For SiC, we admit only entries with the polytypes $3$C, $4$H and $6$H, while moving structures similar to $2$H to the test set. Concerning BN, MoS$_2$, WSe$_2$ and  WS$_2$, we only admit two-dimensional structures.
+%Therefore, these entries were instead labelled as unsuitable entries.
+
+Entries matching the formula C, SiC, BN, MoS$_2$, WSe$_2$ and WS$_2$ were manually screened to see if the entries have a matching structure to the respective candidates discussed in \autoref{diamond} and \ref{silicon-carbide} and \ref{promising-material-hosts}, respectively.
+For C, we admit three-dimensional diamond-like structures as explicitly stated in the column tags at Materials Project. Additionally, we find many two-dimensional structures of carbon with a large band gap ($>1.5$ eV) in the data. We add these as suitable candidates. Complex structures (eg. C$_{28}$, C$_{48}$, C$_{60}$) were moved to the test set. For SiC, we admitted all entries, which involved $2$H, $3$C, $4$H, $6$H and $15$R. Concerning BN, MoS$_2$, WSe$_2$ and  WS$_2$, we only admit two-dimensional structures. For non-matching structures not mentioned so far, we move them to the test set to see if they will be predicted suitable or not by the models in a later step.
+
+%Two-dimensional graphite-like structures are labelled as unsuitable candidates, while complex structures (eg. C$_{28}$, C$_{48}$, C$_{60}$) were moved to the test set. For SiC, we admitted all entries including
+
+ %only entries with the polytypes $3$C, $4$H and $6$H, while moving structures similar to $2$H to the test set. Concerning BN, MoS$_2$, WSe$_2$ and  WS$_2$, we only admit two-dimensional structures.
 
 The materials AlP, GaP, AlAs, ZnTe and CdS were manually screened for tetrahedrally coordinated structures, and have been included since \citeauthor{Weber2010} \cite{Weber2010} has identified them as potential promising candidates due to acceptable properties defined in requirements (H1-H4) in section \autoref{ssec:qubit-material-host-requirements}. We note that only tetrahedrally coordinated structures of the given formulas were present after the bandgap restriction of $0.5eV$.
 
@@ -373,7 +380,7 @@ Since the number of elements in the suitable candidates are not containing more 
 
 \subsubsection{Labelling unsuitable entries}
 
-Since the training data that constitutes suitable candidates are few, we choose to add $400$ random entries from the dataset of unsuitable candidates used in approach $1$ and $2$, in addition to the entries stated above. We only add a subsample for increasing the potential dimensional space for predictions of candidates while avoiding having a too inbalanced dataset. Thus, the total amount of unsuitable candidates accumulates to $418$ entries.
+Since the training data that constitutes suitable candidates are few, we choose to add only $400$ random entries from the dataset of unsuitable candidates used in approach $1$ and $2$ to the dataset used in the insightful approach, in addition to the entries stated above. We only add a subsample for increasing the potential dimensional space for predictions of candidates while avoiding having a too inbalanced dataset. Thus, the total amount of unsuitable candidates accumulates to $418$ entries.
 
 \clearpage
 
@@ -392,7 +399,7 @@ Since the training data that constitutes suitable candidates are few, we choose 
           \input{../predicting-solid-state-qubit-candidates/reports/figures/parallel_coordinates/03-insightful-approach.pgf}
     \end{subfigure}
     \vspace*{-95mm}
-    \caption{Parallel coordinate plots for the different approaches. To limit the data cluttering, we have random collected up to $250$ entries for each class and made the lines transparent. For the insightful approach, we have used all $172$ suitable candidates.}
+    \caption{Parallel coordinate plots for the different approaches. To limit the data cluttering, we have randomly collected up to $250$ entries for each class and made the lines transparent. For the insightful approach, we have used all $172$ suitable candidates. The axis are total magnetization (mag) from MP, space group (SG), ionic character (ionic char), covalent range (covalent range) as calculated from elemental properties, number elements (num elements) and energy gap (Eg) calculated by MP.}
     \label{fig:parallel-coordinates-approaches}
 \end{figure}
 
@@ -401,13 +408,16 @@ Since the training data that constitutes suitable candidates are few, we choose 
 
 \subsection{Comparison of the approaches}
 
-The three approaches provide special emphasis on each their goal. The Ferrenti approach is dependent on choosing only elements with zero spin isotopes together with practical filters, while the augmented Ferrenti approach allows a larger variety of elements and removes the practical reasons for excluding elements. Thus, the first approach targets a more narrow prediction space than the second approach does, and we would expect that the second approach will lead to more predicted candidates compared to approach one. However, perhaps the most restricted approach is the insightful approach. Since we only include known candidates, they should share the same properties and therefore provide a very narrow prediction space.
+The three approaches provide special emphasis on each their goal. The Ferrenti approach is dependent on choosing only elements with zero spin isotopes together with practical filters, while the augmented Ferrenti approach allows a larger variety of elements and removes the practical reasons for excluding elements. Thus, the first approach targets a more narrow prediction space than the second approach does, and we would expect that the second approach will lead to more predicted candidates compared to the first approach. However, perhaps the most restricted approach is the insightful approach.
+Since the variety of known suitable materials is substantially more restricted than the two other approaches, we would expect the insightful approach to provide a very narrow prediction space.
+
+ %Since we only include known candidates, they should share the same properties and therefore provide a very narrow prediction space.
 
 Unfortunately, the downside of including all the known candidates in one approach is that it becomes increasingly challenging to evaluate the approach or the resulting model. For the two first approaches, we can see if some of the known candidates are present in the predictions, while this is not possible for the latter approach.
 
 We provide a visualization of each approach's training data as a parallel coordinate plot for a few selected features in \autoref{fig:parallel-coordinates-approaches}. Parallel coordinate schemes \cite{Inselberg1985, Inselberga1990} represents a multi-dimensional data tuple as one polyline crossing parallel axis. The selected features are found on the x-axis, while the y-axis show the value of the data present. Thus, parallel coordinate plots can turn complex many dimensional data into a compact two-dimensional representation. However, due to data cluttering and that one entry can potentially reserve a large visual area of the figure, the utilization becomes limited when facing large datasets \cite{Ericsona}. Therefore, we have chosen to plot a random sample of each class with an upper limit of $250$ per class with transparent lines.
 
-The Ferrenti approach and the augmented Ferrenti approach share similarities, such as only having polar space groups present and having an equal amount of upper limit for both ionic character and covalent range. Additionally, they share that entries constitute of up to five different elements. Interestingly, we can see that even if the augmented Ferrenti approach is less restricted, it appears that the entries map over the same dimension based on \autoref{fig:parallel-coordinates-approaches}.
+The Ferrenti approach and the augmented Ferrenti approach share similarities, such as having only unsuitable candidates with polar space groups and having an equal amount of upper limit for both ionic character and covalent range for suitable candidates. Additionally, they share that the suitable candidates constitute of up to five different elements. Interestingly, we can see that even if the augmented Ferrenti approach is less restricted, it appears that the entries map over the same dimension based on \autoref{fig:parallel-coordinates-approaches}.
 
 The biggest difference is seen for the insightful approach. The chosen entries do not posess any magnetization, even if there are both polar and nonpolar space groups present. The range of covalent radius and maximum ionic character is significantly lower than the two other approaches.
 
@@ -426,7 +436,7 @@ The biggest difference is seen for the insightful approach. The chosen entries d
         \includegraphics[width=1\textwidth]{../predicting-solid-state-qubit-candidates/reports/figures/pca-2d-plots/03-insightful-approach.pdf}
     \end{subfigure}
     \vspace*{-95mm}
-    \caption{Two-dimensional scatter plots for the three different approaches. We have found the two eigenvectors corresponding to the two largest eigenvalues of the covariance-matrix, that is the two most important principal components, of the initial data from the Materials Project query. Then, we have transformed the three training sets resulting from the three approches and visualized it as a scatter plot for visualization purposes.}
+    \caption{Two-dimensional scatter plots for the three different approaches. We have found the two eigenvectors corresponding to the two largest eigenvalues of the covariance-matrix, that is the two most important principal components PC1 and PC2, of the initial data from the Materials Project query. Then, we have transformed the three training sets resulting from the three approaches and visualized it as a scatter plot for visualization purposes.}
     \label{fig:2dscatterplotpca}
 \end{figure}
 
@@ -445,12 +455,12 @@ To visualize the complexity of the training sets, we have found the two largest 
 
 After building a dataset through extraction, featurization and labelling, we turn our attention towards training a model. The flowchart is visualized in \autoref{fig:flowchart-screening}. After gathering and featurization, we achieve the interim data that goes through a final data preparation step to become preprocessed data. Then, we perform a data mining step using three different approaches as discussed in the last section. For each of the three approaches, we train and predict in the step called supervised learning. In the summary, we compare the different approaches and results.
 
-In the data preparation step, we assess the quality of the data. Due to the large dimension of $25000 \times 4500$, we can afford to be picky and therefore we assume that there is a large amount of non-physical values present, accordingly we fill all the missing values with zero and remove all columns with more than $70\%$ containing only zeros. This value was chosen since all categorical features have at least $30\%$ of an respective class present in the column, and a majority of the removed columns contained between $90\%$ and $100\%$ only zeros. This reduces the dimensionality substantially to only $679$ features. It should be noted that other methods of data preparation resulted in equivalent preprocessed data due to the large amount of missing values in the data.
+In the data preparation step, we assess the quality of the data. Due to the large dimension of $25000 \times 4800$, we can afford to be picky and therefore we assume that there is a large amount of non-physical values present, accordingly we fill all the missing values with zero and remove all columns with more than $70\%$ containing only zeros. This value was chosen since all categorical features have at least $30\%$ of a respective class present in the column, and a majority of the removed columns contained between $90\%$ and $100\%$ only zeros. This reduces the dimensionality substantially to only $679$ features. It should be noted that other methods of data preparation (eg. remove columns with missing values before filling with zeros) resulted in equivalent preprocessed data due to the large amount of missing values in the data.
 
-Four different supervised models has been selected for each of the three approaches defined in the previous section, resulting in a total of $12$ unique models. As discussed in section \autoref{evaluating accuracy}, models are unique and does not neccessarily perform optimal on all kinds of data. Therefore, the four models have been selected as a function of increasing complexity and ranges from the simplistic logistic regression and decision trees and up to random forest and gradient boost. We utilize the implementation of Scikit-learn for all models \cite{Pedregosa2012}.
+Four different supervised models have been selected for each of the three approaches defined in the previous section, resulting in a total of $12$ unique models. As discussed in \autoref{evaluating accuracy}, models are unique and do not neccessarily perform optimal on all kinds of data. Therefore, the four models have been selected as a function of increasing complexity and ranges from the simplistic logistic regression and decision trees and up to random forest and gradient boost. We utilize the implementation of Scikit-learn for all models \cite{Pedregosa2012}.
 
 \input{methodology&implementations/tikz-plots/flow-chart-screen-procedure.tex}
 
 \noindent Due to the fact that the current dimension of the entire dataset is still large, we apply the dimensionality reduction technique PCA to the dataset. This is benefical for several reasons, such as finding correlated features and reducing dimensionality. Additionally, it opens up for a visualized interpretation if we were to choose $3$ or less principal components.
 
-The optimal parameters are then searched for with the use of Scikit-learn's gridsearch and imblearn's pipeline \cite{Pedregosa2012, Lemaitre2016}. Imblearn's pipeline enable the use of resampling methods, in contrast to Scikit-learn's pipeline, but does not differ in any other way. In the pipeline, we provide a standardscaler that scales the data such that every feature will have a mean of $0$ and a standard deviation of $1$ \cite{Pedregosa2012}. Thereafter follows the dimensionality reduction and a supervised learning algorithm. It should be noted that the number of optimal principal components, up to an upper limit of accumulated explained variance of $95\%$, are also searched for in the grid-search scheme.
+The optimal parameters are then searched for with the use of Scikit-learn's gridsearch \cite{Pedregosa2012} and Imbalanced-learn's pipeline \cite{Lemaitre2016}. Imbalanced-learn's pipeline enables the use of resampling methods, in contrast to Scikit-learn's pipeline, but does not differ in any other way. In the pipeline, we provide a standardscaler that scales the data such that every feature will have a mean of $0$ and a standard deviation of $1$ \cite{Pedregosa2012}. Thereafter follows the dimensionality reduction and a supervised learning algorithm. It should be noted that the number of optimal principal components, up to an upper limit of accumulated explained variance of $95\%$, are also searched for in the grid-search scheme.

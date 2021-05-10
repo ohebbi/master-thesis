@@ -385,12 +385,15 @@ In this section, we describe a few of the most widely known high-throughput data
 
 \subsection{Materials project}
 
-Materials project \cite{Jain2013} is an open source project that is based on the Vienna Ab Initio Software Package (VASP) \cite{Kresse1996}, and offers a variety of properties of over one hundred thousand of inorganic crystalline materials. It is known as the initiator of materials genomics and has as its mission to accelerate the discovery of new technological materials, with an emphasis on batteries and electrodes, through advanced scientific computing and innovative design.
+Materials project \cite{Jain2013, Jain2018} is an open source project that is based on the Vienna Ab Initio Software Package (VASP) \cite{Kresse1996}, and offers a variety of properties of over one hundred thousand of inorganic crystalline materials. It is known as the initiator of materials genomics and has as its mission to accelerate the discovery of new technological materials, with an emphasis on batteries and electrodes, through advanced scientific computing and innovative design.
 
  %Some features, eg. density of state (dos), bandstructure, Pourbaix diagram etc., are characterized by using the module pymatgen.
 
-Every compound has an initial relaxation of cell and lattice parameters performed using a $1000$ / (number of atoms in cell) k-point mesh to ensure that all properties calculated are representative of the idealized unit cell for each respective crystal structure \cite{Ferrenti2020}. The functional GGA is used to calculate band structures, while for transition metals, a $+U$ corrections is applied to correct for correlation effects in d- and f-orbital systems that are not addressed by GGA calculations \cite{Wang2006}. The thermodynamic stability for each phase with respect to decomposition, is also calculated. This is denoted as energy above hull (E Above Hull), where a value of zero is defined as the most stable phase at a given composition, while larger positive values indicate increased instability.
+Every compound has an initial relaxation of cell and lattice parameters performed using a $1000$ / (number of atoms in cell) k-point mesh to ensure that all properties calculated are representative of the idealized unit cell for each respective crystal structure \cite{Ferrenti2020}. The functional GGA is used to calculate band structures, while for transition metals, a $+U$ corrections is applied to correct for correlation effects in d- and f-orbital systems that are not addressed by GGA calculations \cite{Wang2006}.
 
+To adress that many compounds are not thermodynamically stable, which means that they do not appear on any phase stability diagrams \cite{Sun2016}, an additional metric has been added. This metric is based on a convex hull analysis, where compounds on the convex hull are stable, while compounds above the hull in terms of energy are metastable \cite{Jain2018}. This is denoted as energy above hull (E Above Hull), where a value of zero is defined as the most stable phase at a given composition, while larger positive values indicate increased instability.
+
+%The thermodynamic stability for each phase with respect to decomposition, is also calculated.
 Each material contains multiple computations for different purposes, resulting in different 'tasks'. The reason behind this is that each computation has a purpose, such as to calculate the band structure or energy. Therefore, it is possible to receive several tasks for one material.
 
 \subsection{AFLOW}

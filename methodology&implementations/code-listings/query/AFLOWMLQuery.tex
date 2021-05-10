@@ -1,4 +1,17 @@
+from src.data.get_data_MP import data_MP
 from src.data.get_data_AFLOWML import data_AFLOWML
 
+MAPI_KEY = ``very_secret_key_here''
+MP = data_MP(API_KEY=MAPI_KEY)
+df = MP.get_dataframe()
+
+# Initialize class
 AFLOWML = data_AFLOWML()
-df = AFLOWML.get_dataframe()
+
+# Choose 1 of the 2:
+
+## 1) Get calculated data for this work
+aflow_df = AFLOWML.get_dataframe()
+
+## 2) Calculate new entries
+aflow_df = AFLOWML.calculate_dataframe(entries=df)

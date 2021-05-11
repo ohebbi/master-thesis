@@ -153,10 +153,9 @@ To extract information from the OQMD, the easiest way is through the interface o
 
 The query is done almost instantly, resulting in a DataFrame containing over $400.000$ entries, where $40$\% of the entries are matching an entry of the initial MP query.
 
+\lstinputlisting[language=Python, caption={Practical example of extracting information from OQMD through Matminer.}, label={lst:OQMDQuery}]{methodology&implementations/code-listings/query/OQMDQuery.tex}
 
 \subsubsection{JARVIS-DFT}
-
-\lstinputlisting[language=Python, float, caption={Practical example of extracting information from OQMD through Matminer.}, label={lst:OQMDQuery}]{methodology&implementations/code-listings/query/OQMDQuery.tex}
 
 The newest version of the JARVIS-DFT dataset can be obtained by requesting an account at the official webpage, but with the drawback that an administrator has to either accept or deny the request. Thus, the accessibility of the database is dependent on if there is an active administrator paying attention to the requests, which is a limitation experienced during this work. Another approach is to download the database through matminer, however with the limitation of not neccessarily having the latest version of the database. A third approach is to download a version of JARVIS-DFT that has been made available for requests the 30.04.2020 at http://figshare.com by \citeauthor{Choudhary2020} \cite{Choudhary2020}. The authors provides tools for extraction, yet not compatible with the latest version of Python (3.9) at the time of writing (12.03.2021). Therefore, we provide a tool to extract this data through the use of our base class.
 
@@ -404,7 +403,7 @@ Since the training data that constitutes suitable candidates are few, we choose 
           \input{../predicting-solid-state-qubit-candidates/reports/figures/parallel_coordinates/03-insightful-approach.pgf}
     \end{subfigure}
     \vspace*{-95mm}
-    \caption{Parallel coordinate plots for the different approaches. To limit the data cluttering, we have randomly collected up to $250$ entries for each class and made the lines transparent. For the insightful approach, we have used all $172$ suitable candidates. The axis are total magnetization (mag) from MP, space group (SG), ionic character (ionic char), covalent range (covalent range) as calculated from elemental properties, number elements (num elements) and energy gap (Eg) calculated by MP.}
+    \caption{Parallel coordinate plots for the different approaches. To limit the data cluttering, we have randomly collected up to $250$ entries for each class and made the lines transparent. For the insightful approach, we have used all $187$ suitable candidates. The axis are total magnetization (mag) from MP, space group (SG), ionic character (ionic char), covalent range (covalent range) as calculated from elemental properties, number elements (num elements) and energy gap (Eg) calculated by MP.}
     \label{fig:parallel-coordinates-approaches}
 \end{figure}
 
@@ -441,7 +440,7 @@ The biggest difference is seen for the insightful approach. The chosen entries d
         \includegraphics[width=1\textwidth]{../predicting-solid-state-qubit-candidates/reports/figures/pca-2d-plots/03-insightful-approach.pdf}
     \end{subfigure}
     \vspace*{-95mm}
-    \caption{Two-dimensional scatter plots for the three different approaches. We have found the two eigenvectors corresponding to the two largest eigenvalues of the covariance-matrix, that is the two most important principal components PC1 and PC2, of the initial data from the Materials Project query. Then, we have transformed the three training sets resulting from the three approaches and visualized it as a scatter plot for visualization purposes.}
+    \caption{Two-dimensional scatter plots for the three different approaches. We have found the two eigenvectors corresponding to the two largest eigenvalues of the covariance-matrix, that is the two most important principal components PC1 and PC2, of the initial data from the Materials Project query. Then, we have transformed the three training sets resulting from the three approaches and visualized them as scatter plots. Limegreen squares display suitable candidates, while tomato triangles display unsuitable candidates.}
     \label{fig:2dscatterplotpca}
 \end{figure}
 
@@ -468,4 +467,5 @@ Four different supervised models have been selected for each of the three approa
 
 \noindent Due to the fact that the current dimension of the entire dataset is still large, we apply the dimensionality reduction technique PCA to the dataset. This is benefical for several reasons, such as finding correlated features and reducing dimensionality. Additionally, it opens up for a visualized interpretation if we were to choose $3$ or less principal components.
 
-The optimal parameters are then searched for with the use of Scikit-learn's gridsearch \cite{Pedregosa2012} and Imbalanced-learn's pipeline \cite{Lemaitre2016}. Imbalanced-learn's pipeline enables the use of resampling methods, in contrast to Scikit-learn's pipeline, but does not differ in any other way. In the pipeline, we provide a standardscaler that scales the data such that every feature will have a mean of $0$ and a standard deviation of $1$ \cite{Pedregosa2012}. Thereafter follows the dimensionality reduction and a supervised learning algorithm. It should be noted that the number of optimal principal components, up to an upper limit of accumulated explained variance of $95\%$, are also searched for in the grid-search scheme.
+The optimal parameters are then searched for with the use of Scikit-learn's gridsearch \cite{Pedregosa2012} and Imbalanced-learn's pipeline \cite{Lemaitre2016}. Imbalanced-learn's pipeline enables the use of resampling methods, in contrast to Scikit-learn's pipeline, but does not differ in any other way. In the pipeline, we provide a standardscaler that scales the data such that every feature will have a mean of $0$ and a standard deviation of $1$ \cite{Pedregosa2012}. Thereafter follows the dimensionality reduction and a supervised learning algorithm. Importantly, due to three different training sets associated with the three different approaches, the resulting principal components will also differ in each approach.
+%It should be noted that the number of optimal principal components, up to an upper limit of accumulated explained variance of $95\%$, are also searched for in the grid-search scheme.

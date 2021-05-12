@@ -1,6 +1,6 @@
 \chapter{Optimalization of machine learning models}
 
-This chapter is named optimalization due to its contents; here we will account for the choices we compose to optimize the four machine learning algorithms for each of the three approaches outlined in \autoref{sec:data mining}. Initially, that involves finding what information is stored within the databases and the compromise of gathering the information, which further evolves into finding optimal hyperparameters for each approach.
+This chapter is named optimalization due to its contents; here we will account for the choices we compose to optimize the four machine learning algorithms for each of the three approaches outlined in \autoref{sec:data mining}. Initially, that involves finding what information is stored within the databases and the compromise of gathering the information, which further evolves into finding optimal hyperparameters for each approach. Each algorithm has been implemented as seen in \ref{lst:insertAlgorithms}, which is identical to the process of \autoref{chap:validation}.
 
 \begin{comment}
 \section{Time of extraction and featurization}
@@ -72,8 +72,7 @@ A very small portion of the data extracted from AFLOW was associated with an ICS
 
 In \autoref{fig:band gaps}, we observe each entry marked as black or blue dots. The dotted lines visualize the optimal ratio of estimated band gap to experimental values, while the red lines show a linear least square fit to the data with the colored area being the $95\%$ confidence interval. The data that constitute the left figures are based on $82$ similar entries, while the right figures constitute of more entries depending on the respective database. The data restriction was due to a small experimental database.
 
-Initally, we wanted to include the figures to the right in the attempt of reducing the confidence interval with increasing the data points, but instead we find that the uncertainty of the confidence interval increase for all HT-methods.
-This is due to the fact that the majority of the new entries are found
+Initally, we wanted to include the figures to the right in the attempt of reducing the confidence interval with increasing the data points, but instead we find that the uncertainty of the confidence interval increase for all HT-
 
 
 \clearpage
@@ -118,7 +117,8 @@ This is due to the fact that the majority of the new entries are found
 
 \clearpage
 
-\noindent for low band gap values, where the mismatch between experimental and calculated values are the largest.
+\noindent methods.
+This is due to the fact that the majority of the new entries are found for low band gap values, where the mismatch between experimental and calculated values are the largest.
 The discrepancy seems to be largest for values under $5$ eV, where entries are either calculated to have a very large band gap where the experimental values report a very low band gap, or the opposite.
 The data extracted from the experimental database is not associated with an ICSD-entry, space group or structure. Therefore, we cannot accurately determine if the experimental data is based on an identical material as found in the HT-databases. However, the same data of experimental values have been considered through other articles \cite{Ward2018, Ferrenti2020}.
 
@@ -480,7 +480,7 @@ Thirdly, the insightful approach differs in how much explained variation is reta
 Due to a high accuracy for few principal components, we seize the occasion and visualize a scatter plot of the training data in \autoref{fig:3d-iso}. The tomato color visualize unsuitable candidates, while limegreen corresponds to suitable candidates. Additionally, we have visualized an isosurface representing the decision boundary of an optimized gradient boost for the three most important principal components. Due to a rather sharp transition, we have restricted the probability down to $0.05\%$ of being labelled a suitable candidate, and the remaining area without isosurface is considered unfit for what we are looking for. We can observe that the model easily distinguishes most of the points, but is not able to capture all of the variation in the data.
 
 Importantly, the visualization allows us to shape a picture of the mapping by the principal component analysis. There are mainly three large clusters of data points where the largest is composed by different structures of ZnS, second largest SiC and the smallest cluster C. % where the largest constitute of all the variations of ZnS and the other of SiC.
-Close to the ZnS-cluster, we find ZnSe, ZnTe, CdS and GaAs, involving both two and three-dimensional strucutures. 
+Close to the ZnS-cluster, we find ZnSe, ZnTe, CdS and GaAs, involving both two and three-dimensional strucutures.
 %From this, it is clear that the decision tree is not able to distinguish between two and three-dimensional structures.
 The SiC-cluster is mostly by itself, with the closest entries being AlN. The cluster consisting of C, however, is more spread out than the two latter and is accompanied by BN. Close to the decision boundary, we find many entries of Si and GaN. On the edge of the border are some of the oxides, such as ZnO, while by crossing the boundary we find oxides such as CoO and SiO$_2$, and the ionic compound NaCl. Interestingly, we find the two-dimensional suitable candidates MoS$_2$, WS$_2$ and WSe$_2$ close together but far into the area of unsuitable candidates.
 

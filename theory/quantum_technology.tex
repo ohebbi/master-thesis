@@ -1,8 +1,8 @@
 \chapter{Semiconductors as a quantum platform}
 
-This chapter will provide a brief overview of the current state-of-the-art in quantum technological advances. This will not only give us insights in how the technology is being used today, but also grant us the opportunity to discuss key concepts that are fundamental to understand for this thesis. Thereafter we will look into how materials are composed, and what kind of properties a material needs to exhibit to be an eligible host for quantum devices. Finally, we will give a few specific examples of materials with promising point defects that have been comprehensively researched. Importantly, this will motivate the reasoning for finding new materials that might excel in areas where other materials falls short for utilization in quantum technology.
+This chapter will provide a brief overview of the current state-of-the-art in quantum technological advances. This will not only give us insights in how the technology is being used today, but also grant us the opportunity to discuss key concepts that are fundamental for this thesis. Thereafter we will look into how materials are composed, and what kind of properties a material needs to exhibit to be an eligible host for quantum devices. Finally, we will give a few specific examples of materials with promising point defects that have been comprehensively researched. Importantly, this will motivate the reasoning for finding new materials that might excel in areas where other materials falls short for utilization in quantum technology.
 
-\section{Quantum technology}
+\section{Quantum technology (QT)}
 \textit{Quantum technology} (QT) refers to practical applications and devices that utilize the principles of quantum physics as a foundation. Technologies in this spectrum are based on concepts such as \textit{superposition}, \textit{entanglement} and \textit{coherence}, which are all closely related to one another.
 
 A quantum superposition refers to that any two or more quantum eigenstates can be added together into another valid quantum state, such that every quantum state can be represented as a sum, or a superposition, of two or more distinct states. This is according to the wave-particle duality which states that every particle or another quantum entity may be described as both a particle or a wave. When measuring the state of a system residing in a superposition of eigenstates, however, the system falls back to one of the basis states that formed the superposition, destroying the original configuration.
@@ -18,7 +18,7 @@ Another concept that the reader should be familiar with is the famous Heisenberg
     \sigma_x \sigma_p \leq \frac{\hslash}{2},
     \label{eq:uncertainty}
 \end{align}
-where $\sigma_x$ is the standard deviation for the position and $\sigma_p$ is the standard deviation in momentum. This means that we cannot accurately predict both the position and momentum of a particle at the same time. Thus, we often calculate the probability for a particle to be in a state which results in concepts such as an electron sky surrounding an atom core. However, remember that \autoref{eq:uncertainty} is an inequality, which means that it is possible to create a state where neither the position nor the momentum is well defined.
+where $\sigma_x$ is the standard deviation for the position and $\sigma_p$ is the standard deviation in momentum. This means that we cannot accurately predict both the position and momentum of a particle at the same time. Thus, we often calculate the probability for a particle to be in a state which results in concepts such as an electron cloud surrounding an atom core. However, remember that \autoref{eq:uncertainty} is an inequality, which means that it is possible to create a state where neither the position nor the momentum is well defined.
 
 \subsection{Quantum computing}
 %The evolution of the digital worlds computational powers is a remarkable piece of history
@@ -26,13 +26,13 @@ The start of the digital world's computational powers can be credited to Alan Tu
 
 Driven by the development of software, conventional computers have in accordance to Moore's law \cite{Moore1965}, doubled the amount of transistors on integrated circuit chips every two years as a result of smaller transistors. Furthermore, the clock frequency has enhanced with time, resulting in a doubling of computer performance every 18 months \cite{Pavicic2006}. Alas, miniaturization cannot go on forever as transistors are mass-produced with the feature size at $5$ nm today and are expected to reach a critical limit of $3$ nm in the following years \cite{Gwennap2020}.
 
-To sustain the digital world's increasing computational demand, other alternatives than the conventional classical computer must be explored. This is where quantum computing comes into the picture. The term quantum computer refers to a device that exploits quantum properties to solve certain computational problems more efficiently than allowed by Boolean logic \cite{Weber2010}.
+To sustain the digital world's increasing computational demand, other alternatives than the conventional classical computer must be explored. This is where quantum computing comes into the picture. The term quantum computer refers to a device that exploits quantum properties to solve certain computational problems more efficiently than by Boolean logic \cite{Weber2010}.
 
 The idea is to pass information in the form of a quantum bit, or \textit{qubit} for short. They are the building blocks of quantum computers, and as opposed to the conventional $0$ or $1$-bits that classical computers are based on, they can inhabit any superposition of the states $0$ or $1$. This is illustrated in \autoref{fig:qubit and bit}.
 
 %Since a qubit has a quantum nature and is the counterpart to the classical bit, it naturally follows that it is in the center of attention in quantum computation\footnote{There exists other systems such as the quantum d-state system, known as \textit{qudits}, that can also be utilised in quantum computation \cite{Ladd2010}.}.
 
-The architecture of a gate-based quantum computer is dependent on a set of quantum logic gates that perform unitary transformations on sets of qubits \cite{DiVincenzo2000, Ladd2010}. A different implementation of quantum computers exists is adiabatic quantum computer. This approach is not based on gates, but on defining the answer of a problem as the ground state of a complex network of interactions between qubits, and then controlling the interactions to adiabatically evolve the system to the ground state \cite{Mizel2007}.
+The architecture of a gate-based quantum computer depends on a set of quantum logic gates that perform unitary transformations on sets of qubits \cite{DiVincenzo2000, Ladd2010}. A different implementation of quantum computers is the adiabatic quantum computer. This approach is not based on gates, but on defining the answer of a problem as the ground state of a complex network of interactions between qubits, and then controlling the interactions to adiabatically evolve the system to the ground state \cite{Mizel2007}.
 
 \input{theory/tikz-plots/qubit-bit.tex}
 
@@ -44,13 +44,13 @@ Quantum computing is a highly sought-after goal, but there are extensive challen
 
 
 \subsubsection{Quantum computing requirements}
-As ever-promising the concepts of quantum technology are, the physical realizations are in the preliminary stage of development. Here we will concretize critical principles for a physical realisation of a quantum platform.
+As ever-promising the concepts of quantum technology are, the physical realizations are in the preliminary stage of development. Here we will concretize critical principles for a physical realisation of a quantum platform. DiVincenzo formulated in the year of $2000$ seven basic criteria for a physical qubit system with a logic-based architecture \cite{DiVincenzo2000}.
 
-\begin{quote}
-   ``I always said that in some sense, these criteria are exactly the ones that you would teach to kindergarten children about computers, quantum or otherwise'' DiVincenzo \cite{Georgescu2020}
-\end{quote}
+%\begin{quote}
+%   ``I always said that in some sense, these criteria are exactly the ones that you would teach to kindergarten children about computers, quantum or otherwise'' DiVincenzo \cite{Georgescu2020}
+%\end{quote}
 
-\noindent DiVincenzo formulated in the year of $2000$ seven basic criteria for a physical qubit system with a logic-based architecture \cite{DiVincenzo2000}.
+%\noindent DiVincenzo formulated in the year of $2000$ seven basic criteria for a physical qubit system with a logic-based architecture \cite{DiVincenzo2000}.
 
 \begin{enumerate}
   \item A scalable physical system with well characterized qubits
@@ -96,24 +96,24 @@ Measurements are part of our digital world today to a great extent. There would 
 
 For a quantum system to be able to function as a quantum sensor, a few criteria need to be met.  Firstly, the quantum system needs to have discrete and resolvable energy levels. The quantum system also needs to be controllably initialised into a state that can be identified and coherently manipulated by time-dependent fields. Lastly, the quantum system needs to be able to interact with the physical property one wants to measure through a coupling parameter \cite{Degen2017}.
 
-It is also possible to also exploit quantum entanglement to improve the precision of a measurement. This gain of precision is used to reach what is called the Heisenberg-limit, which states that the precision scales as the number of particles $N$ in an idealized quantum system \cite{Degen2017, Acin2018}, while the best classical sensors scale with $\sqrt{N}$.
+It is also possible to exploit quantum entanglement to improve the precision of a measurement. This gain of precision is used to reach what is called the Heisenberg-limit, which states that the precision scales as the number of particles $N$ in an idealized quantum system \cite{Degen2017, Acin2018}, while the best classical sensors scale with $\sqrt{N}$.
 
 \subsection{Available quantum platforms}
 
 %Before a quantum system can be used in either quantum computing, quantum cryptography or quantum sensing, a few criterias has to be met. They are formulated by
 
-Many different quantum platforms have been physically implemented, and this section will serve as a brief overview of the current status. For a more thorough review of qubit implementations, the reader is directed to e.g., Refs. \cite{Ladd2010, Acin2018}. \\
+Many different quantum platforms have been physically implemented, and this section will serve as a brief overview of the current status. For a more thorough review of qubit implementations, the reader is directed to e.g., Refs. \cite{Ladd2010, Acin2018}.
 
-Superconducting circuits can be used in quantum computing, since electrons in superconducting materials can form Cooper pairs via an effective electron-electron attraction when the temperature is lower than a critical limit. Below the limit, electrons can move without resistance in the material \cite{KristianFossheim2004}. Exploiting this intrinsic coherence, qubits can be made by forming microwave circuits based on loops of two superconducting elements separated by an insulator, also known as Josephson tunnel junctions \cite{Acin2018, Nakamura1999}. Today, superconducting Josephson junctions are the most widely used quantum platform, but they requires very low temperature (mK) to function, making them costly to use \cite{Acin2018}. Additionally, the current devices experience a relatively short coherence time, causing challenges in scaling up \cite{Acin2018}. \\
+Superconducting circuits can be used in quantum computing, since electrons in superconducting materials can form Cooper pairs via an effective electron-electron attraction when the temperature is lower than a critical limit. Below the limit, electrons can move without resistance in the material \cite{KristianFossheim2004}. Exploiting this intrinsic coherence, qubits can be made by forming microwave circuits based on loops of two superconducting elements separated by an insulator, also known as Josephson tunnel junctions \cite{Acin2018, Nakamura1999}. Today, superconducting Josephson junctions are the most widely used quantum platform, but they requires very low temperature (mK) to function, making them costly to use \cite{Acin2018}. Additionally, the current devices experience a relatively short coherence time, causing challenges in scaling up \cite{Acin2018}.
 
-Single photons are an eligible quantum platform that can be implemented as qubits with one-qubit gates being formed by rotations of the photon polarization. They are less prone to decoherence in fiber optics, but faces challenges since the more complex photon-photon entanglement and control of multi-qubits is difficult to control \cite{Ladd2010}. \\
+Single photons are an eligible quantum platform that can be implemented as qubits with one-qubit gates being formed by rotations of the photon polarization. They are less prone to decoherence in fiber optics, but faces challenges since the more complex photon-photon entanglement and control of multi-qubits is difficult to control \cite{Ladd2010}.
 
 %Nuclear spin
 %By fixing the nuclear spin of solid-state systems, it is possible to implement a quantum platform that experience long spin coherence. This enables the manipulation of qubits that utilize electromagnetic fields, making one-qubit gates realizable. \\
 
-The isolated atom platform is characterized by its well-defined atom isolation. Here, every qubit is based on energy levels of a trapped ion or atom. Quantum entanglement can be achieved through laser-induced spin coupling, however scaling up to large atom numbers induce problems in controlling large systems and cooling of the trapped atoms or ions. \\
+The isolated atom platform is characterized by its well-defined atom isolation. Here, every qubit is based on energy levels of a trapped ion or atom. Quantum entanglement can be achieved through laser-induced spin coupling, however scaling up to large atom numbers induce problems in controlling large systems and cooling of the trapped atoms or ions.
 
-A quantum dot (QD) can be imagined as an artifical atom which is confined in a solid-state host. As an example, a quantum dot can occur when a hole or an electron is trapped in the localized potential of a semiconductor' nanostructure. QDs exhibit smaller coherence times than the isolated atom platform, but without the drawback of confining and cooling of the given atom or ion \cite{Acin2018}. Moreover, it is possible to limit decoherence due to nuclear spins by dynamic decoupling of nuclear spin noise and isotope purification \cite{Ladd2010}.
+A quantum dot (QD) can be imagined as an artifical atom which is confined in a solid-state host. As an example, a quantum dot can occur when a hole or an electron is trapped in the localized potential of a semiconductors nanostructure. QDs exhibit smaller coherence times than the isolated atom platform, but without the drawback of confining and cooling of the given atom or ion \cite{Acin2018}. Moreover, it is possible to limit decoherence due to nuclear spins by dynamic decoupling of nuclear spin noise and isotope purification \cite{Ladd2010}.
 
 A QD can normally be defined litographically using metallic gates, or as self-assembled QDs where a growth process creates the potential that traps electrons or holes. The difference between them is a question of control and temperature, since the metallic gates is primarily controlled electrically and must be operated at $<1$ K, while self-assembled QDs can be controlled optically at larger temperatures, e.g.  $\sim 4$ K \cite{Ladd2010}. %, while self-assembly QDs are primarily controlled optically at $\sim 4$ K \cite{Ladd2010}.
 Despite requiring very low temperatures, QDs have the potential for fast voltage control and optical initialization. As with trapped ions, electrostatically defined quantum dots experience a short-range exchange interaction, imposing a limitation for quantum computing and quantum error correction protocols. A potential solution could include photonic connections between quantum dots. Indeed, self-assembled quantum dots couple strongly to photons due to their large size in comparison to single atoms. However, the size and shapes of self-assembled quantum dots are decided randomly during the growth process, causing an unfavourably large range of optical absorption and emission energies \cite{Ladd2010}.
@@ -140,6 +140,11 @@ The periodicity in a crystal is defined in terms of a symmetric array of points 
 
 One example of a crystal structure is the perovskite structure. Compounds with this structure are characterized by having an $ABX_3$ stoichiometry whose symmetry belong to one of 15 space groups identified by Lufaso \& Woodward \cite{Lufaso2001}, such as the cubic, orthorombic and tetragonal. For our purpose, we will be looking into when the X atom is oxygen, and refer to the oxygen-perovskite $ABO_3$. The A atom is nine- to 12-fold coordinated to oxygen, while the B atom is sixfold coordinated to oxygen, and the $BO_6$ octahedra are connected to the corners in all three directions as visualized in \autoref{fig:perovskite}.
 
+The motivation behind the research on perovskites is related to the large amount of available ABO$_3$ chemistries, where a significant portion of these take the perovskite structure. Perovskites have a broad specter of applications, ranging from high-temperature superconductors \cite{Bednorz1988} and ionic conductors \cite{Boivin1998} to multiferroic materials \cite{Cheong2007}. Additionally, adding a perovskite-type compound to solar cells has reportedly resulted in higher performance efficiencies while being cheap to produce and simple to manufacture \cite{IbnMohammed2017, Chen2014}. However, this includes the use of hybrid organic-inorganic compounds and excludes the use of oxygen.
+
+%Point defects are the type of defect that can be utilised in generating a qubit, thus being a special interest for this thesis. They can arise as either a vacancy in the lattice, interstitial placement inbetween lattice sites, or as a substitution of an existing atom in the lattice.
+
+%Her kan jeg skrive videre om NV -1 strukturen og defekten, da den blir brukt senere.
 \begin{wrapfigure}{r}{0.5\textwidth}
   \centering
   \includegraphics[width=0.48\textwidth]{theory/figures/SrTiO3_mp-5229_primitive.pdf}
@@ -147,20 +152,14 @@ One example of a crystal structure is the perovskite structure. Compounds with t
   \label{fig:perovskite}
 \end{wrapfigure}
 
-The motivation behind the research on perovskites is related to the large amount of available ABO$_3$ chemistries, where a significant portion of these take the perovskite structure. Perovskites have a broad specter of applications, ranging from high-temperature superconductors \cite{Bednorz1988} and ionic conductors \cite{Boivin1998} to multiferroic materials \cite{Cheong2007}. Additionally, adding a perovskite-type compound to solar cells has reportedly resulted in higher performance efficiencies while being cheap to produce and simple to manufacture \cite{IbnMohammed2017, Chen2014}. However, this includes the use of hybrid organic-inorganic compounds and excludes the use of oxygen.
-
-%Point defects are the type of defect that can be utilised in generating a qubit, thus being a special interest for this thesis. They can arise as either a vacancy in the lattice, interstitial placement inbetween lattice sites, or as a substitution of an existing atom in the lattice.
-
-%Her kan jeg skrive videre om NV -1 strukturen og defekten, da den blir brukt senere.
-
-
-Isolated atoms have discrete energy levels, where the Pauli exlusion principle \cite{Pauli1925} states for fermions that each energy level can at most accomodate two electrons of opposite spin. In a solid, the discrete energy levels of the isolated atom spread into continuous energy bands since the wavefunctions of the electrons in the neighboring atoms overlap. Hence, an electron is not neccessarily localized at a particular atom anymore. This is exemplified as every material has a unique band structure, similar to every human having their unique fingerprint.
+Isolated atoms have discrete energy levels that electrons can inhabit, where each level can at most accomodate two electrons of opposite spins, which is in accordance with the Pauli exclusion principle for fermions \cite{Pauli1925}. % where the Pauli exclusion principle \cite{Pauli1925} states for fermions that each energy level can at most accomodate two electrons of opposite spin.
+In a solid, the discrete energy levels of the isolated atom spread into continuous energy bands since the wavefunctions of the electrons in the neighboring atoms overlap. Hence, an electron is not neccessarily localized at a particular atom anymore. This is exemplified as every material has a unique band structure, similar to every human having their unique fingerprint.
 
 Knowing which energy bands are occupied by electrons is the key in understanding the electrical properties of solids. The highest occupied electronic band at $0$ K is called the valence band (VB), while the lowest unoccupied electron band is called the conduction band (CB). The energy gap between the maximum VB and the minimum CB is known as the band gap, and its energy is denoted as $E_g$. Whether a material can be classified as a semiconductor depends on the band gap and the electrical conductivity. As an example, Silicon is commonly thought of as a semiconductor, and has a band gap of about $1.12$ eV at $275$ K \cite{Martienssen2005}.
 
-\input{theory/tikz-plots/band-gaps.tex}
-
 In order to accelerate electrons in a solid using an electrical field, they must be able to move into new energy states. At $0$ K, the entire valence band of a semiconductor is full with electrons and there are no available states nearby, making it impossible for current to flow through the material. This can be solved by using either thermal or optical energy to excite electrons from the valence band to the conduction band, in order to \textit{conduct} electricity. At a given temperature, some semiconductors will have electrons excited to the conduction band solely from thermal energy matching the energy band gap \cite{BenStreetman2015}.
+
+\input{theory/tikz-plots/band-gaps.tex}
 
 In some scenarios, an excitation is also dependent on the crystal momentum.
 %In some scenarios, thermal or optical energy is not sufficient for an excitation since the energy bands are also dependent on the crystal momentum.
@@ -174,7 +173,7 @@ where $k$ is Boltzmann's constant, $T$ is temperature, $E$ is the energy and $E_
 
 \subsection{Point defects in semiconductors}
 
-In real life, a perfect crystal without any symmetry-breaking flaw does not exist, explained by the law of thermodynamic \cite{CharlesKittel2012}. These flaws are known as defects and can occur in up to three dimensions. A one-dimensional defect is known as a \textit{line defect}, while two dimensional defects can be \textit{planar defects}, and in three dimensions we have \textit{volume defects}. Lastly, defects can also occur in zero dimensions and are then termed \textit{point defects}. Point defects normally occur as either vacancies, interstitially placed atoms inbetween lattice sites (called interstitials) or as substitution of another existing atom in the lattice.
+In real life, a perfect crystal without any symmetry-breaking flaw does not exist, explained by the laws of thermodynamic \cite{CharlesKittel2012}. These flaws are known as defects and can occur in up to three dimensions. A one-dimensional defect is known as a \textit{line defect}, while two dimensional defects can be \textit{planar defects}, and in three dimensions we have \textit{volume defects}. Lastly, defects can also occur in zero dimensions and are then termed \textit{point defects}. Point defects normally occur as either vacancies, interstitially placed atoms inbetween lattice sites (called interstitials) or as substitution of another existing atom in the lattice.
 
 Defects can greatly influence both the electronic and optical propertires of a material. A substitional defect may be an unintentionally introduced impurity or an antisite, but they can also be intentionally inserted, an approach normally known as \textit{doping}. Doping can result in an excess of electrons or holes, making the semiconductor either n- or p-type, respectively. Consequently, the semiconductor will have energy levels in the (forbidden) band gap that originate from the defects. If the energy levels introduced are closer than $ \sim 0.2$ eV to the band egdes, they are termed \textit{shallow} defects.
 
@@ -186,14 +185,14 @@ and have highly localized electron wavefunctions. This might assure the isolatio
 Deep levels can be unfortunate in semiconductors since they can interact with the charge carriers, potentially modifying the desired electronic or optical properties of the material. Deep level defects can function as electron-hole recombination centers, or to trap charge carriers, yielding the commonly used name deep level \textit{traps}. Both of the given situations result in a lower concentration of charge carriers, which shows why deep levels normally are unwanted in semiconductor devices. %However, deep defects are
 However, deep level defects may be beneficially used in several technologies, such as quantum technology. %show extraordinary properties in quantum technology due to their ability to ensure isolation and preserve coherence.
 
+\input{theory/tikz-plots/configurationcoordinate.tex}
+
 \subsection{Optical defect transitions}
 
 Optical transitions refer to excitation or de-excitation of charge carriers due to either emission or absorption of electromagnetic radiation. %, and can be done with a laser light or electron beam.
 \autoref{fig:configurationcoordinate} contains a configuration coordinate (CC) diagram of a defect transition. The y-axis is the energy $E$, while the x-axis is the configuration coordinate $Q$, which represents the atomic displacement from the equilibrium position $Q_{GS}$. The lowest point in the lower parabola is known as the ground state (GS) configuration $Q_{GS}$, which is the most stable atomic position, while for the upper parabola it is known as the excited state configuration $Q_{ES}$. The dotted lines represent vibronic excitations to the energy of the ground (lower parabola) and excited (upper parabola) states.
 
-\input{theory/tikz-plots/configurationcoordinate.tex}
-
-\noindent The optical transitions in \autoref{fig:configurationcoordinate} are marked with red arrows. During slow transitions, such as during thermodynamic charge-state transitions, the original configuration has time to rearrange due to interactions with the crystal lattice. This is schematically drawn as the blue arrow, where the energy $E_t$ equals the ionization energy or the position of the defect level. Optical transitions, on the other hand, are marked in red and occur in a short time range such that the atomic configuration does not change. The transitions can appear in the exchange of charge carriers with the band egdes, and in a defect's internal excited state, with the latter scenario being most relevant for this thesis.
+The optical transitions in \autoref{fig:configurationcoordinate} are marked with red arrows. During slow transitions, such as during thermodynamic charge-state transitions, the original configuration has time to rearrange due to interactions with the crystal lattice. This is schematically drawn as the blue arrow, where the energy $E_t$ equals the ionization energy or the position of the defect level. Optical transitions, on the other hand, are marked in red and occur in a short time range such that the atomic configuration does not change. The transitions can appear in the exchange of charge carriers with the band egdes, and in a defect's internal excited state, with the latter scenario being most relevant for this thesis.
 
 Consider a defect that rests in the ground state configuration $Q_{GS}$. Suddenly, it absorbs a photon with energy $h v_{\text{abs}}$ and occupies an excited vibronic state of the upper parabola after a vertical transition. Through lattice reconfigurations, the defect will move towards the bottom of the upper parabola, also known as $Q_{ES}$. Eventually, the defect will relax to the lower parabola by emitting a photon with energy $h v_{lum}$, also known as a zero-phonon line (ZPL) of energy $E_{ZPL}$. The transitions between vibronic excitation levels are mostly phonon-related. The strength of the electron-phonon interaction can be quantified by the Huang-Rhys factor $S$ \cite{Huang1950}. If the two parabolas in \autoref{fig:configurationcoordinate} have the same configuration of $Q$, emission into the ZPL is enabled and $S\sim 0$. The stronger the coupling, the smaller amount of emission in the ZPL.
 
@@ -273,7 +272,12 @@ Criterion (H3) is important for scalability and further potential for a large-sc
 
 %In fact, all of the criteria could be regarded as recommendations,
 
-\citeauthor{Weber2010} \cite{Weber2010} use criteria $(H1)-(H4)$ to specifically find analogies to the $NV^{-1}$ center in other material systems, thus leaving the discussion of other criteria out, such as the choice of crystal system. The atomic configuration and crystal structure of a material strongly influences the properties of a defect, since a defect's orbital and spin structure is dependent on its spatial symmetry \cite{Bassett2019}. In particular, it is the point group that decides which multiplicity a given energy level should have \cite{James1976}. A higher defect symmetry group generally facilitates degenerate states, which may give rise to high spin states according to Hund's rules \cite{Bassett2019, Togan2010}. Inversion symmetry in the host crystal can also be beneficial, resulting in reduced inhomogenous broadening and spectral diffusion of optical transitions as a consequence of the defect orbitals being generally insensitive to external electric fields \cite{Bassett2019}.
+\citeauthor{Weber2010} \cite{Weber2010} use criteria $(H1)-(H4)$ to specifically find analogies to the $NV^{-1}$ center in other material systems, thus leaving the discussion of other criteria out, such as the choice of crystal system. The atomic configuration and crystal structure of a material strongly influences the properties of a defect, since a defect's orbital and spin structure depends on its spatial symmetry \cite{Bassett2019}. In particular, it is the point group that decides which multiplicity a given energy level should have \cite{James1976}. A higher defect symmetry group generally facilitates degenerate states, which may give rise to high spin states according to Hund's rules \cite{Bassett2019, Togan2010}. Inversion symmetry in the host crystal can also be beneficial, resulting in reduced inhomogenous broadening and spectral diffusion of optical transitions as a consequence of the defect orbitals being generally insensitive to external electric fields \cite{Bassett2019}.
+
+\subsection{Silicon carbide}
+\label{silicon-carbide}
+
+Silicone carbide (SiC) is an emerging quantum platform that exists in a wide variety of polytypes, with $3C$, 4H and 6H being the most prominent configurations. Several of the polytypes have been demonstrated to host SPEs with a slightly different emitter characteristic, which provides the opportunity to select the desired properties based on the variety of lattice configurations and point defects available \cite{Weber2010, Son2020, Falk2013}. While 3C has a cubic structure, 4H has a hexagonal structure with both hexagonal ($h$) and pseudo-cubic ($k$) lattice sites. 6H is also a hexagonal structure, but with the three orientations that are labelled $h$, $k_1$ and $k_2$. Importantly, SiC in the three varieties exhibit wide-band gaps, low spin orbit coupling and stable spinless nuclear isotopes \cite{Neudeck1995, Weber2010, Martienssen2005}, as seen from \autoref{tab:qubithosts}. Furthermore, SiC benefits from mature fabrication on the wafer-scale, which checks the last of the four (H1-H4) QT host requirements, marking it as a suitable quantum material platform.
 
 \begin{wrapfigure}{r}{0.6\textwidth}
   \centering
@@ -282,12 +286,6 @@ Criterion (H3) is important for scalability and further potential for a large-sc
   \label{fig:4H-SiC}
 \end{wrapfigure}
 
-\subsection{Silicon carbide}
-\label{silicon-carbide}
-
-Silicone carbide (SiC) is an emerging quantum platform that exists in a wide variety of polytypes, with $3C$, 4H and 6H being the most prominent configurations. Several of the polytypes have been demonstrated to host SPEs with a slightly different emitter characteristic, which provides the opportunity to select the desired properties based on the variety of lattice configurations and point defects available \cite{Weber2010, Son2020, Falk2013}. While 3C has a cubic structure, 4H has a hexagonal structure with both hexagonal ($h$) and pseudo-cubic ($k$) lattice sites. 6H is also a hexagonal structure, but with the three orientations that are labelled $h$, $k_1$ and $k_2$. Importantly, SiC in the three varieties exhibit wide-band gaps, low spin orbit coupling and stable spinless nuclear isotopes \cite{Neudeck1995, Weber2010, Martienssen2005}, as seen from \autoref{tab:qubithosts}. Furthermore, SiC benefits from mature fabrication on the wafer-scale, which checks the last of the four (H1-H4) QT host requirements, marking it as a suitable quantum material platform.
-
-
 The most studied emitters in SiC include the carbon antisite-vacancy pair $\text{C}_{\text{Si}}\text{V}_{\text{C}}$ that emits in the red, the silicon vacancy $\text{V}_{\text{Si}}$ that emits in the near infra-red, and the divacancy ($\text{V}_{\text{Si}}\text{V}_{\text{C}}$) and the nitrogen-vacancy center ($\text{N}_{\text{C}}\text{V}_{\text{Si}}$) that both emit at near-telecom wavelengths. Thus, the two latter emitters could potentially ease the integration with optic fiber technologies as compared to e.g. the $\text{NV}^{-}$ in diamond. Additionally, the four different point defects in SiC have all been identified as room-temperature SPEs with demonstrated coherent spin control \cite{Widmann2014, Kraus2013, Castelletto2013, Koehl2011, Bathen2019}. Illustrations of several configurations of emitters in 4H-SiC are included in \autoref{fig:4H-SiC}.
 
 \subsection{Alternative promising material hosts}
@@ -295,7 +293,7 @@ The most studied emitters in SiC include the carbon antisite-vacancy pair $\text
 
 Single photon emitters have been observed in other semiconductor materials, however most of the emitters are yet to be identified or are in an early stage of identification. Therefore, specific details about spin- or emission-related structure are yet to be illuminated. In this section we will briefly mention recent promising materials for QT.
 
-One immediate potential candidate is silicon, considering the favorable device fabrication processes that are available. It has demonstrated that phosphorous impurities at Si sites can store a quantum state for over $30$ seconds, enabling their use in a potential Kane quantum computer \cite{Kane1998, Zhang2020}. Unfortunately, the P impurity lacks any single photon source capabilities. Recently, however, the G-center arising from the carbon-interstitial carbon-substitutional ($\text{C}_{\text{s}}\text{C}_{\text{i}}$) complex was identified as a promising SPE candidate with single photon emissions at telecom wavelength \cite{Redjem2020}.
+One immediate potential candidate is silicon, considering the favorable device fabrication processes that are available. It has been demonstrated that phosphorous impurities at Si sites can store a quantum state for over $30$ seconds, enabling their use in a potential Kane quantum computer \cite{Kane1998, Zhang2020}. Unfortunately, the P impurity lacks any single photon source capabilities. Recently, however, the G-center arising from the carbon-interstitial carbon-substitutional ($\text{C}_{\text{s}}\text{C}_{\text{i}}$) complex was identified as a promising SPE candidate with single photon emissions at telecom wavelength \cite{Redjem2020}.
 
 Other materials that emits individual photons have been detected in other wide-band gap semiconductors, including ZnO \cite{Zheng2014, Morfa2012}, ZnS \cite{Stewart2019}, GaAs \cite{Bluhm2010}, GaN \cite{Roux2017, Gammon1996} and AlN \cite{Chung2018, Wang2014}, although the defect centers responsible for most of the SPE lines have yet to be identified.
 Additionally, challenges due to the specific materials complicate the implementation of defects for QT. ZnO and ZnS exhibit a broad emission due to a large phonon involvement. GaAs is promising since it has been demonstrated as a SPS.
@@ -307,10 +305,10 @@ Two-dimensional materials such as hexagonal boron nitride ($h$-BN), MoS$_2$, WSe
 
 \subsection{Associated challenges with material host discovery}
 
-The idea of finding new potential host candidates to utilise point defects in QT is challenging. Recall, we have made four criteria that deal with the requirements; (H1) band gaps, (H2) spin-orbit coupling, (H3) availability and (H4) spin-zero isotopes, but more criteria may be needed and the excisting ones refined.%we have no knowledge of if there should be more criteria or to what extent a criteron needs to be fulfilled.
+The idea of finding new potential host candidates to utilise point defects in QT is challenging. Recall, we have made four criteria that deal with the requirements; (H1) band gaps, (H2) spin-orbit coupling, (H3) availability and (H4) spin-zero isotopes, but more criteria may be needed and the existing ones refined.%we have no knowledge of if there should be more criteria or to what extent a criteron needs to be fulfilled.
 %What we do know is that there are major advantages if materials exhibit properties such as isolation in the lattice and weak electron-photon interaction, however, the process to provide any quantity of measurements are through approximations and material-specific properties. These approximations does not neccessarily capture quantum properties well.
 
-Furthermore, the identified candidates constitute an immensely selective group of only a handful potential hosts which have been discovered by serendipity. As an example, most known potential hosts are elemental (unary) or binary compounds. This is probably due to the increasing complexity dealing with an additional level of interactions in the lattice. Therefore, there are reasons to believe that many potential hosts are yet to be discovered, which serves as a motivation for studies involving exploratory research for new candidate materials.
+Furthermore, the identified candidates constitute an immensely selective group of only a handful potential hosts which have been discovered by accident. As an example, most known potential hosts are elemental (unary) or binary compounds. This is probably due to the increasing complexity dealing with an additional level of interactions in the lattice. Therefore, there are reasons to believe that many potential hosts are yet to be discovered, which serves as a motivation for studies involving exploratory research for new candidate materials.
 
 %and quantum technology can still be regarded as a preliminary phase of development.
 

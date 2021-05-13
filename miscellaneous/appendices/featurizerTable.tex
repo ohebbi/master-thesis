@@ -1,5 +1,5 @@
 \begin{center}
-\begin{longtable}{M{3.0cm} M{6.0cm} M{2.5cm}}
+\begin{longtable}{M{3.5cm} M{6.5cm} M{2.0cm}}
 \caption[]{This thesis' chosen 39 featurizers from matminer. Descriptions are either found from Ref. \cite{Ward2018} or from the project's Github page. For entries lacking references, we refer to \citeauthor{Ward2018} \cite{Ward2018}.}
 \label{table:featurizers} \\
 \hline \multicolumn{1}{c}{Features} & \multicolumn{1}{c}{Description} & \multicolumn{1}{c}{Reference} \\
@@ -25,53 +25,53 @@
   AtomicOrbitals & Highest occupied molecular orbital (HOMO) and lowest unoccupied molecular orbital (LUMO). & \cite{Kotochigova1997}  \\ \hline
   AtomicPacking- Efficiency & Packing efficiency. & \cite{Laws2015}  \\ \hline
   BandCenter & Estimation of absolute position of band center using geometric mean of electronegativity. & \cite{Butler1978} \\ \hline
-  ElementFraction & Fraction of each element in a composition. & -  \\
-  ElementProperty & Statistics of various element properties. & \cite{Ong2013,Ward2016, Deml2016}  \\
-  IonProperty & Maximum and average ionic character. & \cite{Ward2016} \\
-  Miedema & Formation enthalpies of intermetallic compounds, solid solutions, and amorphous phases using semi-empirical Miedema model. & \cite{Weeber1987} \\
-  Stoichiometry & $L^p$ norm-based stoichiometric attributes. & \cite{Ward2016} \\
-  TMetalFraction & Fraction of magnetic transition metals. & \cite{Deml2016}  \\
-  ValenceOrbital & Valence orbital attributes such as the mean number of electrons in each shell. & \cite{Ward2016}  \\
+  ElementFraction & Fraction of each element in a composition. & -  \\ \hline
+  ElementProperty & Statistics of various element properties. & \cite{Ong2013,Ward2016, Deml2016}  \\ \hline
+  IonProperty & Maximum and average ionic character. & \cite{Ward2016} \\ \hline
+  Miedema & Formation enthalpies of intermetallic compounds, solid solutions, and amorphous phases using semi-empirical Miedema model. & \cite{Weeber1987} \\ \hline
+  Stoichiometry & $L^p$ norm-based stoichiometric attributes. & \cite{Ward2016} \\ \hline
+  TMetalFraction & Fraction of magnetic transition metals. & \cite{Deml2016}  \\ \hline
+  ValenceOrbital & Valence orbital attributes such as the mean number of electrons in each shell. & \cite{Ward2016}  \\ \hline
   YangSolid- Solution & Mixing thermochemistry and size mismatch terms. & \cite{Yang2012} \\
   \hline
   \textbf{Oxid composition features} &  &  \\
   \hline
-  Electronegativity- Diff & Statistics on electronegativity difference between anions and cations. & \cite{Deml2016} \\
-  OxidationStates & Statistics of oxidation states. & \cite{Deml2016}  \\
+  Electronegativity- Diff & Statistics on electronegativity difference between anions and cations. & \cite{Deml2016} \\ \hline
+  OxidationStates & Statistics of oxidation states. & \cite{Deml2016}  \\ \hline
   \hline
-  \textbf{Structure features} & & \\
+  \textbf{Structure features} & & \\ \hline
   \hline
-  DensityFeatures & Calculate density, volume per atom and packing fraction. & - \\
-  GlobalSymmetry- Features & Determines spacegroup number, crystal system (1-7) and inversion symmetry. & - \\
-  RadialDistribution- Function & Calculates the radial distribution function of a crystal system. & - \\
-  CoulombMatrix & Generate the Coulomb matrix, which is a representation of the nuclear coulombic interaction of the input structure. & \cite{Rupp2012}  \\
-  PartialRadial- Distribution- Function & Compute the partial radial distribution function of a crystal structure & \cite{Schuett2014}  \\
-  SineCoulomb- Matrix & Computes a variant of the coulomb matrix developed for periodic crystals. & \cite{Faber2015}  \\
-  EwaldEnergy & Computes the energy from Coulombic interactions based on charge states of each site. & \cite{Ewald1921}  \\
-  BondFractions & Compute the fraction of each bond in a structure, based on nearest neighbours. & \cite{Hansen2015}  \\
-  Structural- Heterogeneity & Calculates the variance in bond lengths and atomic volumes in a structure. & \cite{Ward2017}  \\
-  MaximumPacking- Efficiency & Calculates the maximum packing efficiency of a structure. & \cite{Ward2017} \\
-  Chemical- Ordering & Computes how much the ordering of species differs from random in a structure. & \cite{Ward2017}  \\
+  DensityFeatures & Calculate density, volume per atom and packing fraction. & - \\ \hline
+  GlobalSymmetry- Features & Determines spacegroup number, crystal system (1-7) and inversion symmetry. & - \\ \hline
+  RadialDistribution- Function & Calculates the radial distribution function of a crystal system. & - \\ \hline
+  CoulombMatrix & Generate the Coulomb matrix, which is a representation of the nuclear coulombic interaction of the input structure. & \cite{Rupp2012}  \\ \hline
+  PartialRadial- Distribution- Function & Compute the partial radial distribution function of a crystal structure & \cite{Schuett2014}  \\ \hline
+  SineCoulomb- Matrix & Computes a variant of the coulomb matrix developed for periodic crystals. & \cite{Faber2015}  \\ \hline
+  EwaldEnergy & Computes the energy from Coulombic interactions based on charge states of each site. & \cite{Ewald1921}  \\ \hline
+  BondFractions & Compute the fraction of each bond in a structure, based on nearest neighbours. & \cite{Hansen2015}  \\ \hline
+  Structural- Heterogeneity & Calculates the variance in bond lengths and atomic volumes in a structure. & \cite{Ward2017}  \\ \hline
+  MaximumPacking- Efficiency & Calculates the maximum packing efficiency of a structure. & \cite{Ward2017} \\ \hline
+  Chemical- Ordering & Computes how much the ordering of species differs from random in a structure. & \cite{Ward2017}  \\ \hline
   XRDPowder- Pattern & 1D array representing normalized powder diffraction of a structure as calculated by pymatgen. & \cite{Ong2013} \\
   \hline
   \textbf{Site features} & & \\
   \hline
-  AGNI- Fingerprints & Calculates the product integral of RDF and Gaussian window function & \cite{Botu2014}  \\
-  AverageBond- Angle & Determines the average bond angle of a specific site with its nearest neighbors using pymatgens implementation. & \cite{Jong2016}  \\
-  AverageBond- Length & Determines the average bond length between one specific site and all its nearest neighbors using pymatgens implementation. & \cite{Jong2016}  \\
-  BondOrientational- Paramater & Calculates the averages of spherical harmonics of local neighbors & \cite{Seko2017, Steinhardt1983}  \\
-  ChemEnvSite Fingerprint & Calculates the resemblance of given sites to ideal environment using pymatgens ChemEnv package. & \cite{Waroquiers2017, Zimmermann2017}  \\
-  Coordination- Number & The number of first nearest neighbors of a site & \cite{Zimmermann2017}  \\
-  CrystalNN- Fingerprint & A local order parameter fingerprint for periodic crystals. & -  \\
-  GaussianSymm- Func & Calculates the gaussian radial and angular symmetry functions originally suggested for fitting machine learning potentials. & \cite{Behler2011,Khorshidi2016}  \\
-  GeneralizedRadial- Distribution- Function & Computes the general radial distribution function for a site & \cite{Seko2017}  \\
-  LocalProperty- Difference & Computes the difference in elemental properties between a site and its neighboring sites. & \cite{Ward2017, Jong2016} \\
-  OPSite- Fingerprint & Computes the local structure order parameters from a site's neighbor environment. & \cite{Zimmermann2017} \\
+  AGNI- Fingerprints & Calculates the product integral of RDF and Gaussian window function & \cite{Botu2014}  \\ \hline
+  AverageBond- Angle & Determines the average bond angle of a specific site with its nearest neighbors using pymatgens implementation. & \cite{Jong2016}  \\ \hline
+  AverageBond- Length & Determines the average bond length between one specific site and all its nearest neighbors using pymatgens implementation. & \cite{Jong2016}  \\ \hline
+  BondOrientational- Paramater & Calculates the averages of spherical harmonics of local neighbors & \cite{Seko2017, Steinhardt1983}  \\ \hline
+  ChemEnvSite Fingerprint & Calculates the resemblance of given sites to ideal environment using pymatgens ChemEnv package. & \cite{Waroquiers2017, Zimmermann2017}  \\ \hline
+  Coordination- Number & The number of first nearest neighbors of a site & \cite{Zimmermann2017}  \\ \hline
+  CrystalNN- Fingerprint & A local order parameter fingerprint for periodic crystals. & -  \\ \hline
+  GaussianSymm- Func & Calculates the gaussian radial and angular symmetry functions originally suggested for fitting machine learning potentials. & \cite{Behler2011,Khorshidi2016}  \\ \hline
+  GeneralizedRadial- Distribution- Function & Computes the general radial distribution function for a site & \cite{Seko2017}  \\ \hline
+  LocalProperty- Difference & Computes the difference in elemental properties between a site and its neighboring sites. & \cite{Ward2017, Jong2016} \\ \hline
+  OPSite- Fingerprint & Computes the local structure order parameters from a site's neighbor environment. & \cite{Zimmermann2017} \\ \hline
   Voronoi- Fingerprint & Calculates the Voronoi tessellation-based features around a target site. & \cite{Peng2011,Wang2019} \\
   \hline
   \textbf{Density of state features} & & \\
   \hline
-  DOSFeaturizer & Computes top contributors to the density of states at the valence and conduction band edges. Thus includes chemical specie, orbital character, and orbital location information. & \cite{Dylla2020} \\
+  DOSFeaturizer & Computes top contributors to the density of states at the valence and conduction band edges. Thus includes chemical species, orbital character, and orbital location information. & \cite{Dylla2020} \\
   \hline
   \textbf{Band structure features} & & \\
   \hline

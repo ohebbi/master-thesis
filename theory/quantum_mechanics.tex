@@ -201,7 +201,14 @@ The many-particle eigenfunction describes the wavefunction of all the electrons 
 \begin{align}
   \Psi_\kappa^{en}(\boldsymbol{r}, \boldsymbol{R}) \approx \Psi_{\kappa}(\boldsymbol{r}, \boldsymbol{R})\Theta_{\kappa}(\boldsymbol{R}),
 \end{align}
-where the electronic part is dependent on the nuclei. This is in accordance with the assumption above, since electrons can respond instantaneously to a new position of the much slower nucleus, but this is not true for the opposite scenario. From here, one can obtain the electronic and nuclear eigenfunction, with the derivation shown in Appendix \ref{appendix:Born-Oppenheimer}.
+where the electronic part is dependent on the nuclei. This is in accordance with the assumption above, since electrons can respond instantaneously to a new position of the much slower nucleus, but this is not true for the opposite scenario. By utilizing this approximation, it can be shown that the equation can be separated into an electronic and a nuclear eigenvalue equation,
+
+\begin{align}
+      \left( T_e + U_{ee} + U_{en} \right) \Psi_\kappa (\boldsymbol{r},\boldsymbol{R}) &= E_{\kappa}(\boldsymbol{R})\Psi_\kappa(\boldsymbol{r},\boldsymbol{R})\\
+      \left(T_n + U_{nn} + E_\kappa (\boldsymbol{R}) \right) \Theta_\kappa(\boldsymbol{R}) &= E_{\kappa}^{en}(\boldsymbol{R})\Theta_\kappa(\boldsymbol{r},\boldsymbol{R}),
+\end{align}
+where the two equations are coupled by the electronic energy eigenvalue $E_{\kappa}(\boldsymbol{R})$. Since we can consider the nuclei as point charges, it is common to set the kinetic energy of the nuclei, $T_n$, to zero. Thus, the left side of the nuclear eigenvalue equation is shortened down to the terms $\left(U_{nn} + E_\kappa (\boldsymbol{R}) \right)$, which is denoted as the potential energy surface (PES), $E_p(\boldsymbol{R})$.
+%From here, one can obtain the electronic and nuclear eigenfunction, with the derivation shown in Appendix \ref{appendix:Born-Oppenheimer}.
 
 
 \subsection{The Hartree and Hartree-Fock approximations}
@@ -228,7 +235,8 @@ The Hartree-Fock approach, however, overcame this challenge and presented an ant
 \subsection{The variational principle}
 So far, we have tried to make the time-independent Schrödinger equation easier with the use of an \textit{ansatz}, but we do not neccessarily have an adequate guess for the eigenfunctions and the ansatz can only give a rough estimate in most scenarios. Another approach, namely the \textit{variational principle}, states that the energy of any trial wavefunction is always an upper bound to the exact ground state energy by definition $E_0$,
 \begin{align}
-  E_0 = \bra{\psi_0 } H \ket{\psi_0} \leq. \bra{\psi}H\ket{\psi} = E
+  E_0 = \bra{\psi_0 } H \ket{\psi_0} \leq \bra{\psi}H\ket{\psi} = E
+  \label{eq:variational}
 \end{align} This enables a minimization of energy in terms of wavefunction parameters. A more thorough walk-through of the variational principle is included in Appendix \ref{appendix:variational-principle}.
 
 \section{The density functional theory}

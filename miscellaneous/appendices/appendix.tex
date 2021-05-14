@@ -1,5 +1,5 @@
 \chapter{Density functional theory}
-
+\begin{comment}
 \section{The Born-Oppenheimer approximation}
 \label{appendix:Born-Oppenheimer}
 
@@ -23,8 +23,9 @@ Since $\Theta_\kappa(\textbf{R})$ is independent of the the spatial coordinates 
 
 Now, the final integration term can be simplified by using the product rule, which results in
 \begin{align}
-    \Big( T_n+T_n^{'} + T_n^{''} +U_{nn} + E_\kappa(\textbf{R}) \Big)\Theta_\kappa(\textbf{R}) = E_\kappa^{en}\Theta_\kappa (\textbf{R}).
+    \Big( T_n+T_n^{'} + T_n^{''} +U_{nn} + E_\kappa(\textbf{R}) \Big)\Theta_\kappa(\textbf{R}) = E_\kappa^{en}\Theta_\kappa (\textbf{R}),
 \end{align}
+where $T_n$ is the kinetic energy to the nucleus, $U_{nn}$ is the nucleus-nucleus interaction, and $T_n'$ and $T_n^{''}$ are the coupling terms
 If we neglect $T_n'$ and $T_n^{''}$ to lower the computational efforts, we obtain the Born-Oppenheimer approximation with the electronic eigenfunction as
 \begin{align}
     \left( T_e + U_{ee} + U_{en} \right) \Psi_\kappa (\textbf{r},\textbf{R}) = E_{\kappa}(\textbf{R})\Psi_\kappa(\textbf{r},\textbf{R})
@@ -37,14 +38,10 @@ and the nuclear eigenfunction as
 %These two equations are coupled together through the total energy, which is a potential in the nuclear equation.
 How are they coupled, you might ask? The total energy in the electronic equation is a potential in the nuclear equation.
 
+\end{comment}
 \section{The variational principle}
 \label{appendix:variational-principle}
-So far, we have tried to make the time-independent Schrödinger equation easier with the use of an \textit{ansatz}, but we do not neccessarily have an adequate guess for the eigenfunctions and the ansatz can only give a rough estimate in most scenarios. Another approach, namely the \textit{variational principle}, states that the energy of any trial wavefunction is always an upper bound to the exact ground state energy by definition $E_0$.
-\begin{align}
-  E_0 = \bra{\psi_0 } H \ket{\psi_0} \leq \bra{\psi}H\ket{\psi} = E
-  \label{eq:variational}
-\end{align}
-The eigenfunctions of $H$ form a complete set, which means any normalized $\Psi$ can be expressed in terms of the eigenstates
+Here we consider an elaboration of the variational principle. The eigenfunctions of $H$ form a complete set, which means any normalized $\Psi$ can be expressed in terms of the eigenstates
 \begin{align}
   \Psi = \sum_n c_n \psi_n, \quad \textnormal{where} \quad H\psi_n = E_n \psi_n
 \end{align}
@@ -132,7 +129,7 @@ which is a contradiction. Thus, the two external potentials cannot have the same
 \section{Self-consistent field methods}
 \label{appendix:self-consistent}
 
-So, the remaining question is, how do we solve the Kohn-Sham equation? First, we would need to define the Hartree potential, which can be found if we know the electron density. The electron density can be found from the single-electron wave-functions, however, these can only be found from solving the Kohn-Sham equation. This \textit{circle of life} has to start somewhere, but where? The process can be defined as an iterative method, \textit{a computational scheme}, as visualized in figure \ref{fig:flowchart}.
+Here, we consider in detail how to solve the KS equations. First, we would need to define the Hartree potential, which can be found if we know the electron density. The electron density can be found from the single-electron wave-functions, however, these can only be found from solving the Kohn-Sham equation. This \textit{circle of life} has to start somewhere, but where? The process can be defined as an iterative method, \textit{a computational scheme}, as visualized in figure \ref{fig:flowchart}.
 
 \clearpage
 \input{theory/tikz-plots/self-consistent-field.tex}

@@ -3,11 +3,7 @@
 \section{The Born-Oppenheimer approximation}
 \label{appendix:Born-Oppenheimer}
 
-The many-particle eigenfunction describes the wavefunction of all the electrons and nuclei and we denote it as $\Psi_{\kappa}^{en}$ for electrons (e) and nuclei (n), respectively. The Born-oppenheimer approximation assumes that nuclei, of substantially larger mass than electrons, can be treated as fixed point charges. According to this assumption, we can separate the eigenfunction into an electronic part and a nuclear part,
-\begin{align}
-  \Psi_\kappa^{en}(\textbf{r}, \textbf{R}) \approx \Psi_{\kappa}(\textbf{r}, \textbf{R})\Theta_{\kappa}(\textbf{R}),
-\end{align}
-where the electronic part is dependent on the nuclei. This is in accordance with the assumption above, since electrons can respond instantaneously to a new position of the much slower nucleus, but this is not true for the opposite scenario. To our advantage, we already have knowledge of the terms in the many-particle Hamiltonian, and we can begin by separating the Hamiltionian into electronic and nuclear parts:
+We have already have knowledge of the terms in the many-particle Hamiltonian, and we can begin by separating the Hamiltionian into electronic and nuclear parts:
 
 \begin{align}
   \hat{H}^{en} = \overbrace{T_e + U_{ee} + U_{en}}^{\hat{H}^{e}} + \overbrace{T_n + U_{nn}}^{\hat{H}^{n}}.

@@ -31,11 +31,11 @@ The initial thought behind
 
 \end{comment}
 % 139.367, icsd: 52.116, bg: 68141
-The first step of this work was to find data from Materials Project, involving entries that are associated with an ICSD structure and have a PBE-GGA calculated band gap of minimum $0.1$eV. Out of $126.335$ existing entries in Materials Project, $48.644$ ($39\%$) were found to have an associated ICSD-structure, while $65.783$ ($52\%$) materials had a calculated band gap of at least $0.1$eV. We found that $25271$ ($20\%$) materials have the band gap minimum and an associated ICSD-structure. It should be noted that these numbers are based on data extraction in December of $2020$, while the extraction from other databases and featurization related to this work was done in the time period of December $2020$ to March $2021$. In February of $2021$, over $30.000$ new materials were added in a large update\footnote{https://matsci.org/t/materials-project-database-release-log/1609/16}. These new entries are not included in this work, and therefore the number of entries in our dataset is based on the latest release in $2020$, which is named V2020.09.08.%, however there are present more than than $2000$ new entries that satisfy the initial MP requirement now.
+The first step of this work was to find data from Materials Project, involving entries that are associated with an ICSD structure and have a PBE-GGA calculated band gap of minimum $0.1$eV. Out of $126.335$ existing entries in Materials Project, $48.644$ ($39\%$) were found to have an associated ICSD-structure, while $65.783$ ($52\%$) materials had a calculated band gap of at least $0.1$eV. We found that $25271$ ($20\%$) materials have the band gap minimum and an associated ICSD-structure. It should be noted that these numbers are based on data extraction in December of $2020$, while the extraction from other databases and featurization related to this work was done in the time period of December $2020$ to March $2021$. In February of $2021$, over $30.000$ new materials were added in a large update\footnote{https://matsci.org/t/materials-project-database-release-log/1609/16 (Visited 14.05.2021)}. These new entries are not included in this work, and therefore the number of entries in our dataset is based on the latest release in $2020$, which is named V2020.09.08.%, however there are present more than than $2000$ new entries that satisfy the initial MP requirement now.
 
 Two visualizations of two different distributions of the data are found in \autoref{fig:hist_ox} and \autoref{fig:hist_bg}.
 The first figure visualizes the distribution of oxide types as a function of compound type, and reveals that the majority of compounds are either binary, ternary, quarternary or quinary, hence the majority of the materials are oxides.
-This is important to know considering our labelling approaches, in particular the insightful approach where we
+This is important to know considering
 
 \begin{figure}[]
       \centering
@@ -53,9 +53,8 @@ This is important to know considering our labelling approaches, in particular th
       \label{fig:hist_bg}
 \end{figure}
 
-\noindent handpicked suitable entries.
+\noindent our labelling approaches, in particular the insightful approach where we handpicked suitable entries.
 Only a single oxide (ZnO) was deemed a potentially suitable candidate based on observations in Refs. \cite{Zhang2020, Zheng2014, Morfa2012}, which will be interesting to compare towards the different models and approaches.
-
 
 
 The second figure (\autoref{fig:hist_bg}) visualize the compound type as function of band gap, as calculated by Materials Project. Most of the materials present in the data has a band gap lower than $2.3$ eV, where ternary compounds are most prominent. For larger values, we observe that quarternary compounds becomes dominant for larger band gap values.
@@ -66,13 +65,13 @@ Since the true size of a band gap is challenging to determine accurately by ab-i
 All the band gaps to the left are found to be common for all databases through screening of correct structure, space group and ICSD-ID, while the figures to the right are only compared to the experimental database of Citrine Informatics.
 Notably, it was helpful with the ICSD-tag to find similarities due to databases often have different norms and data-structures of descriptors, which proves challenging for comparison of stored calculations.
 %If we were to exclude ICSD-tags
-If the ICSD-tags had been excluded from the data, it would result in a much larger foundation to find similar entries, however, we found that the determination of similar entries would yield a large deviation when it comes to structures. By including an ICSD-tag, the basis of comparison is reduced but the data exhibits more than $98\%$ identical space group for entries in each database compared to Materials Project.
+If the ICSD-tags had been excluded from the data, it would result in a much larger dataset, however, we found that the determination of similar entries would yield a large deviation when it comes to structures. By including an ICSD-tag, the basis of comparison is reduced but the data exhibits more than $98\%$ identical space group for entries in each database compared to Materials Project.
 
 A very small portion of the data extracted from AFLOW was associated with an ICSD-tag, which yielded only $5$ similar entries to the other databases, and therefore we have excluded the database from further consideration.
 
 In \autoref{fig:band gaps}, we observe each entry marked as black or blue dots. The dotted lines visualize the optimal ratio of estimated band gap to experimental values, while the red lines show a linear least square fit to the data with the colored area being the $95\%$ confidence interval. The data that constitute the left figures are based on $82$ similar entries, while the right figures constitute of more entries depending on the respective database. The data restriction was due to a small experimental database.
 
-Initally, we wanted to include the figures to the right in the attempt of reducing the confidence interval with increasing the data points, but instead we find that the uncertainty of the confidence interval increase for all HT-
+Initally, we wanted to include the figures to the right in the attempt of reducing the confidence interval with increasing the data points, but instead
 
 
 \clearpage
@@ -117,9 +116,9 @@ Initally, we wanted to include the figures to the right in the attempt of reduci
 
 \clearpage
 
-\noindent methods.
+\noindent we find that the uncertainty of the confidence interval increase for all HT- methods.
 This is due to the fact that the majority of the new entries are found for low band gap values, where the mismatch between experimental and calculated values are the largest.
-The discrepancy seems to be largest for values under $5$ eV, where entries are either calculated to have a very large band gap where the experimental values report a very low band gap, or the opposite.
+The discrepancy seems to be largest for values under $5$ eV, where entries are either calculated to have a very large band gap and the experimental values report a very low band gap, or the opposite.
 The data extracted from the experimental database is not associated with an ICSD-entry, space group or structure. Therefore, we cannot accurately determine if the experimental data is based on an identical material as found in the HT-databases. However, the same data of experimental values have been considered through other articles \cite{Ward2018, Ferrenti2020}.
 
 Notably, the functional applied for Materials Project are found to underestimate the band gap with $30-60\%$ while OQMD underestimates the band gap by $25-55\%$. AFLOW-ML also severily underestimates the band gap by $30-60\%$, but additionally have problems to accurately predict if a material is a metal or not. Many materials with both experimental and ab-initio calculations that showed a band gap of more than $1$ eV was predicted as metals by AFLOW-ML. JARVIS-DFT, on the other hand, was found to underestimate the band gap by $20-60\%$ for the OptB88 and $0-30\%$ for TB-mBJ functionals.
@@ -136,20 +135,18 @@ Notably, the functional applied for Materials Project are found to underestimate
 In the evaluation of the approaches, we apply a $5\times 5$ stratified cross-validation when iterating through the hyperparameter combinations. We acknowledge that the three approaches exhibit imbalanced datasets, similar to the dataset in the Validation chapter. Adjusting the class balance for the latter case helped with reducing the variance in a very small data set and class ratio of $1:9$. In this section, we find all three approaches to have substantially larger datasets than the cubic perovskite dataset, thus we choose to not apply any technique for balancing the classes. Instead, we apply four different algorithms to compare them to each other, and use four different evaluation metrics to estimate how the classifiers are performing. %Interestingly,   %There is a wide field of other techniques that deal with the vulnerabilites of imbalanced datasets \cite{Lemaitre2016}, but they a
 % Thus, we choose to not apply any technique for balancing the classes, but rather find the compromise
 
-For random forest, gradient boost and decision tree, we found that by adjusting most of the available parameters responded to severe overfitting. Therefore, most parameters are the default values defined by Scikit-learn. The only parameter that we found could potentially improve the evaluation metric $f1$ was maximum number of depth for the trees grown, which we adjusted between $1$ and $8$. For logistic regression, we choose to adjust the regulariation strength with seven logarithmical adjusted values $10^{-3}$ to $10^{5}$, and use either $200$ or $400$ iterations to reach convergence.
+For random forest, gradient boost and decision tree, we found that by adjusting most of the available parameters responded to severe overfitting. Therefore, most parameters are the default values defined by Scikit-learn. The only parameter that we found could potentially improve the evaluation metric $F1$ was maximum number of depth for the trees grown, which we adjusted between $1$ and $8$. For logistic regression, we choose to adjust the regulariation strength with seven logarithmical adjusted values $10^{-3}$ to $10^{5}$, and use either $200$ or $400$ iterations to reach convergence.
 
 When searching for the optimal number of principal components, we iterated over every odd number of principal components from $1$ to the upper restricted number which defines an accumulated variance of $95\%$ from the principal component analysis. Due to the large number of principal components, we end up fitting $25$ folds for each of $1232$ parameter combinations, totalling up to $30800$ individual models, just for logistic regression for one approach. This serves as an additional motivator to keep the models simple, and accordingly shows how easy an initial complex step might evolve into an unfeasible amount of information. Therefore, we will not make an extensive analysis for every model, but emphasize important distinctions between the general models and provide background for principal choices made. However, it should be noted that a larger automated analysis is distributed through the MIT license at the Github repository \textit{predicting-solid-state-qubit-candidates} \cite{Ohebbi2021}.
 
 
 \subsection{The Ferrenti approach}
 
-We visualize the grid search for the optimal number of principal components in \autoref{fig:01-pca}, where we present the mean accuracy on the training set, and the balanced accuracy, precision, recall and f1 score on the test set as a function of principal components used in the models. For each principal component, we visualize the optimal combination of hyperparameters based on the f1-score in the model. Common to all models is the improvement of scores up to around $50$ principal components, where random forest and the decision tree slowly starts to overfit for larger values. For decision trees, we observe a large fluctuation for principal components larger than $100$. The f1-score is not varying as much as the other metrics due to an increasing number of positive predictions. This means that the accuracy of positive predictions are dominating the overall accuracy measurement, and we would expect a large amount of training data being predicted as positive candidates for those combinations. However, we see that the fluctuations are smaller in size for the optimal number of principal components.
+We visualize the grid search for the optimal number of principal components in \autoref{fig:01-pca}, where we present the mean accuracy on the training set, and the balanced accuracy, precision, recall and F1 score on the test set as a function of principal components used in the models. For each principal component, we visualize the optimal combination of hyperparameters based on the F1-score in the model. Common to all models is the improvement of scores up to around $50$ principal components, where random forest and the decision tree slowly starts to overfit for larger values. For decision trees, we observe a large fluctuation for principal components larger than $100$. The F1-score is not varying as much as the other metrics due to an increasing number of positive predictions. This means that the accuracy of positive predictions are dominating the overall accuracy measurement, and we would expect a large amount of training data being predicted as positive candidates for those combinations. However, we see that the fluctuations are smaller in size for the optimal number of principal components.
 
 The random forest model is similar to the decision tree model, which also shows sign of overfitting for larger values of principal components. The recall score is unaltered for increasing principal components, but consequently we find the precision declining due to a large amount of predicted false positives.  However, as a result of an ensemble of decision trees, it show smaller signs of overfitting than the indications seen by the decision tree algorithm.
 
 Gradient boost, on the other hand, experiences minor changes for larger number of principal components, where the optimal number of components marked could be $50$ principal components less without any remarks to the models metrics. Notably, only a few principal components yields almost $100\%$ training accuracy for GB, while not showing any clear sign of overfitting. Similarly, logistic regression shows signs of almost a perfect classifier, with high scores for all metrics.
-
-In \autoref{tab:01-pc}, we find the precise measurements for each evaluation metric for the optimal number of principal components, which is visualized as
 
 \clearpage
 
@@ -183,7 +180,7 @@ In \autoref{tab:01-pc}, we find the precise measurements for each evaluation met
     \label{fig:q1-GB}
   \end{subfigure}
   \vspace*{-130mm}
-  \caption{{Four figures displaying hyperparameter search for the Ferrenti approach. The best estimator is visualized for all hyperparameters as a function of principal components during a grid search with a $5\times5$ stratified cross validation, and the dotted lines marks the optimal hyperparameter-combination. Train stands for normal training accuracy, while test is the balanced accuracy on the test set. Precision, recall and f1 scores are based on the test set. The number of principal components that explain the $95\%$ accumulated variance is $144$, while the optimal model is found using the $f1$ score.}}
+  \caption{{Four figures displaying hyperparameter search for the Ferrenti approach. The best estimator is visualized for all hyperparameters as a function of principal components during a grid search with a $5\times5$ stratified cross validation, and the dotted lines marks the optimal hyperparameter-combination. Train stands for normal training accuracy, while test is the balanced accuracy on the test set. Precision, recall and F1 scores are based on the test set. The number of principal components that explain the $95\%$ accumulated variance is $144$, while the optimal model is found using the F1 score.}}
   \label{fig:01-pca}
 \end{figure}
 
@@ -197,7 +194,7 @@ In \autoref{tab:01-pc}, we find the precise measurements for each evaluation met
 \begin{tabular}{M{1.0cm} M{1.0cm} M{2.0cm} M{2.0cm}M{2.0cm}M{2.0cm} }
   \hline
   \hline
-   Model & PC & Mean test &  Mean precision & Mean recall & mean f1\\
+   Model & PC & Mean test &  Mean precision & Mean recall & mean F1\\
   \hline
   LOG & $171$ & $0.98(0.012)$ & $0.98(0.011)$ & $0.99(0.007)$ & $0.99(0.007)$ \\
   DT & $37$   & $0.77(0.034)$ & $0.84(0.034)$ & $0.85(0.044)$ & $0.84(0.022)$ \\
@@ -224,8 +221,7 @@ In \autoref{tab:01-pc}, we find the precise measurements for each evaluation met
   \label{fig:gb-01-overfit}
 \end{wrapfigure}
 
-
-\noindent dotted lines in \autoref{fig:01-pca}. The relevant hyperparameters for logistic regression were the maximum iterations, which was set at $400$, and the regulariation term, which was found optimal at $0.46$. For random forest and decision trees, we find the maximum depth of $7$, while gradient boost was found to overfit for deeper depths, as visualized in \autoref{fig:gb-01-overfit} and thus we found an optimal compromise at $4$. We find that the best performing model is logistic regression, but is dependent on a large amount of principal components. Random forest and gradient boost perform comparably, with and f1 score of $0.93$ and $0.95$, respectively. However, it seems that only logistic regression is able to improve for additional principal components after the first $100$.
+\noindent In \autoref{tab:01-pc}, we find the precise measurements for each evaluation metric for the optimal number of principal components, which is visualized as dotted lines in \autoref{fig:01-pca}. The relevant hyperparameters for logistic regression were the maximum iterations, which was set at $400$, and the regulariation term, which was found optimal at $0.46$. For random forest and decision trees, we find the maximum depth of $7$, while gradient boost was found to overfit for deeper depths, as visualized in \autoref{fig:gb-01-overfit} and thus we found an optimal compromise at $4$. We find that the best performing model is logistic regression, but is dependent on a large amount of principal components. Random forest and gradient boost perform comparably, with and F1 score of $0.93$ and $0.95$, respectively. However, it seems that only logistic regression is able to improve for additional principal components after the first $100$.
 
 
 
@@ -282,7 +278,7 @@ We note that looking at feature importance can be regarded as misleading for dat
 
 \subsection{The augmented Ferrenti approach}
 
-For the augmented Ferrenti approach, we find the parameter grid search for principal components visualized in \autoref{fig:02-pca}. All models experience an almost perfect recall score for $1$ principal component due to the largely imbalanced dataset with $2141$ suitable and $684$ unsuitable candidates, which is a ratio of $75:25 \%$. This is a result due to the models being able to correctly label many suitable candidates compared to the amount of labelling them as unsuitable candidates. On the other hand, we find a small precision for $1$ component since the model predicts many materials, both actually labelled suitable and unsuitable, as suitable candidates, and the latter case is in particularly large. This trend is revealed when looking at the balanced accuracy score. For all figures, it remains the lowest score of the evaluation metrics largely due to the inaccuracy of true negatives for the cross validations. Therefore, one can argue that we should use the balanced accuracy score for evaluation and not the f1 score, but the choice is independent on evaluation metric since the optimal f1 score is also the optimal balanced accuracy score for all figures.
+For the augmented Ferrenti approach, we find the parameter grid search for principal components visualized in \autoref{fig:02-pca}. All models experience an almost perfect recall score for $1$ principal component due to the largely imbalanced dataset with $2141$ suitable and $684$ unsuitable candidates, which is a ratio of $75:25 \%$. This is a result due to the models being able to correctly label many suitable candidates compared to the amount of labelling them as unsuitable candidates. On the other hand, we find a small precision for $1$ component since the model predicts many materials, both actually labelled suitable and unsuitable, as suitable candidates, and the latter case is in particularly large. This trend is revealed when looking at the balanced accuracy score. For all figures, it remains the lowest score of the evaluation metrics largely due to the inaccuracy of true negatives for the cross validations. Therefore, one can argue that we should use the balanced accuracy score for evaluation and not the F1 score, but the choice is independent on evaluation metric since the optimal F1 score is also the optimal balanced accuracy score for all figures.
 
 
 \begin{table}[!ht]
@@ -293,7 +289,7 @@ For the augmented Ferrenti approach, we find the parameter grid search for princ
 \begin{tabular}{M{1.0cm} M{1.0cm} M{2.0cm} M{2.0cm}M{2.0cm}M{2.0cm} }
   \hline
   \hline
-   Model & PC & Mean test &  Mean precision & Mean recall & mean f1\\
+   Model & PC & Mean test &  Mean precision & Mean recall & mean F1\\
   \hline
   LOG & $175$ & $0.98(0.008)$ & $0.99(0.004)$ & $0.99(0.004)$ & $0.99(0.003)$ \\
   DT & $25$   & $0.69(0.034)$ & $0.86(0.015)$ & $0.93(0.021)$ & $0.90(0.008)$ \\
@@ -352,7 +348,7 @@ The optimal hyperparameters are summarized in \autoref{tab:02-pc}. We find that 
     \label{fig:q2-GB}
   \end{subfigure}
   \vspace*{-130mm}
-  \caption{{Four figures displaying hyperparameter search for the augmented Ferrenti approach. The best estimator is visualized for all hyperparameters as a function of principal components during a grid search with a $5\times5$ stratified cross validation, and the dotted lines marks the optimal hyperparameter-combination. Train stands for normal training accuracy, while test is the balanced accuracy on the test set. Precision, recall and f1 scores are based on the test set. The number of principal components that explain the $95\%$ accumulated variance is $159$, while the optimal model is found using the $f1$ score.}}
+  \caption{{Four figures displaying hyperparameter search for the augmented Ferrenti approach. The best estimator is visualized for all hyperparameters as a function of principal components during a grid search with a $5\times5$ stratified cross validation, and the dotted lines marks the optimal hyperparameter-combination. Train stands for normal training accuracy, while test is the balanced accuracy on the test set. Precision, recall and F1 scores are based on the test set. The number of principal components that explain the $95\%$ accumulated variance is $159$, while the optimal model is found using the F1 score.}}
   \label{fig:02-pca}
 \end{figure}
 
@@ -378,7 +374,7 @@ Logistic regression experiences improvement of all scores for increasing number 
 \begin{tabular}{M{1.0cm} M{1.0cm} M{2.0cm} M{2.0cm}M{2.0cm}M{2.0cm} }
   \hline
   \hline
-   Model & PC & Mean test & Mean precision & Mean recall  & mean f1\\
+   Model & PC & Mean test & Mean precision & Mean recall  & mean F1\\
   \hline
   LOG & $61$  & $0.99(0.011)$ & $0.97(0.032)$ & $0.99(0.016)$ & $0.98(0.018)$ \\
   DT & $9$    & $0.96(0.019)$ & $0.95(0.040)$ & $0.95(0.033)$ & $0.95(0.026)$ \\
@@ -389,7 +385,7 @@ Logistic regression experiences improvement of all scores for increasing number 
 }
 \end{table}
 
-The optimal hyperparameters are summarized in \autoref{tab:03-pca}, where all models exhibit high evalution metrics. Importantly, we find the difference in number of principal component as most prominent, where logistic regression finds an optimum at $61$ with the f1 score of $0.98$. The decision tree model use only $9$ principal components to achieve a $f1$ score of $0.95$, while random forest needs $27$ principal components to gain a f1 score of $0.97$. Lastly,
+The optimal hyperparameters are summarized in \autoref{tab:03-pca}, where all models exhibit high evalution metrics. Importantly, we find the difference in number of principal component as most prominent, where logistic regression finds an optimum at $61$ with the F1 score of $0.98$. The decision tree model use only $9$ principal components to achieve a F1 score of $0.95$, while random forest needs $27$ principal components to gain a F1 score of $0.97$. Lastly,
 
 \begin{figure}[ht!]
   \begin{subfigure}[b]{1.0\textwidth}
@@ -421,7 +417,7 @@ The optimal hyperparameters are summarized in \autoref{tab:03-pca}, where all mo
   \end{subfigure}
 
   \vspace*{-130mm}
-  \caption{{Four figures displaying hyperparameter search for the insightful approach. The best estimator is visualized for all hyperparameters as a function of principal components during a grid search with a $5\times5$ stratified cross validation, and the dotted lines marks the optimal hyperparameter-combination. Train stands for normal training accuracy, while test is the balanced accuracy on the test set. Precision, recall and f1 scores are based on the test set. The number of principal components that explain the $95\%$ accumulated variance is $103$, while the optimal model is found using the $f1$ score.}}
+  \caption{{Four figures displaying hyperparameter search for the insightful approach. The best estimator is visualized for all hyperparameters as a function of principal components during a grid search with a $5\times5$ stratified cross validation, and the dotted lines marks the optimal hyperparameter-combination. Train stands for normal training accuracy, while test is the balanced accuracy on the test set. Precision, recall and F1 scores are based on the test set. The number of principal components that explain the $95\%$ accumulated variance is $103$, while the optimal model is found using the F1 score.}}
   \label{fig:03-pca}
 \end{figure}
 
@@ -461,7 +457,7 @@ The optimal hyperparameters are summarized in \autoref{tab:03-pca}, where all mo
   \label{fig:03-fi}
 \end{wrapfigure}
 
-\noindent gradient boost performs optimally at $13$ principal components with a mean f1 score of $0.96$. The relevant hyperparameters were the regularization term for logistic regression, which was set as $0.021$, and the maximum number of iterations as $400$. The decision tree used an maximum depth of $6$, where larger values increased the training accuracy but not any other metric. Random forest was set with maximum depth of $6$, and gradient boost was given $4$.
+\noindent gradient boost performs optimally at $13$ principal components with a mean F1 score of $0.96$. The relevant hyperparameters were the regularization term for logistic regression, which was set as $0.021$, and the maximum number of iterations as $400$. The decision tree used an maximum depth of $6$, where larger values increased the training accuracy but not any other metric. Random forest was set with maximum depth of $6$, and gradient boost was given $4$.
 
 The insightful approach differs in many aspects from the Ferrenti or augmented Ferrenti approach. Firstly, we find that the number of principal components neccessary to obtain $95\%$ variance is reduced to $103$ components, which is $41$ and $56$ less than the Ferrenti or augmented Ferrenti approach, respectively. Thus, the variance of the training set is found to be described with fewer principal components, indicating a simpler model.
 

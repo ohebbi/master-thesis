@@ -1,4 +1,4 @@
-\chapter{Predicting novel material hosts for QT}
+\chapter{Predicting novel material hosts for quantum technology}
 
 Using the four algorithms, optimized at each of the three approaches, and applying them to the case of predicting materials as suitable material hosts for QT, yields $12$ sets of results. In this chapter we present sets of representative results for each approach. Because of their length, we provide comprehensive tables of the machine learning classifications of the test sets and the training sets in Ref. \cite{Ohebbi2021}.
 
@@ -81,7 +81,8 @@ The summary of the test set reveals that all of the unlabelled known suitable ca
 
 \section{The insightful approach}
 
-Finally, we turn to the insightful approach, with the results displayed in \autoref{fig:03-predictions}. The four models predicts radically fewer suitable candidates compared to the two latter approaches, where only $842$, $1197$, $543$ and $596$ materials are predicted suitable by logistic regression, decision tree, random forest and gradient boost, respectively. Random forest  The large majority of the unsuitable candidates are predicted with high probability except for the random forest model due to the ensemble of trees. All models, however, agree on $214$ suitable candidates, whereas $51$ of them have a MP calculated band gap of $0.5$ eV or smaller.
+Finally, we turn to the insightful approach, with the results displayed in \autoref{fig:03-predictions}. The four models predicts radically fewer suitable candidates compared to the two latter approaches, where only $842$, $1197$, $543$ and $596$ materials are predicted suitable by logistic regression, decision tree, random forest and gradient boost, respectively. Random forest  The large majority of the unsuitable candidates are predicted with high probability except for the random forest model due to the ensemble of trees. All models, however, agree on $214$ suitable candidates, whereas $51$ of them have a MP calculated band gap of $0.5$ eV or smaller. We note that due to time difference for the data extraction, the test data differs in
+the test data for the insightful approach is done with the overlapping entries of the featurized data set and the V2021.03.22 version of Materials Project. Consequently, the data differs in $77$ ($0.3\%$) compounds from the insightful approach and the two other approaches.
 
 %Of the predicted suitable candidates, we find the smallest MP calculated band gap as $0.11$ eV, while it is $0.10$ eV for the entire test data. This material is ZnCu$_2$GeSe$_4$,
 
@@ -113,10 +114,10 @@ It crystallizes in a non-polar space group, posesses no magnetic moment, has str
 
 %Random forest, due to the average of trees, experience a smaller probability than the other models. If we leave the model out, we gain a list of $65$ predicted suitable candidates for the three other models with probability of at least $80\%$.
 
-The work of \citeauthor{Ferrenti2020} \cite{Ferrenti2020} suggests a list of 541 viable hosts, where we find only a single material present in our list of $69$ candidates in \autoref{tab:03-probability-candidates}. This material is the nontoxic MgSe (mp-$10760$), which crystallize in the rock-salt structure.
+The work of \citeauthor{Ferrenti2020} \cite{Ferrenti2020} suggests a list of 541 viable hosts, where we find only a single material present in our list of $66$ candidates in \autoref{tab:03-probability-candidates}. This material is the nontoxic MgSe (mp-$10760$), which crystallize in the rock-salt structure.
 It has a MP calculated band gap of $1.98$ eV, and an experimental band gap of $5.6$ eV \cite{SaumGeorge1959}. It consists of spin-zero isotopes in accordance to the criteria set by the authors. We believe this criteria favors spin centers in qubits, where MgSe could be a prominent candidate.
 
-Of the $69$ materials mentioned above, we emphasize the presence of Ge, GeC, BP and InP. Ge in cubic structure (mp-$1198022$) share many similar properties with Si and C as well as sharing periodic column number. In fact, the first transistors was made in germanium to its appealing eletrical properties, but silicon took over as the material of choice for microelectronics due to the outstanding quality of silicone dioxide, which allowed the fabrication and integration of increasingly smaller transistors \cite{Scappucci2020, Pillarisetty2011}. Ge has the highest hole mobility of semiconductors at room temperature, and is therefore considered a key material for the process of extending the chip performance in classical computers beyond the limits imposed by miniaturization \cite{Scappucci2020}.
+Of the $66$ materials mentioned above, we emphasize the presence of Ge, GeC, BP and InP. Ge in cubic structure (mp-$1198022$) share many similar properties with Si and C as well as sharing periodic column number. In fact, the first transistors was made in germanium to its appealing eletrical properties, but silicon took over as the material of choice for microelectronics due to the outstanding quality of silicone dioxide, which allowed the fabrication and integration of increasingly smaller transistors \cite{Scappucci2020, Pillarisetty2011}. Ge has the highest hole mobility of semiconductors at room temperature, and is therefore considered a key material for the process of extending the chip performance in classical computers beyond the limits imposed by miniaturization \cite{Scappucci2020}.
 
 GeC (mp-$1002164$) has a cubic structure and consists of corner-sharing GeC$_4$ tetrahedras. It is non-magnetic, has a MP reported band gap of $1.849$ eV and is highly covalent. The energy above hull per atom is $0.44$ eV, thus reported unstable. Interestingly, SiC is found as a suitable host material, and we encourage further research of GeC due to its comparable properties.
 
@@ -124,7 +125,9 @@ BP (mp-$1479$, mp-$1008559$) is present in the predictions as cubic and hexagona
 
 Lastly, we will mention the prediction of InP (mp-$966800$) as a suitable candidate. The compound inhabit a hexagonal structure with corner sharing InP$_4$ tetrahedras. It has a MP calculated direct band gap of $0.51$ eV, and is considered as one of the most promising candidates of Cd- or Pb- based QDs in the application of display and lighting \cite{Zhang2020a, Won2019}.
 
-By further reducing the probability of predictions down to $50\%$ for all models, we eventually find noble gases and other materials existing as gas in standard conditions. These gases are described in the data with no ionic character, no electronegativity, low covalent radius, large band gaps and simple structures. Furthermore, they are missing entries on most of the descriptors and we do not have a feature describing any physics of these gases. Due to that the models consider them as coin-flip and the large amount of missing features, we believe we can regard them as outliers, and they are therefore not added additional consideration.
+By further reducing the probability of predictions down to $50\%$ for all models, we eventually find noble gases and other compounds existing as gas in standard conditions. These gases are described in the data with no ionic character, no electronegativity, low covalent radius, large band gaps and simple structures. Furthermore, there are associated errors with the features for these compounds in Materials Project (which has been adressed in the Materials Project version of V2021.05.13\footnote{https://matsci.org/t/materials-project-database-release-log/1609/18 (Visited on 14.05.2021)}). We believe they can be considered as outliers, and they are therefore not added additional consideration. 
+
+%Due to that the models consider them as coin-flip and the large amount of missing features, we believe we can regard them as outliers, and they are therefore not added additional consideration.
 
 \begin{figure}[ht!]
     \centering
@@ -150,7 +153,7 @@ Of the $214$ suitable candidates predicted by all models in the insightful appro
 
 \begin{center}
 \begin{longtable}{M{3.0cm} M{3.0cm} M{3.5cm}}
-\caption[]{A table displaying the $69$ predicted candidates that all models in the insightful approach agreed on with more than $75\%$ probability. All band gaps (BG) are found from Materials Project, and materials can appear several times on the list due to different structures. The list involves nine elementary (unary), $45$ binary and $14$ ternary compounds.}
+\caption[]{A table displaying the $66$ predicted candidates that all models in the insightful approach agreed on with more than $75\%$ probability. All band gaps (BG) are found from Materials Project, and materials can appear several times on the list due to different structures. The list involves nine elementary (unary), $45$ binary and $14$ ternary compounds.}
 \label{tab:03-probability-candidates} \\
 \hline
 \hline
@@ -172,7 +175,6 @@ Compound formula & MP ID & MP Calculated BG [eV]
 
 \hline \hline
 \endlastfoot
-  Ne & mp-111 & 11.80 \\
   Ge & mp-137 & 0.87\\
   CdTe & mp-406 & 1.22\\
   HgSe & mp-820 & 0.12\\
@@ -216,8 +218,6 @@ Compound formula & MP ID & MP Calculated BG [eV]
   AgI & mp-22919 & 1.00\\
   AgI & mp-22925 & 1.72\\
   Br & mp-23154 & 1.32\\
-  He & mp-23156 & 17.77\\
-  He & mp-23158 & 17.65\\
   TlI & mp-23197 & 2.25\\
   AgBr & mp-23231 & 0.79\\
   BC$_2$N & mp-30148 & 2.10\\

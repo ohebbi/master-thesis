@@ -2,7 +2,7 @@
 
 This chapter will provide a brief overview of the current state-of-the-art in quantum technological advances. This will not only give us insights in how the technology is being used today, but also grant us the opportunity to discuss key concepts that are fundamental for this thesis. Thereafter we will look into how materials are composed, and what kind of properties a material needs to exhibit to be an eligible host for quantum devices. Finally, we will give a few specific examples of materials with promising point defects that have been comprehensively researched. Importantly, this will motivate the reasoning for finding new materials that might excel in areas where other materials falls short for utilization in quantum technology.
 
-\section{Quantum technology (QT)}
+\section{Quantum technology}
 \textit{Quantum technology} (QT) refers to practical applications and devices that utilize the principles of quantum physics as a foundation. Technologies in this spectrum are based on concepts such as \textit{superposition}, \textit{entanglement} and \textit{coherence}, which are all closely related to one another.
 
 A quantum superposition refers to that any two or more quantum eigenstates can be added together into another valid quantum state, such that every quantum state can be represented as a sum, or a superposition, of two or more distinct states. This is according to the wave-particle duality which states that every particle or another quantum entity may be described as both a particle or a wave. When measuring the state of a system residing in a superposition of eigenstates, however, the system falls back to one of the basis states that formed the superposition, destroying the original configuration.
@@ -15,7 +15,7 @@ Quantum coherence arises if two waves coherently interfere with each other and g
 
 Another concept that the reader should be familiar with is the famous Heisenberg uncertainty principle. It states that
 \begin{align}
-    \sigma_x \sigma_p \leq \frac{\hslash}{2},
+    \sigma_x \sigma_p \geq \frac{\hslash}{2},
     \label{eq:uncertainty}
 \end{align}
 where $\sigma_x$ is the standard deviation for the position and $\sigma_p$ is the standard deviation in momentum. This means that we cannot accurately predict both the position and momentum of a particle at the same time. Thus, we often calculate the probability for a particle to be in a state which results in concepts such as an electron cloud surrounding an atom core. However, remember that \autoref{eq:uncertainty} is an inequality, which means that it is possible to create a state where neither the position nor the momentum is well defined.
@@ -219,7 +219,7 @@ perhaps the most promising application can be seen in quantum sensing by employi
 
 Unfortunately, the NV center displays several drawbacks that may limit the use in quantum communication and computation. In particular, the amount of emission into the zero-phonon line is only $4 \%$ at $6$ K \cite{Barclay2011}. The emission of the qubit center is not completely compatible with current optical fiber technologies, since the emission is in the red region of the wavelength spectrum. Additionally, fabricating materials of diamond is challenging. This serves as an important incentive to find other promising qubit candidates.
 
-\subsection{Qubit material host requirements}
+\subsection{Material host requirements}
 \label{ssec:qubit-material-host-requirements}
 Therefore, we turn to the search of other QT compatible hosts that offer similar capabilities, but that have more mature material growth and processing. In particular, we need to search for new promising materials that can host a potential qubit and/or SPS point defect. \citeauthor{Weber2010} \cite{Weber2010} proposed in 2010 four criteria that should be met for a solid-state semiconductor material hosting a qubit defect, where some of the criteria has already been discussed. An ideal crystalline host should have \cite{Weber2010}
 \begin{itemize}

@@ -4,7 +4,7 @@ The information stream of this project can be regarded as many modular parts con
 
 Furthermore, by having several modules serving as the fundament of the project, it is possible to achieve a long-lasting and robust product that is simple to maintain yet straightforward to develop. Bugs can be tackled through a documented code simultaneously as visible future improvements can be adressed. Therefore, the product is not regarded as completed in any terms, but rather ready for a first release after iteratively finding the mimimum viable product.
 
-The main project of this work can be found on the Github repository \textit{predicting-solid-state-qubit-candidates} \cite{Ohebbi2021}. In this chapter we will look into the details and thoughts behind the extraction of data, constructing features, data preparation, data mining and eventually fabricating a generalized model that can predict potential candidates with confidence.
+The main project of this work can be found on the Github repository \textit{predicting-solid-state-qubit-material-hosts} \cite{Ohebbi2021}. In this chapter we will look into the details and thoughts behind the extraction of data, constructing features, data preparation, data mining and eventually fabricating a generalized model that can predict potential candidates with confidence.
 
 \section{Extraction and featurization of data}
 
@@ -57,7 +57,7 @@ To provide a Python example, we can check the response by doing a GET request at
 
 For this section, we will show practical examples of how to extract data that might fulfill the criteria for a material to host a qubit candidate given in the theory part. We will begin with the database of Materials Project, and then search for entries in other databases that match entries from MP. The databases in question are the ones refered to in the previous section.
 
-Instead of building multiple HTTP-methods from scratch, we will here take a look at the easiest method of obtaining data from each database. The range of data in a database can consist of data from a few entries up to an unlimited amount of entries with even further optional parameters, and has limitless use in applications. However, the amount of data in a database is irrelevant if the data is inaccessible. Therefore, we provide a toolbox in how to extract information in the easiest way possible. This includes looking into the APIs that supports data-extraction and that are recommended by each respective database.
+Instead of building multiple HTTP-methods from scratch, we will here take a look at the easiest method of obtaining data from each database. The range of data in a database can consist of data from a few entries up to an unlimited amount of entries with even further optional parameters, and has limitless use in applications. However, the amount of data in a database is irrelevant if the data is inaccessible. Therefore, we provide a toolbox for extracting information in the easiest way possible. This includes looking into the APIs that supports data-extraction and that are recommended by each respective database.
 
 %The guide will focus on three main bulletpoints; accessibility, speed of extraction and versatility of API. Additionally, the guide will make the reader aware of the current state of documentation that exists of each database.
 

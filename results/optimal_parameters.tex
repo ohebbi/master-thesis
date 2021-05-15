@@ -31,11 +31,15 @@ The initial thought behind
 
 \end{comment}
 % 139.367, icsd: 52.116, bg: 68141
-The first step of this work was to find data from Materials Project, involving entries that are associated with an ICSD structure and have a PBE-GGA calculated band gap of minimum $0.1$eV. Out of $126.335$ existing entries in Materials Project, $48.644$ ($39\%$) were found to have an associated ICSD-structure, while $65.783$ ($52\%$) materials had a calculated band gap of at least $0.1$eV. We found that $25271$ ($20\%$) materials have the band gap minimum and an associated ICSD-structure. It should be noted that these numbers are based on data extraction in December of $2020$, while the extraction from other databases and featurization related to this work was done in the time period of December $2020$ to March $2021$. In February of $2021$, over $30.000$ new materials were added in a large update\footnote{https://matsci.org/t/materials-project-database-release-log/1609/16 (Visited 14.05.2021)}. These new entries are not included in this work, and therefore the number of entries in our dataset is based on the latest release in $2020$, which is named V2020.09.08.%, however there are present more than than $2000$ new entries that satisfy the initial MP requirement now.
+The first step of this work was to find data from Materials Project, involving entries that are associated with an ICSD structure and have a PBE-GGA calculated band gap of minimum $0.1$eV. Out of $126.335$ existing entries in Materials Project, $48.644$ ($39\%$) were found to have an associated ICSD-structure, while $65.783$ ($52\%$) materials had a calculated band gap of at least $0.1$eV. We found that $25271$ ($20\%$) materials have the band gap minimum and an associated ICSD-structure. It should be noted that these numbers are based on data extraction in December of $2020$, while the extraction from other databases and featurization related to this work was done in the time period of December $2020$ to March $2021$. In February of $2021$, over $30.000$ new materials were added and several materials deprecated in the V2021.03.22 version of Materials Project\footnote{https://matsci.org/t/materials-project-database-release-log/1609/16 (Visited 14.05.2021)}. This update is only included for the insightful approach, which means that the Ferrenti approach and the augmented Ferrenti approach includes $77$ ($0.3\%$) more compounds than the insightful approach.
+
+%We note that due to time difference for the data extraction, the test data differs in
+%the test data for the insightful approach is done with the overlapping entries of the featurized data set and the V2021.03.22 version of Materials Project. Consequently, the data differs in $77$ ($0.3\%$) compounds from the insightful approach and the two other approaches.
+
+%and therefore the number of entries  in our dataset is based on the latest release in $2020$, which is named V2020.09.08.%, however there are present more than than $2000$ new entries that satisfy the initial MP requirement now.
 
 Two visualizations of two different distributions of the data are found in \autoref{fig:hist_ox} and \autoref{fig:hist_bg}.
-The first figure visualizes the distribution of oxide types as a function of compound type, and reveals that the majority of compounds are either binary, ternary, quarternary or quinary, hence the majority of the materials are oxides.
-This is important to know considering
+The first figure visualizes the distribution of oxide types as a function of compound type, and reveals that the majority of compounds are either binary, ternary, quarternary or quinary, hence the
 
 \begin{figure}[]
       \centering
@@ -53,7 +57,8 @@ This is important to know considering
       \label{fig:hist_bg}
 \end{figure}
 
-\noindent our labelling approaches, in particular the insightful approach where we handpicked suitable entries.
+\noindent majority of the materials are oxides.
+This is important to know considering our labelling approaches, in particular the insightful approach where we handpicked suitable entries.
 Only a single oxide (ZnO) was deemed a potentially suitable candidate based on observations in Refs. \cite{Zhang2020, Zheng2014, Morfa2012}, which will be interesting to compare towards the different models and approaches.
 
 
@@ -71,7 +76,8 @@ A very small portion of the data extracted from AFLOW was associated with an ICS
 
 In \autoref{fig:band gaps}, we observe each entry marked as black or blue dots. The dotted lines visualize the optimal ratio of estimated band gap to experimental values, while the red lines show a linear least square fit to the data with the colored area being the $95\%$ confidence interval. The data that constitute the left figures are based on $82$ similar entries, while the right figures constitute of more entries depending on the respective database. The data restriction was due to a small experimental database.
 
-Initally, we wanted to include the figures to the right in the attempt of reducing the confidence interval with increasing the data points, but instead
+Initally, we wanted to include the figures to the right in the attempt of
+reducing the confidence interval with increasing the data points, but instead
 
 
 \clearpage

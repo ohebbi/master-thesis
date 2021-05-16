@@ -1,10 +1,10 @@
 \chapter{Machine learning}
 
-The enourmous amount of data generated in the digital world today is beyond comprehension. In $2019$, more than $500$ hours of video was uploaded to Youtube every second, totalling to over $82$ years of content every day\footnote{Source: https://www.youtube.com/intl/no/about/press extracted 15.02.2021}. In addition, more than $1.5$ billion web sites exists\footnote{Source: https://www.statista.com/chart/19058/how-many-websites-are-there extracted 29.03.2021}.
+The enormous amount of data generated in the digital world today is beyond comprehension. In $2019$, more than $500$ hours of video was uploaded to Youtube every second, totaling over $82$ years of content every day\footnote{Source: https://www.youtube.com/intl/no/about/press extracted 15.02.2021}. In addition, more than $1.5$ billion web sites exists\footnote{Source: https://www.statista.com/chart/19058/how-many-websites-are-there extracted 29.03.2021}.
 
-However, an increasing amount of data comes hand in hand with an increasing demand of knowledge about the data. If we are unable to extract information from the data, the data serves no intention and exists as an excess. Therefore, we need methods to process and automate data analysis, which is what the promises of \textit{machine learning} covers. Machine learning can reveal patterns in data with ease where a human would face difficulties, and use this information to predict or generate new data. Many tools in machine learning is based on probability theory, which can be applied to problems involving uncertainty. Thus, machine learning is also commonly named \textit{statistical learning} \cite{Murphy2012}.
+However, an increasing amount of data comes hand in hand with an increasing demand for knowledge about the data. If we are unable to extract information from the data, the data serves no intention and exists as an excess. Therefore, we need methods to process and automate data analysis, which is what the promises of \textit{machine learning} cover. Machine learning can reveal patterns in data with ease where a human would face difficulties, and use this information to predict or generate new data. Many tools in machine learning are based on probability theory, which can be applied to problems involving uncertainty. Thus, machine learning is also commonly named \textit{statistical learning} \cite{Murphy2012}.
 
-There are mainly two types of machine learning, either \textit{supervised} or \textit{unsupervised} learning. In unsupervised learning we are given inputs $\mathcal{D}=\{\boldsymbol{x}_i\}^N_{i=1}$, where $\boldsymbol{x}_i$ is a training input that has $D$-dimensions that describes each entry, where each dimension is known as a \textit{feature} or a \textit{descriptor}. The features could be exemplified as height or weight, or it could be something complex that has no practical meaning (at least not to humans). Since there are no features describing what an entry is, it is up to the tools of machine learning to find patterns in the data, and is the essence of unspervised learning.
+There are mainly two types of machine learning, either \textit{supervised} or \textit{unsupervised} learning. In unsupervised learning we are given inputs $\mathcal{D}=\{\boldsymbol{x}_i\}^N_{i=1}$, where $\boldsymbol{x}_i$ is a training input that has $D$-dimensions that describes each entry, where each dimension is known as a \textit{feature} or a \textit{descriptor}. The features could be exemplified as height or weight, or it could be something complex that has no practical meaning (at least not to humans). Since no features are describing what an entry is, it is up to the tools of machine learning to find patterns in the data and is the essence of unsupervised learning.
 In the supervised approach, on the other hand, the model tries to learn a mapping from inputs $\boldsymbol{x}$ to outputs $y$, given a labeled set of pairs $\mathcal{D}=\{(\boldsymbol{x}_i, y_i)\}^N_{i=1}$. The set $\mathcal{D}$ is known as the training set, and $N$ is the number of entries.
 The flexibility of the shape of a feature is also shared with the output. It can in principle be anything, but it is mostly assumed that the output is either \textit{categorical} or \textit{nominal} restricted by a finite set $y_i \in \{1,...,\mathcal{C} \}$. The problem is defined as \textit{classification} if the output is categorical, or \textit{regression} if the output is real-valued \cite{Murphy2012}.
 
@@ -14,7 +14,7 @@ The flexibility of the shape of a feature is also shared with the output. It can
 
 Supervised learning applied to classification has as goal to learn the target output $y \in \{1,..,\mathcal{C}\}$ from the inputs $\boldsymbol{x}$. The number of classes is $\mathcal{C}$, and depicts if the classification is \textit{binary} ($\mathcal{C}=2$), \textit{multiclass} ($\mathcal{C}>2$), or \textit{multi-label} if the class labels are not mutually exclusive (exemplified with the weather can be both sunny and cold at the same time). Normally, classification is used when the problem is formulated as a multiclass classification, and hereon we will adapt to this formulation as well \cite{Murphy2012}.
 
-In order to be able to learn from data, we will need to formulate a function approximate. Assume $y = f(x) + \epsilon$ for some unknown function $f$ and a random error term $\epsilon$ with mean zero. We can then try to approximate $f$ from a labeled training set, which we can use to make the predictions $\hat{y}=\hat{f}(\boldsymbol{x})$. With the estimated $\hat{f}$ we can make predictions on unlabeled data and achieve a \textit{generalized model}. The estimated function $\hat{f}$ is often considered as a black box, since we are not neccessarily interested in the exact shape of the function but rather the predictions.
+In order to be able to learn from data, we will need to formulate a function approximate. Assume $y = f(x) + \epsilon$ for some unknown function $f$ and a random error term $\epsilon$ with mean zero. We can then try to approximate $f$ from a labeled training set, which we can use to make the predictions $\hat{y}=\hat{f}(\boldsymbol{x})$. With the estimated $\hat{f}$ we can make predictions on unlabeled data and achieve a \textit{generalized model}. The estimated function $\hat{f}$ is often considered as a black box, since we are not necessarily interested in the exact shape of the function but rather the predictions.
 
 As simple as the idea behind supervised classification appears, a generalized model remains deeply dependent on the available data. Imagine a training set containing two entries. The first entry is a young and tall person labeled healthy. The other entry is an old and short person labeled sick. The pattern in this simple scenario is abundantly clear, but will face a challenge if it were to predict on a test set containing a person who is young and short. Therefore, it is desirable to compute the probability of an entry belonging to one class. The probability distribution is given by $p(y|\boldsymbol{x}, \mathcal{D})$, where the probability is conditional on the input vector (test set) $x$ and the training set $\mathcal{D}$. If the output is probabilistic, we can compute the estimation to the true label as
 \begin{align}
@@ -72,7 +72,7 @@ E\left[(\boldsymbol{y}-\boldsymbol{\hat{y}})^2\right] &=  E[(\boldsymbol{f}-E[\b
 \end{align*}
 
 \end{comment}
-The first term on the right hand side is the squared bias, the amount by which the average of our estimate differs from the true mean, while the second term represents the variance of the chosen model. The last term is the variance of the error $\boldsymbol{\epsilon}$, also known as the irreducible error. In general, an estimated function $\hat{f}$ will never be a perfect estimate for $f$ since we can not reduce the error introduced by $\boldsymbol{\epsilon}$. Therefore, any model will always be restricted to an upper bound of accuracy due to the irreducible error.
+The first term on the right-hand side is the squared bias, the amount by which the average of our estimate differs from the true mean, while the second term represents the variance of the chosen model. The last term is the variance of the error $\boldsymbol{\epsilon}$, also known as the irreducible error. In general, an estimated function $\hat{f}$ will never be a perfect estimate for $f$ since we can not reduce the error introduced by $\boldsymbol{\epsilon}$. Therefore, any model will always be restricted to an upper bound of accuracy due to the irreducible error.
 
 \input{theory/tikz-plots/bias-variance.tex}
 
@@ -81,7 +81,7 @@ A model with high variance will typically experience larger fluctuations around 
 
 \subsection{Accuracy, precision and recall}
 
-Given a model that has dealt with the intricacy of increasing complexity, we would like to evaluate the model's output quality. For a binary supervised classification problem we can measure the accuracy by finding how many correct predictions have been made. Prediction accuracy can provide a fine initial analysis, but it has some significant drawbacks seen in unbalanced datasets. This can be easily explained with a dataset consisting of $99:1$ ratio of class, since just guessing the majority class will result in a very high $99\%$ accuracy. Perhaps it is the $1\%$ that is the most important class, thus the accuracy score severely lacks information for the model.
+Given a model that has dealt with the intricacy of increasing complexity, we would like to evaluate the model's output quality. For a binary supervised classification problem, we can measure the accuracy by finding how many correct predictions have been made. Prediction accuracy can provide a fine initial analysis, but it has some significant drawbacks seen in unbalanced datasets. This can be easily explained with a dataset consisting of a $99:1$ ratio of class, since just guessing the majority class will result in a very high $99\%$ accuracy. Perhaps it is the $1\%$ that is the most important class, thus the accuracy score severely lacks information for the model.
 
 Therefore, we turn to other evaluation metrics such as a \textit{a confusion matrix}. A confusion matrix is a method for measuring the performance of classifiers \cite{Murphy2012}. It is set up as a table with 4 different categories, where two of the categories are the predicted outcomes of the classifier and the two final categories are the true outcomes. An example of a confusion matrix for a binary classifier is shown in \autoref{tab:confusion_matrix}.
 
@@ -89,7 +89,7 @@ Therefore, we turn to other evaluation metrics such as a \textit{a confusion mat
   \centering
   \renewcommand\arraystretch{1.5}
   \setlength\tabcolsep{0pt}
-  \caption{A confusion matrix for a binary classifier. The entries true positive and true negative on the diagonal of the matrix are correctly predictions, while false positive and false negative are wrongly made predictions. P and N are the total number positive and negative predictions, respectively. Similarly, P$'$ and N$'$ are the number of true positive or negative labels, respectively.}
+  \caption{A confusion matrix for a binary classifier. The entries true positive and true negative on the diagonal of the matrix are correct predictions, while false-positive and false-negative are wrongly made predictions. P and N are the total number of positive and negative predictions, respectively. Similarly, P$'$ and N$'$ are the number of true positive or negative labels, respectively.}
   \label{tab:confusion_matrix}
   \begin{tabular}{c >{\bfseries}r @{\hspace{0.7em}}c @{\hspace{0.4em}}c @{\hspace{0.7em}}l}
     \multirow{10}{*}{\parbox{1.1cm}{\bfseries\raggedleft Actual\\ label}} &
@@ -100,7 +100,7 @@ Therefore, we turn to other evaluation metrics such as a \textit{a confusion mat
     & total & P & N &
   \end{tabular}
   \end{table}
-For the binary confusion matrix there are two possible predicted outcomes, either positive or negative. This gives rise to some terminology.
+For the binary confusion matrix, there are two possible predicted outcomes, either positive or negative. This gives rise to some terminology.
 
 \begin{itemize}
 \item True Positive (TP): The classifier correctly predicts a positive event.
@@ -115,45 +115,45 @@ For the binary confusion matrix there are two possible predicted outcomes, eithe
 \text{Sensitivity} = \frac{TN}{TN + FP}.
 \end{align}
 
-\item \textbf{Recall}, also known as the true positive rate, is the ratio of the number of correct positive examples to the number classified as positive. A high recall relates to a low false negative rate, and is defined as
+\item \textbf{Recall}, also known as the true positive rate, is the ratio of the number of correct positive examples to the number classified as positive. A high recall relates to a low false-negative rate and is defined as
 \begin{align}
 \text{Recall} = \frac{TP}{TP + FN}.
 \end{align}
 
-\item \textbf{Precision} is the ratio of correct positive examples to the number of actual positive examples. A high precision relates to a low false positive rate, and is defined as  \\
+\item \textbf{Precision} is the ratio of correct positive examples to the number of actual positive examples. A high precision relates to a low false-positive rate, and is defined as  \\
 \begin{align}
 \text{Precision} = \frac{TP}{TP + FP}.
 \end{align}
-\end{itemize} Similar to the bias-variance tradeoff, it is common to compare the recall with the precision to identify the tradeoff for different thresholds. High scores for both reveals that a classifier returns accurate results combined with returning a majority of all positive results.
+\end{itemize} Similar to the bias-variance tradeoff, it is common to compare the recall with the precision to identify the tradeoff for different thresholds. High scores for both reveal that a classifier returns accurate results combined with returning a majority of all positive results.
 
 
-Sometimes a classifier can have drastically different values for the precision and recall. This leads to another estimator for the performance of a classifier, which is known as the F1-score. The F1-score is defined as the harmonic mean of precision and recall,
+Sometimes a classifier can have drastically different values for precision and recall. This leads to another estimator for the performance of a classifier, which is known as the F1-score. The F1-score is defined as the harmonic mean of precision and recall,
 \begin{align*}
 \text{F1-score} = \frac{2\cdot \text{Recall} \cdot \text{Precision}}{\text{Recall} + \text{Precision}},
 \end{align*}
-and can be used to find a good tradeoff between recall and precision. The highest value of F1-score is $1$ and is considered an ideal classifier, while the lowest is $0$.
+and can be used to find a good tradeoff between recall and precision. The highest value of the F1-score is $1$ and is considered an ideal classifier, while the lowest is $0$.
 
-However, the F1 score is insensitive to the number of negative predictions. Therefore, an adjustment of the normal accuracy is in place. The name of this metric is called the balanced accuracy, which equally weights how many true positive and true negative,
+However, the F1-score is insensitive to the number of negative predictions. Therefore, an adjustment of the normal accuracy is in place. The name of this metric is called the balanced accuracy, which equally weights how many true positive and true negative,
 \begin{align*}
   \text{Balanced accuracy} = \frac{1}{2} \left( \frac{\text{TP}}{\text{TP} + \text{FN}} + \frac{\text{TN}}{\text{TN} + \text{FP}} \right),
 \end{align*}
 which makes it particular handy for imbalanced datasets.
 
-We have now only scratched the surface of potential evaluation metrics, and as a final note we would like to emphasize that it is up to the implementer which evaluation metric one should use. %Therefore, one can consider the choice of metric as a subjective choice.
+We have now only scratched the surface of potential evaluation metrics, and as a final note, we would like to emphasize that it is up to the implementer which evaluation metric one should use. %Therefore, one can consider the choice of metric as a subjective choice.
 
 %Therefore, the amount of evaluation metrics and methods one can implement are vast, and it should be noted that the final note
 %On an end note, we repeat that the final evaluation of which metric to choose is up to
 
-\subsection{Cross validation}
+\subsection{Cross-validation}
 \label{cross-validation}
 When evaluating different parameters for models, commonly done in a grid-search scheme, there is an abundant risk of performing an overfit to the test set since we can tweak the parameters to a model so it can perform optimally. To solve this problem, we can exclude a part of the dataset as a validation set (in addition to a test set). Therefore, we can train a model on the training set, and evaluate the parameters on the validation set. After a lot of trial and error and the experiment seems successful, we can do one final evaluation on the test set.
 
-Unfortunately, this reduces the number of samples that can be used for training drastically. A fix for this is to apply \textit{cross validation} (CV) \cite{Murphy2012}. Cross validation is a technique used to evaluate predictive models by partitioning the original sample into a training set to train the model, and a test set to evaluate it.
+Unfortunately, this reduces the number of samples that can be used for training drastically. A fix for this is to apply \textit{cross-validation} (CV) \cite{Murphy2012}. Cross-validation is a technique used to evaluate predictive models by partitioning the original sample into a training set to train the model, and a test set to evaluate it.
 
 \input{theory/tikz-plots/cv.tex}
-\noindent It is common to apply cross validation into folds, yielding the name of k-fold cross validation. In k-fold cross validation the training set is partioned into k equal sized subsamples, as visualized in \autoref{fig:cv}. Of the k samples, a single sample is used as validation set while the remaining k-1 samples are used as training data. The process is then repeated k-times, such that each of the k subsamples are used as a validation set exactly once. Therefore, all observations are used for both training and validation, and each observation is used for validation exactly once. The k results from the folds can then be averaged to produce an estimate. The subsamples are allowed to have an imbalanced dataset, so that each class is not neccessarily represented equally in each fold. Since supervised algorithms tend to weigh each instance equally, this may result in overrepresented classes being favored during training of the model. Even worse could be the result of a fold where one class is not represented at all, resulting in a model that do not learn how to predict a class at all.
+\noindent It is common to apply cross-validation into folds, yielding the name of k-fold cross-validation. In k-fold cross-validation, the training set is partitioned into k equal-sized subsamples, as visualized in \autoref{fig:cv}. Of the k samples, a single sample is used as a validation set while the remaining k-1 samples are used as training data. The process is then repeated k-times, such that each of the k subsamples is used as a validation set exactly once. Therefore, all observations are used for both training and validation, and each observation is used for validation exactly once. The k results from the folds can then be averaged to produce an estimate. The subsamples are allowed to have an imbalanced dataset, so that each class is not necessarily represented equally in each fold. Since supervised algorithms tend to weigh each instance equally, this may result in overrepresented classes being favored during the training of the model. Even worse could be the result of a fold where one class is not represented at all, resulting in a model that does not learn how to predict a class at all.
 
-To deal with the vulnerability of imbalanced datasets in CV, one can employ a stratified k-fold cross validation technique. Stratification is a process that seeks to ensure that each fold is representative of all classes (also named \textit{strata} in this context) in the data, making each fold having approximately equal class-representation.
+To deal with the vulnerability of imbalanced datasets in CV, one can employ a stratified k-fold cross-validation technique. Stratification is a process that seeks to ensure that each fold is representative of all classes (also named \textit{strata} in this context) in the data, making each fold having approximately equal class representation.
 
 \section{Logistic regression}
 
@@ -168,7 +168,7 @@ p(x) = \frac{1}{1+ e^{-x}} = \frac{e^{x}}{1+ e^{x}}.
 p(y_i|\boldsymbol{x}_i \boldsymbol{\beta}) = \frac{e^{(\boldsymbol{x}_i \boldsymbol{\beta})}}{1 + e^{(\boldsymbol{x}_i \boldsymbol{\beta})}}.
 \end{align*}
 
-\noindent The goal of logistic regression is then to correctly predict the category of a given dataset, which has different outcomes, by using an optimal parameter $\boldsymbol{\beta}$ that maximises the probability of seeing the observed data. How we find the parameters $\boldsymbol{\beta} = {\beta_1, \beta_2, ..., \beta_p}$ of the model, is to use the principle of \textit{maximum likelihood estimation} (MLE),
+\noindent The goal of logistic regression is then to correctly predict the category of a given dataset, which has different outcomes, by using an optimal parameter $\boldsymbol{\beta}$ that maximizes the probability of seeing the observed data. How we find the parameters $\boldsymbol{\beta} = {\beta_1, \beta_2, ..., \beta_p}$ of the model, is to use the principle of \textit{maximum likelihood estimation} (MLE),
 
 % We aim thus at maximizing the probability of seeing the observed data. We can then approximate the likelihood in terms of the product of the individual probabilities of a specific outcome yi, that is
 
@@ -183,18 +183,18 @@ P(\boldsymbol{\beta}) = \prod_{i=1}^{n} \left[ p(y_i=1|\boldsymbol{x}_i \boldsym
 C(\boldsymbol{\beta}) = \sum_{i=1}^n \left(y_i\left(\boldsymbol{x}_i \boldsymbol{\beta}\right) - \log{ \left(1 + \exp \left(\boldsymbol{x}_i \boldsymbol{\beta}\right)\right)}  \right).
 \end{align*}
 
-\noindent Finally, we choose our cost function as the \textit{cross entropy}, which is defined as the negative log-likelihood,
+\noindent Finally, we choose our cost function as the \textit{cross-entropy}, which is defined as the negative log-likelihood,
 
 % Note that maximising the logarithm of a function is equivalent to maximising the function itself.
 % Thus taking \beta to maximise the log-likelihood is equivalent to maximising the likelihood itself.
-% Finally, we take our cost function to be the so called cross entropy which is defined as the negative log-likelihood.
+% Finally, we take our cost function to be the so called cross-entropy which is defined as the negative log-likelihood.
 
 %
 \begin{align*}
 C(\boldsymbol{\beta}) = - \sum_{i=1}^n \left(y_i\left(\boldsymbol{x}_i \boldsymbol{\beta}\right) - \log{ \left(1 + \exp \left(\boldsymbol{x}_i \boldsymbol{\beta}\right)\right)}  \right).
 \end{align*}
 
-\noindent To maximize the accuracy and precision of the logistic regression model, we need to find the optimal parameters $\boldsymbol{\beta}$ by minimising the cross entropy.
+\noindent To maximize the accuracy and precision of the logistic regression model, we need to find the optimal parameters $\boldsymbol{\beta}$ by minimizing the cross-entropy.
 
 \subsection{Stochastic gradient descent}
 
@@ -208,34 +208,34 @@ C(\boldsymbol{\beta}) = \sum_{i=1}^{n} c_i(\boldsymbol{x}_i,\beta).
 \nabla_{\beta} C(\boldsymbol{\beta}) =  \sum_{i=1}^{n} \nabla_{\beta} c_i(\boldsymbol{x}_i,\beta)
 \end{align*}
 
-\noindent Then, it is possible to introduce a randomness by only taking the gradient on a small interval of the data, called a minibatch. With $n$ total data points, and $M$ datapoints per minibatch, the number of minibatches is then $\frac{n}{M}$.
+\noindent Then, it is possible to introduce randomness by only taking the gradient on a small interval of the data, called a minibatch. With $n$ total data points, and $M$ datapoints per minibatch, the number of mini-batches is then $\frac{n}{M}$.
 
-The idea is now to approximate the gradient by replacing the sum over all data points with a sum over the data points in one of the minibatches picked at random in each gradient descent step,
+The idea is now to approximate the gradient by replacing the sum over all data points with a sum over the data points in one of the mini-batches picked at random in each gradient descent step,
 
 \begin{align*}
 \nabla_{\beta} C(\boldsymbol{\beta}) =  \sum_{i=1}^{n} \nabla_{\beta} c_i(\boldsymbol{x}_i,\beta) \to \sum_{i \in B_k}^{n} \nabla_{\beta} c_i(\boldsymbol{x}_i,\beta),
 \end{align*}
 
- \noindent where $B_k$ is the set of all minibatches, with $k=1, ..,\frac{n}{M}$. One step of gradient descent is then defined by
+ \noindent where $B_k$ is the set of all mini-batches, with $k=1, ..,\frac{n}{M}$. One step of gradient descent is then defined by
 
 \begin{align*}
 \beta_{j+1} = \beta_j - \gamma_j \sum_{i \in B_k}^{n} \nabla_{\beta} c_i(\boldsymbol{x}_i,\beta)
 \end{align*}
 
-\noindent where $k$ is picked at random with equal probability from $[1, \frac{n}{M}]$ and $\gamma_j$ is the step length. An iteration over the number of minibathces $(\frac{n}{M})$ is commonly referred to as an epoch. Thus, it is typical to choose a number of epochs and for each epoch iterate over the number of minibatches.
+\noindent where $k$ is picked at random with equal probability from $[1, \frac{n}{M}]$ and $\gamma_j$ is the step length. An iteration over the number of mini-batches $(\frac{n}{M})$ is commonly referred to as an epoch. Thus, it is typical to choose a number of epochs and for each epoch iterate over the number of mini-batches.
 
 \section{Decision trees}
-Classification and regression trees (CART), also called decision trees, are one of the more basic supervised algorithms. They can be used for both regression and classification tasks, but we will for the relevancy of this work provide a special emphasis to classification trees.  %The strength of decision trees lays within the simplicity that allows to build more complex networks.
+Classification and regression trees (CART), also called decision trees, are one of the more basic supervised algorithms. They can be used for both regression and classification tasks, but we will for the relevancy of this work provide a special emphasis on classification trees.  %The strength of decision trees lays within the simplicity that allows to build more complex networks.
 %We will in this section provide special emphasis to classification trees, but with some remarks to the regression trees to provide a brief perspective of distinctions.
 
-The idea behind decision trees is to find the features that contain the most information regarding the target, and then split up the dataset along the values of these features. This feature selection enables the target values for the resulting underlying dataset to be as \textit{pure} as possible, which means the dataset only contains one class \cite{Murphy2012}. The features that can reproduce the best target features are normally said to be the most informative features.
+The idea behind decision trees is to find the features that contain the most information regarding the target and then split up the dataset along the values of these features. This feature selection enables the target values for the resulting underlying dataset to be as \textit{pure} as possible, which means the dataset only contains one class \cite{Murphy2012}. The features that can reproduce the best target features are normally said to be the most informative features.
 
 A decision tree can be divided into a \textit{root node}, \textit{interior nodes}, and the final \textit{leaf nodes}, commonly known as \textit{terminal nodes}. The nodes are connected by \textit{branches}. The decision tree is able to learn an underlying structure of the training data and can, given some assumptions, make predictions on unseen observations. These predictions are based on the information stored in the leaf nodes in the tree.
 
 \input{theory/tikz-plots/decision-tree.tex}
-\noindent The process behind a decision tree can be seen as a top-down approach. First, we make a leaf provide the classification of a given instance. Then, a node specifies a test of some attribute of the instance, while a branch corresponds to a possible value of an attribute. Subsequently, the instance move down the tree branch corresponding to the value of the attribute. Then the steps can be repeated for a new subtree rooted at the new node.
+\noindent The process behind a decision tree can be seen as a top-down approach. First, we make a leaf provide the classification of a given instance. Then, a node specifies a test of some attribute of the instance, while a branch corresponds to a possible value of an attribute. Subsequently, the instance moves down the tree branch corresponding to the value of the attribute. Then the steps can be repeated for a new subtree rooted at the new node.
 
-A classification tree differs from a regression tree by the response of the prediction, since it produces a qualitative response rather than a quantitative one. The response is given by the most commonly occuring class of training observations specified by the attribute of the node. A schematic representation of a classification tree is visualised in \autoref{fig:decision-tree}. %Thus, the interpretation process includes both the class prediction corresponding to a particular terminal node region, but also in the class proportions among the training observations that fall into that region.
+A classification tree differs from a regression tree by the response of the prediction, since it produces a qualitative response rather than a quantitative one. The response is given by the most commonly occurring class of training observations specified by the attribute of the node. A schematic representation of a classification tree is visualized in \autoref{fig:decision-tree}. %Thus, the interpretation process includes both the class prediction corresponding to a particular terminal node region, but also in the class proportions among the training observations that fall into that region.
 
 \subsection{Growing a classification tree}
 
@@ -243,9 +243,9 @@ In growing a classification tree, a process called recursive binary splitting is
 
 \begin{enumerate}
   \item Split the set of possible values $(x_1, x_2,...,x_p)$ into $J$ distinct non-overlapping regions $R_1, R_2, ..., R_{J}$.
-  \item If an observation falls within the region $R_J$, we make the prediction given by the most commonly occuring class of training observations in $R_{J}$.
+  \item If an observation falls within the region $R_J$, we make the prediction given by the most commonly occurring class of training observations in $R_{J}$.
 \end{enumerate}
-The computational aspect of recursively doing this for every possible combination of features does not defend its use, and therefore the common strategy is to use a top-down approach. Binary splitting begins at the top of the tree and consecutively splits the \textit{predictor space}, which is a space that describes all possible combinations of the features in the dataset. This is indicated by two new branches further down the tree. It should be noted that the top-down approach is a greedy approach, since the best split is made at each step of the tree-growing process, instead of trying to pick a split that will lead to a better tree in a future step.
+The computational aspect of recursively doing this for every possible combination of features does not defend its use, and therefore the common strategy is to use a top-down approach. Binary splitting begins at the top of the tree and consecutively splits the \textit{predictor space}, which is a space that describes all possible combinations of the features in the dataset. This is indicated by two new branches further down the tree. It should be noted that the top-down approach is a greedy approach since the best split is made at each step of the tree-growing process, instead of trying to pick a split that will lead to a better tree in a future step.
 
 We can define a \textit{probability density function} (PDF) $p_{mk}$ that represents the number of observations $k$ in a region $R_m$ with $N_m$ observations. This likelihood function can be represented in terms of observations of a class in region $R_m$ as
 \begin{align}
@@ -263,7 +263,7 @@ and the information entropy
 \begin{align}
   s = - \sum_{k=1}^{K} p_{mk} \log p_{mk}.
 \end{align}
-The two latter approaches are more sensitive to node purity than the misclassification error, i.e. only containing one class, and are in general preferred \cite{Murphy2012} for splitting of the nodes in a decision tree.
+The two latter approaches are more sensitive to node purity than the misclassification error, i.e. only containing one class, and are generally preferred \cite{Murphy2012} for the splitting of the nodes in a decision tree.
 
 \subsection{Classification algorithm}
 The CART algorithm splits the data set in two subsets using a single feature $k$ and a threshold $t_k$. The pair of quantities $(k,t_k)$ that constitute the purest subset using the Gini factor $G$ results in the cost function
@@ -274,19 +274,19 @@ where $G_{\text{left}}$ ($G_{\text{right}}$) measures the impurity of the left (
 
 \subsection{Pruning a tree}
 
-A decision tree has the ability to turn into a very complex model, making it prone to overfitting. Pre-puning is a method that stops the growing of a tree if the decrease in error is not sufficient to justify an increasingly complex model by adding an extra subtree. However, this method should not be implemented for models with a large number of features, since features with small predictive powers might be extensively removed which might result in a tree without any splits at all \cite{Murphy2012}. Post-pruning, or just pruning, is the standard method which involves growing the tree to full size, and then prune the tree by cutting branches. To determine how much to prune it, we can use a cross-validated scheme to evaluate the amount of terminal nodes that has the lowest error.
+A decision tree has the ability to turn into a very complex model, making it prone to overfitting. Pre-pruning is a method that stops the growth of a tree if the decrease in error is not sufficient to justify an increasingly complex model by adding an extra subtree. However, this method should not be implemented for models with a large number of features, since features with small predictive powers might be extensively removed which might result in a tree without any splits at all \cite{Murphy2012}. Post-pruning, or just pruning, is the standard method that involves growing the tree to full size, and then prune the tree by cutting branches. To determine how much to prune it, we can use a cross-validated scheme to evaluate the number of terminal nodes that have the lowest error.
 
 
 %However, this implementation has the liability for features that have small predictive power as this might cause a model without any splits at all.
 \subsection{Pros and cons of decision trees}
 
-Decision trees have several clear advantages compared to other algorithms. They are easy to understand and can be visualised effortlessly for small trees. The algorithm is completely invariant to scaling of the data since each feature is processed separately. Additionally, decision trees can handle both continuous and categorical data and can model interactions between different descriptive features.
+Decision trees have several clear advantages compared to other algorithms. They are easy to understand and can be visualized effortlessly for small trees. The algorithm is completely invariant to the scaling of the data since each feature is processed separately. Additionally, decision trees can handle both continuous and categorical data and can model interactions between different descriptive features.
 
-As auspicious the advantages of decision trees seems, they are inevitably prone to overfitting and hence does not generalize well. Even with pre-pruning, post-pruning and setting a maximum depth of terminal nodes, the algorithm is still prone to overfit \cite{Guido2016}. Another important issue concerns training on unbalanced datasets where one class occurs more frequently than other classes, since this will lead to biased trees because the algorithm will favor the more occuring class. Furthermore, small changes in the data may lead to a completely different tree. Many of these issues can be adressed by using ensemble methods such as either bagging, random forest, or boosting, and can result in a solid improvement of the predictive perfomance of trees.
+As auspicious as the advantages of decision trees seems, they are inevitably prone to overfitting and hence do not generalize well. Even with pre-pruning, post-pruning and setting a maximum depth of terminal nodes, the algorithm is still prone to overfit \cite{Guido2016}. Another important issue concerns training on unbalanced datasets where one class occurs more frequently than other classes, since this will lead to biased trees because the algorithm will favor the more occurring class. Furthermore, small changes in the data may lead to a completely different tree. Many of these issues can be addressed by using ensemble methods such as either bagging, random forest, or boosting, and can result in a solid improvement of the predictive performance of trees.
 
 \section{Ensemble methods}
 
-By using a single decision tree, we often end up with an overfitted model that possess a high variance. Luckily, we can apply methods that aggregate different machine learning algorithms to reduce variance. If each of the algorithms get slightly different results, as they learn different parts of the data, we can combine the results into something that is better than any one algorithm alone. These approaches fall under the categorory of ensemble methods, and will be elaborated upon in this section. % to construct complex forests, or perhaps more appropiately named \textit{jungles}.
+By using a single decision tree, we often end up with an overfitted model that possesses a high variance. Luckily, we can apply methods that aggregate different machine learning algorithms to reduce variance. If each of the algorithms gets slightly different results, as they learn different parts of the data, we can combine the results into something that is better than any algorithm alone. These approaches fall under the category of ensemble methods and will be elaborated upon in this section. % to construct complex forests, or perhaps more appropiately named \textit{jungles}.
 
 \subsection{Bagging}
 
@@ -315,13 +315,13 @@ where $f_b$ is the $b$'th tree. Simply re-running the same algorithm on differen
  \label{alg:randomforest}
 \end{algorithm}
 
-\noindent By introducing randomness into the model, we arrive at a suprisingly capable model that has a high predictive accuracy \cite{Caruana2006}. This can be exemplified by supposing that there is one strong predictor in a dataset, together with several other fairly strong predictors. Most of the trees will use this strong predictor at the top split, which means that the bagged trees will look quite similar to each other and will have highly correlated predictions.
+\noindent By introducing randomness into the model, we arrive at a surprisingly capable model that has a high predictive accuracy \cite{Caruana2006}. This can be exemplified by supposing that there is one strong predictor in a dataset, together with several other fairly strong predictors. Most of the trees will use this strong predictor at the top split, which means that the bagged trees will look quite similar to each other and will have highly correlated predictions.
 
-However, even with higher prediction accuracy, it comes as a compromise since we lose the easy ability of model interpretation. A single tree can be easy to understand, but interpretation of a huge jungle of trees does not neccessarily seem appealing for even an experienced data scientist. Furthermore, a random forest does not substantially reduce the variance as averaging many uncorrelated trees would do, as we will soon find out.
+However, even with higher prediction accuracy, it comes as a compromise since we lose the easy ability of model interpretation. A single tree can be easy to understand, but the interpretation of a huge jungle of trees does not necessarily seem appealing for even an experienced data scientist. Furthermore, a random forest does not substantially reduce the variance as averaging many uncorrelated trees would do, as we will soon find out.
 
 \subsection{Boosting}
 
-Boosting is an ensemble method that fits an additive expansion in a set of elementary basis functions \cite{Murphy2012}. The basic idea is to combine several weak classifiers, that are only just better than a random guess, in order to create a good classifier. This can be done in an iterative approach were we apply a weak classifier to modify the data. For each iteration, we make sure to weigh the observations that are misclassified with a factor. The method is known as adaptive boosting, since the algorithm is able to adapt during the learning process.
+Boosting is an ensemble method that fits an additive expansion in a set of elementary basis functions \cite{Murphy2012}. The basic idea is to combine several weak classifiers, that are only just better than a random guess, in order to create a good classifier. This can be done in an iterative approach where we apply a weak classifier to modify the data. For each iteration, we make sure to weigh the observations that are misclassified with a factor. The method is known as adaptive boosting since the algorithm is able to adapt during the learning process.
 
 In \textit{forward stagewise additive modeling} we want to find an adaptive model
 \begin{align}
@@ -426,7 +426,7 @@ So far, this only optimizes $f$ at a fixed set of points, but we can modify it b
 
 \section{Dimensionality reduction}
 %There are several different methods to evaluate a model with many different types of scores such as accuracy, precision and F1-scores.
-Supervised learning introduces models that can be easy to understand, visualize and has well-defined tools and models. However, a dataset can be tedious to work with due to a large amount of descriptors. These descriptors may also be correlated, which means that no new information will be learned from a correlated feature and therefore could be disregarded. Furthermore, a large dataset pose a computational challenge and a reduction in descriptors could potentially reduce the computational time and effort required for any data analysis. Therefore, it would be beneficial to apply a method that finds correlated descriptors and reduce dimensionality of a dataset. This is the idea of \textit{principal component analysis} (PCA).
+Supervised learning introduces models that can be easy to understand, visualize, and has well-defined tools and models. However, a dataset can be tedious to work with due to a large number of descriptors. These descriptors may also be correlated, which means that no new information will be learned from a correlated feature and therefore could be disregarded. Furthermore, a large dataset poses a computational challenge, and a reduction in descriptors could potentially reduce the computational time and effort required for any data analysis. Therefore, it would be beneficial to apply a method that finds correlated descriptors and reduce the dimensionality of a dataset. This is the idea of \textit{principal component analysis} (PCA).
 
 %Unfortunately, this does not transfer to unsupervised learning. In unsupervised learning, there is no simple goal for the analysis and the evaluation tends to be of a subjective matter. Therefore, unsupervised learning is often used as an \textit{exploratory data analysis} \cite{James2017}. For data consisting of hundreds or thousands of features, it is possible to apply unsupervised learning to find correlated features and reduce dimensionality of the data, potentially reducing computational effort and time usage drastically. This is the idea of \textit{principal component analysis} (PCA).
 
@@ -458,7 +458,7 @@ The covariance can take values between $\pm \infty$, which give rise to computat
 \begin{align}
   \mathrm{corr}[\boldsymbol{u},\boldsymbol{v}]=\frac{\mathrm{cov}[\boldsymbol{u},\boldsymbol{v}]}{\sqrt{\mathrm{var}[\boldsymbol{u}] \mathrm{var}[\boldsymbol{v}]}}.
 \end{align}
-Since all values are inbetween $-1$ and $1$, we avoid any loss of numerical precision. The resulting covariance matrix $\boldsymbol{C} \in {\mathbb{R}}^{p\times p}$ becomes
+Since all values are between $-1$ and $1$, we avoid any loss of numerical precision. The resulting covariance matrix $\boldsymbol{C} \in {\mathbb{R}}^{p\times p}$ becomes
 
 \begin{align}
   \boldsymbol{C}[\boldsymbol{x}] = \begin{bmatrix}
@@ -521,21 +521,21 @@ $\boldsymbol{Z}\in{\mathbb{R}}^{p\times n}$. The PCA theorem states that minimiz
  \label{alg:pca}
 \end{algorithm}
 
-\noindent Instead of choosing an arbitrary number of dimensions to reduce down to, it is common to choose the number of dimensions that accumulate a sufficient amount of variance. However, it remains a subjective analysis in how many principal components one should include as it will depend on both the specific application and specific data set. If it is impossible to give a motivation for reducing a large dataset to just two or three principal components, there might still be a reason for why to apply PCA to a dataset. PCA can be applied as a preprocessing method to reduce the dimensionality of a dataset, and therefore might drastically improve the efficiency of further supervised learning approaches.
+\noindent Instead of choosing an arbitrary number of dimensions to reduce down to, it is common to choose the number of dimensions that accumulate a sufficient amount of variance. However, it remains a subjective analysis in how many principal components one should include as it will depend on both the specific application and specific data set. If it is impossible to give a motivation for reducing a large dataset to just two or three principal components, there might still be a reason why to apply PCA to a dataset. PCA can be applied as a preprocessing method to reduce the dimensionality of a dataset, and therefore might drastically improve the efficiency of further supervised learning approaches.
 
 \section{Practical challenges associated with machine learning}
 
-So far, we have covered substantially researched topics such as dimensionality reduction, supervised algorithms and metric evaluation. However, there exists parts of machine learning that does not neccessarily get as much attention, but yet are crucial for the objective of machine learning. In this section, we will briefly mention both known and unknown challenges that are part of building a machine learning model.
+So far, we have covered substantially researched topics such as dimensionality reduction, supervised algorithms and metric evaluation. However, there exist parts of machine learning that do not necessarily get as much attention, but yet are crucial for the objective of machine learning. In this section, we will briefly mention both known and unknown challenges that are part of building a machine learning model.
 
-The initial phase consists of gathering information systematically. This could be perhaps the most time-consuming part of the entire process, motivated by questions such as how much data is neccessary. The answer to this question is as vague as the question itself, since there is no lower or upper bound but rather a general recommendation that the more data the better. Additionally, we should have an hypothesis that we are collecting descriptors of something that can explain the objective of the entire machine learning process. Indeed, the promises of machine learning are limited to data containing good descriptors. For a supervised learning algorithm, it is neccessary to have one descriptor for the training data that contains information about what should be learned.
+The initial phase consists of gathering information systematically. This could be perhaps the most time-consuming part of the entire process, motivated by questions such as how much data is necessary. The answer to this question is as vague as the question itself, since there is no lower or upper bound but rather a general recommendation that the more data the better. Additionally, we should have a hypothesis that we are collecting descriptors of something that can explain the objective of the entire machine learning process. Indeed, the promises of machine learning are limited to data containing good descriptors. For a supervised learning algorithm, it is necessary to have one descriptor for the training data that contains information about what should be learned.
 
-Thereafter follows an analysis of the data quality, often called \textit{pre-processing}. This includes identifying outliers and finding out what to do about any potential missing value in the data. Normally, solutions such as removing outliers and filling any missing value with either the mean, median or zero are applied. The data is also required to be transformed into continuous or categorical values. For the latter case we can carry out a one-hot encoding to ensure that any algorithm does not assume one category being more important to another due to a larger number. Furthermore, it could be neccessary to scale the data and reduce dimensionality, with the motivation discussed in \autoref{pca}.
+Thereafter follows an analysis of the data quality, often called \textit{pre-processing}. This includes identifying outliers and finding out what to do about any potential missing value in the data. Normally, solutions such as removing outliers and filling any missing value with either the mean, median or zero are applied. The data is also required to be transformed into continuous or categorical values. For the latter case, we can carry out a one-hot encoding to ensure that any algorithm does not assume one category being more important to another due to a larger number. Furthermore, it could be necessary to scale the data and reduce dimensionality, with the motivation discussed in \autoref{pca}.
 
 If the algorithm has not been chosen yet, this is the time to do so. A clever first-hand approach is to apply a simple algorithm that is not computational demanding to see how it performs on a subset of the data. If the performance is satisfactory, any implementation of a more sophisticated algorithm could be redundant.
 
-Next, the search for optimal hyperparameters while maintaining a generalized model can pose a challenge, but is achiveable. It is popular to apply a cross validation during this process with different evaluation metrics, as discussed in \autoref{evaluating accuracy}.
+Next, the search for optimal hyperparameters while maintaining a generalized model can pose a challenge but is achievable. It is popular to apply cross-validation during this process with different evaluation metrics, as discussed in \autoref{evaluating accuracy}.
 
-Eventually, with a chosen algorithm and its optimal hyperparameters, we train the algorithm on the entire preprocessed training data and then perform predictions on unseen data. To avoid any bias in the predictions, it is crucial that predictions on unseen data is done only once. The reason for this is that we do not want to optimalize any model for the actual test data, since this would reduce the generalization and increase the bias.
+Eventually, with a chosen algorithm and its optimal hyperparameters, we train the algorithm on the entire preprocessed training data and then perform predictions on unseen data. To avoid any bias in the predictions, predictions on unseen data must be done only once. The reason for this is that we do not want to optimize any model for the actual test data, since this would reduce the generalization and increase the bias.
 
 %is the data reliable??? bias? Quality of data? Are we measuring something that can explain the objective?
 

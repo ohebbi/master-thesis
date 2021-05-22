@@ -42,7 +42,7 @@ The APIs that will be encountered are handled by the use of \textit{HTTP} (Hyper
 }
 \end{table}
 
-The most common HTTP methods are GET, POST and HEAD, which are used to either retrieve, send, or get data information, respectively. The latter request is usually done before a GET method for requests considering a large amount of data since this can be a significant variable for the client's bandwidth and load time. Following a request, the server normally responds with one of the status codes in \autoref{tab:requests}.
+\noindent The most common HTTP methods are GET, POST and HEAD, which are used to either retrieve, send, or get data information, respectively. The latter request is usually done before a GET method for requests considering a large amount of data since this can be a significant variable for the client's bandwidth and load time. Following a request, the server normally responds with one of the status codes in \autoref{tab:requests}.
 
 \lstinputlisting[language=Python, float, caption={Practical example of getting a response from Materials Project database. }, label={lst:general_uri_request}]{methodology&implementations/code-listings/general_uri_request.tex}
 
@@ -91,7 +91,7 @@ To extract information from the database, we will be utilizing the module pymatg
   \item Apply the query.
 \end{enumerate}
 
-The code snippet in \autoref{lst:MPQuery} resembles steps $2-4$ and is filtered as the initial query. %For this particular query we have set the filter as four items. Firstly, we would like to exclude all spin zero isotopes using the MongoDB operator that matches non of the values specified in the array. Thereafter, we would like to have a compound that is deemed similar to an ICSD entry. All of the resulting entries have be deemed non-magnetic (NM), and lastly, all compounds with polar space groups will be excluded.
+\noindent The code snippet in \autoref{lst:MPQuery} resembles steps $2-4$ and is filtered as the initial query. %For this particular query we have set the filter as four items. Firstly, we would like to exclude all spin zero isotopes using the MongoDB operator that matches non of the values specified in the array. Thereafter, we would like to have a compound that is deemed similar to an ICSD entry. All of the resulting entries have be deemed non-magnetic (NM), and lastly, all compounds with polar space groups will be excluded.
 \lstinputlisting[language=Python, float, caption={Practical example of extracting information from Materials Project using pymatgen, resulting in a Pandas DataFrame named entries that contains the properties given after performing a filter on the database. The criteria is given as a JSON, and supports MongoDB operators.}, label={lst:MPQuery}]{methodology&implementations/code-listings/query/MPQuery.tex}
 \subsubsection{Citrine Informatics}
 
@@ -159,7 +159,7 @@ The newest version of the JARVIS-DFT dataset can be obtained by requesting an ac
 
 \lstinputlisting[language=Python, float, caption={Practical example of extracting information from JARVIS-DFT. For this example, we exclude all metals by removing all non-measured band gaps.}, label={lst:JARVISDFTQuery}]{methodology&implementations/code-listings/query/JARVISDFTQuery.tex}
 
-We observe that there is no advanced search filter when loading the database from Matminer. The author of Matminer regards this as the user's task, and is indeed easily done through the use of the Python library Pandas.
+\noindent We observe that there is no advanced search filter when loading the database from Matminer. The author of Matminer regards this as the user's task, and is indeed easily done through the use of the Python library Pandas.
 
 The resulting screening of $25212$ entries from the Materials Project was done almost instantly, and yielded $11$\% and $17.8$\% similar entries for the TBMBJ and OptB88 functionals with MP, respectively. Moreover, JARVIS-DFT contains information about spin-orbit splitting, but only $0.12\%$ of the calculations were found to match with the initial MP query.
 
@@ -260,7 +260,7 @@ Next, we turn our attention to defining unsuitable candidates. This is perhaps t
 
 If we were to turn around all criteria defined in the four stages above (except for energy above hull), it would result in only $52$ entries which would make the combined data set very imbalanced. Instead, we try to provide a more general process that includes a larger variety of entries, which could potentially increase the prediction space for unsuitable candidates.
 
-Since our initial query to Materials Project only includes materials with band gaps larger than $0.1$ eV with an associated ICSD-number, we are required to use these criteria for unsuitable candidates for consistency. This means that materials that do not meet these restrictions are not present in our data.
+\noindent Since our initial query to Materials Project only includes materials with band gaps larger than $0.1$ eV with an associated ICSD-number, we are required to use these criteria for unsuitable candidates for consistency. This means that materials that do not meet these restrictions are not present in our data.
 
 The screening procedure for the Ferrenti approach requires unsuitable candidates to
 
@@ -361,7 +361,7 @@ Recall, in \autoref{promising-material-hosts} we discussed alternative promising
   \end{itemize}
 \end{itemize}
 
-After stage $1$, it was found $202$ matching formulas which included $12$ entries that had a band gap lower than $0.5$ eV. These entries were structures that were reported as unstable in terms of energy above hull calculations, and would decompose into entries that were already present in the data after stage $1$ with band gap substantially larger than $0.5$ eV. We choose to include all except for C (mp-$568410$) with MP calculated band gap of $0.12$ eV, and AFLOW-ML found this compound to be a metal. Therefore, we labeled this compound as an unsuitable candidate instead.
+\noindent After stage $1$, it was found $202$ matching formulas which included $12$ entries that had a band gap lower than $0.5$ eV. These entries were structures that were reported as unstable in terms of energy above hull calculations, and would decompose into entries that were already present in the data after stage $1$ with band gap substantially larger than $0.5$ eV. We choose to include all except for C (mp-$568410$) with MP calculated band gap of $0.12$ eV, and AFLOW-ML found this compound to be a metal. Therefore, we labeled this compound as an unsuitable candidate instead.
 
 %We choose to exclude the entries were both the MP calculated and AFLOW-ML predicted band gap is lower than $0.2$ eV due to
 

@@ -31,7 +31,7 @@ The initial thought behind
 
 \end{comment}
 % 139.367, icsd: 52.116, bg: 68141
-The first step of this work was to find data from the Materials Project, involving entries that are associated with an ICSD structure and have a PBE-GGA calculated band gap of a minimum of $0.1$eV. Out of $126.335$ existing entries in Materials Project, $48.644$ ($39\%$) were found to have an associated ICSD-structure, while $65.783$ ($52\%$) materials had a calculated band gap of at least $0.1$eV. We found that $25271$ ($20\%$) materials have the band gap minimum and an associated ICSD-structure. It should be noted that these numbers are based on data extraction in December of $2020$, while the extraction from other databases and featurization related to this work was done in the time period of December $2020$ to March $2021$. In February of $2021$, over $30.000$ new materials were added and several materials were deprecated in the V2021.03.22 version of Materials Project\footnote{https://matsci.org/t/materials-project-database-release-log/  (Visited 14.05.2021)}. This update is only included for the insightful approach, which means that the Ferrenti approach and the augmented Ferrenti approach include $77$ ($0.3\%$) more compounds than the insightful approach.
+The first step of this work was to find data from the Materials Project, involving entries that are associated with a structure in the database ICSD and have a band gap of a minimum of $0.1$eV as calculated by the functional PBE-GGA. Out of $126.335$ existing entries in Materials Project, $48.644$ ($39\%$) were found to have an associated ICSD-structure, while $65.783$ ($52\%$) materials had a calculated band gap of at least $0.1$eV. We found that $25271$ ($20\%$) materials have the band gap minimum and an associated ICSD-structure. It should be noted that these numbers are based on data extraction in December of $2020$, while the extraction from other databases and featurization related to this work was done in the time period of December $2020$ to March $2021$. In February of $2021$, over $30.000$ new materials were added and several materials were deprecated in the V2021.03.22 version of Materials Project\footnote{https://matsci.org/t/materials-project-database-release-log/  (Visited 14.05.2021)}. This update is only included for the insightful approach, which means that the Ferrenti approach and the augmented Ferrenti approach include $77$ ($0.3\%$) more compounds than the insightful approach.
 
 %We note that due to time difference for the data extraction, the test data differs in
 %the test data for the insightful approach is done with the overlapping entries of the featurized data set and the V2021.03.22 version of Materials Project. Consequently, the data differs in $77$ ($0.3\%$) compounds from the insightful approach and the two other approaches.
@@ -62,7 +62,7 @@ This is important to know considering our labeling approaches, in particular the
 Only a single oxide (ZnO) was deemed a potentially suitable candidate based on observations in Refs. \cite{Zhang2020, Zheng2014, Morfa2012}, which will be interesting to compare towards the different models and approaches.
 
 
-The second figure (\autoref{fig:hist_bg}) visualize the compound type as a function of band gap, as calculated by Materials Project. Most of the materials present in the data have a band gap lower than $2.3$ eV, where ternary compounds are most prominent. For larger values, we observe that quarternary compounds become dominant for larger band gap values.
+The second figure (\autoref{fig:hist_bg}) visualizes the compound type as a function of band gap, as calculated by Materials Project. Most of the materials present in the data have a band gap lower than $2.3$ eV, where ternary compounds are most prominent. For larger values, we observe that quarternary compounds become dominant for larger band gap values.
 
 \section{Comparing functionals for band gaps}
 
@@ -120,7 +120,7 @@ Initially, we wanted to include the figures to the right in the attempt of reduc
 
 \clearpage
 
-\noindent we find that the uncertainty of the confidence interval increase for all HT- methods.
+\noindent we find that the uncertainty of the confidence interval increases for all HT- methods.
 This is due to the fact that the majority of the new entries are found for low band gap values, where the mismatch between experimental and calculated values is the largest.
 The discrepancy seems to be the largest for values under $5$ eV, where entries are either calculated to have a very large band gap and the experimental values report a very low band gap, or the opposite.
 The data extracted from the experimental database is not associated with an ICSD-entry, space group, or structure. Therefore, we cannot accurately determine if the experimental data is based on an identical material as found in the HT-databases. However, the same data of experimental values have been considered through other articles \cite{Ward2018, Ferrenti2020}.
@@ -150,7 +150,7 @@ We visualize the grid search for the optimal number of principal components in \
 
 The random forest model is similar to the decision tree model, which also shows signs of overfitting for larger values of principal components. The recall score is unaltered for increasing principal components, but consequently, we find the precision declining due to a large amount of predicted false positives.  However, as a result of an ensemble of decision trees, it shows smaller signs of overfitting than the indications seen by the decision tree algorithm.
 
-Gradient boost, on the other hand, experiences minor changes for a larger number of principal components, where the optimal number of components marked could be $50$ principal components less without any remarks to the model's metrics. Notably, only a few principal components yield almost $100\%$ training accuracy for GB, while not showing any clear sign of overfitting. Similarly, logistic regression shows signs of almost a perfect classifier with high scores for all metrics.
+Gradient boost, on the other hand, experiences minor changes for a larger number of principal components, where the optimal number of components marked could be $50$ principal components less without any remarks to the model's metrics. Notably, only a few principal components yield almost $100\%$ training accuracy for gradient boost, while not showing any clear sign of overfitting. Similarly, logistic regression shows signs of almost a perfect classifier with high scores for all metrics.
 
 \clearpage
 

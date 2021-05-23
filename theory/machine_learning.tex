@@ -1,6 +1,6 @@
 \chapter{Machine learning}
 
-The enormous amount of data generated in the digital world today is beyond comprehension. In $2019$, more than $500$ hours of video was uploaded to Youtube every second, totaling over $82$ years of content every day\footnote{Source: https://www.youtube.com/intl/no/about/press extracted 15.02.2021}. In addition, more than $1.5$ billion web sites exists\footnote{Source: https://www.statista.com/chart/19058/how-many-websites-are-there extracted 29.03.2021}.
+The enormous amount of data generated in the digital world today is beyond comprehension. In $2019$, more than $500$ hours of video was uploaded to Youtube every second, totaling over $82$ years of content every day\footnote{Source: https://www.youtube.com/intl/no/about/press (Visited 15.02.2021)}. In addition, more than $1.5$ billion web sites exists\footnote{Source: https://www.statista.com/chart/19058/how-many-websites-are-there (Visited 29.03.2021)}.
 
 However, an increasing amount of data comes hand in hand with an increasing demand for knowledge about the data. If we are unable to extract information from the data, the data serves no intention and exists as an excess. Therefore, we need methods to process and automate data analysis, which is what the promises of \textit{machine learning} cover. Machine learning can reveal patterns in data with ease where a human would face difficulties, and use this information to predict or generate new data. Many tools in machine learning are based on probability theory, which can be applied to problems involving uncertainty. Thus, machine learning is also commonly named \textit{statistical learning} \cite{Murphy2012}.
 
@@ -52,7 +52,7 @@ The cost function can be rewritten as
 E\left[\left(\boldsymbol{y}-\boldsymbol{\hat{y}}\right)^2\right] &= \frac{1}{n}\sum_i\left(f_i- E\left[\boldsymbol{\hat{y}}\right]\right)^2+\frac{1}{n}\sum_i\left(\hat{y}_i- E\left[\boldsymbol{\hat{y}}\right]\right)^2+\sigma^2 \\
 &= E\left[\left(\boldsymbol{f}-E\left[\boldsymbol{\hat{y}}\right]\right)^2\right] + Var\left(\boldsymbol{\hat{y}}\right) + \sigma_{\epsilon}^2
 \end{align*}
-where $E[\boldsymbol{y}] = \boldsymbol{f}$, $E\left[\boldsymbol{\epsilon}\right] = \boldsymbol{0}$ and $Var\left(\boldsymbol{y}\right) = Var \left(\boldsymbol{\epsilon}\right) = \sigma_{\epsilon}^2$.
+where $E[\boldsymbol{y}] = \boldsymbol{f}$, $E\left[\boldsymbol{\epsilon}\right] = \boldsymbol{0}$ and $Var\left(\boldsymbol{y}\right) = Var \left(\boldsymbol{\epsilon}\right) = \sigma_{\epsilon}^2$ \cite{Murphy2012}.
 \begin{comment}
 and since the variance of $\boldsymbol{y}$ and $\boldsymbol{\epsilon}$ are both equal to $\sigma^2$, we can use the relations $E[\boldsymbol{y}] = \boldsymbol{f}$, $ E[\boldsymbol{\epsilon}] = 0 $ and $Var(\boldsymbol{y}) = Var(\boldsymbol{\epsilon}) = \sigma_{\epsilon}^2$. The mean value of $\boldsymbol{\epsilon}$ is by definition equal to zero. In addition, the function $\boldsymbol{f}$ is not a stochastic variable, and the same argument can also be used for $\boldsymbol{\hat{y}}$. This allows us to insert the expression $\boldsymbol{y}$ into the cost function
 \begin{align*}
@@ -145,7 +145,7 @@ We have now only scratched the surface of potential evaluation metrics, and as a
 
 \subsection{Cross-validation}
 \label{cross-validation}
-When evaluating different parameters for models, commonly done in a grid-search scheme, there is an abundant risk of performing an overfit to the test set since we can tweak the parameters to a model so it can perform optimally. To solve this problem, we can exclude a part of the dataset as a validation set (in addition to a test set). Therefore, we can train a model on the training set, and evaluate the parameters on the validation set. After a lot of trial and error and the experiment seems successful, we can do one final evaluation on the test set.
+When evaluating different parameters for models, commonly done in a grid-search scheme, there is an abundant risk of performing an overfit to the test set since we can tweak the parameters of a model so it can perform optimally. To solve this problem, we can exclude a part of the dataset as a validation set (in addition to a test set). Therefore, we can train a model on the training set, and evaluate the parameters on the validation set. After a lot of trial and error and the experiment seems successful, we can do one final evaluation on the test set.
 
 Unfortunately, this reduces the number of samples that can be used for training drastically. A fix for this is to apply \textit{cross-validation} (CV) \cite{Murphy2012}. Cross-validation is a technique used to evaluate predictive models by partitioning the original sample into a training set to train the model, and a test set to evaluate it.
 

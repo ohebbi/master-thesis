@@ -80,12 +80,12 @@ Every data extraction class is based on an abstract parent class. The advantages
 
 The most up-to-date version of Materials Project can be extracted using the Python package pymatgen, which is integrated with Materials Project REST API. Other retrieval tools that are dependent on pymatgen include Matminer, with the added functionality of returning a pandas dataframe. Copies of Materials Project exist in many databases, but the latest added entries are not guaranteed to be included in them. %Copies of Materials Project are added frequently to cloud services such as Citrine Informatics, but the latest added entries to Materials Project cannot be guaranteed in such a query.
 
-Entries in Materials Project are characterized using more than 60 features\footnote{https://github.com/materialsproject/mapidoc/master/materials (Visited on 13/05/2021)}, some features being irrelevant for some materials while fundamental for others. The data is divided into three different branches, where the first can be described as basic properties of materials including over $30$ features, while the second branch describes experimental thermochemical information. The last branch yields information about a particular calculation, in particular information that's relevant for running a DFT script.
+Entries in Materials Project are characterized using more than 60 features\footnote{https://github.com/materialsproject/mapidoc/master/materials (Visited 13/05/2021)}, some features being irrelevant for some materials while fundamental for others. The data is divided into three different branches, where the first can be described as basic properties of materials including over $30$ features, while the second branch describes experimental thermochemical information. The last branch yields information about a particular calculation, in particular information that's relevant for running a DFT script.
 
-To extract information from the database, we will be utilizing the module pymatgen. This query supports MongoDB query and projection operators\footnote{https://docs.mongodb.com/manual/reference/operator/query/ (Visited on 13/05/2021)}, resulting in an almost instant query.
+To extract information from the database, we will be utilizing the module pymatgen. This query supports MongoDB query and projection operators\footnote{https://docs.mongodb.com/manual/reference/operator/query/ (Visited 13/05/2021)}, resulting in an almost instant query.
 
 \begin{enumerate}
-  \item Register for an account\footnote{https://materialsproject.org (Visited on 13/05/2021)}, and generate a secret API key.
+  \item Register for an account\footnote{https://materialsproject.org (Visited 13/05/2021)}, and generate a secret API key.
   \item Set the required critera.
   \item Set the wanted properties.
   \item Apply the query.
@@ -100,7 +100,7 @@ Citrine Informatics is a framework consisting of both HT-DFT calculations and ex
 In this example, we will gather experimental data using the module Matminer. The following steps are required to extract information from Citrine Informatics.
 
 \begin{enumerate}
-  \item Register for an account\footnote{https://citrination.com (Visited on 13/05/2021)}, and generate a secret API key.
+  \item Register for an account\footnote{https://citrination.com (Visited 13/05/2021)}, and generate a secret API key.
   \item Set the required critera.
   \item Set the wanted properties and common fields.
   \item Apply the query.
@@ -133,7 +133,7 @@ The calculated properties can be obtained with the code in \autoref{lst:AFLOWMLQ
 A significant portion of the process is tied up to obtaining the input file for AFLOW-ML, and fewer structures will result in an easier process. Nevertheless, we present the following steps to receive data from AFLOW-ML.
 
 \begin{enumerate}
-  \item Download AFLOWmlAPI\footnote{http://aflow.org/src/aflow-ml/ (Visited on 13/05/2021)} to the same directory as  \autoref{lst:AFLOWMLQuery}.
+  \item Download AFLOWmlAPI\footnote{http://aflow.org/src/aflow-ml/ (Visited 13/05/2021)} to the same directory as  \autoref{lst:AFLOWMLQuery}.
   \item Getting POSCAR from MP.
   \begin{enumerate}
     \item Apply the query from Materials Project with "CIF", "material\_id" and "full\_formula" as properties.
@@ -155,7 +155,7 @@ The query is done almost instantly, resulting in a DataFrame containing over $40
 
 \subsubsection{JARVIS-DFT}
 
-The newest version of the JARVIS-DFT dataset can be obtained by requesting an account at the official webpage, but with the drawback that an administrator has to either accept or deny the request. Thus, the accessibility of the database depends on if there is an active administrator paying attention to the requests, which is a limitation experienced during this work. Another approach is to download the database through Matminer, however with the limitation of not necessarily having the latest version of the database. A third approach is to download a version of JARVIS-DFT that has been made available for requests the 30.04.2020 at http://figshare.com by \citeauthor{Choudhary2020} \cite{Choudhary2020}. The authors provide tools for extraction, yet not compatible with the latest version of Python (3.9) at the time of writing (12.03.2021). Therefore, we provide a tool to extract this data through the use of our base class.
+The newest version of the JARVIS-DFT \cite{Choudhary2020} dataset can be obtained by requesting an account at the official webpage, but with the drawback that an administrator has to either accept or deny the request. Thus, the accessibility of the database depends on if there is an active administrator paying attention to the requests, which is a limitation experienced during this work. Another approach is to download the database through Matminer, however with the limitation of not necessarily having the latest version of the database. A third approach is to download a version of JARVIS-DFT that has been made available for requests the 30.04.2020 at http://figshare.com by \citeauthor{Choudhary2020} \cite{Choudhary2020}. The authors provide tools for extraction, yet not compatible with the latest version of Python (3.9) at the time of writing (12.03.2021). Therefore, we provide a tool to extract this data through the use of our base class.
 
 \lstinputlisting[language=Python, float, caption={Practical example of extracting information from JARVIS-DFT. For this example, we exclude all metals by removing all non-measured band gaps.}, label={lst:JARVISDFTQuery}]{methodology&implementations/code-listings/query/JARVISDFTQuery.tex}
 

@@ -188,7 +188,7 @@ where $Z_a$ is the atom number of nuclei number $a$. The system now contains $N_
     + \frac{1}{4\pi\varepsilon_0} \sum_{j=1}^{N_e}\sum_{j'<j} \frac{q^2}{\lvert r_j - r_{j'}\rvert} \\
     &+\frac{1}{4\pi\varepsilon_0}\sum_{a=1}^{N_n}\sum_{a'<a} \frac{q^2 Z_aZ_{a'}}{\lvert R_a - R_{a'}\rvert } - \frac{1}{4\pi\varepsilon_0}\sum_{j=1}^{N_e} \sum_{a=1}^{N_n} \frac{q^2Z_a}{\lvert r_j-R_a\rvert}.
   \end{aligned}
-\end{align} A few problems arise when trying to solve the many-particle Schrödinger equation. Firstly, the amount of atoms in a crystal is very, very massive. As an example, we can numerically try to calculate \autoref{eq:electron-electron} for a $1$ mm$^3$ silicon-crystal that contains $7\cdot 10^{20}$ electrons. For this particular problem, we will pretend to use the current fastest supercomputer Fugaku \cite{Top500} that can calculate $514$ TFlops, and we will assume that we need $2000$ Flops to calculate each term inside the sum \cite{Persson2020}, and we need to calculate it $N_e \cdot N_e/2$ times for the (tiny) crystal.
+\end{align} A few problems arise when trying to solve the many-particle Schrödinger equation. Firstly, the amount of atoms in a crystal is very large. As an example, we can numerically try to calculate \autoref{eq:electron-electron} for a $1$ mm$^3$ silicon-crystal that contains $7\cdot 10^{20}$ electrons. For this particular problem, we will pretend to use the current fastest supercomputer Fugaku \cite{Top500} that can calculate $514$ TFlops (floating operations per second), and we will assume that we need $2000$ Flops to calculate each term inside the sum \cite{Persson2020}, and we need to calculate it $N_e \cdot N_e/2$ times for the (tiny) crystal.
 The entire electron-electron interaction calculation would take $2.46 \cdot 10^{19}$ years to finish for a tiny crystal. Thus, the large amount of particles translates into a challenging numerical problem.
 
 %In one cubic-centimeter of a crystal, there are around $10^{23}$ electrons. This number is roughly the same as the number of stars in the universe, grain of sand on all beaches in the world, or currently $1.41\cdot 10^{19}$ times the amount of Home and Away episodes made since 1988.
@@ -287,7 +287,7 @@ Recalling that equation \autoref{eq:densityfunctional} describes the total energ
 we try to modify it to include the kinetic energy $T_s[n]$ and the interaction energy $U_s[n]$ of the auxiliary wavefunction, with the denotation $s$ for single-particle wavefunctions.
 \begin{align*}
   E[n] &= T[n] + U_{ee}[n] + U_{en}[n] + \left( T_s[n] - T_s[n] \right) + \left( U_s[n] - U_s[n] \right) \\
-  &= T_s[n] + U_{s}[n] + U_{en}[n] + \underbrace{\left(T[n] - T_s[n] \right) + \left( U_{ee}[n] - U_s[n] \right)}_{E_{xc}[n]}
+  &= T_s[n] + U_{s}[n] + U_{en}[n] + \underbrace{\left(T[n] - T_s[n] \right) + \left( U_{ee}[n] - U_s[n] \right)}_{E_{xc}[n]}.
 \end{align*}
 Here we have our first encounter with the \textit{exchange-correlation energy}
 \begin{align}
@@ -354,18 +354,20 @@ To improve the accuracy of excited state properties estimations, other methods h
 \end{align}
 where $\rho$ is the electron density, $t$ is the kinetic-energy density, $V_{xc}^{BR}$ is the Becke-Roussel exchange potential and $c$ is the parameter that changes weights of the BJ potential and is fit to experimental data.
 \end{comment}
-Hybrid functionals intermix exact Hartree-Fock exchange with exchange and correlation from functionals based on the LDA or GGA. Hartree-Fock theory completely ignores correlation effects, but accounts for self-interaction and treats exchange as exact. Since LDA/GGA and Hartree-Fock supplement each other, they can be used as a combination for hybrid-functionals resulting in some cancellation of the self-interaction error. Becke \cite{Becke1993} introduced a $50\%$ Hartree-Fock exact exchange and
+Hybrid functionals intermix exact Hartree-Fock exchange with exchange and correlation from functionals based on the LDA or GGA.
+Hartree-Fock theory ignores correlation effects, but accounts for self-interaction and treats exchange as exact.
+Since LDA/GGA and Hartree-Fock supplement each other, they can be used as a combination for hybrid-functionals resulting in some cancellation of the self-interaction error. Becke \cite{Becke1993} introduced a $50\%$ Hartree-Fock exact exchange and
 $50\%$ LDA energy functional, while Perdew \textit{et al.} \cite{Perdew1996a} altered it to $25\%-75\%$ and favoring PBE-GGA instead of LDA.
 
 The inclusion of Hartree-Fock exchange improves the description of localized states but requires significantly more computational power for large systems. Another method called the \textit{GW} approximation includes a screening of the exchange interaction \cite{Aryasetiawan1998}, but has a computational price that does not necessarily defend its use. Thus, the real challenge is to reduce the computational effort while still producing satisfactory results. Heyd \textit{et al.} \cite{Heyd2003} suggested separating the non-local Hartree-Fock exchange into a short- and long-range portion, incorporating the exact exchange in the short-range contribution. The separation is controlled by an adjustable parameter $\omega$, which was empirically optimized for molecules to $\omega = 0.15$ and solids to $\omega = 0.11$ and are known as the HSE03 and HSE06 (Heyd-Scuseria-Ernzerhof), respectively \cite{Krukau2006}. The functionals are expressed as
 \begin{align}
-  E_{xc}^{HSE} = aE_{x}^{\text{HF,SR}}(\omega) + (1-a)E_x^{\text{PBE,SR}}(\omega) + E_x^{\text{PBE,LR}}(\omega) + E_c^{\text{PBE}}
+  E_{xc}^{HSE} = aE_{x}^{\text{HF,SR}}(\omega) + (1-a)E_x^{\text{PBE,SR}}(\omega) + E_x^{\text{PBE,LR}}(\omega) + E_c^{\text{PBE}},
 \end{align}
 where $a=1/4$ is the Hartree-Fock mixing constant and the abbreviations SR and LR stands for short range and long range, respectively.
 
 Hence, hybrid-functionals are \textit{semi-empirical} functionals that rely on experimental data for accurate results. They give accurate results for several properties, such as energetics, bandgaps and lattice parameters, and can fine-tune parameters fitted to experimental data for even higher accuracy.
 
-Furthermore, the computational effort required for the hybrid-functionals is significantly larger than for non-empirical functionals such as LDA or GGA. Krukau \textit{et al.} \cite{Krukau2006} reported a substantial increase in computational cost when reducing the parameter $\omega$ from $0.20$ to $0.2$ for 25 solids, and going lower than $0.11$ demanded too much to actually defend its use.
+Furthermore, the computational effort required for the hybrid-functionals is significantly larger than for non-empirical functionals such as LDA or GGA. Krukau \textit{et al.} \cite{Krukau2006} reported a substantial increase in computational cost when reducing the parameter $\omega$ from $0.20$ to $0.11$ for 25 solids, and going lower than $0.11$ demanded too much to actually defend its use.
 \begin{comment}
 Unfortunately, an area where both GGA and hybrid functionals are reportedly inadequate is in calculating the dispersion interactions \cite{Klimes2009}. Many implementations have been developed to deal with this vulnerability, with one of them being the non-local van der Waals density functional (vdW-DF) \cite{Dion2004}
 \begin{align}

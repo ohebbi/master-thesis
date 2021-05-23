@@ -43,13 +43,13 @@ How are they coupled, you might ask? The total energy in the electronic equation
 \label{appendix:variational-principle}
 Here we consider an elaboration of the variational principle. The eigenfunctions of $H$ form a complete set, which means any normalized $\Psi$ can be expressed in terms of the eigenstates
 \begin{align}
-  \Psi = \sum_n c_n \psi_n, \quad \textnormal{where} \quad H\psi_n = E_n \psi_n
+  \Psi = \sum_n c_n \psi_n, \quad \textnormal{where} \quad H\psi_n = E_n \psi_n,
 \end{align}
 for all $n = 1,2, ...$. The expectation value for the energy can be calculated as
 \begin{align*}
   \bra{\Psi}H\ket{\Psi} &= \bra{\sum_{n}c_n \psi_n} H \ket{\sum_{n'} c_{n'}\psi_{n'}} \\
   &= \sum_n \sum_{n'} c_{n}^* c_{n'} \bra{\psi_n}H\ket{\psi_{n'}} \\
-  &= \sum_n \sum_{n'} c_{n}^* E_n c_{n'} \bra{\psi_{n}}\ket{\psi_{n'}} \\
+  &= \sum_n \sum_{n'} c_{n}^* E_n c_{n'} \bra{\psi_{n}}\ket{\psi_{n'}}. \\
 \end{align*}
 Here we assume that the eigenfunctions have been orthonormalized and we can utilize $\bra{\psi_{m}}\ket{\psi_{n}}=\delta_{mn}$, resulting in
 \begin{align*}
@@ -69,7 +69,7 @@ The quest to understand the variational principle can be summarized in a sentenc
 \begin{proof}
   Assume that two external potentials $V_{ext}^{(1)}$ and $V_{ext}^{(2)}$, that differ by more than a constant, have the same ground state density $n_0(r)$. The two different potentials correspond to distinct Hamiltonians $\hat{H}_{ext}^{(1)}$ and $\hat{H}_{ext}^{(2)}$, which again give rise to distinct wavefunctions $\Psi_{ext}^{(1)}$ and $\Psi_{ext}^{(2)}$. Utilizing the variational principle, we find that no wavefunction can give an energy that is less than the energy of $\Psi_{ext}^{(1)}$ for $\hat{H}_{ext}^{(1)}$, that is
   \begin{align}
-    E^{(1)} = \bra{\Psi^{(1)}}\hat{H}^{(1)}\ket{\Psi^{(1)}} &< \bra{\Psi^{(2)}}\hat{H}^{(1)}\ket{\Psi^{(2)}} \label{eq:E1}
+    E^{(1)} = \bra{\Psi^{(1)}}\hat{H}^{(1)}\ket{\Psi^{(1)}} &< \bra{\Psi^{(2)}}\hat{H}^{(1)}\ket{\Psi^{(2)}}, \label{eq:E1}
   \end{align}
   and
   \begin{align}

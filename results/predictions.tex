@@ -120,20 +120,22 @@ The compound GeC (mp-$1002164$) has a cubic structure and consists of corner-sha
 
 The compound BP (mp-$1479$ and mp-$1008559$) is present in the predictions as a cubic and hexagonal structure where both consists of corner-sharing BP$_4$ tetrahedra. The indirect band gaps are calculated in MP as $1.46$ and $1.1$ eV, respectively. They are both nonmagnetic and share many similar properties as the entries mentioned above. The compound is non-toxic and have been synthesized with good perspective for large-scale production \cite{MukhanovVladimirA2016Umso}.
 
-Lastly, we will mention the prediction of InP (mp-$966800$) as a suitable candidate. The compound inhabits a hexagonal structure with corner-sharing InP$_4$ tetrahedra. It has an MP calculated direct band gap of $0.51$ eV, and is considered as one of the most promising candidates of Cd- or Pb- based QDs in the application of display and lighting \cite{Zhang2020a, Won2019}.
-
-By further reducing the probability of predictions down to $50\%$ for all models, we eventually find noble gases and other compounds existing as gas in standard conditions. These gases are described in the data with no ionic character, no electronegativity, low covalent radius, large band gaps, and simple structures. Furthermore, there are associated errors with the features for these compounds in Materials Project (which has been addressed in the Materials Project version of V2021.05.13\footnote{https://matsci.org/t/materials-project-database-release-log/ (Visited on 14.05.2021)}). We believe they can be considered as outliers, and they are therefore not added additional consideration.
-
-%Due to that the models consider them as coin-flip and the large amount of missing features, we believe we can regard them as outliers, and they are therefore not added additional consideration.
-
+Lastly, we will mention the prediction of InP (mp-$966800$) as a suitable candidate. The compound inhabits a hexagonal structure with corner-sharing InP$_4$ tetrahedra. It has an MP calculated direct band gap of $0.51$ eV, and is
 \begin{figure}[ht!]
     \centering
     \includegraphics[trim={2.8cm 0cm 0cm 0cm},clip, scale=1]{../predicting-solid-state-qubit-candidates/reports/figures/pca-3d-plots/3d-test-iso.pdf}
-    \vspace*{-130mm}
+    \vspace*{-145mm}
     \caption{A three-dimensional scatter plot visualizing the test set's $24540$ data points, and the isosurface of the decision tree decision boundary. Limegreen indicates suitable candidates, while tomato corresponds to unsuitable candidates. The isosurface represents the probability of a prediction, where all values larger than $0.5$ result in a suitable prediction.}
     \label{fig:3d-3}
 \end{figure}
-\clearpage
+
+\noindent considered as one of the most promising candidates of Cd- or Pb- based QDs in the application of display and lighting \cite{Zhang2020a, Won2019}.
+
+By further reducing the probability of predictions down to $50\%$ for all models, we eventually find noble gases and other compounds existing as gas in standard conditions. These gases are described in the data with no ionic character, no electronegativity, low covalent radius, large band gaps, and simple structures. Furthermore, there are associated errors with the features for these compounds in Materials Project (which has been addressed in the Materials Project version of V2021.05.13\footnote{https://matsci.org/t/materials-project-database-release-log/ (Visited 14.05.2021)}). We believe they can be considered as outliers, and they are therefore not added additional consideration.
+
+%Due to that the models consider them as coin-flip and the large amount of missing features, we believe we can regard them as outliers, and they are therefore not added additional consideration.
+
+
 In \autoref{fig:3d-3}, we have visualized the three-dimensional scatter plot of the decision tree predicted candidates together with its decision boundary. By visualization, we find that ZnGeP$_2$ and Ge are close by the cluster of ZnS, as described in the previous chapter. Otherwise, the materials are relatively spread out and not belonging to any cluster in three dimensions.
 % BC$_2$N is, not surprisingly, close to the C cluster.
 
@@ -241,7 +243,7 @@ Compound formula & MP ID & MP Calculated BG [eV]
   \hline
 \end{longtable}
 \end{center}
-
+\clearpage
 The constructed dataset consists of compounds formed by all possible combinations of surfaces, interfaces, nanostructures, compositions, and structures. We note that this complexity is not necessarily reflected in the descriptors. Additionally, we acknowledge that many compositions deemed as suitable candidates consist of either rare or dangerous elements. By utilizing an enormously large database as Materials Project, we have to account for their ultimate goal - to model all possible materials and their properties. The automated process of adding an entry to their database does not necessarily contain all relevant information about a respective material. This is information that needs to be added manually.
 
 Furthermore, we have utilized data obtained from high-throughput density functional theory and high-throughput methods. Indeed, there are possible errors associated with every step, starting from an initial calculation, adding of data in the database, gathering of data, featurization of data, preprocessing of data, data mining, and finally training a model and making a prediction. Unfortunately, if an error has happened in the first part of the process, the error follows the entire process and will get increasingly harder to detect. Therefore, we are dependent on that the Materials Project has obtained data with high quality, and we note that it is likely that there are errors present in our data. % the chance of an error present in our data is most likely present.

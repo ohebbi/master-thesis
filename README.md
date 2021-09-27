@@ -12,6 +12,7 @@ Note: commits do not neccessarily reflect working load (but still pretty accurat
 
 To reproduce: 
 - ./get_file_lengths.sh
-- ./python file_length_log.py
-Dependencies
+- python ./file_length_log.py
+
+Dependencies:
 - pandas, numpy, matplotlib, git

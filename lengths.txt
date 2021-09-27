@@ -1,8 +1,2098 @@
+commit 3e44e6ff3226b4487333549bab1317c60ad51393
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05252021
+
+    Added final version
+
+ master-thesis.tex | Bin 1669 -> 1671 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit ae6717d4ffeaa9e47e11551759fe6957a6937b13
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05232021
+
+    gone through feedback morten
+
+ master-thesis.tex | Bin 1671 -> 1669 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 98fe44f7e220440ac7a5d4e9a1fba8dcb092e5ca
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05122021
+
+    feedback part 1 schoyen and typos
+
+ master-thesis.tex | Bin 1864 -> 1671 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 1686f284458db668e48be2cf48e9c9a70613f51f
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05112021
+
+    new results insightful approach. Done feedback chap 7
+
+ master-thesis.tex | Bin 1881 -> 1864 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 7102a3ede0b5dc2428f8f87ead277bf4ebf5d444
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05072021
+
+    gone through feedback for quantum technology and materials informatics, starting implementation now
+
+ master-thesis.tex | Bin 1943 -> 1881 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit a9151d9a08ccad8d98482b7915078835b03dbddc
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05032021
+
+    dedication
+
+ master-thesis.tex | Bin 2153 -> 1943 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit f3964cd20a665165b1f975a608b7b2aeffc53b32
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05032021
+
+    done with first round - awaiting feedbacks
+
+ master-thesis.tex | Bin 1846 -> 2153 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit e13bde847d8c2276d804df9b06a2a0d380c7d710
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05022021
+
+    introduction
+
+ master-thesis.tex | Bin 1869 -> 1846 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 5e663cccf95247f72286dc633e15df3ba5b150c7
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05012021
+
+    version control restructure material informatics
+
+ master-thesis.tex | Bin 1868 -> 1869 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 172fd0a98e7cbc9c48536fe1f346305269dd479e
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05012021
+
+    more discussion and conclusion
+
+ master-thesis.tex | Bin 2004 -> 1868 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit fdda11c60330a8e00ea1d0a20a8c77e935427130
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   04252021
+
+    discussion parameters
+
+ master-thesis.tex | Bin 2005 -> 2004 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 0c843722890b7ad58233367e584d06ba4a8b4571
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   04252021
+
+    git init result
+
+ master-thesis.tex | Bin 2006 -> 2005 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 3e4ada7606695e13b8bdbb59d5885689de427352
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   04222021
+
+    2nd iteration approaches
+
+ master-thesis.tex | Bin 1963 -> 2006 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 8d57e0d9dc34d99cbf253c8914b50f94b767e0fc
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   04192021
+
+    information flow chap
+
+ master-thesis.tex | Bin 1750 -> 1963 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 66cebb8560a1ad15e1ad0644f5eb2ab07c08f483
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   03312021
+
+    vc easter
+
+ master-thesis.tex | Bin 1752 -> 1750 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 4841c4d464c19b142a941a89937f95faede13bbd
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   03272021
+
+    rewrite structure 3rd iteration quantum platforms
+
+ master-thesis.tex | Bin 1751 -> 1752 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 2a5d365e63565d3a6a4768d499c04b5cd6989537
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   03242021
+
+    Restructure of methodology and implementations
+
+ master-thesis.tex | Bin 1693 -> 1751 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit addecd002f8949751778caf24a364cd3f1337fdd
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   03172021
+
+    Added PCA
+
+ master-thesis.tex | Bin 1758 -> 1693 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 824b084cb79b25010a6c382ec5eb43334274c8af
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   03142021
+
+    Featurization and extraction
+
+ master-thesis.tex | Bin 1719 -> 1758 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 99570666edea4c0c111607aaa7ac95f064ea92ac
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   02262021
+
+    small restructure
+
+ master-thesis.tex | Bin 1648 -> 1719 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit b86ad994c51ab1ee1b5cc0b54f4deeaf2c926b15
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   02252021
+
+    started validation and ML-theory
+
+ master-thesis.tex | Bin 1634 -> 1648 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 8b02e9104dd49e2ef4cb8f6089b69b99dd14dbd0
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   02222021
+
+    Added machine learning bit
+
+ master-thesis.tex | Bin 1648 -> 1634 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit b3cdc1ca620c58507b505c24bcd7b44e0a995c64
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   01292021
+
+    started validation
+
+ master-thesis.tex | Bin 1646 -> 1648 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 0a5e482df07ae460b44357401a8f6bf38dc00d50
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   01252021
+
+    second iteration QT done, minor details QM
+
+ master-thesis.tex | Bin 1648 -> 1646 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 134a90540acb3d43c120ed2d44561af34aa1f722
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   01222021
+
+    Added databases, new structure, + working progress QT feedbacks
+
+ master-thesis.tex | Bin 1621 -> 1648 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 5fc9987bdc3cdad00e65d0e882258ab58379e6d4
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   01112021
+
+    Added practical data examples + API HTTP theory
+
+ master-thesis.tex | Bin 1624 -> 1621 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit db04de058dbc1ea8f432f9a77fb02e281f4d5c5a
+Author: Oliver Hebnes <oliver.lerstol.hebnes@gyldendal.no>
+Date:   01042021
+
+    practical examples
+
+ master-thesis.tex | Bin 1639 -> 1624 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit fd29f4d201f3681f249caaa29d6595b259403998
+Author: Oliver Hebnes <oliver.lerstol.hebnes@gyldendal.no>
+Date:   12212020
+
+    defects, typesetting, tikz
+
+ master-thesis.tex | Bin 1653 -> 1639 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 496a153bcb90c80697a20aa342ed0168fc9efdca
+Author: Oliver Hebnes <oliver.lerstol.hebnes@gyldendal.no>
+Date:   12182020
+
+    split up tikz plots into files, added theory QT hosts
+
+ master-thesis.tex | Bin 1651 -> 1653 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 37567d25570a9a40d9231528aa9d0efa95f7fb59
+Author: Oliver Hebnes <oliver.lerstol.hebnes@gyldendal.no>
+Date:   12112020
+
+    Added quantum sensing and small talk dft
+
+ master-thesis.tex | Bin 1652 -> 1651 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 1c6a22fdf0818bc9e792088cf43f850f9a03aad8
+Author: Oliver Hebnes <oliver.lerstol.hebnes@gyldendal.no>
+Date:   12032020
+
+    rad visualisation of crystal structures
+
+ master-thesis.tex | Bin 1650 -> 1652 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 18f0fcfc398ffab13e53a6392913a74596b2f3a2
+Author: Oliver Hebnes <oliver.lerstol.hebnes@gyldendal.no>
+Date:   11282020
+
+    Functionals DFT, perovskite structure + motivation of qubits
+
+ master-thesis.tex | Bin 1656 -> 1650 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit a00f85f7313544c62e1f9c250de1c3f09834bc60
+Author: Oliver <oliverlh@uio.no>
+Date:   10302020
+
+    added qm, dft, start materialscience and database
+
+ master-thesis.tex | Bin 1514 -> 1656 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit bd398bf79721e28a04ebe3f13bc9d1f4e117d237
+Author: Oliver <oliverlh@uio.no>
+Date:   10092020
+
+    functionals
+
+ master-thesis.tex | Bin 1506 -> 1514 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 58cbe415725759e078e910ce1e56c0e5142338d9
+Author: Oliver <oliverlh@uio.no>
+Date:   09292020
+
+    first draft databases, quantum and crystallography
+
+ master-thesis.tex | Bin 1334 -> 1506 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
 commit 041a175fe2423bdd3e16acc671e6adede0cb4e95
 Author: Oliver <oliverlh@uio.no>
-Date:   Mon Aug 24 13:54:25 2020 +0200
+Date:   08242020
 
     initial commit
 
  master-thesis.tex | Bin 0 -> 1334 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+commit 380d63c8d80fb3a417656e8ec0f8ad54b8c18891
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05222021
+
+    alignment text, figures, tables
+
+ conclusion/conclusion.tex | Bin 5539 -> 5544 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 955f856e460d440957f22ba15c71b49992cbe468
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05162021
+
+    added 10000 corrections from grammarly
+
+ conclusion/conclusion.tex | Bin 5542 -> 5539 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 0c5ab969e279c1358fef111b8bb880221bff683b
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05142021
+
+    final touches from schoyen
+
+ conclusion/conclusion.tex | Bin 5505 -> 5542 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 2a2e19438161da4930be6b05309c338681a68a4f
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05132021
+
+    typo future remarks
+
+ conclusion/conclusion.tex | Bin 5307 -> 5505 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 68d81f488630b676f4f58b3a830d4f86b0eebba6
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05132021
+
+    future remarks and smal remarks
+
+ conclusion/conclusion.tex | Bin 3463 -> 5307 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 98fe44f7e220440ac7a5d4e9a1fba8dcb092e5ca
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05122021
+
+    feedback part 1 schoyen and typos
+
+ conclusion/conclusion.tex | Bin 3466 -> 3463 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 048e28c7dfe2efa50006c8a66dedc6f22f8e4fa3
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05122021
+
+    Introduction and chap 8
+
+ conclusion/conclusion.tex | Bin 3407 -> 3466 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 1686f284458db668e48be2cf48e9c9a70613f51f
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05112021
+
+    new results insightful approach. Done feedback chap 7
+
+ conclusion/conclusion.tex | Bin 3378 -> 3407 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit f3964cd20a665165b1f975a608b7b2aeffc53b32
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05032021
+
+    done with first round - awaiting feedbacks
+
+ conclusion/conclusion.tex | Bin 1947 -> 3378 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 5e663cccf95247f72286dc633e15df3ba5b150c7
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05012021
+
+    version control restructure material informatics
+
+ conclusion/conclusion.tex | Bin 2892 -> 1947 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 172fd0a98e7cbc9c48536fe1f346305269dd479e
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05012021
+
+    more discussion and conclusion
+
+ conclusion/conclusion.tex | Bin 0 -> 2892 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+commit 5e663cccf95247f72286dc633e15df3ba5b150c7
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05012021
+
+    version control restructure material informatics
+
+ methodology&implementations/databases.tex | Bin 16683 -> 15203 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 8d57e0d9dc34d99cbf253c8914b50f94b767e0fc
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   04192021
+
+    information flow chap
+
+ methodology&implementations/databases.tex | Bin 16683 -> 16683 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 824b084cb79b25010a6c382ec5eb43334274c8af
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   03142021
+
+    Featurization and extraction
+
+ methodology&implementations/databases.tex | Bin 16684 -> 16683 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 99570666edea4c0c111607aaa7ac95f064ea92ac
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   02262021
+
+    small restructure
+
+ methodology&implementations/databases.tex | Bin 27283 -> 16684 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit b3cdc1ca620c58507b505c24bcd7b44e0a995c64
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   01292021
+
+    started validation
+
+ methodology&implementations/databases.tex | Bin 26332 -> 27283 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 134a90540acb3d43c120ed2d44561af34aa1f722
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   01222021
+
+    Added databases, new structure, + working progress QT feedbacks
+
+ methodology&implementations/databases.tex | Bin 0 -> 26332 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+commit a21ce23043c4814e22da7d89da96c0d6d3a9ed53
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05232021
+
+    last commit???
+
+ .../extraction_featurization.tex                    | Bin 53429 -> 53439 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit ae6717d4ffeaa9e47e11551759fe6957a6937b13
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05232021
+
+    gone through feedback morten
+
+ .../extraction_featurization.tex                    | Bin 53423 -> 53429 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 380d63c8d80fb3a417656e8ec0f8ad54b8c18891
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05222021
+
+    alignment text, figures, tables
+
+ .../extraction_featurization.tex                    | Bin 53373 -> 53423 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 955f856e460d440957f22ba15c71b49992cbe468
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05162021
+
+    added 10000 corrections from grammarly
+
+ .../extraction_featurization.tex                    | Bin 53617 -> 53373 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit ad1aa2fcdf570578257e495039e0e2bc6e33d283
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05142021
+
+    gone through feedback sschoyen seb up to 7.2
+
+ .../extraction_featurization.tex                    | Bin 53616 -> 53617 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit c237df3374089aa95174a00852dba6a4733f9909
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05132021
+
+    references & remove mp-references in text
+
+ .../extraction_featurization.tex                    | Bin 53577 -> 53616 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 5afa2c25277db34544f05ca07f476d55db73b49f
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05122021
+
+    done feedback part2 schoyen
+
+ .../extraction_featurization.tex                    | Bin 53671 -> 53577 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 98fe44f7e220440ac7a5d4e9a1fba8dcb092e5ca
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05122021
+
+    feedback part 1 schoyen and typos
+
+ .../extraction_featurization.tex                    | Bin 53703 -> 53671 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 1686f284458db668e48be2cf48e9c9a70613f51f
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05112021
+
+    new results insightful approach. Done feedback chap 7
+
+ .../extraction_featurization.tex                    | Bin 53467 -> 53703 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit c6fe0edcdb999e777143bad814e3fc836979e158
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05102021
+
+    done feedback part1 and part 2. Now --> predictions, introduction, conclusions, appendix
+
+ .../extraction_featurization.tex                    | Bin 52884 -> 53467 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit ca07fbc2269ec50972c4a766e69da471d0312f02
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05102021
+
+    gone through feedback Part 2 implementation
+
+ .../extraction_featurization.tex                    | Bin 51360 -> 52884 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 7102a3ede0b5dc2428f8f87ead277bf4ebf5d444
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05072021
+
+    gone through feedback for quantum technology and materials informatics, starting implementation now
+
+ .../extraction_featurization.tex                    | Bin 50418 -> 51360 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit f3964cd20a665165b1f975a608b7b2aeffc53b32
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05032021
+
+    done with first round - awaiting feedbacks
+
+ .../extraction_featurization.tex                    | Bin 50320 -> 50418 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 5e663cccf95247f72286dc633e15df3ba5b150c7
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05012021
+
+    version control restructure material informatics
+
+ .../extraction_featurization.tex                    | Bin 46746 -> 50320 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 172fd0a98e7cbc9c48536fe1f346305269dd479e
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05012021
+
+    more discussion and conclusion
+
+ .../extraction_featurization.tex                    | Bin 46680 -> 46746 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit fdda11c60330a8e00ea1d0a20a8c77e935427130
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   04252021
+
+    discussion parameters
+
+ .../extraction_featurization.tex                    | Bin 46597 -> 46680 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 3e4ada7606695e13b8bdbb59d5885689de427352
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   04222021
+
+    2nd iteration approaches
+
+ .../extraction_featurization.tex                    | Bin 38766 -> 46597 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 8d57e0d9dc34d99cbf253c8914b50f94b767e0fc
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   04192021
+
+    information flow chap
+
+ .../extraction_featurization.tex                    | Bin 20127 -> 38766 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 2a5d365e63565d3a6a4768d499c04b5cd6989537
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   03242021
+
+    Restructure of methodology and implementations
+
+ .../extraction_featurization.tex                    | Bin 18301 -> 20127 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit addecd002f8949751778caf24a364cd3f1337fdd
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   03172021
+
+    Added PCA
+
+ .../extraction_featurization.tex                    | Bin 17300 -> 18301 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 824b084cb79b25010a6c382ec5eb43334274c8af
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   03142021
+
+    Featurization and extraction
+
+ .../extraction_featurization.tex                    | Bin 17071 -> 17300 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 99570666edea4c0c111607aaa7ac95f064ea92ac
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   02262021
+
+    small restructure
+
+ .../extraction_featurization.tex                        | Bin 0 -> 17071 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+commit 3e44e6ff3226b4487333549bab1317c60ad51393
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05252021
+
+    Added final version
+
+ miscellaneous/abstract/abstract.tex | Bin 4172 -> 4189 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 380d63c8d80fb3a417656e8ec0f8ad54b8c18891
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05222021
+
+    alignment text, figures, tables
+
+ miscellaneous/abstract/abstract.tex | Bin 4167 -> 4172 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 955f856e460d440957f22ba15c71b49992cbe468
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05162021
+
+    added 10000 corrections from grammarly
+
+ miscellaneous/abstract/abstract.tex | Bin 4146 -> 4167 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 0c5ab969e279c1358fef111b8bb880221bff683b
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05142021
+
+    final touches from schoyen
+
+ miscellaneous/abstract/abstract.tex | Bin 4144 -> 4146 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit ad1aa2fcdf570578257e495039e0e2bc6e33d283
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05142021
+
+    gone through feedback sschoyen seb up to 7.2
+
+ miscellaneous/abstract/abstract.tex | Bin 1519 -> 4144 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 68d81f488630b676f4f58b3a830d4f86b0eebba6
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05132021
+
+    future remarks and smal remarks
+
+ miscellaneous/abstract/abstract.tex | Bin 1298 -> 1519 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit c237df3374089aa95174a00852dba6a4733f9909
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05132021
+
+    references & remove mp-references in text
+
+ miscellaneous/abstract/abstract.tex | Bin 1297 -> 1298 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 048e28c7dfe2efa50006c8a66dedc6f22f8e4fa3
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05122021
+
+    Introduction and chap 8
+
+ miscellaneous/abstract/abstract.tex | Bin 1298 -> 1297 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 1686f284458db668e48be2cf48e9c9a70613f51f
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05112021
+
+    new results insightful approach. Done feedback chap 7
+
+ miscellaneous/abstract/abstract.tex | Bin 1311 -> 1298 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 7102a3ede0b5dc2428f8f87ead277bf4ebf5d444
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05072021
+
+    gone through feedback for quantum technology and materials informatics, starting implementation now
+
+ miscellaneous/abstract/abstract.tex | Bin 1317 -> 1311 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit f3964cd20a665165b1f975a608b7b2aeffc53b32
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05032021
+
+    done with first round - awaiting feedbacks
+
+ miscellaneous/abstract/abstract.tex | Bin 35 -> 1317 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 041a175fe2423bdd3e16acc671e6adede0cb4e95
+Author: Oliver <oliverlh@uio.no>
+Date:   08242020
+
+    initial commit
+
+ miscellaneous/abstract/abstract.tex | Bin 0 -> 35 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+commit 955f856e460d440957f22ba15c71b49992cbe468
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05162021
+
+    added 10000 corrections from grammarly
+
+ miscellaneous/acknowledgements/acknowledgements.tex | Bin 1798 -> 2459 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 68d81f488630b676f4f58b3a830d4f86b0eebba6
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05132021
+
+    future remarks and smal remarks
+
+ miscellaneous/acknowledgements/acknowledgements.tex | Bin 1648 -> 1798 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 7102a3ede0b5dc2428f8f87ead277bf4ebf5d444
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05072021
+
+    gone through feedback for quantum technology and materials informatics, starting implementation now
+
+ miscellaneous/acknowledgements/acknowledgements.tex | Bin 729 -> 1648 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit f3964cd20a665165b1f975a608b7b2aeffc53b32
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05032021
+
+    done with first round - awaiting feedbacks
+
+ miscellaneous/acknowledgements/acknowledgements.tex | Bin 716 -> 729 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 3e4ada7606695e13b8bdbb59d5885689de427352
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   04222021
+
+    2nd iteration approaches
+
+ miscellaneous/acknowledgements/acknowledgements.tex | Bin 31 -> 716 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 041a175fe2423bdd3e16acc671e6adede0cb4e95
+Author: Oliver <oliverlh@uio.no>
+Date:   08242020
+
+    initial commit
+
+ miscellaneous/acknowledgements/acknowledgements.tex | Bin 0 -> 31 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+commit a21ce23043c4814e22da7d89da96c0d6d3a9ed53
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05232021
+
+    last commit???
+
+ miscellaneous/appendices/appendix.tex | Bin 11015 -> 11018 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 63c4f7fa3343a48c1dc7e8064f477a77c63bca8d
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05142021
+
+    final touch appendix and BOA
+
+ miscellaneous/appendices/appendix.tex | Bin 11354 -> 11015 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 0c5ab969e279c1358fef111b8bb880221bff683b
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05142021
+
+    final touches from schoyen
+
+ miscellaneous/appendices/appendix.tex | Bin 11368 -> 11354 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 54b738990bc1c65157bce80a1617f0c842914884
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05142021
+
+    final feedback schoyen
+
+ miscellaneous/appendices/appendix.tex | Bin 12193 -> 11368 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 98fe44f7e220440ac7a5d4e9a1fba8dcb092e5ca
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05122021
+
+    feedback part 1 schoyen and typos
+
+ miscellaneous/appendices/appendix.tex | Bin 12195 -> 12193 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit f3964cd20a665165b1f975a608b7b2aeffc53b32
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05032021
+
+    done with first round - awaiting feedbacks
+
+ miscellaneous/appendices/appendix.tex | Bin 12220 -> 12195 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit e13bde847d8c2276d804df9b06a2a0d380c7d710
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05022021
+
+    introduction
+
+ miscellaneous/appendices/appendix.tex | Bin 14038 -> 12220 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 0c843722890b7ad58233367e584d06ba4a8b4571
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   04252021
+
+    git init result
+
+ miscellaneous/appendices/appendix.tex | Bin 10223 -> 14038 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 66cebb8560a1ad15e1ad0644f5eb2ab07c08f483
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   03312021
+
+    vc easter
+
+ miscellaneous/appendices/appendix.tex | Bin 1413 -> 10223 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit addecd002f8949751778caf24a364cd3f1337fdd
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   03172021
+
+    Added PCA
+
+ miscellaneous/appendices/appendix.tex | Bin 0 -> 1413 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+commit c237df3374089aa95174a00852dba6a4733f9909
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05132021
+
+    references & remove mp-references in text
+
+ miscellaneous/appendices/erroneousEntriesTable.tex | Bin 1314 -> 1180 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 98fe44f7e220440ac7a5d4e9a1fba8dcb092e5ca
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05122021
+
+    feedback part 1 schoyen and typos
+
+ miscellaneous/appendices/erroneousEntriesTable.tex | Bin 1314 -> 1314 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit addecd002f8949751778caf24a364cd3f1337fdd
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   03172021
+
+    Added PCA
+
+ miscellaneous/appendices/erroneousEntriesTable.tex | Bin 0 -> 1314 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+commit 68d81f488630b676f4f58b3a830d4f86b0eebba6
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05132021
+
+    future remarks and smal remarks
+
+ miscellaneous/appendices/featurizerTable.tex | Bin 6082 -> 6307 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit c237df3374089aa95174a00852dba6a4733f9909
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05132021
+
+    references & remove mp-references in text
+
+ miscellaneous/appendices/featurizerTable.tex | Bin 5988 -> 6082 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 7102a3ede0b5dc2428f8f87ead277bf4ebf5d444
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05072021
+
+    gone through feedback for quantum technology and materials informatics, starting implementation now
+
+ miscellaneous/appendices/featurizerTable.tex | Bin 5997 -> 5988 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit e13bde847d8c2276d804df9b06a2a0d380c7d710
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05022021
+
+    introduction
+
+ miscellaneous/appendices/featurizerTable.tex | Bin 6006 -> 5997 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 824b084cb79b25010a6c382ec5eb43334274c8af
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   03142021
+
+    Featurization and extraction
+
+ miscellaneous/appendices/featurizerTable.tex | Bin 0 -> 6006 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+commit 7102a3ede0b5dc2428f8f87ead277bf4ebf5d444
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05072021
+
+    gone through feedback for quantum technology and materials informatics, starting implementation now
+
+ miscellaneous/dedication/dedication.tex | Bin 209 -> 239 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit a9151d9a08ccad8d98482b7915078835b03dbddc
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05032021
+
+    dedication
+
+ miscellaneous/dedication/dedication.tex | Bin 0 -> 209 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+commit ae6717d4ffeaa9e47e11551759fe6957a6937b13
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05232021
+
+    gone through feedback morten
+
+ miscellaneous/introduction/introduction.tex | Bin 6604 -> 6603 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 955f856e460d440957f22ba15c71b49992cbe468
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05162021
+
+    added 10000 corrections from grammarly
+
+ miscellaneous/introduction/introduction.tex | Bin 6605 -> 6604 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 68d81f488630b676f4f58b3a830d4f86b0eebba6
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05132021
+
+    future remarks and smal remarks
+
+ miscellaneous/introduction/introduction.tex | Bin 6343 -> 6605 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit c237df3374089aa95174a00852dba6a4733f9909
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05132021
+
+    references & remove mp-references in text
+
+ miscellaneous/introduction/introduction.tex | Bin 6341 -> 6343 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 98fe44f7e220440ac7a5d4e9a1fba8dcb092e5ca
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05122021
+
+    feedback part 1 schoyen and typos
+
+ miscellaneous/introduction/introduction.tex | Bin 6341 -> 6341 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 048e28c7dfe2efa50006c8a66dedc6f22f8e4fa3
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05122021
+
+    Introduction and chap 8
+
+ miscellaneous/introduction/introduction.tex | Bin 4288 -> 6341 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit c6fe0edcdb999e777143bad814e3fc836979e158
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05102021
+
+    done feedback part1 and part 2. Now --> predictions, introduction, conclusions, appendix
+
+ miscellaneous/introduction/introduction.tex | Bin 4268 -> 4288 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 7102a3ede0b5dc2428f8f87ead277bf4ebf5d444
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05072021
+
+    gone through feedback for quantum technology and materials informatics, starting implementation now
+
+ miscellaneous/introduction/introduction.tex | Bin 4155 -> 4268 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit f3964cd20a665165b1f975a608b7b2aeffc53b32
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05032021
+
+    done with first round - awaiting feedbacks
+
+ miscellaneous/introduction/introduction.tex | Bin 4012 -> 4155 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit e13bde847d8c2276d804df9b06a2a0d380c7d710
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05022021
+
+    introduction
+
+ miscellaneous/introduction/introduction.tex | Bin 2004 -> 4012 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 5e663cccf95247f72286dc633e15df3ba5b150c7
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05012021
+
+    version control restructure material informatics
+
+ miscellaneous/introduction/introduction.tex | Bin 297 -> 2004 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 8d57e0d9dc34d99cbf253c8914b50f94b767e0fc
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   04192021
+
+    information flow chap
+
+ miscellaneous/introduction/introduction.tex | Bin 200 -> 297 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 134a90540acb3d43c120ed2d44561af34aa1f722
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   01222021
+
+    Added databases, new structure, + working progress QT feedbacks
+
+ miscellaneous/introduction/introduction.tex | Bin 122 -> 200 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit a00f85f7313544c62e1f9c250de1c3f09834bc60
+Author: Oliver <oliverlh@uio.no>
+Date:   10302020
+
+    added qm, dft, start materialscience and database
+
+ miscellaneous/introduction/introduction.tex | Bin 65 -> 122 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 041a175fe2423bdd3e16acc671e6adede0cb4e95
+Author: Oliver <oliverlh@uio.no>
+Date:   08242020
+
+    initial commit
+
+ miscellaneous/introduction/introduction.tex | Bin 0 -> 65 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+commit ae6717d4ffeaa9e47e11551759fe6957a6937b13
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05232021
+
+    gone through feedback morten
+
+ results/optimal_parameters.tex | Bin 44165 -> 44215 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 380d63c8d80fb3a417656e8ec0f8ad54b8c18891
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05222021
+
+    alignment text, figures, tables
+
+ results/optimal_parameters.tex | Bin 44141 -> 44165 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 955f856e460d440957f22ba15c71b49992cbe468
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05162021
+
+    added 10000 corrections from grammarly
+
+ results/optimal_parameters.tex | Bin 44021 -> 44141 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 0ddbb09f0530f6409d5210c7e89ef48415a9df54
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05152021
+
+    typo and align y axis validation plots
+
+ results/optimal_parameters.tex | Bin 43439 -> 44021 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 0c5ab969e279c1358fef111b8bb880221bff683b
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05142021
+
+    final touches from schoyen
+
+ results/optimal_parameters.tex | Bin 43440 -> 43439 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 54b738990bc1c65157bce80a1617f0c842914884
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05142021
+
+    final feedback schoyen
+
+ results/optimal_parameters.tex | Bin 43246 -> 43440 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit ad1aa2fcdf570578257e495039e0e2bc6e33d283
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05142021
+
+    gone through feedback sschoyen seb up to 7.2
+
+ results/optimal_parameters.tex | Bin 43265 -> 43246 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 98fe44f7e220440ac7a5d4e9a1fba8dcb092e5ca
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05122021
+
+    feedback part 1 schoyen and typos
+
+ results/optimal_parameters.tex | Bin 43126 -> 43265 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 1686f284458db668e48be2cf48e9c9a70613f51f
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05112021
+
+    new results insightful approach. Done feedback chap 7
+
+ results/optimal_parameters.tex | Bin 42587 -> 43126 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit c6fe0edcdb999e777143bad814e3fc836979e158
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05102021
+
+    done feedback part1 and part 2. Now --> predictions, introduction, conclusions, appendix
+
+ results/optimal_parameters.tex | Bin 42522 -> 42587 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit f3964cd20a665165b1f975a608b7b2aeffc53b32
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05032021
+
+    done with first round - awaiting feedbacks
+
+ results/optimal_parameters.tex | Bin 39531 -> 42522 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 172fd0a98e7cbc9c48536fe1f346305269dd479e
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05012021
+
+    more discussion and conclusion
+
+ results/optimal_parameters.tex | Bin 32744 -> 39531 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit fdda11c60330a8e00ea1d0a20a8c77e935427130
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   04252021
+
+    discussion parameters
+
+ results/optimal_parameters.tex | Bin 22988 -> 32744 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 0c843722890b7ad58233367e584d06ba4a8b4571
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   04252021
+
+    git init result
+
+ results/optimal_parameters.tex | Bin 7648 -> 22988 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 3e4ada7606695e13b8bdbb59d5885689de427352
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   04222021
+
+    2nd iteration approaches
+
+ results/optimal_parameters.tex | Bin 5962 -> 7648 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 8d57e0d9dc34d99cbf253c8914b50f94b767e0fc
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   04192021
+
+    information flow chap
+
+ results/optimal_parameters.tex | Bin 0 -> 5962 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+commit 3e44e6ff3226b4487333549bab1317c60ad51393
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05252021
+
+    Added final version
+
+ results/predictions.tex | Bin 27637 -> 27645 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit a21ce23043c4814e22da7d89da96c0d6d3a9ed53
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05232021
+
+    last commit???
+
+ results/predictions.tex | Bin 27638 -> 27637 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit ae6717d4ffeaa9e47e11551759fe6957a6937b13
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05232021
+
+    gone through feedback morten
+
+ results/predictions.tex | Bin 27537 -> 27638 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 380d63c8d80fb3a417656e8ec0f8ad54b8c18891
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05222021
+
+    alignment text, figures, tables
+
+ results/predictions.tex | Bin 27275 -> 27537 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 0006e1e12fa26a40b4922e96676ffbfb79a2d007
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05192021
+
+    added comment synthesized CdS QD
+
+ results/predictions.tex | Bin 26940 -> 27275 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 955f856e460d440957f22ba15c71b49992cbe468
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05162021
+
+    added 10000 corrections from grammarly
+
+ results/predictions.tex | Bin 26912 -> 26940 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 0ddbb09f0530f6409d5210c7e89ef48415a9df54
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05152021
+
+    typo and align y axis validation plots
+
+ results/predictions.tex | Bin 27271 -> 26912 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 0c5ab969e279c1358fef111b8bb880221bff683b
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05142021
+
+    final touches from schoyen
+
+ results/predictions.tex | Bin 27317 -> 27271 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit ad1aa2fcdf570578257e495039e0e2bc6e33d283
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05142021
+
+    gone through feedback sschoyen seb up to 7.2
+
+ results/predictions.tex | Bin 26765 -> 27317 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 68d81f488630b676f4f58b3a830d4f86b0eebba6
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05132021
+
+    future remarks and smal remarks
+
+ results/predictions.tex | Bin 25749 -> 26765 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit c237df3374089aa95174a00852dba6a4733f9909
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05132021
+
+    references & remove mp-references in text
+
+ results/predictions.tex | Bin 25793 -> 25749 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 98fe44f7e220440ac7a5d4e9a1fba8dcb092e5ca
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05122021
+
+    feedback part 1 schoyen and typos
+
+ results/predictions.tex | Bin 25793 -> 25793 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 048e28c7dfe2efa50006c8a66dedc6f22f8e4fa3
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05122021
+
+    Introduction and chap 8
+
+ results/predictions.tex | Bin 22276 -> 25793 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 1686f284458db668e48be2cf48e9c9a70613f51f
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05112021
+
+    new results insightful approach. Done feedback chap 7
+
+ results/predictions.tex | Bin 17711 -> 22276 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit c6fe0edcdb999e777143bad814e3fc836979e158
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05102021
+
+    done feedback part1 and part 2. Now --> predictions, introduction, conclusions, appendix
+
+ results/predictions.tex | Bin 17463 -> 17711 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit f3964cd20a665165b1f975a608b7b2aeffc53b32
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05032021
+
+    done with first round - awaiting feedbacks
+
+ results/predictions.tex | Bin 14781 -> 17463 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 5e663cccf95247f72286dc633e15df3ba5b150c7
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05012021
+
+    version control restructure material informatics
+
+ results/predictions.tex | Bin 14290 -> 14781 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 172fd0a98e7cbc9c48536fe1f346305269dd479e
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05012021
+
+    more discussion and conclusion
+
+ results/predictions.tex | Bin 672 -> 14290 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 3e4ada7606695e13b8bdbb59d5885689de427352
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   04222021
+
+    2nd iteration approaches
+
+ results/predictions.tex | Bin 0 -> 672 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+commit ae6717d4ffeaa9e47e11551759fe6957a6937b13
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05232021
+
+    gone through feedback morten
+
+ results/validation.tex | Bin 24487 -> 24503 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 380d63c8d80fb3a417656e8ec0f8ad54b8c18891
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05222021
+
+    alignment text, figures, tables
+
+ results/validation.tex | Bin 24477 -> 24487 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 955f856e460d440957f22ba15c71b49992cbe468
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05162021
+
+    added 10000 corrections from grammarly
+
+ results/validation.tex | Bin 24448 -> 24477 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit ad1aa2fcdf570578257e495039e0e2bc6e33d283
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05142021
+
+    gone through feedback sschoyen seb up to 7.2
+
+ results/validation.tex | Bin 24331 -> 24448 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 98fe44f7e220440ac7a5d4e9a1fba8dcb092e5ca
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05122021
+
+    feedback part 1 schoyen and typos
+
+ results/validation.tex | Bin 24307 -> 24331 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 048e28c7dfe2efa50006c8a66dedc6f22f8e4fa3
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05122021
+
+    Introduction and chap 8
+
+ results/validation.tex | Bin 24322 -> 24307 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 7b79450d42435e5da841d441b231c2fce995099f
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05102021
+
+    feedback validation
+
+ results/validation.tex | Bin 23223 -> 24322 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit ca07fbc2269ec50972c4a766e69da471d0312f02
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05102021
+
+    gone through feedback Part 2 implementation
+
+ results/validation.tex | Bin 23181 -> 23223 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit f3964cd20a665165b1f975a608b7b2aeffc53b32
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05032021
+
+    done with first round - awaiting feedbacks
+
+ results/validation.tex | Bin 23180 -> 23181 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 172fd0a98e7cbc9c48536fe1f346305269dd479e
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05012021
+
+    more discussion and conclusion
+
+ results/validation.tex | Bin 17228 -> 23180 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit fdda11c60330a8e00ea1d0a20a8c77e935427130
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   04252021
+
+    discussion parameters
+
+ results/validation.tex | Bin 17023 -> 17228 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 0c843722890b7ad58233367e584d06ba4a8b4571
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   04252021
+
+    git init result
+
+ results/validation.tex | Bin 14167 -> 17023 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 3e4ada7606695e13b8bdbb59d5885689de427352
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   04222021
+
+    2nd iteration approaches
+
+ results/validation.tex | Bin 14077 -> 14167 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 8d57e0d9dc34d99cbf253c8914b50f94b767e0fc
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   04192021
+
+    information flow chap
+
+ results/validation.tex | Bin 4975 -> 14077 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit b86ad994c51ab1ee1b5cc0b54f4deeaf2c926b15
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   02252021
+
+    started validation and ML-theory
+
+ results/validation.tex | Bin 2503 -> 4975 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 8b02e9104dd49e2ef4cb8f6089b69b99dd14dbd0
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   02222021
+
+    Added machine learning bit
+
+ results/validation.tex | Bin 2500 -> 2503 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit b3cdc1ca620c58507b505c24bcd7b44e0a995c64
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   01292021
+
+    started validation
+
+ results/validation.tex | Bin 0 -> 2500 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+commit ae6717d4ffeaa9e47e11551759fe6957a6937b13
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05232021
+
+    gone through feedback morten
+
+ theory/machine_learning.tex | Bin 57268 -> 57286 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 380d63c8d80fb3a417656e8ec0f8ad54b8c18891
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05222021
+
+    alignment text, figures, tables
+
+ theory/machine_learning.tex | Bin 57273 -> 57268 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 955f856e460d440957f22ba15c71b49992cbe468
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05162021
+
+    added 10000 corrections from grammarly
+
+ theory/machine_learning.tex | Bin 57281 -> 57273 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 98fe44f7e220440ac7a5d4e9a1fba8dcb092e5ca
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05122021
+
+    feedback part 1 schoyen and typos
+
+ theory/machine_learning.tex | Bin 57303 -> 57281 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit f3964cd20a665165b1f975a608b7b2aeffc53b32
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05032021
+
+    done with first round - awaiting feedbacks
+
+ theory/machine_learning.tex | Bin 57274 -> 57303 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit e13bde847d8c2276d804df9b06a2a0d380c7d710
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05022021
+
+    introduction
+
+ theory/machine_learning.tex | Bin 57235 -> 57274 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit fdda11c60330a8e00ea1d0a20a8c77e935427130
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   04252021
+
+    discussion parameters
+
+ theory/machine_learning.tex | Bin 57189 -> 57235 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 0c843722890b7ad58233367e584d06ba4a8b4571
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   04252021
+
+    git init result
+
+ theory/machine_learning.tex | Bin 51259 -> 57189 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 8d57e0d9dc34d99cbf253c8914b50f94b767e0fc
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   04192021
+
+    information flow chap
+
+ theory/machine_learning.tex | Bin 45037 -> 51259 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 66cebb8560a1ad15e1ad0644f5eb2ab07c08f483
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   03312021
+
+    vc easter
+
+ theory/machine_learning.tex | Bin 43336 -> 45037 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 2234e721de4f17aac12eaaff5c46a1b3cc828d59
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   03182021
+
+    PCA algo + CV
+
+ theory/machine_learning.tex | Bin 40140 -> 43336 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit addecd002f8949751778caf24a364cd3f1337fdd
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   03172021
+
+    Added PCA
+
+ theory/machine_learning.tex | Bin 22084 -> 40140 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit b86ad994c51ab1ee1b5cc0b54f4deeaf2c926b15
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   02252021
+
+    started validation and ML-theory
+
+ theory/machine_learning.tex | Bin 19645 -> 22084 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 8b02e9104dd49e2ef4cb8f6089b69b99dd14dbd0
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   02222021
+
+    Added machine learning bit
+
+ theory/machine_learning.tex | Bin 200 -> 19645 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit a00f85f7313544c62e1f9c250de1c3f09834bc60
+Author: Oliver <oliverlh@uio.no>
+Date:   10302020
+
+    added qm, dft, start materialscience and database
+
+ theory/machine_learning.tex | Bin 0 -> 200 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+commit 3e44e6ff3226b4487333549bab1317c60ad51393
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05252021
+
+    Added final version
+
+ theory/quantum_mechanics.tex | Bin 54516 -> 54516 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit a21ce23043c4814e22da7d89da96c0d6d3a9ed53
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05232021
+
+    last commit???
+
+ theory/quantum_mechanics.tex | Bin 54462 -> 54516 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit ae6717d4ffeaa9e47e11551759fe6957a6937b13
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05232021
+
+    gone through feedback morten
+
+ theory/quantum_mechanics.tex | Bin 54445 -> 54462 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 380d63c8d80fb3a417656e8ec0f8ad54b8c18891
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05222021
+
+    alignment text, figures, tables
+
+ theory/quantum_mechanics.tex | Bin 54445 -> 54445 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 955f856e460d440957f22ba15c71b49992cbe468
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05162021
+
+    added 10000 corrections from grammarly
+
+ theory/quantum_mechanics.tex | Bin 54406 -> 54445 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 63c4f7fa3343a48c1dc7e8064f477a77c63bca8d
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05142021
+
+    final touch appendix and BOA
+
+ theory/quantum_mechanics.tex | Bin 53444 -> 54406 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 98fe44f7e220440ac7a5d4e9a1fba8dcb092e5ca
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05122021
+
+    feedback part 1 schoyen and typos
+
+ theory/quantum_mechanics.tex | Bin 53222 -> 53444 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 048e28c7dfe2efa50006c8a66dedc6f22f8e4fa3
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05122021
+
+    Introduction and chap 8
+
+ theory/quantum_mechanics.tex | Bin 53211 -> 53222 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit c6fe0edcdb999e777143bad814e3fc836979e158
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05102021
+
+    done feedback part1 and part 2. Now --> predictions, introduction, conclusions, appendix
+
+ theory/quantum_mechanics.tex | Bin 52837 -> 53211 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 7102a3ede0b5dc2428f8f87ead277bf4ebf5d444
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05072021
+
+    gone through feedback for quantum technology and materials informatics, starting implementation now
+
+ theory/quantum_mechanics.tex | Bin 51226 -> 52837 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit f3964cd20a665165b1f975a608b7b2aeffc53b32
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05032021
+
+    done with first round - awaiting feedbacks
+
+ theory/quantum_mechanics.tex | Bin 51152 -> 51226 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit e13bde847d8c2276d804df9b06a2a0d380c7d710
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05022021
+
+    introduction
+
+ theory/quantum_mechanics.tex | Bin 49415 -> 51152 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 5e663cccf95247f72286dc633e15df3ba5b150c7
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05012021
+
+    version control restructure material informatics
+
+ theory/quantum_mechanics.tex | Bin 33458 -> 49415 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 8d57e0d9dc34d99cbf253c8914b50f94b767e0fc
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   04192021
+
+    information flow chap
+
+ theory/quantum_mechanics.tex | Bin 33130 -> 33458 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 66cebb8560a1ad15e1ad0644f5eb2ab07c08f483
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   03312021
+
+    vc easter
+
+ theory/quantum_mechanics.tex | Bin 37035 -> 33130 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 0a5e482df07ae460b44357401a8f6bf38dc00d50
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   01252021
+
+    second iteration QT done, minor details QM
+
+ theory/quantum_mechanics.tex | Bin 37034 -> 37035 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit fd29f4d201f3681f249caaa29d6595b259403998
+Author: Oliver Hebnes <oliver.lerstol.hebnes@gyldendal.no>
+Date:   12212020
+
+    defects, typesetting, tikz
+
+ theory/quantum_mechanics.tex | Bin 38998 -> 37034 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 3937908d5249ed4a73faaf630bf66cb145746cbf
+Author: Oliver Hebnes <oliver.lerstol.hebnes@gyldendal.no>
+Date:   12172020
+
+    Added DiVincenzo criteria + qt platforms, and few minor additions
+
+ theory/quantum_mechanics.tex | Bin 38612 -> 38998 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 37567d25570a9a40d9231528aa9d0efa95f7fb59
+Author: Oliver Hebnes <oliver.lerstol.hebnes@gyldendal.no>
+Date:   12112020
+
+    Added quantum sensing and small talk dft
+
+ theory/quantum_mechanics.tex | Bin 19309 -> 38612 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 18f0fcfc398ffab13e53a6392913a74596b2f3a2
+Author: Oliver Hebnes <oliver.lerstol.hebnes@gyldendal.no>
+Date:   11282020
+
+    Functionals DFT, perovskite structure + motivation of qubits
+
+ theory/quantum_mechanics.tex | Bin 18571 -> 19309 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit a00f85f7313544c62e1f9c250de1c3f09834bc60
+Author: Oliver <oliverlh@uio.no>
+Date:   10302020
+
+    added qm, dft, start materialscience and database
+
+ theory/quantum_mechanics.tex | Bin 28821 -> 18571 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit bd398bf79721e28a04ebe3f13bc9d1f4e117d237
+Author: Oliver <oliverlh@uio.no>
+Date:   10092020
+
+    functionals
+
+ theory/quantum_mechanics.tex | Bin 7320 -> 28821 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 58cbe415725759e078e910ce1e56c0e5142338d9
+Author: Oliver <oliverlh@uio.no>
+Date:   09292020
+
+    first draft databases, quantum and crystallography
+
+ theory/quantum_mechanics.tex | Bin 0 -> 7320 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+commit a21ce23043c4814e22da7d89da96c0d6d3a9ed53
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05232021
+
+    last commit???
+
+ theory/quantum_technology.tex | Bin 52569 -> 52559 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit ae6717d4ffeaa9e47e11551759fe6957a6937b13
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05232021
+
+    gone through feedback morten
+
+ theory/quantum_technology.tex | Bin 52489 -> 52569 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 380d63c8d80fb3a417656e8ec0f8ad54b8c18891
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05222021
+
+    alignment text, figures, tables
+
+ theory/quantum_technology.tex | Bin 52479 -> 52489 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 955f856e460d440957f22ba15c71b49992cbe468
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05162021
+
+    added 10000 corrections from grammarly
+
+ theory/quantum_technology.tex | Bin 52549 -> 52479 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit ad1aa2fcdf570578257e495039e0e2bc6e33d283
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05142021
+
+    gone through feedback sschoyen seb up to 7.2
+
+ theory/quantum_technology.tex | Bin 52560 -> 52549 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 98fe44f7e220440ac7a5d4e9a1fba8dcb092e5ca
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05122021
+
+    feedback part 1 schoyen and typos
+
+ theory/quantum_technology.tex | Bin 52272 -> 52560 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 7b79450d42435e5da841d441b231c2fce995099f
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05102021
+
+    feedback validation
+
+ theory/quantum_technology.tex | Bin 52272 -> 52272 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 7102a3ede0b5dc2428f8f87ead277bf4ebf5d444
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05072021
+
+    gone through feedback for quantum technology and materials informatics, starting implementation now
+
+ theory/quantum_technology.tex | Bin 51587 -> 52272 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit f3964cd20a665165b1f975a608b7b2aeffc53b32
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05032021
+
+    done with first round - awaiting feedbacks
+
+ theory/quantum_technology.tex | Bin 51591 -> 51587 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 5e663cccf95247f72286dc633e15df3ba5b150c7
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05012021
+
+    version control restructure material informatics
+
+ theory/quantum_technology.tex | Bin 51155 -> 51591 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 172fd0a98e7cbc9c48536fe1f346305269dd479e
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   05012021
+
+    more discussion and conclusion
+
+ theory/quantum_technology.tex | Bin 51123 -> 51155 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 3e4ada7606695e13b8bdbb59d5885689de427352
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   04222021
+
+    2nd iteration approaches
+
+ theory/quantum_technology.tex | Bin 50091 -> 51123 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 8d57e0d9dc34d99cbf253c8914b50f94b767e0fc
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   04192021
+
+    information flow chap
+
+ theory/quantum_technology.tex | Bin 49850 -> 50091 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 66cebb8560a1ad15e1ad0644f5eb2ab07c08f483
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   03312021
+
+    vc easter
+
+ theory/quantum_technology.tex | Bin 49210 -> 49850 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 4841c4d464c19b142a941a89937f95faede13bbd
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   03272021
+
+    rewrite structure 3rd iteration quantum platforms
+
+ theory/quantum_technology.tex | Bin 42594 -> 49210 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 0a5e482df07ae460b44357401a8f6bf38dc00d50
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   01252021
+
+    second iteration QT done, minor details QM
+
+ theory/quantum_technology.tex | Bin 36726 -> 42594 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 134a90540acb3d43c120ed2d44561af34aa1f722
+Author: ohebbi <oliver.hebnes@hotmail.com>
+Date:   01222021
+
+    Added databases, new structure, + working progress QT feedbacks
+
+ theory/quantum_technology.tex | Bin 0 -> 36726 bytes
  1 file changed, 0 insertions(+), 0 deletions(-)
